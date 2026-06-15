@@ -1,0 +1,98 @@
+# Schema Guide
+
+How to author and maintain catalog entries.
+
+## File Organization
+
+```
+catalog/
+├── navigation/console-tree.yaml    # One file — the full menu tree
+├── routes/<area>/<screen>.yaml      # One file per console screen
+├── resources/<resource>.yaml        # One file per API resource
+└── workflows/<resource>/<op>.yaml   # One file per operation per resource
+```
+
+**Naming convention**: kebab-case for all file and directory names. Resource files match the resource `id` field. Workflow files match the operation name.
+
+## Authoring a New Resource
+
+### 1. Add to the navigation tree
+
+Edit `catalog/navigation/console-tree.yaml` and add a node under the appropriate parent:
+
+```yaml
+- id: "my-resource"
+  label: "My Resource"
+  menu_path: ["Manage", "Section", "My Resource"]
+  route: "/web/section/my-resource"
+  route_file: "routes/section/my-resource.yaml"
+```
+
+### 2. Create the route definition
+
+Create `catalog/routes/<area>/<resource>.yaml` with the route schema:
+
+```yaml
+schema: "urn:f5xc:console:route:v1"
+id: "my-resource"
+label: "My Resource"
+route:
+  pattern: "/web/namespace/{namespace}/section/my-resource"
+  params:
+    namespace:
+      required: true
+      description: "F5 XC namespace"
+  supports_direct_link: true
+  breadcrumbs: ["Home", "Section", "My Resource"]
+context:
+  requires_login: true
+  requires_namespace: true
+screen:
+  type: "list"
+  primary_resource: "my-resource"
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+```
+
+### 3. Create the resource mapping
+
+Create `catalog/resources/<resource>.yaml` with the resource schema. Include:
+- `api` block with `kind`, `group`, `crud_endpoints`
+- `console` block with `list_route`, `detail_route_pattern`
+- `workflows` map pointing to workflow files
+- `form.sections` with field definitions
+
+### 4. Create workflow files
+
+Create `catalog/workflows/<resource>/<operation>.yaml` for each operation. Each workflow needs:
+- `preconditions` — what must be true before starting
+- `params` — input parameters with types and descriptions
+- `steps` — ordered automation steps
+- `postconditions` — expected end state
+
+## Validation
+
+Run `npm run validate` to check all catalog entries against their schemas.
+
+## Confidence Levels
+
+Mark entries with an accurate confidence level:
+
+| Level | Meaning | When to use |
+|-------|---------|-------------|
+| `draft` | Unverified | Initial authoring, auto-discovered entries |
+| `validated` | Confirmed | Verified against live console at stated version |
+| `stale` | Outdated | Console has changed since last validation |
+
+Update `console_version` and `discovered_at` whenever you re-validate an entry.
+
+## Selector Strategy
+
+Prefer selectors in this order:
+1. `data-testid` attributes (most stable)
+2. ARIA labels and roles
+3. CSS class selectors (least stable)
+
+If no stable selector exists, use a descriptive CSS selector and set `confidence: "draft"`.

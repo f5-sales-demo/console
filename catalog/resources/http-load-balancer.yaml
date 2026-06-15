@@ -1,0 +1,164 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "http-load-balancer"
+label: "HTTP Load Balancer"
+
+api:
+  kind: "http_loadbalancer"
+  group: "ves.io.schema.views"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.views.http_loadbalancer.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/config/namespaces/{namespace}/http_loadbalancers"
+    read: "GET /api/config/namespaces/{namespace}/http_loadbalancers/{name}"
+    update: "PUT /api/config/namespaces/{namespace}/http_loadbalancers/{name}"
+    delete: "DELETE /api/config/namespaces/{namespace}/http_loadbalancers/{name}"
+    list: "GET /api/config/namespaces/{namespace}/http_loadbalancers"
+
+console:
+  list_route: "routes/load-balancers/http-load-balancers.yaml"
+  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/http/{name}"
+  create_route_pattern: "/web/namespace/{namespace}/load-balancers/http/create"
+
+  navigation:
+    menu_path: ["Manage", "Load Balancers", "HTTP Load Balancers"]
+    product_area: "load-balancers"
+
+workflows:
+  create: "workflows/http-load-balancer/create.yaml"
+  view: "workflows/http-load-balancer/view.yaml"
+  edit: "workflows/http-load-balancer/edit.yaml"
+  delete: "workflows/http-load-balancer/delete.yaml"
+  clone: "workflows/http-load-balancer/clone.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
+
+    - id: "domains"
+      label: "Domains and LB Type"
+      fields:
+        - id: "domains"
+          label: "Domains"
+          type: "string-list"
+          required: true
+          api_field: "spec.domains"
+          description: "One or more domains this load balancer serves"
+        - id: "load_balancer_type"
+          label: "Load Balancer Type"
+          type: "select"
+          required: true
+          options:
+            - "HTTP"
+            - "HTTPS with Automatic Certificate"
+            - "HTTPS with Custom Certificate"
+          api_field: "spec.https_auto_cert"
+
+    - id: "origins"
+      label: "Origins"
+      type: "nested-resource-list"
+      description: "Origin Pools that serve traffic for this load balancer"
+      nested_resource: "origin-pool"
+      fields:
+        - id: "origin_pool"
+          label: "Origin Pool"
+          type: "resource-selector"
+          resource_type: "origin-pool"
+          required: true
+          api_field: "spec.default_route_pools[].pool"
+        - id: "weight"
+          label: "Weight"
+          type: "number"
+          required: false
+          default: 1
+          api_field: "spec.default_route_pools[].weight"
+          validation:
+            min: 0
+            max: 100
+        - id: "priority"
+          label: "Priority"
+          type: "number"
+          required: false
+          default: 0
+          api_field: "spec.default_route_pools[].priority"
+
+    - id: "routes"
+      label: "Routes"
+      collapsible: true
+      initially_collapsed: true
+      description: "Custom routing rules (advanced)"
+      fields:
+        - id: "routes"
+          label: "Route Rules"
+          type: "json"
+          required: false
+          api_field: "spec.routes"
+
+    - id: "security"
+      label: "Security Configuration"
+      collapsible: true
+      initially_collapsed: true
+      fields:
+        - id: "waf"
+          label: "Web Application Firewall"
+          type: "resource-selector"
+          resource_type: "app-firewall"
+          required: false
+          api_field: "spec.app_firewall"
+        - id: "ddos_protection"
+          label: "DDoS Protection"
+          type: "select"
+          required: false
+          options:
+            - "Default"
+            - "Low"
+            - "Medium"
+            - "High"
+          api_field: "spec.ddos_mitigation_rules"
+        - id: "bot_defense"
+          label: "Bot Defense"
+          type: "toggle"
+          required: false
+          api_field: "spec.bot_defense"
+
+    - id: "advertise"
+      label: "Advertise Policy"
+      collapsible: true
+      initially_collapsed: false
+      fields:
+        - id: "advertise_on_public"
+          label: "Advertise on Public"
+          type: "toggle"
+          required: false
+          api_field: "spec.advertise_on_public"
+        - id: "advertise_custom"
+          label: "Custom Advertise VIP"
+          type: "resource-selector"
+          resource_type: "advertise-policy"
+          required: false
+          api_field: "spec.advertise_custom"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Form sections and fields are draft — will be validated via browser-first discovery"

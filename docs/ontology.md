@@ -1,0 +1,54 @@
+# Ontology
+
+Definitions of terms used throughout the console catalog.
+
+## Core Terms
+
+### Route
+A console URL path or pattern (e.g., `/web/namespace/{namespace}/load-balancers/http`) that identifies a distinct screen. Routes may include path parameters enclosed in braces.
+
+### Screen
+A rendered console page at a specific route. Includes the page layout, tabs, forms, tables, and interactive controls. One route renders one screen, but the screen's content may change based on tab selection or resource state.
+
+### Navigation Path
+The ordered sequence of menu clicks from the console root to reach a specific screen. Example: `["Manage", "Load Balancers", "HTTP Load Balancers"]`.
+
+### Resource
+An API-defined object kind (e.g., `HTTPLoadBalancer`) that has a known schema, CRUD endpoints, and one or more console locations where it can be managed. The `api.kind` field uses snake_case to match api-specs-enriched naming.
+
+### Operation
+A user action on a resource. The standard set is: create, read, update, delete, list, clone, enable, disable, attach, detach, deploy.
+
+### Workflow
+An ordered sequence of automation steps that accomplishes exactly one operation on one resource. Workflows are parameterized and executable by xcsh's browser automation runtime.
+
+### Step
+A single automation action within a workflow. Actions include: navigate, click, fill, fill-list, select, check, uncheck, hover, scroll, wait, assert, screenshot, key-press.
+
+## UI Terms
+
+### Selector
+A CSS selector, `data-testid` attribute, ARIA label, or XPath expression that identifies a specific UI element on a console screen. Selectors have a confidence level and may include fallbacks.
+
+### Form Section
+A logical grouping of form fields within a resource creation or edit form. May be rendered as a card, tab, accordion panel, or drawer. Sections can be collapsible.
+
+### Control
+An interactive UI element on a screen (button, search input, filter dropdown, toggle). Controls have a type, label, and optional selector.
+
+## Metadata Terms
+
+### Confidence
+Validation status of a catalog entry:
+- **draft** — authored or auto-discovered but not yet validated against the live console
+- **validated** — confirmed accurate against a specific console version
+- **stale** — previously validated but the console has changed since
+
+### Console Version
+The version of the F5 XC console that a catalog entry was verified against. Used to track when entries may need re-validation.
+
+### Precondition
+State that must be true before a workflow can execute. Examples: "user must be logged in", "namespace must be selected", "resource must exist".
+
+### Postcondition
+Expected state after a workflow completes successfully. Examples: "resource detail page is visible", "resource removed from list".

@@ -1,0 +1,50 @@
+schema: "urn:f5xc:console:navigation:v1"
+console_version: "2025.06"
+discovered_at: "2026-06-15"
+
+tree:
+  - id: "load-balancers"
+    label: "Load Balancers"
+    menu_path: ["Manage", "Load Balancers"]
+    children:
+      - id: "http-load-balancers"
+        label: "HTTP Load Balancers"
+        menu_path: ["Manage", "Load Balancers", "HTTP Load Balancers"]
+        route: "/web/load-balancers/http"
+        route_file: "routes/load-balancers/http-load-balancers.yaml"
+      - id: "tcp-load-balancers"
+        label: "TCP Load Balancers"
+        menu_path: ["Manage", "Load Balancers", "TCP Load Balancers"]
+        route: "/web/load-balancers/tcp"
+        route_file: "routes/load-balancers/tcp-load-balancers.yaml"
+
+  - id: "security"
+    label: "Security"
+    menu_path: ["Manage", "Security"]
+    children:
+      - id: "app-firewalls"
+        label: "App Firewalls"
+        menu_path: ["Manage", "Security", "App Firewalls"]
+        route: "/web/security/app-firewalls"
+        route_file: "routes/security/app-firewalls.yaml"
+      - id: "service-policies"
+        label: "Service Policies"
+        menu_path: ["Manage", "Security", "Service Policies"]
+        route: "/web/security/service-policies"
+        route_file: "routes/security/service-policies.yaml"
+
+  - id: "networking"
+    label: "Networking"
+    menu_path: ["Manage", "Networking"]
+    children:
+      - id: "sites"
+        label: "Sites"
+        menu_path: ["Manage", "Networking", "Sites"]
+        route: "/web/networking/sites"
+        route_file: "routes/networking/sites.yaml"
+
+  - id: "origin-pools"
+    label: "Origin Pools"
+    menu_path: ["Manage", "Load Balancers", "Origin Pools"]
+    route: "/web/load-balancers/origin-pools"
+    route_file: "routes/load-balancers/origin-pools.yaml"

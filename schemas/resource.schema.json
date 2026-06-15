@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "resource.schema.json",
+  "title": "F5 XC Console Resource Mapping",
+  "description": "Maps an API resource to its console locations, forms, and operations — the traceability matrix",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "urn:f5xc:console:resource:v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "label": {
+      "type": "string"
+    },
+    "api": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "API resource kind (snake_case, matches api-specs-enriched)"
+        },
+        "group": {
+          "type": "string",
+          "description": "API group (e.g., ves.io.schema.views)"
+        },
+        "version": {
+          "type": "string"
+        },
+        "api_spec_file": {
+          "type": "string",
+          "description": "Reference to OpenAPI spec file in api-specs-enriched"
+        },
+        "crud_endpoints": {
+          "type": "object",
+          "properties": {
+            "create": { "type": "string" },
+            "read": { "type": "string" },
+            "update": { "type": "string" },
+            "delete": { "type": "string" },
+            "list": { "type": "string" }
+          }
+        }
+      },
+      "required": ["kind"]
+    },
+    "console": {
+      "type": "object",
+      "properties": {
+        "list_route": {
+          "type": "string",
+          "description": "Relative path to route YAML for the list view"
+        },
+        "detail_route_pattern": {
+          "type": "string"
+        },
+        "create_route_pattern": {
+          "type": "string"
+        },
+        "navigation": {
+          "type": "object",
+          "properties": {
+            "menu_path": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "product_area": {
+              "type": "string"
+            }
+          },
+          "required": ["menu_path"]
+        }
+      },
+      "required": ["list_route"]
+    },
+    "workflows": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "description": "Relative path to workflow YAML"
+      },
+      "description": "Map of operation name to workflow file path"
+    },
+    "form": {
+      "type": "object",
+      "properties": {
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/form_section"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "$ref": "common.schema.json#/definitions/metadata"
+    }
+  },
+  "required": ["schema", "id", "label", "api", "console"],
+  "definitions": {
+    "form_section": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["default", "nested-resource-list", "tab", "accordion", "drawer"],
+          "default": "default"
+        },
+        "description": { "type": "string" },
+        "collapsible": { "type": "boolean" },
+        "initially_collapsed": { "type": "boolean" },
+        "nested_resource": {
+          "type": "string",
+          "description": "Resource ID if this section manages nested resources"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/form_field"
+          }
+        }
+      },
+      "required": ["id", "label"]
+    },
+    "form_field": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text", "textarea", "number", "select", "multi-select",
+            "checkbox", "toggle", "radio", "date", "json",
+            "string-list", "key-value-pairs", "resource-selector",
+            "file-upload", "code-editor"
+          ]
+        },
+        "required": { "type": "boolean" },
+        "default": {},
+        "description": { "type": "string" },
+        "api_field": {
+          "type": "string",
+          "description": "Dot-notation path to the corresponding API field"
+        },
+        "options": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Available options for select/radio fields"
+        },
+        "resource_type": {
+          "type": "string",
+          "description": "Resource ID for resource-selector fields"
+        },
+        "selector": { "type": "string" },
+        "validation": {
+          "type": "object",
+          "properties": {
+            "pattern": { "type": "string" },
+            "min_length": { "type": "integer" },
+            "max_length": { "type": "integer" },
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        }
+      },
+      "required": ["id", "label", "type"]
+    }
+  }
+}
