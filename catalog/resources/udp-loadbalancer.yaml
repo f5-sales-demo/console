@@ -41,7 +41,7 @@ form:
         - metadata.labels
         - metadata.description
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Inferred from API spec and console home page workspace listing
+  notes: Validated via URL probe against live staging console
