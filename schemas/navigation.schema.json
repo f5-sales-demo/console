@@ -62,7 +62,7 @@
           }
         }
       },
-      "required": ["id", "label", "menu_path"]
+      "required": ["id", "label"]
     }
   }
 }

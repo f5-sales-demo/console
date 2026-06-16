@@ -3,19 +3,20 @@ id: "app-firewalls"
 label: "App Firewalls"
 
 route:
-  pattern: "/web/namespace/{namespace}/security/app-firewalls"
+  pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall"
   params:
     namespace:
       required: true
       description: "F5 XC namespace"
       example: "demo"
   supports_direct_link: true
-  breadcrumbs: ["Home", "Security", "App Firewalls"]
+  breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "App Firewall"]
 
 context:
   requires_login: true
   requires_namespace: true
   minimum_role: "admin"
+  workspace: "web-app-and-api-protection"
 
 screen:
   type: "list"
@@ -23,19 +24,18 @@ screen:
   primary_resource: "app-firewall"
 
   controls:
-    - id: "add-btn"
-      type: "button"
+    - id: "add-tab"
+      type: "tab"
       label: "Add App Firewall"
       action: "create"
-      selector: "[data-testid='add-app-firewall']"
+      selector: "tab:text('Add App Firewall')"
+      note: "Add action is a tab element, consistent with other list pages"
     - id: "search"
       type: "search-input"
       label: "Search"
-      selector: "[data-testid='search-input']"
     - id: "namespace-selector"
       type: "dropdown"
       label: "Namespace"
-      selector: "[data-testid='namespace-selector']"
 
   table:
     columns:
@@ -59,7 +59,7 @@ screen:
         label: "Delete"
         operation: "delete"
 
-  detail_route: "/web/namespace/{namespace}/security/app-firewalls/{name}"
+  detail_route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall/{name}"
 
 operations:
   - type: "create"
@@ -70,7 +70,8 @@ operations:
     workflow: "workflows/app-firewall/delete.yaml"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Selectors are placeholders — will be validated via browser-first discovery"
+  notes: "Route pattern validated via live browser session. URL follows workspace-scoped pattern."

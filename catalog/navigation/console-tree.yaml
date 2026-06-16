@@ -3,65 +3,71 @@ console_version: "2025.06"
 discovered_at: "2026-06-15"
 
 tree:
-  - id: "load-balancers"
-    label: "Load Balancers"
-    menu_path: ["Manage", "Load Balancers"]
+  - id: "web-app-and-api-protection"
+    label: "Web App & API Protection"
+    type: "workspace"
+    route_prefix: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}"
     children:
-      - id: "http-load-balancers"
-        label: "HTTP Load Balancers"
-        menu_path: ["Manage", "Load Balancers", "HTTP Load Balancers"]
-        route: "/web/load-balancers/http"
-        route_file: "routes/load-balancers/http-load-balancers.yaml"
-      - id: "tcp-load-balancers"
-        label: "TCP Load Balancers"
-        menu_path: ["Manage", "Load Balancers", "TCP Load Balancers"]
-        route: "/web/load-balancers/tcp"
-        route_file: "routes/load-balancers/tcp-load-balancers.yaml"
-      - id: "origin-pools"
-        label: "Origin Pools"
-        menu_path: ["Manage", "Load Balancers", "Origin Pools"]
-        route: "/web/load-balancers/origin-pools"
-        route_file: "routes/load-balancers/origin-pools.yaml"
-      - id: "virtual-hosts"
-        label: "Virtual Hosts"
-        menu_path: ["Manage", "Load Balancers", "Virtual Hosts"]
-        route: "/web/load-balancers/virtual-hosts"
-        route_file: "routes/load-balancers/virtual-hosts.yaml"
-      - id: "routes"
-        label: "Routes"
-        menu_path: ["Manage", "Load Balancers", "Routes"]
-        route: "/web/load-balancers/routes"
-        route_file: "routes/load-balancers/routes.yaml"
-      - id: "health-checks"
-        label: "Health Checks"
-        menu_path: ["Manage", "Load Balancers", "Health Checks"]
-        route: "/web/load-balancers/health-checks"
-        route_file: "routes/load-balancers/health-checks.yaml"
+      - id: "manage"
+        label: "Manage"
+        children:
+          - id: "load-balancers"
+            label: "Load Balancers"
+            menu_path: ["Web App & API Protection", "Manage", "Load Balancers"]
+            children:
+              - id: "http-load-balancers"
+                label: "HTTP Load Balancers"
+                menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "HTTP Load Balancers"]
+                route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/http_loadbalancers"
+                route_file: "routes/load-balancers/http-load-balancers.yaml"
+              - id: "tcp-load-balancers"
+                label: "TCP Load Balancers"
+                menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "TCP Load Balancers"]
+                route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers"
+                route_file: "routes/load-balancers/tcp-load-balancers.yaml"
+              - id: "origin-pools"
+                label: "Origin Pools"
+                menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "Origin Pools"]
+                route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/origin_pools"
+                route_file: "routes/load-balancers/origin-pools.yaml"
+              - id: "health-checks"
+                label: "Health Checks"
+                menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "Health Checks"]
+                route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/health_checks"
+                route_file: "routes/load-balancers/health-checks.yaml"
 
-  - id: "security"
-    label: "Security"
-    menu_path: ["Manage", "Security"]
-    children:
-      - id: "app-firewalls"
-        label: "App Firewalls"
-        menu_path: ["Manage", "Security", "App Firewalls"]
-        route: "/web/security/app-firewalls"
-        route_file: "routes/security/app-firewalls.yaml"
-      - id: "service-policies"
-        label: "Service Policies"
-        menu_path: ["Manage", "Security", "Service Policies"]
-        route: "/web/security/service-policies"
-        route_file: "routes/security/service-policies.yaml"
+          - id: "app-firewall"
+            label: "App Firewall"
+            menu_path: ["Web App & API Protection", "Manage", "App Firewall"]
+            route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall"
+            route_file: "routes/security/app-firewalls.yaml"
 
-  - id: "networking"
-    label: "Networking"
-    menu_path: ["Manage", "Networking"]
-    children:
-      - id: "sites"
-        label: "Sites"
-        menu_path: ["Manage", "Networking", "Sites"]
-        route: "/web/networking/sites"
-        route_file: "routes/networking/sites.yaml"
+          - id: "service-policies"
+            label: "Service Policies"
+            menu_path: ["Web App & API Protection", "Manage", "Service Policies"]
+            route: "javascript:void(0)"
+            note: "Has submenu — not a direct link"
+            route_file: "routes/security/service-policies.yaml"
+
+          - id: "rate-limiter-policies"
+            label: "Rate Limiter Policies"
+            menu_path: ["Web App & API Protection", "Manage", "Rate Limiter Policies"]
+            route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/rate_limiter_policies"
+
+          - id: "bigip-virtual-servers"
+            label: "BIG-IP Virtual Servers"
+            menu_path: ["Web App & API Protection", "Manage", "BIG-IP Virtual Servers"]
+            route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/bigip_virtual_server"
+
+          - id: "public-ip-addresses"
+            label: "Public IP Addresses"
+            menu_path: ["Web App & API Protection", "Manage", "Public IP Addresses"]
+            route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/public_ip"
+
+          - id: "saved-filters"
+            label: "Saved Filters"
+            menu_path: ["Web App & API Protection", "Manage", "Saved Filters"]
+            route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/saved_filters"
 
   - id: "administration"
     label: "Administration"
@@ -72,3 +78,8 @@ tree:
         menu_path: ["Administration", "Namespaces"]
         route: "/web/namespaces"
         route_file: "routes/administration/namespaces.yaml"
+
+metadata:
+  confidence: "validated"
+  validated_at: "2026-06-15"
+  notes: "Workspace-based structure validated via live browser session. All routes under web-app-and-api-protection workspace confirmed."

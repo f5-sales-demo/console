@@ -3,39 +3,42 @@ id: "http-load-balancers"
 label: "HTTP Load Balancers"
 
 route:
-  pattern: "/web/namespace/{namespace}/load-balancers/http"
+  pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/http_loadbalancers"
   params:
     namespace:
       required: true
       description: "F5 XC namespace"
       example: "demo"
   supports_direct_link: true
-  breadcrumbs: ["Home", "Load Balancers", "HTTP Load Balancers"]
+  breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "Load Balancers", "HTTP Load Balancers"]
 
 context:
   requires_login: true
   requires_namespace: true
   minimum_role: "admin"
+  workspace: "web-app-and-api-protection"
 
 screen:
   type: "list"
   description: "Table listing all HTTP Load Balancers in the selected namespace"
   primary_resource: "http-load-balancer"
 
+  form_tabs: ["Form", "Documentation", "JSON"]
+  form_note: "Create form opens inline on the same page when the Add tab is clicked"
+
   controls:
-    - id: "add-btn"
-      type: "button"
+    - id: "add-tab"
+      type: "tab"
       label: "Add HTTP Load Balancer"
       action: "create"
-      selector: "[data-testid='add-http-lb']"
+      selector: "tab:text('Add HTTP Load Balancer')"
+      note: "This is a tab element, not a button. Clicking it opens the create form inline."
     - id: "search"
       type: "search-input"
       label: "Search"
-      selector: "[data-testid='search-input']"
     - id: "namespace-selector"
       type: "dropdown"
       label: "Namespace"
-      selector: "[data-testid='namespace-selector']"
 
   table:
     columns:
@@ -62,7 +65,7 @@ screen:
         label: "Clone"
         operation: "clone"
 
-  detail_route: "/web/namespace/{namespace}/load-balancers/http/{name}"
+  detail_route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/http_loadbalancers/{name}"
 
 operations:
   - type: "create"
@@ -79,7 +82,8 @@ operations:
     workflow: "workflows/http-load-balancer/clone.yaml"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Selectors are placeholders — will be validated via browser-first discovery"
+  notes: "Route pattern and screen structure validated via live browser session. Add action is a tab, not a button."

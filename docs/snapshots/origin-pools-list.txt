@@ -1,0 +1,186 @@
+uid=11_0 RootWebArea "Origin Pools - Load Balancers | Web App & API Protection" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/load_balancers/origin_pools"
+  uid=11_1 banner
+    uid=11_2 link url="https://nferreira.staging.volterra.us/web/home"
+    uid=11_3 textbox readonly value="Select Workspace"
+    uid=11_4 heading "Web App & API Protection" level="3"
+    uid=11_5 StaticText "D"
+    uid=11_6 StaticText "default"
+    uid=11_7 StaticText "Namespace"
+  uid=11_8 link url="javascript:void(0);"
+    uid=11_9 StaticText "Overview"
+  uid=11_10 link "Security" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/overview/security"
+    uid=11_11 StaticText "Security"
+  uid=11_12 link "Performance" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/overview/performance"
+    uid=11_13 StaticText "Performance"
+  uid=11_14 link url="javascript:void(0);"
+    uid=11_15 StaticText "Manage"
+  uid=11_16 link "Load Balancers" url="javascript:void(0);"
+    uid=11_17 StaticText "Load Balancers"
+  uid=11_18 link "CDN" url="javascript:void(0);"
+    uid=11_19 StaticText "CDN"
+  uid=11_20 link "BIG-IP Virtual Servers" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/bigip_virtual_server"
+    uid=11_21 StaticText "BIG-IP Virtual Servers"
+  uid=11_22 link "Third-Party Applications EA filters active" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/third_party_application"
+    uid=11_23 StaticText "Third-Party Applications"
+    uid=11_24 StaticText "EA"
+    uid=11_25 StaticText "filters active"
+  uid=11_26 link "App Firewall" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/app_firewall"
+    uid=11_27 StaticText "App Firewall"
+  uid=11_28 link "Service Policies" url="javascript:void(0);"
+    uid=11_29 StaticText "Service Policies"
+  uid=11_30 link "Rate Limiter Policies" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/rate_limiter_policies"
+    uid=11_31 StaticText "Rate Limiter Policies"
+  uid=11_32 link "Shared Objects" url="javascript:void(0);"
+    uid=11_33 StaticText "Shared Objects"
+  uid=11_34 link "AI & ML" url="javascript:void(0);"
+    uid=11_35 StaticText "AI & ML"
+  uid=11_36 link "Public IP Addresses" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/public_ip"
+    uid=11_37 StaticText "Public IP Addresses"
+  uid=11_38 link "Alerts Management" url="javascript:void(0);"
+    uid=11_39 StaticText "Alerts Management"
+  uid=11_40 link "Files" url="javascript:void(0);"
+    uid=11_41 StaticText "Files"
+  uid=11_42 link "API Security" url="javascript:void(0);"
+    uid=11_43 StaticText "API Security"
+  uid=11_44 link "Reports" url="javascript:void(0);"
+    uid=11_45 StaticText "Reports"
+  uid=11_46 link "Certificate Management" url="javascript:void(0);"
+    uid=11_47 StaticText "Certificate Management"
+  uid=11_48 link "Upgrade Bot Defense Management" url="javascript:void(0);"
+    uid=11_49 image "Upgrade"
+    uid=11_50 StaticText "Bot Defense Management"
+  uid=11_51 link "Saved Filters" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/saved_filters"
+    uid=11_52 StaticText "Saved Filters"
+  uid=11_53 link "Alerts, Audit Logs" url="javascript:void(0);"
+    uid=11_54 StaticText "Notifications"
+    uid=11_55 StaticText "Alerts, Audit Logs"
+  uid=11_56 link "About" url="javascript:void(0);"
+    uid=11_57 StaticText "Workspace Info"
+    uid=11_58 StaticText "About"
+  uid=11_59 StaticText "Advanced nav options visible"
+  uid=11_60 button "Hide"
+  uid=11_61 navigation
+    uid=11_62 link "Home" url="https://nferreira.staging.volterra.us/web/home"
+      uid=11_63 StaticText "Home"
+    uid=11_64 StaticText ""
+    uid=11_65 StaticText "Web App & API Protection"
+    uid=11_64 StaticText ""
+    uid=11_66 StaticText "default"
+    uid=11_64 StaticText ""
+    uid=11_67 StaticText "Manage"
+    uid=11_64 StaticText ""
+    uid=11_68 StaticText "Load Balancers"
+    uid=11_69 StaticText "Origin Pools"
+    uid=11_70 button expandable haspopup="menu"
+    uid=11_71 tab selectable
+    uid=11_72 button "Support" expandable haspopup="menu"
+    uid=11_73 button expandable haspopup="menu"
+  uid=11_74 tab "Add Origin Pool" selectable
+  uid=11_75 button "Refresh"
+  uid=11_76 StaticText "9 items"
+  uid=11_77 searchbox "Search"
+  uid=11_78 button expandable haspopup="menu"
+  uid=11_64 StaticText "  "
+  uid=11_79 checkbox
+  uid=11_80 StaticText "Name"
+  uid=11_64 StaticText "  "
+  uid=11_64 StaticText ""
+  uid=11_64 StaticText ""
+  uid=11_81 StaticText "Namespace"
+  uid=11_64 StaticText "  "
+  uid=11_64 StaticText ""
+  uid=11_64 StaticText ""
+  uid=11_82 StaticText "Actions"
+  uid=11_64 StaticText "  "
+  uid=11_83 row
+    uid=11_84 cell
+    uid=11_85 cell
+      uid=11_86 checkbox
+    uid=11_87 cell "test-debug-multi-dns"
+      uid=11_88 StaticText "test-debug-multi-dns"
+    uid=11_89 cell "default"
+      uid=11_90 StaticText "default"
+    uid=11_91 cell
+      uid=11_92 button expandable haspopup="menu"
+  uid=11_93 row
+    uid=11_94 cell
+    uid=11_95 cell
+      uid=11_96 checkbox
+    uid=11_97 cell "test-prod-debug-1768768311"
+      uid=11_98 StaticText "test-prod-debug-1768768311"
+    uid=11_99 cell "default"
+      uid=11_100 StaticText "default"
+    uid=11_101 cell
+      uid=11_102 button expandable haspopup="menu"
+  uid=11_103 row
+    uid=11_104 cell
+    uid=11_105 cell
+      uid=11_106 checkbox
+    uid=11_107 cell "xcsh-test-list1-1768697970668-994"
+      uid=11_108 StaticText "xcsh-test-list1-1768697970668-994"
+    uid=11_109 cell "default"
+      uid=11_110 StaticText "default"
+    uid=11_111 cell
+      uid=11_112 button expandable haspopup="menu"
+  uid=11_113 row
+    uid=11_114 cell
+    uid=11_115 cell
+      uid=11_116 checkbox
+    uid=11_117 cell "xcsh-test-list2-1768697970668-654"
+      uid=11_118 StaticText "xcsh-test-list2-1768697970668-654"
+    uid=11_119 cell "default"
+      uid=11_120 StaticText "default"
+    uid=11_121 cell
+      uid=11_122 button expandable haspopup="menu"
+  uid=11_123 row
+    uid=11_124 cell
+    uid=11_125 cell
+      uid=11_126 checkbox
+    uid=11_127 cell "xcsh-test-minimal-delete-1768697860688-845"
+      uid=11_128 StaticText "xcsh-test-minimal-delete-1768697860688-845"
+    uid=11_129 cell "default"
+      uid=11_130 StaticText "default"
+    uid=11_131 cell
+      uid=11_132 button expandable haspopup="menu"
+  uid=11_133 row
+    uid=11_134 cell
+    uid=11_135 cell
+      uid=11_136 checkbox
+    uid=11_137 cell "xcsh-test-minimal-read-1768694916504-315"
+      uid=11_138 StaticText "xcsh-test-minimal-read-1768694916504-315"
+    uid=11_139 cell "default"
+      uid=11_140 StaticText "default"
+    uid=11_141 cell
+      uid=11_142 button expandable haspopup="menu"
+  uid=11_143 row
+    uid=11_144 cell
+    uid=11_145 cell
+      uid=11_146 checkbox
+    uid=11_147 cell "xcsh-test-minimal-read-1768694916761-659"
+      uid=11_148 StaticText "xcsh-test-minimal-read-1768694916761-659"
+    uid=11_149 cell "default"
+      uid=11_150 StaticText "default"
+    uid=11_151 cell
+      uid=11_152 button expandable haspopup="menu"
+  uid=11_153 row
+    uid=11_154 cell
+    uid=11_155 cell
+      uid=11_156 checkbox
+    uid=11_157 cell "xcsh-test-minimal-read-1768697847047-659"
+      uid=11_158 StaticText "xcsh-test-minimal-read-1768697847047-659"
+    uid=11_159 cell "default"
+      uid=11_160 StaticText "default"
+    uid=11_161 cell
+      uid=11_162 button expandable haspopup="menu"
+  uid=11_163 row
+    uid=11_164 cell
+    uid=11_165 cell
+      uid=11_166 checkbox
+    uid=11_167 cell "xcsh-test-minimal-read-1768697858168-210"
+      uid=11_168 StaticText "xcsh-test-minimal-read-1768697858168-210"
+    uid=11_169 cell "default"
+      uid=11_170 StaticText "default"
+    uid=11_171 cell
+      uid=11_172 button expandable haspopup="menu"
+  uid=11_173 button "Help"
+  uid=11_174 generic atomic live="polite" relevant="additions text"

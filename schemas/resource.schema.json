@@ -135,10 +135,12 @@
         "type": {
           "type": "string",
           "enum": [
-            "text", "textarea", "number", "select", "multi-select",
-            "checkbox", "toggle", "radio", "date", "json",
-            "string-list", "key-value-pairs", "resource-selector",
-            "file-upload", "code-editor"
+            "text", "textbox", "textarea", "number", "spinbutton",
+            "select", "listbox", "multi-select",
+            "checkbox", "toggle", "switch", "radio", "date", "json",
+            "string-list", "key-value-pairs", "table",
+            "resource-selector", "nested-resource-list",
+            "configurable", "expandable", "file-upload", "code-editor", "disabled"
           ]
         },
         "required": { "type": "boolean" },

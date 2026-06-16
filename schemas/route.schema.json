@@ -113,7 +113,7 @@
         "id": { "type": "string" },
         "type": {
           "type": "string",
-          "enum": ["button", "search-input", "filter", "dropdown", "toggle", "link"]
+          "enum": ["button", "tab", "search-input", "filter", "dropdown", "toggle", "link"]
         },
         "label": { "type": "string" },
         "action": {
