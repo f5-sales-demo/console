@@ -1,0 +1,98 @@
+resource: http-load-balancer
+api_kind: http_loadbalancer
+api_schema: viewshttp_loadbalancerCreateSpecType
+total_api_properties: 80
+sections:
+  metadata: {}
+  domains_and_lb_type:
+    spec.domains: array<string>
+    spec.http: http_loadbalancerProxyTypeHttp
+    spec.https: http_loadbalancerProxyTypeHttps
+    spec.https_auto_cert: http_loadbalancerProxyTypeHttpsAutoCerts
+  origins:
+    spec.default_route_pools: array<viewsOriginPoolWithWeight>
+    spec.default_pool: viewsorigin_poolGlobalSpecType
+    spec.default_pool_list: viewsOriginPoolListType
+    spec.origin_server_subset_rule_list: http_loadbalancerOriginServerSubsetRuleListType
+  routes:
+    spec.routes: array<viewshttp_loadbalancerRouteType>
+  cdn:
+    spec.disable_caching: ioschemaEmpty
+  waf:
+    spec.app_firewall: schemaviewsObjectRefType
+    spec.disable_waf: ioschemaEmpty
+    spec.waf_exclusion: common_wafWafExclusion
+    spec.data_guard_rules: array<policySimpleDataGuardRule>
+    spec.csrf_policy: schemaCsrfPolicy
+    spec.graphql_rules: array<policyGraphQLRule>
+    spec.protected_cookies: array<schemaCookieManipulationOptionType>
+  bot_protection:
+    spec.bot_defense: common_securityShapeBotDefenseType
+    spec.bot_defense_advanced: common_securityBotDefenseAdvancedType
+    spec.disable_bot_defense: ioschemaEmpty
+  api_protection:
+    spec.api_specification: common_wafAPISpecificationSettings
+    spec.api_protection_rules: common_wafAPIProtectionRules
+    spec.jwt_validation: common_wafJWTValidation
+    spec.enable_api_discovery: common_wafApiDiscoverySetting
+    spec.disable_api_discovery: ioschemaEmpty
+    spec.disable_api_definition: ioschemaEmpty
+    spec.sensitive_data_policy: common_securitySensitiveDataPolicySettings
+    spec.default_sensitive_data_policy: ioschemaEmpty
+    spec.api_rate_limit: common_wafAPIRateLimit
+    spec.api_testing: http_loadbalancerApiTesting
+    spec.disable_api_testing: ioschemaEmpty
+    spec.sensitive_data_disclosure_rules: http_loadbalancerSensitiveDataDisclosureRules
+  dos_settings:
+    spec.l7_ddos_protection: http_loadbalancerL7DDoSProtectionSettings
+    spec.l7_ddos_action_block: ioschemaEmpty
+    spec.l7_ddos_action_default: ioschemaEmpty
+    spec.l7_ddos_action_js_challenge: virtual_hostJavascriptChallengeType
+    spec.ddos_mitigation_rules: array<common_securityDDoSMitigationRule>
+    spec.slow_ddos_mitigation: virtual_hostSlowDDoSMitigation
+    spec.captcha_challenge: virtual_hostCaptchaChallengeType
+    spec.js_challenge: virtual_hostJavascriptChallengeType
+    spec.no_challenge: ioschemaEmpty
+    spec.policy_based_challenge: viewscommon_wafPolicyBasedChallenge
+    spec.enable_challenge: common_wafEnableChallenge
+  client_side_defense:
+    spec.client_side_defense: common_securityClientSideDefenseType
+    spec.disable_client_side_defense: ioschemaEmpty
+  common_security:
+    spec.active_service_policies: common_wafServicePolicyList
+    spec.no_service_policies: ioschemaEmpty
+    spec.service_policies_from_namespace: ioschemaEmpty
+    spec.enable_ip_reputation: viewscommon_wafIPThreatCategoryListType
+    spec.disable_ip_reputation: ioschemaEmpty
+    spec.enable_threat_mesh: ioschemaEmpty
+    spec.disable_threat_mesh: ioschemaEmpty
+    spec.user_id_client_ip: ioschemaEmpty
+    spec.user_identification: schemaviewsObjectRefType
+    spec.enable_malicious_user_detection: ioschemaEmpty
+    spec.disable_malicious_user_detection: ioschemaEmpty
+    spec.rate_limit: common_wafRateLimitConfigType
+    spec.disable_rate_limit: ioschemaEmpty
+    spec.trusted_clients: array<common_wafSimpleClientSrcRule>
+    spec.blocked_clients: array<common_wafSimpleClientSrcRule>
+    spec.cors_policy: schemaCorsPolicy
+  other_settings:
+    spec.advertise_on_public: viewsAdvertisePublic
+    spec.advertise_on_public_default_vip: ioschemaEmpty
+    spec.advertise_custom: viewsAdvertiseCustom
+    spec.do_not_advertise: ioschemaEmpty
+    spec.round_robin: ioschemaEmpty
+    spec.least_active: ioschemaEmpty
+    spec.random: ioschemaEmpty
+    spec.ring_hash: http_loadbalancerHashPolicyListType
+    spec.source_ip_stickiness: ioschemaEmpty
+    spec.cookie_stickiness: routeCookieForHashing
+    spec.disable_trust_client_ip_headers: ioschemaEmpty
+    spec.enable_trust_client_ip_headers: virtual_hostClientIPHeaders
+    spec.add_location: boolean
+    spec.more_option: http_loadbalancerAdvancedOptionsType
+    spec.multi_lb_app: ioschemaEmpty
+    spec.single_lb_app: http_loadbalancerSingleLoadBalancerAppSetting
+    spec.system_default_timeouts: ioschemaEmpty
+    spec.malware_protection_settings: common_securityMalwareProtectionPolicy
+    spec.disable_malware_protection: ioschemaEmpty
+
