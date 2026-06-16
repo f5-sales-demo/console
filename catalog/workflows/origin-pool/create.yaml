@@ -20,8 +20,8 @@ params:
     example: "my-origin-pool"
   origin_server:
     required: true
-    description: "IP address or DNS name of the origin server"
-    example: "10.0.0.1"
+    description: "DNS hostname of the origin server (must be hostname format, not IP)"
+    example: "app.example.com"
   port:
     required: true
     type: "number"

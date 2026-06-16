@@ -181,13 +181,19 @@ postconditions:
   - "http_lb_has_waf: {app_name}-lb uses {app_name}-waf"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-16"
+  validated_at: "2026-06-16"
   console_version: "2025.06"
   estimated_duration_seconds: 120
   notes: >
-    Flagship demo workflow: creates a complete WAAP stack from scratch.
-    Steps 1-2 use run-workflow to execute existing origin-pool and app-firewall
-    create workflows. Step 3 builds the HTTP LB inline with explicit WAF
-    configuration because the create workflow doesn't support WAF attachment.
-    Screenshot steps capture each milestone for demo recordings.
+    Validated on live staging console 2026-06-16. Key discoveries:
+    (1) Origin server DNS Name field requires hostname format, not IP — use
+    app.example.com not 10.0.0.1. (2) Resource selectors (origin pool, app
+    firewall) are async-loading listboxes — type_text to search, then click
+    the [role=option] element via JS. fill() alone doesn't fire Angular change
+    events. (3) WAF Enable dropdown must be selected by clicking the actual
+    [role=option] element, not fill(), to trigger the conditional App Firewall
+    selector sub-field. (4) Created resources: demo-waap-pool, demo-waap-waf,
+    demo-waap-lb with WAF attached. LB shows VIRTUAL_HOST_PENDING_A_RECORD
+    (expected for demo domains).
