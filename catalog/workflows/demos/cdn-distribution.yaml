@@ -52,7 +52,7 @@ steps:
 
   - id: "navigate-cdn"
     action: "navigate"
-    url: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/cdn/cdn_loadbalancers"
+    url: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/cdn/distributions"
     wait_for: "text('CDN Distributions')"
     description: "Step 2: Navigate to CDN Distributions"
 
@@ -99,11 +99,14 @@ postconditions:
   - "origin_pool_exists: {app_name}-origin"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-16"
+  validated_at: "2026-06-16"
   console_version: "2025.06"
   estimated_duration_seconds: 60
   notes: >
-    CDN Distribution demo. Creates an origin pool then a CDN distribution
-    referencing it. CDN forms are under WAAP workspace at /manage/cdn/.
-    Origin pool attachment and cache rule configuration need live validation.
+    Validated on staging 2026-06-16. CDN Distributions at /cdn/distributions
+    (not /cdn/cdn_loadbalancers). Standard tab "Add CDN Distribution". Form
+    has 9 sections including WAF/API/DoS (EA preview). CDN Origin Pool is
+    a Configure link (nested form). WAAP preview dialog appears on first open.
+    Domains use same table pattern as HTTP LB.

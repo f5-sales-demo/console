@@ -41,35 +41,34 @@ steps:
 
   - id: "navigate-dns-zones"
     action: "navigate"
-    url: "/web/workspaces/dns-management/namespaces/system/manage/dns_zone_management/dns_zones"
-    wait_for: "text('DNS Zones')"
-    description: "Step 1: Navigate to DNS Zones in DNS Management workspace"
+    url: "/web/workspaces/dns-management/manage/zone_management"
+    wait_for: "text('DNS Zone Management')"
+    description: "Step 1: Navigate to DNS Zone Management (tenant-scoped, no namespace)"
 
   - id: "click-add-dns-zone"
     action: "click"
-    selector: "tab:text('Add DNS Zone')"
-    wait_for: "textbox[name='Name']"
-    description: "Open the Add DNS Zone form"
-    note: "DNS Management uses system namespace (no namespace selector)"
-
-  - id: "fill-zone-name"
-    action: "fill"
-    selector: "textbox[name='Name']"
-    value: "{app_name}-zone"
-    description: "Enter the DNS zone name"
+    selector: "button:text('Add or Import DNS Zone')"
+    description: "Open the Add or Import dropdown"
+    note: "DNS Zone uses a dropdown button, not a tab"
+    then:
+      - id: "select-add-zone"
+        action: "click"
+        selector: "option:text('Add DNS Zone')"
+        wait_for: "textbox[name='Domain Name']"
+        description: "Select Add DNS Zone from dropdown"
 
   - id: "fill-zone-domain"
     action: "fill"
-    selector: "textbox[name='Domain']"
+    selector: "textbox[name='Domain Name']"
     value: "{domain}"
-    description: "Enter the DNS zone domain"
-    note: "Domain field may be labeled differently — verify during live validation"
+    description: "Enter the DNS zone domain name (primary field — not 'Name')"
+    note: "DNS Zone uses 'Domain Name' as the primary field, not 'Name'"
 
   - id: "save-dns-zone"
     action: "click"
     selector: "button:text('Add DNS Zone')"
     context: "footer"
-    wait_for: "text('{app_name}-zone')"
+    wait_for: "text('{domain}')"
     wait_timeout_ms: 30000
     description: "Save the DNS Zone"
 
@@ -80,9 +79,9 @@ steps:
 
   - id: "navigate-dns-lb"
     action: "navigate"
-    url: "/web/workspaces/dns-management/namespaces/system/manage/dns_load_balancers"
+    url: "/web/workspaces/dns-management/manage/dns_lb_management/dns_load_balancer"
     wait_for: "text('DNS Load Balancers')"
-    description: "Step 2: Navigate to DNS Load Balancers"
+    description: "Step 2: Navigate to DNS Load Balancers (tenant-scoped)"
 
   - id: "click-add-dns-lb"
     action: "click"
@@ -120,12 +119,15 @@ postconditions:
   - "resource_name_in_list: {app_name}-dns-lb"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-16"
+  validated_at: "2026-06-16"
   console_version: "2025.06"
   estimated_duration_seconds: 90
   notes: >
-    DNS Load Balancer demo workflow. DNS Management workspace uses system
-    namespace (no namespace selector). Zone and LB forms need live validation
-    to confirm exact field selectors. Pool member configuration may require
-    additional sub-form steps not yet mapped.
+    Validated on staging 2026-06-16. DNS Management is tenant-scoped (no
+    namespace). DNS Zone uses dropdown button "Add or Import DNS Zone" then
+    "Add DNS Zone" option — NOT a tab. Primary field is "Domain Name" not
+    "Name". DNS LB uses standard tab. Record Type defaults to A. DNS LB
+    form has 5 sections: Metadata, Record Type, Load Balancing Rules,
+    Response Cache, Fallback Pool.
