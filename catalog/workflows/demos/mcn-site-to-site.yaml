@@ -1,0 +1,133 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "mcn-site-to-site-demo"
+label: "MCN Site-to-Site Demo — AWS VPC Site + Site Mesh Group"
+resource:
+  - "aws-vpc-site"
+  - "site-mesh-group"
+operation: "demo"
+
+preconditions:
+  - "user_logged_in"
+  - "role_minimum: admin"
+
+params:
+  site_name:
+    required: true
+    description: "Name for the AWS VPC site"
+    example: "aws-site-east"
+  aws_region:
+    required: true
+    description: "AWS region for the VPC site"
+    example: "us-east-1"
+  aws_cred_name:
+    required: true
+    description: "Name of existing AWS credential in the tenant"
+    example: "aws-creds"
+  mesh_name:
+    required: true
+    description: "Name for the site mesh group"
+    example: "east-west-mesh"
+  vpc_cidr:
+    required: false
+    description: "VPC CIDR block"
+    example: "10.10.0.0/16"
+    default: "10.10.0.0/16"
+
+steps:
+  - id: "screenshot-start"
+    action: "screenshot"
+    screenshot_name: "mcn-demo-start"
+    description: "Capture starting state"
+
+  - id: "navigate-aws-sites"
+    action: "navigate"
+    url: "/web/workspaces/multi-cloud-network-connect/manage/site_management/legacy_configs/aws_vpc_site"
+    wait_for: "text('AWS VPC Sites')"
+    description: "Step 1: Navigate to AWS VPC Sites in MCN workspace"
+    note: "MCN workspace is tenant-scoped — no /namespaces/ in URL"
+
+  - id: "click-add-aws-site"
+    action: "click"
+    selector: "tab:text('Add AWS VPC Site')"
+    wait_for: "textbox[name='Name']"
+    description: "Open the Add AWS VPC Site form"
+
+  - id: "fill-site-name"
+    action: "fill"
+    selector: "textbox[name='Name']"
+    value: "{site_name}"
+    description: "Enter the AWS VPC site name"
+
+  - id: "select-aws-region"
+    action: "select"
+    selector: "listbox"
+    context: "AWS Region"
+    value: "{aws_region}"
+    description: "Select the AWS region"
+
+  - id: "select-aws-creds"
+    action: "select"
+    selector: "listbox"
+    context: "AWS Credentials"
+    value: "{aws_cred_name}"
+    description: "Select the AWS credentials"
+    note: "Resource selector — may need type_text + JS click pattern"
+
+  - id: "save-aws-site"
+    action: "click"
+    selector: "button:text('Add AWS VPC Site')"
+    context: "footer"
+    wait_for: "text('{site_name}')"
+    wait_timeout_ms: 30000
+    description: "Save the AWS VPC Site"
+
+  - id: "screenshot-site-created"
+    action: "screenshot"
+    screenshot_name: "mcn-demo-site-created"
+    description: "Capture AWS VPC site creation"
+
+  - id: "navigate-mesh-groups"
+    action: "navigate"
+    url: "/web/workspaces/multi-cloud-network-connect/manage/networking/site_to_site_connectivity/site_mesh_groups"
+    wait_for: "text('Site Mesh Groups')"
+    description: "Step 2: Navigate to Site Mesh Groups"
+
+  - id: "click-add-mesh"
+    action: "click"
+    selector: "tab:text('Add Site Mesh Group')"
+    wait_for: "textbox[name='Name']"
+    description: "Open the Add Site Mesh Group form"
+
+  - id: "fill-mesh-name"
+    action: "fill"
+    selector: "textbox[name='Name']"
+    value: "{mesh_name}"
+    description: "Enter the site mesh group name"
+
+  - id: "save-mesh"
+    action: "click"
+    selector: "button:text('Add Site Mesh Group')"
+    context: "footer"
+    wait_for: "text('{mesh_name}')"
+    wait_timeout_ms: 30000
+    description: "Save the Site Mesh Group"
+
+  - id: "screenshot-final"
+    action: "screenshot"
+    screenshot_name: "mcn-demo-complete"
+    description: "Capture completed MCN site-to-site stack"
+
+postconditions:
+  - "resource_name_in_list: {mesh_name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-16"
+  console_version: "2025.06"
+  estimated_duration_seconds: 90
+  notes: >
+    MCN site-to-site connectivity demo. MCN workspace is tenant-scoped
+    (no /namespaces/ segment in URLs). AWS VPC Site requires existing AWS
+    credentials in the tenant. Site Mesh Group links sites together for
+    site-to-site networking. Form fields (VPC CIDR, ingress/egress gateways)
+    need live validation to confirm exact selectors.
