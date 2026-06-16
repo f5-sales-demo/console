@@ -53,7 +53,8 @@
       "type": "string",
       "enum": [
         "create", "read", "update", "delete", "list",
-        "clone", "enable", "disable", "attach", "detach", "deploy"
+        "clone", "enable", "disable", "attach", "detach", "deploy",
+        "demo"
       ]
     },
     "context": {

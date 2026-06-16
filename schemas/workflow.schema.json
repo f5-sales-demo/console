@@ -17,8 +17,11 @@
       "type": "string"
     },
     "resource": {
-      "type": "string",
-      "description": "Resource ID this workflow operates on"
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ],
+      "description": "Resource ID(s) this workflow operates on; array for composite workflows"
     },
     "operation": {
       "$ref": "common.schema.json#/definitions/operation_type"
@@ -95,7 +98,7 @@
           "enum": [
             "navigate", "click", "fill", "fill-list", "select",
             "check", "uncheck", "hover", "scroll", "wait",
-            "assert", "screenshot", "key-press"
+            "assert", "screenshot", "key-press", "run-workflow"
           ]
         },
         "description": {
@@ -150,6 +153,23 @@
         "screenshot_name": {
           "type": "string",
           "description": "Filename for screenshot capture (for screenshot action)"
+        },
+        "workflow": {
+          "type": "string",
+          "description": "Workflow file path to execute (for run-workflow action), e.g. origin-pool/create"
+        },
+        "with": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Parameter values to pass to the referenced workflow, supports {param} interpolation"
+        },
+        "note": {
+          "type": "string",
+          "description": "Human-readable note about this step"
+        },
+        "context": {
+          "type": "string",
+          "description": "UI context hint for disambiguating selectors"
         }
       },
       "required": ["id", "action"]
