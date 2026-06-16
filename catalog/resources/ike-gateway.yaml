@@ -1,6 +1,6 @@
 schema: urn:f5xc:console:resource:v1
 id: ike-gateway
-label: External Connectors
+label: IKE Profiles
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
   kind: ike_gateway
@@ -8,24 +8,26 @@ console:
   workspace: multi-cloud-network-connect
   workspace_label: Multi-Cloud Network Connect
   route_prefix: /web/workspaces/multi-cloud-network-connect
-  route_pattern: /namespaces/{namespace}/manage/networking/ike_gateways
+  route_pattern: /manage/networking/external_connectivity/ike_profiles
   menu_path:
     - Multi-Cloud Network Connect
     - Manage
     - Networking
-    - External Connectors
+    - External Connectivity
+    - IKE Profiles
   breadcrumbs:
     - Home
     - Multi-Cloud Network Connect
-    - '{namespace}'
     - Manage
     - Networking
-    - External Connectors
+    - External Connectivity
+    - IKE Profiles
+  namespace_scoped: false
 add_action:
   type: tab
-  label: Add External Connector
+  label: Add IKE Profile
 save_action:
-  label: Add External Connector
+  label: Add IKE Profile
 cancel_action:
   label: Cancel All
 form_tabs:
@@ -44,7 +46,7 @@ enriched_fields:
   count: 4
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Inferred from API spec and console home page workspace listing
+  notes: Validated — MCN workspace has no namespace in URLs

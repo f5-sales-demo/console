@@ -8,7 +8,7 @@ console:
   workspace: dns-management
   workspace_label: DNS Management
   route_prefix: /web/workspaces/dns-management
-  route_pattern: /namespaces/{namespace}/manage/dns_load_balancers
+  route_pattern: /namespaces/system/manage/dns_load_balancers
   menu_path:
     - DNS Management
     - Manage
@@ -16,9 +16,10 @@ console:
   breadcrumbs:
     - Home
     - DNS Management
-    - '{namespace}'
+    - system
     - Manage
     - DNS Load Balancers
+  namespace_scoped: false
 add_action:
   type: tab
   label: Add DNS Load Balancer
@@ -42,7 +43,7 @@ enriched_fields:
   count: 5
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Inferred from API spec and console home page workspace listing
+  notes: Validated via URL probe against live staging console

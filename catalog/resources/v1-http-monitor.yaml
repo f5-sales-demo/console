@@ -8,7 +8,7 @@ console:
   workspace: observability
   workspace_label: Observability
   route_prefix: /web/workspaces/observability
-  route_pattern: /namespaces/{namespace}/manage/monitors/http_monitors
+  route_pattern: /namespaces/system/manage/monitors/http_monitors
   menu_path:
     - Observability
     - Manage
@@ -17,10 +17,11 @@ console:
   breadcrumbs:
     - Home
     - Observability
-    - '{namespace}'
+    - system
     - Manage
     - Monitors
     - HTTP Monitors
+  namespace_scoped: false
 add_action:
   type: tab
   label: Add HTTP Monitor
@@ -44,7 +45,7 @@ enriched_fields:
   count: 5
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Inferred from API spec and console home page workspace listing
+  notes: Validated via URL probe against live staging console
