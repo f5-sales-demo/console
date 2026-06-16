@@ -1,0 +1,109 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "origin-pool"
+label: "Origin Pool"
+
+api:
+  kind: "origin_pool"
+  group: "ves.io.schema.views"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.views.origin_pool.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/config/namespaces/{namespace}/origin_pools"
+    read: "GET /api/config/namespaces/{namespace}/origin_pools/{name}"
+    update: "PUT /api/config/namespaces/{namespace}/origin_pools/{name}"
+    delete: "DELETE /api/config/namespaces/{namespace}/origin_pools/{name}"
+    list: "GET /api/config/namespaces/{namespace}/origin_pools"
+
+console:
+  list_route: "routes/load-balancers/origin-pools.yaml"
+  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/origin-pools/{name}"
+  create_route_pattern: "/web/namespace/{namespace}/load-balancers/origin-pools/create"
+
+  navigation:
+    menu_path: ["Manage", "Load Balancers", "Origin Pools"]
+    product_area: "load-balancers"
+
+workflows:
+  create: "workflows/origin-pool/create.yaml"
+  delete: "workflows/origin-pool/delete.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
+
+    - id: "origin-servers"
+      label: "Origin Servers"
+      type: "nested-resource-list"
+      description: "Backend servers that receive traffic from this origin pool"
+      fields:
+        - id: "origin_server"
+          label: "Origin Server"
+          type: "text"
+          required: true
+          api_field: "spec.origin_servers[].public_ip.ip"
+          description: "IP address or DNS name of the origin server"
+        - id: "port"
+          label: "Port"
+          type: "number"
+          required: true
+          api_field: "spec.origin_servers[].public_ip.port"
+          description: "Port number for the origin server"
+          validation:
+            min: 1
+            max: 65535
+
+    - id: "health-check"
+      label: "Health Check"
+      collapsible: true
+      initially_collapsed: false
+      fields:
+        - id: "health_check"
+          label: "Health Check"
+          type: "resource-selector"
+          resource_type: "health-check"
+          required: false
+          api_field: "spec.healthcheck"
+
+    - id: "load-balancing"
+      label: "Load Balancing"
+      collapsible: true
+      initially_collapsed: true
+      fields:
+        - id: "load_balancing_algorithm"
+          label: "Load Balancing Algorithm"
+          type: "select"
+          required: false
+          options:
+            - "Round Robin"
+            - "Least Active Requests"
+            - "Random"
+            - "Source IP Stickiness"
+            - "Cookie Stickiness"
+            - "Ring Hash"
+          api_field: "spec.loadbalancer_algorithm"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Form sections and fields are draft — will be validated via browser-first discovery"

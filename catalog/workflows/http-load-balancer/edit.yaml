@@ -1,0 +1,94 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "http-load-balancer-edit"
+label: "Edit HTTP Load Balancer"
+resource: "http-load-balancer"
+operation: "update"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+  - "resource_exists: {name}"
+
+params:
+  namespace:
+    required: true
+    description: "Namespace containing the load balancer"
+    example: "demo"
+  name:
+    required: true
+    description: "Name of the load balancer to edit"
+    example: "my-http-lb"
+  description:
+    required: false
+    description: "Updated description for the load balancer"
+    example: "Production HTTP LB"
+  domains:
+    required: false
+    type: "string[]"
+    description: "Updated list of domains"
+    example: ["app.example.com"]
+
+steps:
+  - id: "navigate-to-list"
+    action: "navigate"
+    url: "/web/namespace/{namespace}/load-balancers/http"
+    wait_for: "[data-testid='resource-table']"
+    description: "Navigate to HTTP Load Balancer list page"
+
+  - id: "find-row"
+    action: "assert"
+    selector: "[data-testid='resource-row-{name}']"
+    expected_text: "{name}"
+    description: "Locate the target resource row in the table"
+
+  - id: "open-actions"
+    action: "click"
+    selector: "[data-testid='resource-row-{name}'] [data-testid='row-actions']"
+    wait_for: "[data-testid='action-edit']"
+    description: "Open the row actions menu"
+
+  - id: "click-edit"
+    action: "click"
+    selector: "[data-testid='action-edit']"
+    wait_for: "input[data-testid='name-input']"
+    description: "Click Edit to open the edit form"
+
+  - id: "update-description"
+    condition: "params.description is set"
+    action: "fill"
+    selector: "textarea[data-testid='description-input']"
+    value: "{description}"
+    description: "Update the description field"
+
+  - id: "update-domains"
+    condition: "params.domains is set"
+    action: "fill-list"
+    selector: "[data-testid='domains-input']"
+    values: "{domains}"
+    description: "Update the domains list"
+
+  - id: "save"
+    action: "click"
+    selector: "[data-testid='save-and-exit']"
+    wait_for: "[data-testid='resource-detail']"
+    wait_timeout_ms: 30000
+    description: "Save changes and wait for the detail page"
+
+  - id: "verify-updated"
+    action: "assert"
+    selector: "[data-testid='resource-name']"
+    expected_text: "{name}"
+    description: "Verify the resource detail page shows the correct name after update"
+
+postconditions:
+  - "resource_updated"
+  - "resource_detail_page_visible"
+  - "resource_name_matches: {name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  estimated_duration_seconds: 20
+  notes: "Selectors are placeholders — must be validated against the live console"

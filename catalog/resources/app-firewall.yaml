@@ -1,0 +1,113 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "app-firewall"
+label: "App Firewall"
+
+api:
+  kind: "app_firewall"
+  group: "ves.io.schema"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.app_firewall.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/config/namespaces/{namespace}/app_firewalls"
+    read: "GET /api/config/namespaces/{namespace}/app_firewalls/{name}"
+    update: "PUT /api/config/namespaces/{namespace}/app_firewalls/{name}"
+    delete: "DELETE /api/config/namespaces/{namespace}/app_firewalls/{name}"
+    list: "GET /api/config/namespaces/{namespace}/app_firewalls"
+
+console:
+  list_route: "routes/security/app-firewalls.yaml"
+  detail_route_pattern: "/web/namespace/{namespace}/security/app-firewalls/{name}"
+  create_route_pattern: "/web/namespace/{namespace}/security/app-firewalls/create"
+
+  navigation:
+    menu_path: ["Manage", "Security", "App Firewalls"]
+    product_area: "security"
+
+workflows:
+  create: "workflows/app-firewall/create.yaml"
+  delete: "workflows/app-firewall/delete.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
+
+    - id: "enforcement"
+      label: "Enforcement Mode"
+      fields:
+        - id: "enforcement_mode"
+          label: "Enforcement Mode"
+          type: "select"
+          required: true
+          options:
+            - "Blocking"
+            - "Monitoring"
+          api_field: "spec.enforcement_mode"
+          description: "Blocking mode actively blocks malicious requests; Monitoring mode only logs them"
+
+    - id: "detection"
+      label: "Detection Settings"
+      collapsible: true
+      initially_collapsed: false
+      fields:
+        - id: "detection_settings"
+          label: "Detection Settings"
+          type: "select"
+          required: false
+          options:
+            - "Default"
+            - "High"
+            - "Low"
+            - "Custom"
+          api_field: "spec.detection_settings"
+          description: "Sensitivity level for attack detection"
+        - id: "signature_overrides"
+          label: "Signature Overrides"
+          type: "json"
+          required: false
+          api_field: "spec.detection_settings.signature_overrides"
+          description: "Override specific attack signatures"
+
+    - id: "bot-defense"
+      label: "Bot Defense Configuration"
+      collapsible: true
+      initially_collapsed: true
+      fields:
+        - id: "bot_defense_enabled"
+          label: "Enable Bot Defense"
+          type: "toggle"
+          required: false
+          api_field: "spec.bot_defense.enabled"
+        - id: "bot_defense_mode"
+          label: "Bot Defense Mode"
+          type: "select"
+          required: false
+          options:
+            - "Default"
+            - "Custom"
+          api_field: "spec.bot_defense.mode"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Form sections and fields are draft — will be validated via browser-first discovery"

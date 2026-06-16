@@ -1,0 +1,95 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "app-firewall-create"
+label: "Create App Firewall"
+resource: "app-firewall"
+operation: "create"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+
+params:
+  namespace:
+    required: true
+    description: "Target namespace"
+    example: "demo"
+  name:
+    required: true
+    description: "App firewall name (lowercase alphanumeric and hyphens)"
+    example: "my-app-firewall"
+  enforcement_mode:
+    required: true
+    description: "Enforcement mode: Blocking or Monitoring"
+    example: "Blocking"
+  detection_settings:
+    required: false
+    description: "Detection sensitivity level"
+    example: "Default"
+  bot_defense_enabled:
+    required: false
+    type: "boolean"
+    description: "Whether to enable bot defense"
+    example: false
+
+steps:
+  - id: "navigate-to-list"
+    action: "navigate"
+    url: "/web/namespace/{namespace}/security/app-firewalls"
+    wait_for: "[data-testid='add-app-firewall']"
+    description: "Navigate to App Firewalls list page"
+
+  - id: "click-add"
+    action: "click"
+    selector: "[data-testid='add-app-firewall']"
+    wait_for: "input[data-testid='name-input']"
+    description: "Click Add App Firewall button to open the create form"
+
+  - id: "fill-name"
+    action: "fill"
+    selector: "input[data-testid='name-input']"
+    value: "{name}"
+    description: "Enter the app firewall name"
+
+  - id: "select-enforcement-mode"
+    action: "select"
+    selector: "[data-testid='enforcement-mode-select']"
+    value: "{enforcement_mode}"
+    description: "Select the enforcement mode (Blocking or Monitoring)"
+
+  - id: "select-detection-settings"
+    condition: "params.detection_settings is set"
+    action: "select"
+    selector: "[data-testid='detection-settings-select']"
+    value: "{detection_settings}"
+    description: "Select the detection sensitivity level"
+
+  - id: "enable-bot-defense"
+    condition: "params.bot_defense_enabled is true"
+    action: "check"
+    selector: "[data-testid='bot-defense-toggle']"
+    description: "Enable bot defense"
+
+  - id: "save"
+    action: "click"
+    selector: "[data-testid='save-and-exit']"
+    wait_for: "[data-testid='resource-detail']"
+    wait_timeout_ms: 30000
+    description: "Save the app firewall and wait for the detail page"
+
+  - id: "verify-created"
+    action: "assert"
+    selector: "[data-testid='resource-name']"
+    expected_text: "{name}"
+    description: "Verify the resource was created by checking the name on the detail page"
+
+postconditions:
+  - "resource_detail_page_visible"
+  - "resource_name_matches: {name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  estimated_duration_seconds: 25
+  notes: "Selectors are placeholders — must be validated against the live console"

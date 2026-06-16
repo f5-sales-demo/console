@@ -17,6 +17,16 @@ tree:
         menu_path: ["Manage", "Load Balancers", "TCP Load Balancers"]
         route: "/web/load-balancers/tcp"
         route_file: "routes/load-balancers/tcp-load-balancers.yaml"
+      - id: "origin-pools"
+        label: "Origin Pools"
+        menu_path: ["Manage", "Load Balancers", "Origin Pools"]
+        route: "/web/load-balancers/origin-pools"
+        route_file: "routes/load-balancers/origin-pools.yaml"
+      - id: "health-checks"
+        label: "Health Checks"
+        menu_path: ["Manage", "Load Balancers", "Health Checks"]
+        route: "/web/load-balancers/health-checks"
+        route_file: "routes/load-balancers/health-checks.yaml"
 
   - id: "security"
     label: "Security"
@@ -42,9 +52,3 @@ tree:
         menu_path: ["Manage", "Networking", "Sites"]
         route: "/web/networking/sites"
         route_file: "routes/networking/sites.yaml"
-
-  - id: "origin-pools"
-    label: "Origin Pools"
-    menu_path: ["Manage", "Load Balancers", "Origin Pools"]
-    route: "/web/load-balancers/origin-pools"
-    route_file: "routes/load-balancers/origin-pools.yaml"

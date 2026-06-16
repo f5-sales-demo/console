@@ -1,0 +1,123 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "health-check"
+label: "Health Check"
+
+api:
+  kind: "healthcheck"
+  group: "ves.io.schema"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.healthcheck.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/config/namespaces/{namespace}/healthchecks"
+    read: "GET /api/config/namespaces/{namespace}/healthchecks/{name}"
+    update: "PUT /api/config/namespaces/{namespace}/healthchecks/{name}"
+    delete: "DELETE /api/config/namespaces/{namespace}/healthchecks/{name}"
+    list: "GET /api/config/namespaces/{namespace}/healthchecks"
+
+console:
+  list_route: "routes/load-balancers/health-checks.yaml"
+  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/health-checks/{name}"
+  create_route_pattern: "/web/namespace/{namespace}/load-balancers/health-checks/create"
+
+  navigation:
+    menu_path: ["Manage", "Load Balancers", "Health Checks"]
+    product_area: "load-balancers"
+
+workflows:
+  create: "workflows/health-check/create.yaml"
+  delete: "workflows/health-check/delete.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
+
+    - id: "health-check-type"
+      label: "Health Check Type"
+      fields:
+        - id: "health_check_type"
+          label: "Health Check Type"
+          type: "select"
+          required: true
+          options:
+            - "HTTP"
+            - "TCP"
+          api_field: "spec.http_health_check"
+          description: "Protocol used for health checking"
+        - id: "path"
+          label: "Path"
+          type: "text"
+          required: false
+          api_field: "spec.http_health_check.path"
+          description: "HTTP path to check (for HTTP health checks)"
+
+    - id: "timing"
+      label: "Timing Configuration"
+      collapsible: true
+      initially_collapsed: false
+      fields:
+        - id: "interval"
+          label: "Interval (seconds)"
+          type: "number"
+          required: false
+          default: 15
+          api_field: "spec.interval"
+          description: "Time between health check probes"
+          validation:
+            min: 1
+            max: 3600
+        - id: "timeout"
+          label: "Timeout (seconds)"
+          type: "number"
+          required: false
+          default: 3
+          api_field: "spec.timeout"
+          description: "Timeout for each health check probe"
+          validation:
+            min: 1
+            max: 300
+        - id: "unhealthy_threshold"
+          label: "Unhealthy Threshold"
+          type: "number"
+          required: false
+          default: 3
+          api_field: "spec.unhealthy_threshold"
+          description: "Number of consecutive failures before marking unhealthy"
+          validation:
+            min: 1
+            max: 10
+        - id: "healthy_threshold"
+          label: "Healthy Threshold"
+          type: "number"
+          required: false
+          default: 1
+          api_field: "spec.healthy_threshold"
+          description: "Number of consecutive successes before marking healthy"
+          validation:
+            min: 1
+            max: 10
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Form sections and fields are draft — will be validated via browser-first discovery"
