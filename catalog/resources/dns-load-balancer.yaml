@@ -8,16 +8,17 @@ console:
   workspace: dns-management
   workspace_label: DNS Management
   route_prefix: /web/workspaces/dns-management
-  route_pattern: /namespaces/system/manage/dns_load_balancers
+  route_pattern: /manage/dns_lb_management/dns_load_balancer
   menu_path:
     - DNS Management
     - Manage
+    - DNS Load Balancer Management
     - DNS Load Balancers
   breadcrumbs:
     - Home
     - DNS Management
-    - system
     - Manage
+    - DNS Load Balancer Management
     - DNS Load Balancers
   namespace_scoped: false
 add_action:

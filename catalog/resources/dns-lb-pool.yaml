@@ -8,17 +8,19 @@ console:
   workspace: dns-management
   workspace_label: DNS Management
   route_prefix: /web/workspaces/dns-management
-  route_pattern: /namespaces/{namespace}/manage/dns_lb_pools
+  route_pattern: /manage/dns_lb_management/dns_lb_pool
   menu_path:
     - DNS Management
     - Manage
+    - DNS Load Balancer Management
     - DNS Load Balancer Pools
   breadcrumbs:
     - Home
     - DNS Management
-    - '{namespace}'
     - Manage
+    - DNS Load Balancer Management
     - DNS Load Balancer Pools
+  namespace_scoped: false
 add_action:
   type: tab
   label: Add DNS Load Balancer Pool
@@ -42,7 +44,7 @@ enriched_fields:
   count: 4
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
   notes: Inferred from API spec and console home page workspace listing

@@ -1,31 +1,32 @@
 schema: urn:f5xc:console:resource:v1
-id: dns-zone
-label: DNS Zones
+id: securemesh-site-v2
+label: Secure Mesh Sites v2
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: dns_zone
+  kind: securemesh_site_v2
 console:
-  workspace: dns-management
-  workspace_label: DNS Management
-  route_prefix: /web/workspaces/dns-management
-  route_pattern: /manage/zone_management
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/site_management/cloud_sites/securemesh_site_v2
   menu_path:
-    - DNS Management
     - Manage
-    - DNS Zone Management
-    - DNS Zones
+    - Site Management
+    - Customer Edges
+    - Secure Mesh Sites v2
   breadcrumbs:
     - Home
-    - DNS Management
+    - Multi-Cloud Network Connect
     - Manage
-    - DNS Zone Management
-    - DNS Zones
+    - Site Management
+    - Customer Edges
+    - Secure Mesh Sites v2
   namespace_scoped: false
 add_action:
   type: tab
-  label: Add DNS Zone
+  label: Add Secure Mesh Site v2
 save_action:
-  label: Add DNS Zone
+  label: Add Secure Mesh Site v2
 cancel_action:
   label: Cancel All
 form_tabs:
@@ -40,11 +41,7 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
-enriched_fields:
-  count: 5
-  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console

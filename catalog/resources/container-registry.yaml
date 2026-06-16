@@ -1,0 +1,43 @@
+schema: urn:f5xc:console:resource:v1
+id: container-registry
+label: Container Registries
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: container_registry
+console:
+  workspace: distributed-apps
+  workspace_label: Distributed Apps
+  route_prefix: /web/workspaces/distributed-apps
+  route_pattern: /namespaces/{namespace}/manage/container_registries
+  menu_path:
+    - Manage
+    - Container Registries
+  breadcrumbs:
+    - Home
+    - Distributed Apps
+    - '{namespace}'
+    - Manage
+    - Container Registries
+add_action:
+  type: tab
+  label: Add Container Registry
+save_action:
+  label: Add Container Registry
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'

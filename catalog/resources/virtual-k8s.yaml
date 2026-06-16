@@ -1,0 +1,43 @@
+schema: urn:f5xc:console:resource:v1
+id: virtual-k8s
+label: Virtual K8s
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: virtual_k8s
+console:
+  workspace: distributed-apps
+  workspace_label: Distributed Apps
+  route_prefix: /web/workspaces/distributed-apps
+  route_pattern: /namespaces/{namespace}/applications/virtual_k8s
+  menu_path:
+    - Applications
+    - Virtual K8s
+  breadcrumbs:
+    - Home
+    - Distributed Apps
+    - '{namespace}'
+    - Applications
+    - Virtual K8s
+add_action:
+  type: tab
+  label: Add Virtual K8s
+save_action:
+  label: Add Virtual K8s
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'

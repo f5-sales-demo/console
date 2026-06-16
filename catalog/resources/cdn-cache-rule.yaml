@@ -1,31 +1,30 @@
 schema: urn:f5xc:console:resource:v1
-id: dns-zone
-label: DNS Zones
+id: cdn-cache-rule
+label: CDN Cache Rules
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: dns_zone
+  kind: cdn_cache_rule
 console:
-  workspace: dns-management
-  workspace_label: DNS Management
-  route_prefix: /web/workspaces/dns-management
-  route_pattern: /manage/zone_management
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/cdn/cdn_cache_rule
   menu_path:
-    - DNS Management
     - Manage
-    - DNS Zone Management
-    - DNS Zones
+    - CDN
+    - CDN Cache Rules
   breadcrumbs:
     - Home
-    - DNS Management
+    - Web App & API Protection
+    - '{namespace}'
     - Manage
-    - DNS Zone Management
-    - DNS Zones
-  namespace_scoped: false
+    - CDN
+    - CDN Cache Rules
 add_action:
   type: tab
-  label: Add DNS Zone
+  label: Add CDN Cache Rule
 save_action:
-  label: Add DNS Zone
+  label: Add CDN Cache Rule
 cancel_action:
   label: Cancel All
 form_tabs:
@@ -40,11 +39,7 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
-enriched_fields:
-  count: 5
-  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console

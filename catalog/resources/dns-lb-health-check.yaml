@@ -1,31 +1,30 @@
 schema: urn:f5xc:console:resource:v1
-id: dns-zone
-label: DNS Zones
+id: dns-lb-health-check
+label: DNS Load Balancer Health Checks
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: dns_zone
+  kind: dns_lb_health_check
 console:
   workspace: dns-management
   workspace_label: DNS Management
   route_prefix: /web/workspaces/dns-management
-  route_pattern: /manage/zone_management
+  route_pattern: /manage/dns_lb_management/dns_lb_health_check
   menu_path:
-    - DNS Management
     - Manage
-    - DNS Zone Management
-    - DNS Zones
+    - DNS Load Balancer Management
+    - DNS Load Balancer Health Checks
   breadcrumbs:
     - Home
     - DNS Management
     - Manage
-    - DNS Zone Management
-    - DNS Zones
+    - DNS Load Balancer Management
+    - DNS Load Balancer Health Checks
   namespace_scoped: false
 add_action:
   type: tab
-  label: Add DNS Zone
+  label: Add DNS LB Health Check
 save_action:
-  label: Add DNS Zone
+  label: Add DNS LB Health Check
 cancel_action:
   label: Cancel All
 form_tabs:
@@ -40,11 +39,7 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
-enriched_fields:
-  count: 5
-  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console
