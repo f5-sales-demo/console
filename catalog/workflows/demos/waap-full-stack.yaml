@@ -1,0 +1,193 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "waap-full-stack-demo"
+label: "WAAP Full Stack Demo — Origin Pool + App Firewall + HTTP Load Balancer"
+resource:
+  - "origin-pool"
+  - "app-firewall"
+  - "http-load-balancer"
+operation: "demo"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+
+params:
+  namespace:
+    required: true
+    description: "Target namespace for all resources"
+    example: "demo"
+  app_name:
+    required: true
+    description: "Base name for all resources (used as prefix)"
+    example: "my-app"
+  domain:
+    required: true
+    description: "Domain for the HTTP Load Balancer"
+    example: "app.example.com"
+  origin_server:
+    required: true
+    description: "IP address or DNS name of the origin server"
+    example: "10.0.0.1"
+  origin_port:
+    required: true
+    type: "number"
+    description: "Port number for the origin server"
+    example: 8080
+  waf_mode:
+    required: false
+    description: "WAF enforcement mode: Monitoring or Blocking"
+    example: "Blocking"
+    default: "Blocking"
+
+steps:
+  - id: "screenshot-start"
+    action: "screenshot"
+    screenshot_name: "waap-demo-start"
+    description: "Capture starting state"
+
+  - id: "create-origin-pool"
+    action: "run-workflow"
+    workflow: "origin-pool/create"
+    with:
+      namespace: "{namespace}"
+      name: "{app_name}-pool"
+      origin_server: "{origin_server}"
+      port: "{origin_port}"
+    description: "Step 1: Create an origin pool pointing to the backend server"
+
+  - id: "screenshot-origin-pool-created"
+    action: "screenshot"
+    screenshot_name: "waap-demo-origin-pool-created"
+    description: "Capture origin pool creation result"
+
+  - id: "create-app-firewall"
+    action: "run-workflow"
+    workflow: "app-firewall/create"
+    with:
+      namespace: "{namespace}"
+      name: "{app_name}-waf"
+      enforcement_mode: "{waf_mode}"
+    description: "Step 2: Create an App Firewall policy in Blocking mode"
+
+  - id: "screenshot-app-firewall-created"
+    action: "screenshot"
+    screenshot_name: "waap-demo-app-firewall-created"
+    description: "Capture app firewall creation result"
+
+  - id: "navigate-to-http-lb"
+    action: "navigate"
+    url: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/http_loadbalancers"
+    wait_for: "text('HTTP Load Balancers')"
+    description: "Step 3: Navigate to HTTP Load Balancers list"
+
+  - id: "click-add-http-lb"
+    action: "click"
+    selector: "tab:text('Add HTTP Load Balancer')"
+    wait_for: "textbox[name='Name']"
+    description: "Open the Add HTTP Load Balancer form"
+    note: "Tab element, not a button"
+
+  - id: "fill-lb-name"
+    action: "fill"
+    selector: "textbox[name='Name']"
+    value: "{app_name}-lb"
+    description: "Enter the load balancer name"
+
+  - id: "add-domain"
+    action: "click"
+    selector: "button:text('Add Item')"
+    context: "Domains table"
+    description: "Click Add Item in the Domains table"
+    then:
+      - id: "fill-domain"
+        action: "fill"
+        selector: "textbox"
+        context: "Domains table row"
+        value: "{domain}"
+        description: "Enter the domain name"
+
+  - id: "select-origin-pool"
+    action: "click"
+    selector: "button:text('Add Item')"
+    context: "Origin Pools section"
+    wait_for: "listbox"
+    description: "Click Add Item in the Origin Pools section"
+    then:
+      - id: "choose-pool"
+        action: "select"
+        selector: "listbox"
+        context: "Origin Pool selector"
+        value: "{app_name}-pool"
+        description: "Select the origin pool created in step 1"
+
+      - id: "apply-pool"
+        action: "click"
+        selector: "button:text('Apply')"
+        description: "Confirm origin pool selection"
+
+  - id: "screenshot-before-waf"
+    action: "screenshot"
+    screenshot_name: "waap-demo-lb-before-waf"
+    description: "Capture LB form before enabling WAF"
+
+  - id: "scroll-to-waf"
+    action: "scroll"
+    selector: "text('Web Application Firewall')"
+    description: "Scroll down to the WAF section of the form"
+
+  - id: "enable-waf"
+    action: "select"
+    selector: "listbox"
+    context: "Web Application Firewall section"
+    value: "Enable"
+    description: "Change WAF dropdown from Disable to Enable"
+
+  - id: "select-waf-policy"
+    action: "select"
+    selector: "listbox"
+    context: "App Firewall selector"
+    value: "{app_name}-waf"
+    description: "Select the App Firewall policy created in step 2"
+
+  - id: "screenshot-waf-enabled"
+    action: "screenshot"
+    screenshot_name: "waap-demo-waf-enabled"
+    description: "Capture LB form with WAF enabled and policy selected"
+
+  - id: "save-http-lb"
+    action: "click"
+    selector: "button:text('Add HTTP Load Balancer')"
+    context: "footer"
+    wait_for: "text('{app_name}-lb')"
+    wait_timeout_ms: 30000
+    description: "Save the HTTP Load Balancer"
+
+  - id: "verify-lb-created"
+    action: "assert"
+    selector: "text('{app_name}-lb')"
+    description: "Verify the HTTP Load Balancer appears in the list"
+
+  - id: "screenshot-final"
+    action: "screenshot"
+    screenshot_name: "waap-demo-complete"
+    description: "Capture the completed WAAP stack — all three resources created"
+
+postconditions:
+  - "resource_list_page_visible"
+  - "resource_name_in_list: {app_name}-lb"
+  - "origin_pool_exists: {app_name}-pool"
+  - "app_firewall_exists: {app_name}-waf"
+  - "http_lb_has_waf: {app_name}-lb uses {app_name}-waf"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-16"
+  console_version: "2025.06"
+  estimated_duration_seconds: 120
+  notes: >
+    Flagship demo workflow: creates a complete WAAP stack from scratch.
+    Steps 1-2 use run-workflow to execute existing origin-pool and app-firewall
+    create workflows. Step 3 builds the HTTP LB inline with explicit WAF
+    configuration because the create workflow doesn't support WAF attachment.
+    Screenshot steps capture each milestone for demo recordings.

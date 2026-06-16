@@ -1,0 +1,63 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "waap-full-stack-teardown"
+label: "WAAP Full Stack Teardown — Delete HTTP LB + App Firewall + Origin Pool"
+resource:
+  - "http-load-balancer"
+  - "app-firewall"
+  - "origin-pool"
+operation: "demo"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+
+params:
+  namespace:
+    required: true
+    description: "Namespace containing the resources"
+    example: "demo"
+  app_name:
+    required: true
+    description: "Base name used when creating resources"
+    example: "my-app"
+
+steps:
+  - id: "delete-http-lb"
+    action: "run-workflow"
+    workflow: "http-load-balancer/delete"
+    with:
+      namespace: "{namespace}"
+      name: "{app_name}-lb"
+    description: "Step 1: Delete the HTTP Load Balancer (must be deleted before its dependencies)"
+
+  - id: "delete-app-firewall"
+    action: "run-workflow"
+    workflow: "app-firewall/delete"
+    with:
+      namespace: "{namespace}"
+      name: "{app_name}-waf"
+    description: "Step 2: Delete the App Firewall policy"
+
+  - id: "delete-origin-pool"
+    action: "run-workflow"
+    workflow: "origin-pool/delete"
+    with:
+      namespace: "{namespace}"
+      name: "{app_name}-pool"
+    description: "Step 3: Delete the Origin Pool"
+
+postconditions:
+  - "resource_deleted: {app_name}-lb"
+  - "resource_deleted: {app_name}-waf"
+  - "resource_deleted: {app_name}-pool"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-16"
+  console_version: "2025.06"
+  estimated_duration_seconds: 60
+  notes: >
+    Teardown companion for waap-full-stack demo. Deletes resources in
+    reverse dependency order: HTTP LB first (references origin pool and
+    app firewall), then app firewall, then origin pool.
