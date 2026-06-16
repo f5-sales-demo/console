@@ -1,6 +1,6 @@
 schema: urn:f5xc:console:resource:v1
 id: alert-receiver
-label: Alert Receivers
+label: Alerts
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
   kind: alert_receiver
@@ -8,18 +8,17 @@ console:
   workspace: audit-logs-and-alerts
   workspace_label: Audit Logs & Alerts
   route_prefix: /web/workspaces/audit-logs-and-alerts
-  route_pattern: /namespaces/system/manage/alert_receivers
+  route_pattern: /namespaces/{namespace}/manage/alerts/alert_receivers
   menu_path:
     - Audit Logs & Alerts
     - Manage
-    - Alert Receivers
+    - Alerts
   breadcrumbs:
     - Home
     - Audit Logs & Alerts
-    - system
+    - '{namespace}'
     - Manage
-    - Alert Receivers
-  namespace_scoped: false
+    - Alerts
 add_action:
   type: tab
   label: Add Alert Receiver
@@ -39,8 +38,11 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 4
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: validated
+  confidence: inferred
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console
+  notes: Inferred from API spec and console home page workspace listing

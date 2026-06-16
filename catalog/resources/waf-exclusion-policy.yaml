@@ -40,8 +40,11 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 4
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: validated
+  confidence: inferred
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console
+  notes: Inferred from API spec and console home page workspace listing

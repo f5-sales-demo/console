@@ -8,18 +8,18 @@ console:
   workspace: web-app-and-api-protection
   workspace_label: Web App & API Protection
   route_prefix: /web/workspaces/web-app-and-api-protection
-  route_pattern: /namespaces/{namespace}/manage/api_security/data_types
+  route_pattern: /namespaces/{namespace}/manage/data_protection/data_types
   menu_path:
     - Web App & API Protection
     - Manage
-    - API Security
+    - Data Protection
     - Data Types
   breadcrumbs:
     - Home
     - Web App & API Protection
     - '{namespace}'
     - Manage
-    - API Security
+    - Data Protection
     - Data Types
 add_action:
   type: tab
@@ -40,8 +40,11 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 4
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: validated
+  confidence: inferred
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console
+  notes: Inferred from API spec and console home page workspace listing

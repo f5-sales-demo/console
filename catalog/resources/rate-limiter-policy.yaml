@@ -1,6 +1,6 @@
 schema: urn:f5xc:console:resource:v1
 id: rate-limiter-policy
-label: Rate Limiter Policies
+label: Rate Limiters
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
   kind: rate_limiter_policy
@@ -8,17 +8,19 @@ console:
   workspace: web-app-and-api-protection
   workspace_label: Web App & API Protection
   route_prefix: /web/workspaces/web-app-and-api-protection
-  route_pattern: /namespaces/{namespace}/manage/rate_limiter_policies
+  route_pattern: /namespaces/{namespace}/manage/rate_limiting/rate_limiter_policies
   menu_path:
     - Web App & API Protection
     - Manage
-    - Rate Limiter Policies
+    - Rate Limiting
+    - Rate Limiters
   breadcrumbs:
     - Home
     - Web App & API Protection
     - '{namespace}'
     - Manage
-    - Rate Limiter Policies
+    - Rate Limiting
+    - Rate Limiters
 add_action:
   type: tab
   label: Add Rate Limiter
@@ -38,8 +40,11 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 4
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: validated
+  confidence: inferred
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console
+  notes: Inferred from API spec and console home page workspace listing

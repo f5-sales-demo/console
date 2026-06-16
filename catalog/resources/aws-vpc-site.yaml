@@ -8,7 +8,7 @@ console:
   workspace: multi-cloud-network-connect
   workspace_label: Multi-Cloud Network Connect
   route_prefix: /web/workspaces/multi-cloud-network-connect
-  route_pattern: /namespaces/system/manage/site_management/aws_vpc_sites
+  route_pattern: /namespaces/{namespace}/manage/site_management/aws_vpc_sites
   menu_path:
     - Multi-Cloud Network Connect
     - Manage
@@ -17,11 +17,10 @@ console:
   breadcrumbs:
     - Home
     - Multi-Cloud Network Connect
-    - system
+    - '{namespace}'
     - Manage
     - Site Management
     - AWS VPC Sites
-  namespace_scoped: false
 add_action:
   type: tab
   label: Add AWS VPC Site
@@ -41,8 +40,11 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 6
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: validated
+  confidence: inferred
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Validated via URL probe against live staging console
+  notes: Inferred from API spec and console home page workspace listing
