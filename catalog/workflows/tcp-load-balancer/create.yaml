@@ -1,0 +1,107 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "tcp-load-balancer-create"
+label: "Create TCP Load Balancer"
+resource: "tcp-load-balancer"
+operation: "create"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+
+params:
+  namespace:
+    required: true
+    description: "Target namespace"
+    example: "demo"
+  name:
+    required: true
+    description: "TCP load balancer name (lowercase alphanumeric and hyphens)"
+    example: "my-tcp-lb"
+  listen_port:
+    required: true
+    type: "number"
+    description: "TCP port to listen on"
+    example: 443
+  origin_pool:
+    required: true
+    description: "Existing origin pool name to attach"
+    example: "my-origin-pool"
+  sni:
+    required: false
+    description: "Server Name Indication for TLS routing"
+    example: "app.example.com"
+
+steps:
+  - id: "navigate-to-list"
+    action: "navigate"
+    url: "/web/namespace/{namespace}/load-balancers/tcp"
+    wait_for: "[data-testid='add-tcp-load-balancer']"
+    description: "Navigate to TCP Load Balancers list page"
+
+  - id: "click-add"
+    action: "click"
+    selector: "[data-testid='add-tcp-load-balancer']"
+    wait_for: "input[data-testid='name-input']"
+    description: "Click Add TCP Load Balancer button to open the create form"
+
+  - id: "fill-name"
+    action: "fill"
+    selector: "input[data-testid='name-input']"
+    value: "{name}"
+    description: "Enter the TCP load balancer name"
+
+  - id: "fill-listen-port"
+    action: "fill"
+    selector: "input[data-testid='listen-port-input']"
+    value: "{listen_port}"
+    description: "Enter the listen port"
+
+  - id: "fill-sni"
+    condition: "params.sni is set"
+    action: "fill"
+    selector: "input[data-testid='sni-input']"
+    value: "{sni}"
+    description: "Enter the SNI value"
+
+  - id: "add-origin-pool"
+    action: "click"
+    selector: "[data-testid='add-origin-pool']"
+    wait_for: "[data-testid='origin-pool-selector']"
+    description: "Open origin pool selector"
+    then:
+      - id: "select-origin-pool"
+        action: "select"
+        selector: "[data-testid='origin-pool-selector']"
+        value: "{origin_pool}"
+        description: "Select the origin pool from the list"
+
+      - id: "apply-origin-pool"
+        action: "click"
+        selector: "[data-testid='apply-btn']"
+        wait_for: "[data-testid='origin-pool-row']"
+        description: "Confirm origin pool selection"
+
+  - id: "save"
+    action: "click"
+    selector: "[data-testid='save-and-exit']"
+    wait_for: "[data-testid='resource-detail']"
+    wait_timeout_ms: 30000
+    description: "Save the TCP load balancer and wait for the detail page"
+
+  - id: "verify-created"
+    action: "assert"
+    selector: "[data-testid='resource-name']"
+    expected_text: "{name}"
+    description: "Verify the resource was created by checking the name on the detail page"
+
+postconditions:
+  - "resource_detail_page_visible"
+  - "resource_name_matches: {name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  estimated_duration_seconds: 30
+  notes: "Selectors are placeholders — must be validated against the live console"

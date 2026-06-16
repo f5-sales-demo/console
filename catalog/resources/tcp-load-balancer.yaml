@@ -1,0 +1,122 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "tcp-load-balancer"
+label: "TCP Load Balancer"
+
+api:
+  kind: "tcp_loadbalancer"
+  group: "ves.io.schema.views"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.views.tcp_loadbalancer.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/config/namespaces/{namespace}/tcp_loadbalancers"
+    read: "GET /api/config/namespaces/{namespace}/tcp_loadbalancers/{name}"
+    update: "PUT /api/config/namespaces/{namespace}/tcp_loadbalancers/{name}"
+    delete: "DELETE /api/config/namespaces/{namespace}/tcp_loadbalancers/{name}"
+    list: "GET /api/config/namespaces/{namespace}/tcp_loadbalancers"
+
+console:
+  list_route: "routes/load-balancers/tcp-load-balancers.yaml"
+  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/tcp/{name}"
+  create_route_pattern: "/web/namespace/{namespace}/load-balancers/tcp/create"
+
+  navigation:
+    menu_path: ["Manage", "Load Balancers", "TCP Load Balancers"]
+    product_area: "load-balancers"
+
+workflows:
+  create: "workflows/tcp-load-balancer/create.yaml"
+  delete: "workflows/tcp-load-balancer/delete.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
+
+    - id: "listen-port"
+      label: "Listen Port"
+      fields:
+        - id: "listen_port"
+          label: "Listen Port"
+          type: "number"
+          required: true
+          api_field: "spec.listen_port"
+          description: "TCP port to listen on for incoming connections"
+          validation:
+            min: 1
+            max: 65535
+
+    - id: "sni"
+      label: "SNI"
+      collapsible: true
+      initially_collapsed: false
+      fields:
+        - id: "sni"
+          label: "SNI"
+          type: "text"
+          required: false
+          api_field: "spec.sni"
+          description: "Server Name Indication for TLS routing"
+
+    - id: "origin-pools"
+      label: "Origin Pools"
+      type: "nested-resource-list"
+      description: "Origin Pools that receive TCP traffic"
+      nested_resource: "origin-pool"
+      fields:
+        - id: "origin_pool"
+          label: "Origin Pool"
+          type: "resource-selector"
+          resource_type: "origin-pool"
+          required: true
+          api_field: "spec.origin_pools[].pool"
+        - id: "weight"
+          label: "Weight"
+          type: "number"
+          required: false
+          default: 1
+          api_field: "spec.origin_pools[].weight"
+          validation:
+            min: 0
+            max: 100
+
+    - id: "advertise"
+      label: "Advertise Policy"
+      collapsible: true
+      initially_collapsed: true
+      fields:
+        - id: "advertise_on_public"
+          label: "Advertise on Public"
+          type: "toggle"
+          required: false
+          api_field: "spec.advertise_on_public"
+        - id: "advertise_custom"
+          label: "Custom Advertise VIP"
+          type: "resource-selector"
+          resource_type: "advertise-policy"
+          required: false
+          api_field: "spec.advertise_custom"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Form sections and fields are draft — will be validated via browser-first discovery"

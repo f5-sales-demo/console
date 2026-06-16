@@ -1,0 +1,76 @@
+schema: "urn:f5xc:console:route:v1"
+id: "virtual-hosts"
+label: "Virtual Hosts"
+
+route:
+  pattern: "/web/namespace/{namespace}/load-balancers/virtual-hosts"
+  params:
+    namespace:
+      required: true
+      description: "F5 XC namespace"
+      example: "demo"
+  supports_direct_link: true
+  breadcrumbs: ["Home", "Load Balancers", "Virtual Hosts"]
+
+context:
+  requires_login: true
+  requires_namespace: true
+  minimum_role: "admin"
+
+screen:
+  type: "list"
+  description: "Table listing all Virtual Hosts in the selected namespace"
+  primary_resource: "virtual-host"
+
+  controls:
+    - id: "add-btn"
+      type: "button"
+      label: "Add Virtual Host"
+      action: "create"
+      selector: "[data-testid='add-virtual-host']"
+    - id: "search"
+      type: "search-input"
+      label: "Search"
+      selector: "[data-testid='search-input']"
+    - id: "namespace-selector"
+      type: "dropdown"
+      label: "Namespace"
+      selector: "[data-testid='namespace-selector']"
+
+  table:
+    columns:
+      - id: "name"
+        label: "Name"
+        sortable: true
+        links_to: "detail"
+      - id: "domains"
+        label: "Domains"
+      - id: "tls"
+        label: "TLS"
+      - id: "routes"
+        label: "Routes"
+      - id: "status"
+        label: "Status"
+    row_actions:
+      - id: "edit"
+        label: "Edit"
+        operation: "update"
+      - id: "delete"
+        label: "Delete"
+        operation: "delete"
+
+  detail_route: "/web/namespace/{namespace}/load-balancers/virtual-hosts/{name}"
+
+operations:
+  - type: "create"
+    workflow: "workflows/virtual-host/create.yaml"
+  - type: "list"
+    inline: true
+  - type: "delete"
+    workflow: "workflows/virtual-host/delete.yaml"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Selectors are placeholders — will be validated via browser-first discovery"

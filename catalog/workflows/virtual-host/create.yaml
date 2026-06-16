@@ -1,0 +1,73 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "virtual-host-create"
+label: "Create Virtual Host"
+resource: "virtual-host"
+operation: "create"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+
+params:
+  namespace:
+    required: true
+    description: "Target namespace"
+    example: "demo"
+  name:
+    required: true
+    description: "Virtual host name (lowercase alphanumeric and hyphens)"
+    example: "my-virtual-host"
+  domain:
+    required: true
+    description: "Domain name this virtual host serves"
+    example: "app.example.com"
+
+steps:
+  - id: "navigate-to-list"
+    action: "navigate"
+    url: "/web/namespace/{namespace}/load-balancers/virtual-hosts"
+    wait_for: "[data-testid='add-virtual-host']"
+    description: "Navigate to Virtual Hosts list page"
+
+  - id: "click-add"
+    action: "click"
+    selector: "[data-testid='add-virtual-host']"
+    wait_for: "input[data-testid='name-input']"
+    description: "Click Add Virtual Host button to open the create form"
+
+  - id: "fill-name"
+    action: "fill"
+    selector: "input[data-testid='name-input']"
+    value: "{name}"
+    description: "Enter the virtual host name"
+
+  - id: "fill-domain"
+    action: "fill"
+    selector: "input[data-testid='domain-input']"
+    value: "{domain}"
+    description: "Enter the domain name"
+
+  - id: "save"
+    action: "click"
+    selector: "[data-testid='save-and-exit']"
+    wait_for: "[data-testid='resource-detail']"
+    wait_timeout_ms: 30000
+    description: "Save the virtual host and wait for the detail page"
+
+  - id: "verify-created"
+    action: "assert"
+    selector: "[data-testid='resource-name']"
+    expected_text: "{name}"
+    description: "Verify the resource was created by checking the name on the detail page"
+
+postconditions:
+  - "resource_detail_page_visible"
+  - "resource_name_matches: {name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  estimated_duration_seconds: 20
+  notes: "Selectors are placeholders — must be validated against the live console"
