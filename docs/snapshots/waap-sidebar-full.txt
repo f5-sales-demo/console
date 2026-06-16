@@ -1,0 +1,303 @@
+uid=108_0 RootWebArea "HTTP Load Balancers - Load Balancers | Web App & API Protection" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/manage/load_balancers/http_loadbalancers"
+  uid=108_1 ignored
+    uid=108_2 generic
+      uid=108_3 ignored
+        uid=108_4 generic
+        uid=108_5 ignored
+          uid=108_6 ignored
+            uid=108_7 ignored
+              uid=108_8 banner
+                uid=108_9 ignored
+                  uid=108_10 link url="https://nferreira.staging.volterra.us/web/home"
+                    uid=108_11 ignored
+                      uid=108_12 image
+                uid=108_13 ignored
+                  uid=108_14 generic
+                    uid=108_15 ignored
+                      uid=108_16 generic
+                        uid=108_17 ignored
+                          uid=108_18 ignored
+                            uid=108_19 ignored
+                              uid=108_20 ignored
+                                uid=108_21 ignored
+                            uid=108_22 generic
+                              uid=108_23 textbox readonly value="Select Workspace"
+                                uid=108_24 ignored
+                                uid=108_25 generic
+                                  uid=108_26 StaticText "Select Workspace"
+                                    uid=108_27 InlineTextBox "Select Workspace"
+                            uid=108_28 ignored
+                              uid=108_29 ignored
+                                uid=108_30 ignored
+                          uid=108_31 generic
+                        uid=108_32 generic
+                  uid=108_33 heading "Web App & API Protection" level="3"
+                    uid=108_34 StaticText "Web App & API Protection"
+                      uid=108_27 InlineTextBox "Web App & API Protection"
+                  uid=108_35 generic
+                    uid=108_36 generic haspopup="menu"
+                      uid=108_37 generic
+                        uid=108_38 StaticText "D"
+                          uid=108_27 InlineTextBox "D"
+                      uid=108_39 ignored
+                        uid=108_40 generic
+                          uid=108_41 StaticText "default"
+                            uid=108_27 InlineTextBox "default"
+                        uid=108_42 generic
+                          uid=108_43 StaticText "Namespace"
+                            uid=108_27 InlineTextBox "Namespace"
+                      uid=108_44 ignored
+                        uid=108_45 ignored
+              uid=108_46 generic
+                uid=108_47 ignored
+                  uid=108_48 list
+                    uid=108_49 listitem level="1"
+                      uid=108_50 link url="javascript:void(0);"
+                        uid=108_51 sectionheader
+                          uid=108_52 generic
+                            uid=108_53 ignored
+                              uid=108_54 ignored
+                          uid=108_55 ignored
+                            uid=108_56 StaticText "Overview"
+                              uid=108_27 InlineTextBox "Overview"
+                          uid=108_57 ignored
+                            uid=108_58 ignored
+                      uid=108_59 ignored
+                        uid=108_60 ignored
+                          uid=108_61 link "Security" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/overview/security"
+                            uid=108_62 ignored
+                              uid=108_63 ignored
+                                uid=108_64 StaticText "Security"
+                                  uid=108_27 InlineTextBox "Security"
+                          uid=108_65 link "Performance" url="https://nferreira.staging.volterra.us/web/workspaces/web-app-and-api-protection/namespaces/default/overview/performance"
+                            uid=108_66 ignored
+                              uid=108_67 ignored
+                                uid=108_68 StaticText "Performance"
+                                  uid=108_27 InlineTextBox "Performance"
+                    uid=108_69 listitem level="1"
+                      uid=108_70 link "Load Balancers, CDN, BIG-IP Virtual Servers, Third-Party Applications, App Firewall, Service Policies, Rate Limiter Policies, Shared Objects, AI & ML, Public IP Addresses, Alerts Management, Files, API Security, Reports, Certificate Management, Bot Defense Management, Saved Filters" url="javascript:void(0);"
+                        uid=108_71 sectionheader
+                          uid=108_72 generic
+                            uid=108_73 ignored
+                              uid=108_74 ignored
+                          uid=108_75 ignored
+                            uid=108_76 StaticText "Manage"
+                              uid=108_27 InlineTextBox "Manage"
+                          uid=108_77 ignored
+                            uid=108_78 ignored
+                        uid=108_79 ignored
+                          uid=108_80 StaticText "Load Balancers, CDN, BIG-IP Virtual Servers, Third-Party Applications, App Firewall, Service Policies, Rate Limiter Policies, Shared Objects, AI & ML, Public IP Addresses, Alerts Management, Files, API Security, Reports, Certificate Management, Bot Defense Management, Saved Filters"
+                            uid=108_27 InlineTextBox "Load Balancers, CDN, BIG-IP Virtual Servers, Third-Party Applications, App Firewall, Service Policies, Rate Limiter Policies, Shared Objects, AI & ML, Public IP Addresses, Alerts Management, Files, API Security, Reports, Certificate Management, Bot Defense Management, Saved Filters"
+                            uid=108_27 InlineTextBox "Load Balancers, CDN, BIG"
+                            uid=108_27 InlineTextBox "…"
+                    uid=108_81 listitem level="1"
+                      uid=108_82 link "Alerts, Audit Logs" url="javascript:void(0);"
+                        uid=108_83 sectionheader
+                          uid=108_84 generic
+                            uid=108_85 ignored
+                              uid=108_86 ignored
+                          uid=108_87 ignored
+                            uid=108_88 StaticText "Notifications"
+                              uid=108_27 InlineTextBox "Notifications"
+                          uid=108_89 ignored
+                            uid=108_90 ignored
+                        uid=108_91 ignored
+                          uid=108_92 StaticText "Alerts, Audit Logs"
+                            uid=108_27 InlineTextBox "Alerts, Audit Logs"
+                    uid=108_93 listitem level="1"
+                      uid=108_94 link "About" url="javascript:void(0);"
+                        uid=108_95 sectionheader
+                          uid=108_96 generic
+                            uid=108_97 ignored
+                              uid=108_98 ignored
+                          uid=108_99 ignored
+                            uid=108_100 StaticText "Workspace Info"
+                              uid=108_27 InlineTextBox "Workspace Info"
+                          uid=108_101 ignored
+                            uid=108_102 ignored
+                        uid=108_103 ignored
+                          uid=108_104 StaticText "About"
+                            uid=108_27 InlineTextBox "About"
+                uid=108_105 ignored
+                  uid=108_106 ignored
+                    uid=108_107 StaticText "Advanced nav options visible"
+                      uid=108_27 InlineTextBox "Advanced nav options visible"
+                  uid=108_108 ignored
+                    uid=108_109 ignored
+                  uid=108_110 button "Hide"
+                    uid=108_111 generic
+                      uid=108_112 StaticText "Hide"
+                        uid=108_27 InlineTextBox "Hide"
+          uid=108_113 ignored
+            uid=108_114 generic
+            uid=108_115 generic
+              uid=108_116 ignored
+                uid=108_117 navigation
+                  uid=108_118 ignored
+                    uid=108_119 list
+                      uid=108_120 listitem level="1"
+                        uid=108_121 generic
+                          uid=108_122 ignored
+                            uid=108_123 list
+                              uid=108_124 listitem level="2"
+                                uid=108_125 link "Home" url="https://nferreira.staging.volterra.us/web/home"
+                                  uid=108_126 StaticText "Home"
+                                    uid=108_27 InlineTextBox "Home"
+                              uid=108_127 listitem level="2"
+                                uid=108_128 ignored
+                                  uid=108_27 generic
+                                    uid=108_27 StaticText ""
+                                      uid=108_27 InlineTextBox ""
+                                uid=108_129 StaticText "Web App & API Protection"
+                                  uid=108_27 InlineTextBox "Web App & API Protection"
+                              uid=108_130 listitem level="2"
+                                uid=108_131 ignored
+                                  uid=108_27 generic
+                                    uid=108_27 StaticText ""
+                                      uid=108_27 InlineTextBox ""
+                                uid=108_132 StaticText "default"
+                                  uid=108_27 InlineTextBox "default"
+                              uid=108_133 listitem level="2"
+                                uid=108_134 ignored
+                                  uid=108_27 generic
+                                    uid=108_27 StaticText ""
+                                      uid=108_27 InlineTextBox ""
+                                uid=108_135 StaticText "Manage"
+                                  uid=108_27 InlineTextBox "Manage"
+                              uid=108_136 listitem level="2"
+                                uid=108_137 ignored
+                                  uid=108_27 generic
+                                    uid=108_27 StaticText ""
+                                      uid=108_27 InlineTextBox ""
+                                uid=108_138 StaticText "Load Balancers"
+                                  uid=108_27 InlineTextBox "Load Balancers"
+                            uid=108_139 ignored
+                              uid=108_140 ignored
+                                uid=108_141 StaticText "HTTP Load Balancers"
+                                  uid=108_27 InlineTextBox "HTTP Load Balancers"
+                          uid=108_142 ignored
+                            uid=108_143 ignored
+                          uid=108_144 ignored
+                            uid=108_145 ignored
+                          uid=108_146 ignored
+                            uid=108_147 ignored
+                          uid=108_148 ignored
+                            uid=108_149 ignored
+                          uid=108_150 ignored
+                            uid=108_151 ignored
+                            uid=108_152 ignored
+                              uid=108_153 ignored
+                            uid=108_154 ignored
+                            uid=108_155 ignored
+                              uid=108_156 ignored
+                          uid=108_157 ignored
+                            uid=108_158 ignored
+                            uid=108_159 ignored
+                              uid=108_160 ignored
+                            uid=108_161 ignored
+                            uid=108_162 ignored
+                              uid=108_163 ignored
+                    uid=108_164 list
+                      uid=108_165 listitem level="1"
+                        uid=108_166 ignored
+                          uid=108_167 button expandable haspopup="menu"
+                            uid=108_168 ignored
+                              uid=108_169 ignored
+                      uid=108_170 listitem level="1"
+                        uid=108_171 ignored
+                      uid=108_172 listitem level="1"
+                        uid=108_173 generic
+                          uid=108_174 tab selectable
+                            uid=108_175 generic
+                              uid=108_176 ignored
+                                uid=108_177 ignored
+                                  uid=108_178 generic
+                                    uid=108_179 ignored
+                                      uid=108_180 image
+                                        uid=108_181 ignored
+                                        uid=108_182 ignored
+                                        uid=108_183 ignored
+                                        uid=108_184 ignored
+                                        uid=108_185 ignored
+                                        uid=108_186 ignored
+                                        uid=108_187 ignored
+                                        uid=108_188 ignored
+                                        uid=108_189 ignored
+                                        uid=108_190 ignored
+                                        uid=108_191 ignored
+                                        uid=108_192 ignored
+                                        uid=108_193 ignored
+                                        uid=108_194 ignored
+                                        uid=108_195 ignored
+                                        uid=108_196 ignored
+                                        uid=108_197 ignored
+                                        uid=108_198 ignored
+                                        uid=108_199 ignored
+                                        uid=108_200 ignored
+                      uid=108_201 listitem level="1"
+                        uid=108_202 generic
+                          uid=108_203 button "Support" expandable haspopup="menu"
+                            uid=108_204 ignored
+                              uid=108_205 ignored
+                            uid=108_206 generic
+                              uid=108_207 StaticText "Support"
+                                uid=108_27 InlineTextBox "Support"
+                              uid=108_208 ignored
+                                uid=108_209 ignored
+                      uid=108_210 listitem level="1"
+                        uid=108_211 ignored
+                          uid=108_212 generic haspopup="menu"
+                            uid=108_213 button expandable haspopup="menu"
+                              uid=108_214 ignored
+                                uid=108_215 ignored
+                              uid=108_216 ignored
+                                uid=108_217 ignored
+            uid=108_218 generic
+              uid=108_219 ignored
+                uid=108_220 ignored
+                  uid=108_221 ignored
+                    uid=108_222 ignored
+                      uid=108_223 generic
+                        uid=108_224 generic
+                          uid=108_225 generic
+                            uid=108_226 image
+                        uid=108_227 generic
+                          uid=108_228 heading "No HTTP Load Balancers added yet" level="4"
+                            uid=108_229 StaticText "No HTTP Load Balancers added yet"
+                              uid=108_27 InlineTextBox "No HTTP Load Balancers added yet"
+                          uid=108_230 generic
+                            uid=108_231 StaticText "You can learn more about this in "
+                              uid=108_27 InlineTextBox "You can learn more about this in "
+                            uid=108_232 link "Tech Docs" url="https://docs.f5.volterra.us/docs-v2/multi-cloud-app-connect/how-to/load-balance/create-http-load-balancer"
+                              uid=108_233 ignored
+                                uid=108_234 StaticText "Tech Docs"
+                                  uid=108_27 InlineTextBox "Tech Docs"
+                              uid=108_235 ignored
+                                uid=108_236 ignored
+                          uid=108_237 generic
+                            uid=108_238 StaticText "Or watch this "
+                              uid=108_27 InlineTextBox "Or watch this "
+                            uid=108_239 link "Short Explanation Video "
+                              uid=108_240 StaticText "Short Explanation Video "
+                                uid=108_27 InlineTextBox "Short Explanation Video "
+                              uid=108_241 ignored
+                                uid=108_242 ignored
+                          uid=108_243 ignored
+                            uid=108_244 generic
+                              uid=108_245 tab "Add HTTP Load Balancer" selectable
+                                uid=108_246 generic
+                                  uid=108_247 ignored
+                                    uid=108_248 ignored
+                                      uid=108_249 StaticText "Add HTTP Load Balancer"
+                                        uid=108_27 InlineTextBox "Add HTTP Load Balancer"
+        uid=108_250 ignored
+      uid=108_251 image
+      uid=108_252 generic
+      uid=108_253 button "Help"
+        uid=108_254 generic
+          uid=108_255 generic
+            uid=108_256 generic
+          uid=108_257 generic
+            uid=108_258 StaticText "Help"
+              uid=108_27 InlineTextBox "Help"
+      uid=108_259 generic atomic live="polite" relevant="additions text"

@@ -1,0 +1,75 @@
+{
+  "workspace": "multi-cloud-network-connect",
+  "discovered_at": "2026-06-16",
+  "method": "a11y-tree submenu expansion",
+  "note": "MCN is tenant-scoped — no /namespaces/ segment in URLs",
+  "top_level": [
+    {"label": "NFV Services", "path": "/manage/nfv_services"}
+  ],
+  "submenus": {
+    "Site Management": {
+      "Customer Edges": [
+        {"label": "Secure Mesh Sites v2", "path": "/manage/site_management/cloud_sites/securemesh_site_v2"},
+        {"label": "App Stack Sites", "path": "/manage/site_management/cloud_sites/appstack_site"}
+      ],
+      "Other Configurations": [
+        {"label": "Cloud Credentials", "path": "/manage/site_management/other_configs/cloud_credential"},
+        {"label": "Site Tokens", "path": "/manage/site_management/other_configs/site_tokens"},
+        {"label": "Registrations", "path": "/manage/site_management/other_configs/registrations"},
+        {"label": "Certified Hardware", "path": "/manage/site_management/other_configs/certified_hardware"},
+        {"label": "USB Policies", "path": "/manage/site_management/other_configs/usb_policies"}
+      ],
+      "Legacy Configurations": [
+        {"label": "Secure Mesh Sites", "path": "/manage/site_management/legacy_configs/securemesh_site"},
+        {"label": "AWS VPC Sites", "path": "/manage/site_management/legacy_configs/aws_vpc_site"},
+        {"label": "AWS TGW Sites", "path": "/manage/site_management/legacy_configs/aws_tgw_site"},
+        {"label": "Azure VNET Sites", "path": "/manage/site_management/legacy_configs/azure_site"},
+        {"label": "GCP VPC Sites", "path": "/manage/site_management/legacy_configs/gcp_vpc_site"},
+        {"label": "Fleets", "path": "/manage/site_management/legacy_configs/fleets"}
+      ]
+    },
+    "Connectors": [
+      {"label": "Cloud Connects", "path": "/manage/connectors/cloud_connect"}
+    ],
+    "Networking": {
+      "Network Configuration": [
+        {"label": "Segments", "path": "/manage/networking/network_configuration/segment"},
+        {"label": "Segment Connector", "path": "/manage/networking/network_configuration/segment_connection"},
+        {"label": "NAT Policies", "path": "/manage/networking/network_configuration/nat_policy"},
+        {"label": "Cloud Elastic IPs", "path": "/manage/networking/network_configuration/cloud_elastic_ip"}
+      ],
+      "External Connectivity": [
+        {"label": "CloudLinks", "path": "/manage/networking/external_connectivity/cloud_links"},
+        {"label": "External Connectors", "path": "/manage/networking/external_connectivity/external_connector"},
+        {"label": "BGP Peers & Policies", "path": "/manage/networking/external_connectivity/bgp"},
+        {"label": "IKE Profiles", "path": "/manage/networking/external_connectivity/ike_profiles"}
+      ],
+      "Site-to-Site Connectivity": [
+        {"label": "Site Mesh Groups", "path": "/manage/networking/site_to_site_connectivity/site_mesh_groups"},
+        {"label": "DC Cluster Groups", "path": "/manage/networking/site_to_site_connectivity/dc_cluster_groups"}
+      ],
+      "Legacy Network Configuration": [
+        {"label": "Virtual Networks", "path": "/manage/networking/legacy_network_configuration/virtual_networks"},
+        {"label": "Network Connectors", "path": "/manage/networking/legacy_network_configuration/network_connectors"},
+        {"label": "Network Interfaces", "path": "/manage/networking/legacy_network_configuration/network_interfaces"},
+        {"label": "Subnets", "path": "/manage/networking/legacy_network_configuration/subnets"},
+        {"label": "IP Address Allocators", "path": "/manage/networking/legacy_network_configuration/address_allocators"},
+        {"label": "Tunnels", "path": "/manage/networking/legacy_network_configuration/tunnels"}
+      ]
+    },
+    "Firewall": [
+      {"label": "Network Firewalls", "path": "/manage/firewall/network_firewall"},
+      {"label": "Enhanced Firewall Policies", "path": "/manage/firewall/enhanced_firewall_policy"},
+      {"label": "Firewall Policies", "path": "/manage/firewall/network_policies"},
+      {"label": "Forward Proxy Policies", "path": "/manage/firewall/forward_proxy_policy"},
+      {"label": "Service Policies", "path": "/manage/firewall/service_policies"},
+      {"label": "Fast ACLs", "path": "/manage/firewall/fast_acls"},
+      {"label": "Fast ACLs for Internet VIPs", "path": "/manage/firewall/fast-acls-for-internet-vips"},
+      {"label": "BGP ASN Sets", "path": "/manage/firewall/bgp_asn_sets"},
+      {"label": "IP Prefix Sets", "path": "/manage/firewall/ip_prefix_sets"},
+      {"label": "Policers", "path": "/manage/firewall/policers"},
+      {"label": "Protocol Policers", "path": "/manage/firewall/protocol_policers"}
+    ]
+  },
+  "total_unique_routes": 45
+}
