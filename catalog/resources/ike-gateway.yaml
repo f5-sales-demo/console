@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: ike-gateway
+label: External Connectors
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: ike_gateway
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /namespaces/{namespace}/manage/networking/ike_gateways
+  menu_path:
+    - Multi-Cloud Network Connect
+    - Manage
+    - Networking
+    - External Connectors
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - '{namespace}'
+    - Manage
+    - Networking
+    - External Connectors
+add_action:
+  type: tab
+  label: Add External Connector
+save_action:
+  label: Add External Connector
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

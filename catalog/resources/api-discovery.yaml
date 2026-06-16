@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: api-discovery
+label: API Discovery Policies
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: api_discovery
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/api_protection/api_discovery
+  menu_path:
+    - Web App & API Protection
+    - Manage
+    - API Protection
+    - API Discovery Policies
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - API Protection
+    - API Discovery Policies
+add_action:
+  type: tab
+  label: Add API Discovery Policy
+save_action:
+  label: Add API Discovery Policy
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

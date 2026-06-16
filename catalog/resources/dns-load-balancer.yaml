@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: dns-load-balancer
+label: DNS Load Balancers
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: dns_load_balancer
+console:
+  workspace: dns-management
+  workspace_label: DNS Management
+  route_prefix: /web/workspaces/dns-management
+  route_pattern: /namespaces/{namespace}/manage/dns_load_balancers
+  menu_path:
+    - DNS Management
+    - Manage
+    - DNS Load Balancers
+  breadcrumbs:
+    - Home
+    - DNS Management
+    - '{namespace}'
+    - Manage
+    - DNS Load Balancers
+add_action:
+  type: tab
+  label: Add DNS Load Balancer
+save_action:
+  label: Add DNS Load Balancer
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: k8s-cluster
+label: K8s Clusters
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: k8s_cluster
+console:
+  workspace: distributed-apps
+  workspace_label: Distributed Apps
+  route_prefix: /web/workspaces/distributed-apps
+  route_pattern: /namespaces/{namespace}/manage/virtual_k8s/k8s_clusters
+  menu_path:
+    - Distributed Apps
+    - Manage
+    - Virtual K8s
+    - K8s Clusters
+  breadcrumbs:
+    - Home
+    - Distributed Apps
+    - '{namespace}'
+    - Manage
+    - Virtual K8s
+    - K8s Clusters
+add_action:
+  type: tab
+  label: Add K8s Cluster
+save_action:
+  label: Add K8s Cluster
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

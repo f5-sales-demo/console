@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: virtual-site
+label: Virtual Sites
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: virtual_site
+console:
+  workspace: shared-configuration
+  workspace_label: Shared Configuration
+  route_prefix: /web/workspaces/shared-configuration
+  route_pattern: /namespaces/{namespace}/manage/virtual_sites
+  menu_path:
+    - Shared Configuration
+    - Manage
+    - Virtual Sites
+  breadcrumbs:
+    - Home
+    - Shared Configuration
+    - '{namespace}'
+    - Manage
+    - Virtual Sites
+add_action:
+  type: tab
+  label: Add Virtual Site
+save_action:
+  label: Add Virtual Site
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

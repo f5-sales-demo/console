@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: azure-vnet-site
+label: Azure VNET Sites
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: azure_vnet_site
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /namespaces/{namespace}/manage/site_management/azure_vnet_sites
+  menu_path:
+    - Multi-Cloud Network Connect
+    - Manage
+    - Site Management
+    - Azure VNET Sites
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - '{namespace}'
+    - Manage
+    - Site Management
+    - Azure VNET Sites
+add_action:
+  type: tab
+  label: Add Azure VNET Site
+save_action:
+  label: Add Azure VNET Site
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

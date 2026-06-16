@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: dns-zone
+label: DNS Zones
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: dns_zone
+console:
+  workspace: dns-management
+  workspace_label: DNS Management
+  route_prefix: /web/workspaces/dns-management
+  route_pattern: /namespaces/{namespace}/manage/dns_zones
+  menu_path:
+    - DNS Management
+    - Manage
+    - DNS Zones
+  breadcrumbs:
+    - Home
+    - DNS Management
+    - '{namespace}'
+    - Manage
+    - DNS Zones
+add_action:
+  type: tab
+  label: Add DNS Zone
+save_action:
+  label: Add DNS Zone
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

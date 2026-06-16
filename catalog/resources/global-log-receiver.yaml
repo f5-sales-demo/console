@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: global-log-receiver
+label: Audit Logs
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: global_log_receiver
+console:
+  workspace: audit-logs-and-alerts
+  workspace_label: Audit Logs & Alerts
+  route_prefix: /web/workspaces/audit-logs-and-alerts
+  route_pattern: /namespaces/{namespace}/manage/audit_logs/global_log_receivers
+  menu_path:
+    - Audit Logs & Alerts
+    - Manage
+    - Audit Logs
+  breadcrumbs:
+    - Home
+    - Audit Logs & Alerts
+    - '{namespace}'
+    - Manage
+    - Audit Logs
+add_action:
+  type: tab
+  label: Add Global Log Receiver
+save_action:
+  label: Add Global Log Receiver
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

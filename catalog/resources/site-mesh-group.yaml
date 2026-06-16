@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: site-mesh-group
+label: CloudLinks
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: site_mesh_group
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /namespaces/{namespace}/manage/networking/site_mesh_groups
+  menu_path:
+    - Multi-Cloud Network Connect
+    - Manage
+    - Networking
+    - CloudLinks
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - '{namespace}'
+    - Manage
+    - Networking
+    - CloudLinks
+add_action:
+  type: tab
+  label: Add CloudLink
+save_action:
+  label: Add CloudLink
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

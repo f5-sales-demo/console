@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: v1-dns-monitor
+label: DNS Monitors
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: v1_dns_monitor
+console:
+  workspace: observability
+  workspace_label: Observability
+  route_prefix: /web/workspaces/observability
+  route_pattern: /namespaces/{namespace}/manage/monitors/dns_monitors
+  menu_path:
+    - Observability
+    - Manage
+    - Monitors
+    - DNS Monitors
+  breadcrumbs:
+    - Home
+    - Observability
+    - '{namespace}'
+    - Manage
+    - Monitors
+    - DNS Monitors
+add_action:
+  type: tab
+  label: Add DNS Monitor
+save_action:
+  label: Add DNS Monitor
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: inferred
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
+  notes: Inferred from API spec and console home page workspace listing

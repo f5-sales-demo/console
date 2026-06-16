@@ -8,7 +8,7 @@
       "properties": {
         "confidence": {
           "type": "string",
-          "enum": ["draft", "validated", "stale"],
+          "enum": ["draft", "validated", "inferred", "stale"],
           "description": "Validation status of this entry"
         },
         "discovered_at": {
