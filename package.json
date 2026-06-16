@@ -6,7 +6,8 @@
   "description": "Schema-driven inventory of the F5 Distributed Cloud administration console UI",
   "scripts": {
     "validate": "node tools/validate.mjs",
-    "lint": "node tools/lint.mjs"
+    "lint": "node tools/lint.mjs",
+    "generate": "node tools/generate-from-enriched.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1",

@@ -1,0 +1,171 @@
+schema: urn:f5xc:console:resource:v1
+id: http-loadbalancer
+label: HTTP Load Balancers
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: http_loadbalancer
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/load_balancers/http_loadbalancers
+  menu_path:
+    - Web App & API Protection
+    - Manage
+    - Load Balancers
+    - HTTP Load Balancers
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Load Balancers
+    - HTTP Load Balancers
+add_action:
+  type: tab
+  label: Add HTTP Load Balancer
+save_action:
+  label: Add HTTP Load Balancer
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+    - id: domains-and-lb-type
+      label: Domains and LB Type
+      api_fields:
+        - spec.domains
+        - spec.http
+        - spec.https
+        - spec.https_auto_cert
+    - id: origins
+      label: Origins
+      show_advanced_fields: true
+      api_fields:
+        - spec.default_route_pools
+        - spec.default_pool
+        - spec.default_pool_list
+        - spec.origin_server_subset_rule_list
+    - id: routes
+      label: Routes
+      api_fields:
+        - spec.routes
+    - id: cdn
+      label: CDN
+      api_fields:
+        - spec.disable_caching
+    - id: waf
+      label: Web Application Firewall
+      api_fields:
+        - spec.app_firewall
+        - spec.disable_waf
+        - spec.waf_exclusion
+        - spec.data_guard_rules
+        - spec.csrf_policy
+        - spec.graphql_rules
+        - spec.protected_cookies
+    - id: bot-protection
+      label: Bot Protection
+      show_advanced_fields: true
+      api_fields:
+        - spec.bot_defense
+        - spec.bot_defense_advanced
+        - spec.disable_bot_defense
+    - id: api-protection
+      label: API Protection
+      api_fields:
+        - spec.api_specification
+        - spec.api_protection_rules
+        - spec.jwt_validation
+        - spec.enable_api_discovery
+        - spec.disable_api_discovery
+        - spec.disable_api_definition
+        - spec.sensitive_data_policy
+        - spec.default_sensitive_data_policy
+        - spec.api_rate_limit
+        - spec.api_testing
+        - spec.disable_api_testing
+        - spec.sensitive_data_disclosure_rules
+    - id: malware-protection
+      label: Malware Protection
+      disabled: true
+      disabled_reason: Upgrade required
+      api_fields:
+        - spec.malware_protection_settings
+        - spec.disable_malware_protection
+    - id: dos-settings
+      label: DoS Settings
+      api_fields:
+        - spec.l7_ddos_protection
+        - spec.l7_ddos_action_block
+        - spec.l7_ddos_action_default
+        - spec.l7_ddos_action_js_challenge
+        - spec.ddos_mitigation_rules
+        - spec.slow_ddos_mitigation
+        - spec.captcha_challenge
+        - spec.js_challenge
+        - spec.no_challenge
+        - spec.policy_based_challenge
+        - spec.enable_challenge
+    - id: client-side-defense
+      label: Client-Side Defense
+      disabled: true
+      disabled_reason: Upgrade required
+      api_fields:
+        - spec.client_side_defense
+        - spec.disable_client_side_defense
+    - id: common-security-controls
+      label: Common Security Controls
+      api_fields:
+        - spec.active_service_policies
+        - spec.no_service_policies
+        - spec.service_policies_from_namespace
+        - spec.enable_ip_reputation
+        - spec.disable_ip_reputation
+        - spec.enable_threat_mesh
+        - spec.disable_threat_mesh
+        - spec.user_id_client_ip
+        - spec.user_identification
+        - spec.enable_malicious_user_detection
+        - spec.disable_malicious_user_detection
+        - spec.rate_limit
+        - spec.disable_rate_limit
+        - spec.trusted_clients
+        - spec.blocked_clients
+        - spec.cors_policy
+    - id: other-settings
+      label: Other Settings
+      api_fields:
+        - spec.advertise_on_public
+        - spec.advertise_on_public_default_vip
+        - spec.advertise_custom
+        - spec.do_not_advertise
+        - spec.round_robin
+        - spec.least_active
+        - spec.random
+        - spec.ring_hash
+        - spec.source_ip_stickiness
+        - spec.cookie_stickiness
+        - spec.disable_trust_client_ip_headers
+        - spec.enable_trust_client_ip_headers
+        - spec.add_location
+        - spec.more_option
+        - spec.multi_lb_app
+        - spec.single_lb_app
+        - spec.system_default_timeouts
+enriched_fields:
+  count: 83
+  source: api-specs-enriched/config/console_field_metadata.yaml
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

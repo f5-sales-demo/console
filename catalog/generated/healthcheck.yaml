@@ -1,0 +1,58 @@
+schema: urn:f5xc:console:resource:v1
+id: healthcheck
+label: Health Checks
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: healthcheck
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/load_balancers/health_checks
+  menu_path:
+    - Web App & API Protection
+    - Manage
+    - Load Balancers
+    - Health Checks
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Load Balancers
+    - Health Checks
+add_action:
+  type: tab
+  label: Add Health Check
+save_action:
+  label: Add Health Check
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+    - id: health-check-parameters
+      label: Health Check Parameters
+      show_advanced_fields: true
+      api_fields:
+        - spec.http_health_check
+        - spec.timeout
+        - spec.interval
+        - spec.unhealthy_threshold
+        - spec.healthy_threshold
+enriched_fields:
+  count: 5
+  source: api-specs-enriched/config/console_field_metadata.yaml
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

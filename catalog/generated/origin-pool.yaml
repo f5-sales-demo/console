@@ -1,0 +1,65 @@
+schema: urn:f5xc:console:resource:v1
+id: origin-pool
+label: Origin Pools
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: origin_pool
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/load_balancers/origin_pools
+  menu_path:
+    - Web App & API Protection
+    - Manage
+    - Load Balancers
+    - Origin Pools
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Load Balancers
+    - Origin Pools
+add_action:
+  type: tab
+  label: Add Origin Pool
+save_action:
+  label: Add Origin Pool
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+    - id: origin-servers
+      label: Origin Servers
+      api_fields:
+        - spec.origin_servers
+        - spec.port
+    - id: health-checks
+      label: Health Checks
+      api_fields:
+        - spec.healthcheck
+    - id: tls
+      label: TLS
+      api_fields:
+        - spec.use_tls
+    - id: other-settings
+      label: Other Settings
+      api_fields: []
+enriched_fields:
+  count: 8
+  source: api-specs-enriched/config/console_field_metadata.yaml
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'
