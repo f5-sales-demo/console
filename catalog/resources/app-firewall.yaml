@@ -16,98 +16,101 @@ api:
 
 console:
   list_route: "routes/security/app-firewalls.yaml"
-  detail_route_pattern: "/web/namespace/{namespace}/security/app-firewalls/{name}"
-  create_route_pattern: "/web/namespace/{namespace}/security/app-firewalls/create"
+  detail_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall/{name}"
+  create_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall"
+  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
 
   navigation:
-    menu_path: ["Manage", "Security", "App Firewalls"]
+    workspace: "web-app-and-api-protection"
+    menu_path: ["Web App & API Protection", "Manage", "App Firewall"]
     product_area: "security"
+    breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "App Firewall"]
 
 workflows:
   create: "workflows/app-firewall/create.yaml"
   delete: "workflows/app-firewall/delete.yaml"
 
 form:
+  tabs: ["Form", "Documentation", "JSON"]
+  footer_buttons:
+    - id: "cancel"
+      label: "Cancel All"
+    - id: "save"
+      label: "Add App Firewall"
   sections:
     - id: "metadata"
       label: "Metadata"
       fields:
         - id: "name"
           label: "Name"
-          type: "text"
+          type: "textbox"
           required: true
           api_field: "metadata.name"
           validation:
             pattern: "^[a-z][a-z0-9-]*$"
             max_length: 64
-        - id: "description"
-          label: "Description"
-          type: "textarea"
-          required: false
-          api_field: "metadata.description"
         - id: "labels"
           label: "Labels"
           type: "key-value-pairs"
           required: false
           api_field: "metadata.labels"
+          add_action: "Add Label"
+        - id: "description"
+          label: "Description"
+          type: "textbox"
+          required: false
+          api_field: "metadata.description"
 
-    - id: "enforcement"
+    - id: "enforcement-mode"
       label: "Enforcement Mode"
       fields:
         - id: "enforcement_mode"
           label: "Enforcement Mode"
-          type: "select"
-          required: true
+          type: "listbox"
+          required: false
+          default: "Monitoring"
           options:
-            - "Blocking"
             - "Monitoring"
+            - "Blocking"
           api_field: "spec.enforcement_mode"
-          description: "Blocking mode actively blocks malicious requests; Monitoring mode only logs them"
 
-    - id: "detection"
-      label: "Detection Settings"
-      collapsible: true
-      initially_collapsed: false
+    - id: "security-policy-settings"
+      label: "Security Policy Settings"
       fields:
-        - id: "detection_settings"
-          label: "Detection Settings"
-          type: "select"
+        - id: "security_policy"
+          label: "Security Policy"
+          type: "listbox"
           required: false
-          options:
-            - "Default"
-            - "High"
-            - "Low"
-            - "Custom"
+          default: "Default"
           api_field: "spec.detection_settings"
-          description: "Sensitivity level for attack detection"
-        - id: "signature_overrides"
-          label: "Signature Overrides"
-          type: "json"
+        - id: "enhance_with_ai"
+          label: "Enhance with AI"
+          type: "listbox"
           required: false
-          api_field: "spec.detection_settings.signature_overrides"
-          description: "Override specific attack signatures"
+          default: "Disable"
 
-    - id: "bot-defense"
-      label: "Bot Defense Configuration"
-      collapsible: true
-      initially_collapsed: true
+    - id: "advanced-configuration"
+      label: "Advanced configuration"
       fields:
-        - id: "bot_defense_enabled"
-          label: "Enable Bot Defense"
-          type: "toggle"
+        - id: "allowed_response_status_codes"
+          label: "Allowed Response Status Codes"
+          type: "listbox"
           required: false
-          api_field: "spec.bot_defense.enabled"
-        - id: "bot_defense_mode"
-          label: "Bot Defense Mode"
-          type: "select"
+          default: "Default"
+        - id: "mask_sensitive_parameters"
+          label: "Mask Sensitive Parameters"
+          type: "listbox"
           required: false
-          options:
-            - "Default"
-            - "Custom"
-          api_field: "spec.bot_defense.mode"
+          default: "Default"
+        - id: "blocking_response_page"
+          label: "Blocking Response Page"
+          type: "listbox"
+          required: false
+          default: "Default"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Form sections and fields are draft — will be validated via browser-first discovery"
+  notes: "All 4 form sections validated via live browser session against staging console"

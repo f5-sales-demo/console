@@ -16,94 +16,128 @@ api:
 
 console:
   list_route: "routes/load-balancers/origin-pools.yaml"
-  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/origin-pools/{name}"
-  create_route_pattern: "/web/namespace/{namespace}/load-balancers/origin-pools/create"
+  detail_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/origin_pools/{name}"
+  create_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/origin_pools"
+  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
 
   navigation:
-    menu_path: ["Manage", "Load Balancers", "Origin Pools"]
+    workspace: "web-app-and-api-protection"
+    menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "Origin Pools"]
     product_area: "load-balancers"
+    breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "Load Balancers", "Origin Pools"]
 
 workflows:
   create: "workflows/origin-pool/create.yaml"
   delete: "workflows/origin-pool/delete.yaml"
 
 form:
+  tabs: ["Form", "Documentation", "JSON"]
+  footer_buttons:
+    - id: "cancel"
+      label: "Cancel All"
+    - id: "save"
+      label: "Add Origin Pool"
   sections:
     - id: "metadata"
       label: "Metadata"
       fields:
         - id: "name"
           label: "Name"
-          type: "text"
+          type: "textbox"
           required: true
           api_field: "metadata.name"
           validation:
             pattern: "^[a-z][a-z0-9-]*$"
             max_length: 64
-        - id: "description"
-          label: "Description"
-          type: "textarea"
-          required: false
-          api_field: "metadata.description"
         - id: "labels"
           label: "Labels"
           type: "key-value-pairs"
           required: false
           api_field: "metadata.labels"
+          add_action: "Add Label"
+        - id: "description"
+          label: "Description"
+          type: "textbox"
+          required: false
+          api_field: "metadata.description"
 
     - id: "origin-servers"
       label: "Origin Servers"
-      type: "nested-resource-list"
-      description: "Backend servers that receive traffic from this origin pool"
       fields:
-        - id: "origin_server"
-          label: "Origin Server"
-          type: "text"
-          required: true
-          api_field: "spec.origin_servers[].public_ip.ip"
-          description: "IP address or DNS name of the origin server"
+        - id: "origin_servers"
+          label: "Origin Servers"
+          type: "nested-resource-list"
+          required: false
+          api_field: "spec.origin_servers"
+          add_action: "Add Item"
+          description: "List of backend origin servers"
         - id: "port"
           label: "Port"
-          type: "number"
-          required: true
-          api_field: "spec.origin_servers[].public_ip.port"
-          description: "Port number for the origin server"
-          validation:
-            min: 1
-            max: 65535
+          type: "listbox"
+          required: false
+          default: "Port"
+          api_field: "spec.port"
+        - id: "port_value"
+          label: "Port Value"
+          type: "listbox"
+          required: false
+          default: "443"
+        - id: "connection_pool_reuse"
+          label: "Connection Pool Reuse"
+          type: "listbox"
+          required: false
+          default: "Enable Connection Pool Reuse"
+        - id: "health_check_port"
+          label: "Health Check Port"
+          type: "listbox"
+          required: false
+          default: "Endpoint port"
+        - id: "lb_algorithm"
+          label: "LB Algorithm"
+          type: "listbox"
+          required: false
+          default: "Load Balancer Override"
+        - id: "endpoint_selection"
+          label: "Endpoint Selection"
+          type: "listbox"
+          required: false
+          default: "Local Endpoints Preferred"
 
-    - id: "health-check"
-      label: "Health Check"
-      collapsible: true
-      initially_collapsed: false
+    - id: "health-checks"
+      label: "Health Checks"
       fields:
-        - id: "health_check"
-          label: "Health Check"
-          type: "resource-selector"
-          resource_type: "health-check"
+        - id: "health_checks"
+          label: "Health Checks"
+          type: "nested-resource-list"
           required: false
           api_field: "spec.healthcheck"
+          add_action: "Add Item"
+          nested_resource: "health-check"
+          description: "Table of Health Check objects attached to this origin pool"
 
-    - id: "load-balancing"
-      label: "Load Balancing"
-      collapsible: true
-      initially_collapsed: true
+    - id: "tls"
+      label: "TLS"
       fields:
-        - id: "load_balancing_algorithm"
-          label: "Load Balancing Algorithm"
-          type: "select"
+        - id: "tls"
+          label: "TLS"
+          type: "listbox"
           required: false
-          options:
-            - "Round Robin"
-            - "Least Active Requests"
-            - "Random"
-            - "Source IP Stickiness"
-            - "Cookie Stickiness"
-            - "Ring Hash"
-          api_field: "spec.loadbalancer_algorithm"
+          default: "Disable"
+          api_field: "spec.use_tls"
+
+    - id: "other-settings"
+      label: "Other Settings"
+      fields:
+        - id: "other_settings"
+          label: "Other Settings"
+          type: "configurable"
+          required: false
+          default_state: "Not configured"
+          configure_action: "Configure"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Form sections and fields are draft — will be validated via browser-first discovery"
+  notes: "All 5 form sections validated via live browser session against staging console"

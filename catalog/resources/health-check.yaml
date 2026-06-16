@@ -16,108 +16,111 @@ api:
 
 console:
   list_route: "routes/load-balancers/health-checks.yaml"
-  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/health-checks/{name}"
-  create_route_pattern: "/web/namespace/{namespace}/load-balancers/health-checks/create"
+  detail_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/health_checks/{name}"
+  create_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/health_checks"
+  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
 
   navigation:
-    menu_path: ["Manage", "Load Balancers", "Health Checks"]
+    workspace: "web-app-and-api-protection"
+    menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "Health Checks"]
     product_area: "load-balancers"
+    breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "Load Balancers", "Health Checks"]
 
 workflows:
   create: "workflows/health-check/create.yaml"
   delete: "workflows/health-check/delete.yaml"
 
 form:
+  tabs: ["Form", "Documentation", "JSON"]
+  footer_buttons:
+    - id: "cancel"
+      label: "Cancel All"
+    - id: "save"
+      label: "Add Health Check"
   sections:
     - id: "metadata"
       label: "Metadata"
       fields:
         - id: "name"
           label: "Name"
-          type: "text"
+          type: "textbox"
           required: true
           api_field: "metadata.name"
           validation:
             pattern: "^[a-z][a-z0-9-]*$"
             max_length: 64
-        - id: "description"
-          label: "Description"
-          type: "textarea"
-          required: false
-          api_field: "metadata.description"
         - id: "labels"
           label: "Labels"
           type: "key-value-pairs"
           required: false
           api_field: "metadata.labels"
+          add_action: "Add Label"
+        - id: "description"
+          label: "Description"
+          type: "textbox"
+          required: false
+          api_field: "metadata.description"
 
-    - id: "health-check-type"
-      label: "Health Check Type"
+    - id: "health-check-parameters"
+      label: "Health Check Parameters"
       fields:
         - id: "health_check_type"
-          label: "Health Check Type"
-          type: "select"
-          required: true
-          options:
-            - "HTTP"
-            - "TCP"
+          label: "Health Check type"
+          type: "listbox"
+          required: false
+          default: "HTTP HealthCheck"
           api_field: "spec.http_health_check"
-          description: "Protocol used for health checking"
-        - id: "path"
-          label: "Path"
-          type: "text"
-          required: false
-          api_field: "spec.http_health_check.path"
-          description: "HTTP path to check (for HTTP health checks)"
-
-    - id: "timing"
-      label: "Timing Configuration"
-      collapsible: true
-      initially_collapsed: false
-      fields:
-        - id: "interval"
-          label: "Interval (seconds)"
-          type: "number"
-          required: false
-          default: 15
-          api_field: "spec.interval"
-          description: "Time between health check probes"
-          validation:
-            min: 1
-            max: 3600
+          options:
+            - "HTTP HealthCheck"
+            - "TCP HealthCheck"
         - id: "timeout"
-          label: "Timeout (seconds)"
-          type: "number"
+          label: "Timeout"
+          type: "spinbutton"
           required: false
           default: 3
           api_field: "spec.timeout"
-          description: "Timeout for each health check probe"
-          validation:
-            min: 1
-            max: 300
+        - id: "interval"
+          label: "Interval"
+          type: "spinbutton"
+          required: false
+          default: 15
+          api_field: "spec.interval"
         - id: "unhealthy_threshold"
           label: "Unhealthy Threshold"
-          type: "number"
-          required: false
-          default: 3
-          api_field: "spec.unhealthy_threshold"
-          description: "Number of consecutive failures before marking unhealthy"
-          validation:
-            min: 1
-            max: 10
-        - id: "healthy_threshold"
-          label: "Healthy Threshold"
-          type: "number"
+          type: "spinbutton"
           required: false
           default: 1
+          api_field: "spec.unhealthy_threshold"
+        - id: "healthy_threshold"
+          label: "Healthy Threshold"
+          type: "spinbutton"
+          required: false
+          default: 3
           api_field: "spec.healthy_threshold"
-          description: "Number of consecutive successes before marking healthy"
-          validation:
-            min: 1
-            max: 10
+      show_advanced_fields: true
+
+  list_table:
+    columns:
+      - id: "name"
+        label: "Name"
+      - id: "namespace"
+        label: "Namespace"
+      - id: "interval"
+        label: "Interval"
+      - id: "jitter_percent"
+        label: "Jitter Percent"
+      - id: "timeout"
+        label: "Timeout"
+      - id: "unhealthy_threshold"
+        label: "Unhealthy Threshold"
+      - id: "healthy_threshold"
+        label: "Healthy Threshold"
+      - id: "actions"
+        label: "Actions"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Form sections and fields are draft — will be validated via browser-first discovery"
+  notes: "All 2 form sections validated via live browser session against staging console. Has Show Advanced Fields toggle."

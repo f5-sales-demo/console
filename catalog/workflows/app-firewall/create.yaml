@@ -19,77 +19,60 @@ params:
     description: "App firewall name (lowercase alphanumeric and hyphens)"
     example: "my-app-firewall"
   enforcement_mode:
-    required: true
-    description: "Enforcement mode: Blocking or Monitoring"
+    required: false
+    description: "Enforcement mode: Monitoring or Blocking"
     example: "Blocking"
-  detection_settings:
-    required: false
-    description: "Detection sensitivity level"
-    example: "Default"
-  bot_defense_enabled:
-    required: false
-    type: "boolean"
-    description: "Whether to enable bot defense"
-    example: false
+    default: "Monitoring"
 
 steps:
   - id: "navigate-to-list"
     action: "navigate"
-    url: "/web/namespace/{namespace}/security/app-firewalls"
-    wait_for: "[data-testid='add-app-firewall']"
-    description: "Navigate to App Firewalls list page"
+    url: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall"
+    wait_for: "text('App Firewalls')"
+    description: "Navigate to App Firewalls list page within Web App & API Protection workspace"
 
-  - id: "click-add"
+  - id: "click-add-tab"
     action: "click"
-    selector: "[data-testid='add-app-firewall']"
-    wait_for: "input[data-testid='name-input']"
-    description: "Click Add App Firewall button to open the create form"
+    selector: "tab:text('Add App Firewall')"
+    wait_for: "textbox[name='Name']"
+    description: "Click the Add App Firewall tab to open the inline create form"
+    note: "This is a tab element, not a button"
 
   - id: "fill-name"
     action: "fill"
-    selector: "input[data-testid='name-input']"
+    selector: "textbox[name='Name']"
     value: "{name}"
-    description: "Enter the app firewall name"
+    description: "Enter the app firewall name in the Name textbox"
 
   - id: "select-enforcement-mode"
+    condition: "params.enforcement_mode is set"
     action: "select"
-    selector: "[data-testid='enforcement-mode-select']"
+    selector: "listbox"
+    context: "Enforcement Mode section"
     value: "{enforcement_mode}"
-    description: "Select the enforcement mode (Blocking or Monitoring)"
-
-  - id: "select-detection-settings"
-    condition: "params.detection_settings is set"
-    action: "select"
-    selector: "[data-testid='detection-settings-select']"
-    value: "{detection_settings}"
-    description: "Select the detection sensitivity level"
-
-  - id: "enable-bot-defense"
-    condition: "params.bot_defense_enabled is true"
-    action: "check"
-    selector: "[data-testid='bot-defense-toggle']"
-    description: "Enable bot defense"
+    description: "Select the enforcement mode (Monitoring or Blocking)"
 
   - id: "save"
     action: "click"
-    selector: "[data-testid='save-and-exit']"
-    wait_for: "[data-testid='resource-detail']"
+    selector: "button:text('Add App Firewall')"
+    context: "footer"
+    wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Save the app firewall and wait for the detail page"
+    description: "Click the Add App Firewall button in the form footer to save"
 
   - id: "verify-created"
     action: "assert"
-    selector: "[data-testid='resource-name']"
-    expected_text: "{name}"
-    description: "Verify the resource was created by checking the name on the detail page"
+    selector: "text('{name}')"
+    description: "Verify the resource was created by checking the name appears in the list"
 
 postconditions:
-  - "resource_detail_page_visible"
-  - "resource_name_matches: {name}"
+  - "resource_list_page_visible"
+  - "resource_name_in_list: {name}"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
   estimated_duration_seconds: 25
-  notes: "Selectors are placeholders — must be validated against the live console"
+  notes: "Selectors use aria/text-based patterns validated against live console. No data-testid attributes exist."

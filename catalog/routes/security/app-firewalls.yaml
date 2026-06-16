@@ -23,13 +23,16 @@ screen:
   description: "Table listing all App Firewalls in the selected namespace"
   primary_resource: "app-firewall"
 
+  form_tabs: ["Form", "Documentation", "JSON"]
+  form_note: "Create form opens inline on the same page when the Add tab is clicked"
+
   controls:
     - id: "add-tab"
       type: "tab"
       label: "Add App Firewall"
       action: "create"
       selector: "tab:text('Add App Firewall')"
-      note: "Add action is a tab element, consistent with other list pages"
+      note: "This is a tab element, not a button. Clicking it opens the create form inline."
     - id: "search"
       type: "search-input"
       label: "Search"
@@ -43,14 +46,10 @@ screen:
         label: "Name"
         sortable: true
         links_to: "detail"
-      - id: "enforcement-mode"
-        label: "Enforcement Mode"
-      - id: "detection-settings"
-        label: "Detection Settings"
-      - id: "bot-defense"
-        label: "Bot Defense"
-      - id: "status"
-        label: "Status"
+      - id: "namespace"
+        label: "Namespace"
+      - id: "actions"
+        label: "Actions"
     row_actions:
       - id: "edit"
         label: "Edit"
@@ -74,4 +73,4 @@ metadata:
   discovered_at: "2026-06-15"
   validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Route pattern validated via live browser session. URL follows workspace-scoped pattern."
+  notes: "Route pattern and screen structure validated via live browser session. Add action is a tab, not a button."

@@ -23,13 +23,16 @@ screen:
   description: "Table listing all Origin Pools in the selected namespace"
   primary_resource: "origin-pool"
 
+  form_tabs: ["Form", "Documentation", "JSON"]
+  form_note: "Create form opens inline on the same page when the Add tab is clicked"
+
   controls:
     - id: "add-tab"
       type: "tab"
       label: "Add Origin Pool"
       action: "create"
       selector: "tab:text('Add Origin Pool')"
-      note: "Add action is a tab element, consistent with other list pages"
+      note: "This is a tab element, not a button. Clicking it opens the create form inline."
     - id: "search"
       type: "search-input"
       label: "Search"
@@ -43,14 +46,10 @@ screen:
         label: "Name"
         sortable: true
         links_to: "detail"
-      - id: "origin-servers"
-        label: "Origin Servers"
-      - id: "health-check"
-        label: "Health Check"
-      - id: "algorithm"
-        label: "Load Balancing Algorithm"
-      - id: "status"
-        label: "Status"
+      - id: "namespace"
+        label: "Namespace"
+      - id: "actions"
+        label: "Actions"
     row_actions:
       - id: "edit"
         label: "Edit"
@@ -74,4 +73,4 @@ metadata:
   discovered_at: "2026-06-15"
   validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Route pattern validated via live browser session. URL follows workspace-scoped pattern."
+  notes: "Route pattern and screen structure validated via live browser session. Add action is a tab, not a button. Table columns: Name, Namespace, Actions."
