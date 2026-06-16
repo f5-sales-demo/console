@@ -22,6 +22,16 @@ tree:
         menu_path: ["Manage", "Load Balancers", "Origin Pools"]
         route: "/web/load-balancers/origin-pools"
         route_file: "routes/load-balancers/origin-pools.yaml"
+      - id: "virtual-hosts"
+        label: "Virtual Hosts"
+        menu_path: ["Manage", "Load Balancers", "Virtual Hosts"]
+        route: "/web/load-balancers/virtual-hosts"
+        route_file: "routes/load-balancers/virtual-hosts.yaml"
+      - id: "routes"
+        label: "Routes"
+        menu_path: ["Manage", "Load Balancers", "Routes"]
+        route: "/web/load-balancers/routes"
+        route_file: "routes/load-balancers/routes.yaml"
       - id: "health-checks"
         label: "Health Checks"
         menu_path: ["Manage", "Load Balancers", "Health Checks"]
@@ -52,3 +62,13 @@ tree:
         menu_path: ["Manage", "Networking", "Sites"]
         route: "/web/networking/sites"
         route_file: "routes/networking/sites.yaml"
+
+  - id: "administration"
+    label: "Administration"
+    menu_path: ["Administration"]
+    children:
+      - id: "namespaces"
+        label: "Namespaces"
+        menu_path: ["Administration", "Namespaces"]
+        route: "/web/namespaces"
+        route_file: "routes/administration/namespaces.yaml"

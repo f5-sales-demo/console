@@ -1,0 +1,64 @@
+schema: "urn:f5xc:console:route:v1"
+id: "namespaces"
+label: "Namespaces"
+
+route:
+  pattern: "/web/namespaces"
+  params: {}
+  supports_direct_link: true
+  breadcrumbs: ["Home", "Administration", "Namespaces"]
+
+context:
+  requires_login: true
+  requires_namespace: false
+  minimum_role: "admin"
+
+screen:
+  type: "list"
+  description: "Table listing all Namespaces in the tenant"
+  primary_resource: "namespace"
+
+  controls:
+    - id: "add-btn"
+      type: "button"
+      label: "Add Namespace"
+      action: "create"
+      selector: "[data-testid='add-namespace']"
+    - id: "search"
+      type: "search-input"
+      label: "Search"
+      selector: "[data-testid='search-input']"
+
+  table:
+    columns:
+      - id: "name"
+        label: "Name"
+        sortable: true
+        links_to: "detail"
+      - id: "description"
+        label: "Description"
+      - id: "status"
+        label: "Status"
+    row_actions:
+      - id: "edit"
+        label: "Edit"
+        operation: "update"
+      - id: "delete"
+        label: "Delete"
+        operation: "delete"
+
+  detail_route: "/web/namespaces/{name}"
+
+operations:
+  - type: "create"
+    workflow: "workflows/namespace/create.yaml"
+  - type: "list"
+    inline: true
+  - type: "delete"
+    workflow: "workflows/namespace/delete.yaml"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "System-level resource — no namespace-selector control. Selectors are placeholders."

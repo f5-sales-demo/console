@@ -1,0 +1,106 @@
+# CatalogWorkflowRunner Design
+
+Design for the xcsh component that reads workflow YAML from this catalog and executes steps via Chrome DevTools Protocol.
+
+## Location
+
+`packages/coding-agent/src/tools/catalog-workflow-runner.ts` in the xcsh repo. Sits alongside `browser.ts` and delegates all browser interaction to `BrowserTool.execute()`.
+
+## Core Interfaces
+
+```typescript
+interface WorkflowDefinition {
+  schema: string;
+  id: string;
+  label: string;
+  resource: string;
+  operation: string;
+  preconditions?: string[];
+  params?: Record<string, WorkflowParam>;
+  steps: WorkflowStep[];
+  postconditions?: string[];
+  metadata?: WorkflowMetadata;
+}
+
+interface RunnerOptions {
+  params: Record<string, unknown>;
+  baseUrl: string;
+  observable?: boolean;         // slow execution, screenshots per step
+  observableDelayMs?: number;   // default 1500
+  screenshotDir?: string;
+  signal?: AbortSignal;
+  onStepStart?: (step: WorkflowStep, index: number) => void;
+  onStepComplete?: (result: StepResult) => void;
+}
+
+interface StepResult {
+  stepId: string;
+  action: string;
+  status: "pass" | "fail" | "skipped";
+  durationMs: number;
+  error?: string;
+  screenshotPath?: string;
+}
+
+interface WorkflowRunResult {
+  workflowId: string;
+  label: string;
+  status: "pass" | "fail";
+  totalDurationMs: number;
+  steps: StepResult[];
+  failedAtStep?: string;
+}
+```
+
+## Action Mapping
+
+| Workflow Action | Browser Tool Action | Notes |
+|---|---|---|
+| `navigate` | `goto` + `wait_for_selector` | Prepend baseUrl to relative URL |
+| `click` | `click` | Direct selector mapping |
+| `fill` | `fill` | Resolve {param} in value |
+| `fill-list` | Loop: `fill` + `press Enter` per item | Resolve array param |
+| `select` | `click` (open) + `click` (option) | Custom console dropdowns |
+| `assert` | `get_text` + string comparison | Fail-fast if mismatch |
+| `screenshot` | `screenshot` | Save to screenshotDir |
+| `key-press` | `press` | Direct key mapping |
+| `wait` | `wait_for_selector` | Selector or time-based |
+
+## Parameter Resolution
+
+1. Explicit params from RunnerOptions (highest priority)
+2. F5XC environment variables (`{namespace}` → `F5XC_NAMESPACE`)
+3. Unresolved required params → `WorkflowParamError`
+
+## Error Handling
+
+- Fail-fast: first failed step stops execution
+- Capture failure screenshot (best-effort)
+- No retry logic — caller decides whether to retry full workflow
+- All errors extend `ToolError` for agent loop compatibility
+
+## Observable Mode
+
+When `observable: true`:
+- 1500ms delay between steps (configurable)
+- Screenshot after every step (`{workflowId}-{stepIndex:02d}-{stepId}.png`)
+- `onStepStart`/`onStepComplete` callbacks for live logging
+- Browser actions themselves run at full speed (delays are inter-step only)
+
+## Integration
+
+```typescript
+class CatalogWorkflowRunner {
+  constructor(
+    private readonly browserTool: BrowserTool,
+    private readonly contextEnv: ContextEnv,
+  ) {}
+
+  async run(
+    workflow: WorkflowDefinition,
+    options: RunnerOptions,
+  ): Promise<WorkflowRunResult> { ... }
+}
+```
+
+The runner calls `browserTool.execute()` directly. The browser must be open before `run()` is called (or the first workflow step must be `navigate`).

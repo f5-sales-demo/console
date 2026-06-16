@@ -1,0 +1,76 @@
+schema: "urn:f5xc:console:route:v1"
+id: "routes"
+label: "Routes"
+
+route:
+  pattern: "/web/namespace/{namespace}/load-balancers/routes"
+  params:
+    namespace:
+      required: true
+      description: "F5 XC namespace"
+      example: "demo"
+  supports_direct_link: true
+  breadcrumbs: ["Home", "Load Balancers", "Routes"]
+
+context:
+  requires_login: true
+  requires_namespace: true
+  minimum_role: "admin"
+
+screen:
+  type: "list"
+  description: "Table listing all Routes in the selected namespace"
+  primary_resource: "route-object"
+
+  controls:
+    - id: "add-btn"
+      type: "button"
+      label: "Add Route"
+      action: "create"
+      selector: "[data-testid='add-route']"
+    - id: "search"
+      type: "search-input"
+      label: "Search"
+      selector: "[data-testid='search-input']"
+    - id: "namespace-selector"
+      type: "dropdown"
+      label: "Namespace"
+      selector: "[data-testid='namespace-selector']"
+
+  table:
+    columns:
+      - id: "name"
+        label: "Name"
+        sortable: true
+        links_to: "detail"
+      - id: "match-path"
+        label: "Match Path"
+      - id: "action"
+        label: "Action"
+      - id: "destinations"
+        label: "Destinations"
+      - id: "status"
+        label: "Status"
+    row_actions:
+      - id: "edit"
+        label: "Edit"
+        operation: "update"
+      - id: "delete"
+        label: "Delete"
+        operation: "delete"
+
+  detail_route: "/web/namespace/{namespace}/load-balancers/routes/{name}"
+
+operations:
+  - type: "create"
+    workflow: "workflows/route-object/create.yaml"
+  - type: "list"
+    inline: true
+  - type: "delete"
+    workflow: "workflows/route-object/delete.yaml"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Selectors are placeholders — will be validated via browser-first discovery"
