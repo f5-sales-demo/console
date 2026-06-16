@@ -121,13 +121,15 @@ postconditions:
   - "resource_name_in_list: {mesh_name}"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-16"
+  validated_at: "2026-06-16"
   console_version: "2025.06"
   estimated_duration_seconds: 90
   notes: >
-    MCN site-to-site connectivity demo. MCN workspace is tenant-scoped
-    (no /namespaces/ segment in URLs). AWS VPC Site requires existing AWS
-    credentials in the tenant. Site Mesh Group links sites together for
-    site-to-site networking. Form fields (VPC CIDR, ingress/egress gateways)
-    need live validation to confirm exact selectors.
+    Routes validated on staging 2026-06-16. MCN workspace is tenant-scoped.
+    AWS VPC Sites at /manage/site_management/legacy_configs/aws_vpc_site
+    with standard tab "Add AWS VPC Site". Site Mesh Groups at
+    /manage/networking/site_to_site_connectivity/site_mesh_groups with
+    standard tab. AWS VPC Site requires AWS credentials (resource selector)
+    and region dropdown. Form fields need full deep validation.
