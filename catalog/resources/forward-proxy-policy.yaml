@@ -8,18 +8,18 @@ console:
   workspace: multi-cloud-app-connect
   workspace_label: Multi-Cloud App Connect
   route_prefix: /web/workspaces/multi-cloud-app-connect
-  route_pattern: /namespaces/{namespace}/manage/proxy/forward_proxy_policies
+  route_pattern: /namespaces/{namespace}/manage/security/forward_proxy_policies
   menu_path:
     - Multi-Cloud App Connect
     - Manage
-    - Proxy
+    - Security
     - Forward Proxy Policies
   breadcrumbs:
     - Home
     - Multi-Cloud App Connect
     - '{namespace}'
     - Manage
-    - Proxy
+    - Security
     - Forward Proxy Policies
 add_action:
   type: tab
@@ -44,7 +44,7 @@ enriched_fields:
   count: 4
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Inferred from API spec and console home page workspace listing
+  notes: Validated via URL probe against live staging console

@@ -8,18 +8,18 @@ console:
   workspace: web-app-and-api-protection
   workspace_label: Web App & API Protection
   route_prefix: /web/workspaces/web-app-and-api-protection
-  route_pattern: /namespaces/{namespace}/manage/load_balancers/cdn_loadbalancers
+  route_pattern: /namespaces/{namespace}/manage/cdn/cdn_loadbalancers
   menu_path:
     - Web App & API Protection
     - Manage
-    - Load Balancers
+    - CDN
     - CDN Distributions
   breadcrumbs:
     - Home
     - Web App & API Protection
     - '{namespace}'
     - Manage
-    - Load Balancers
+    - CDN
     - CDN Distributions
 add_action:
   type: tab
@@ -44,7 +44,7 @@ enriched_fields:
   count: 6
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Inferred from API spec and console home page workspace listing
+  notes: Validated via URL probe against live staging console

@@ -1,6 +1,6 @@
 schema: urn:f5xc:console:resource:v1
 id: global-log-receiver
-label: Audit Logs
+label: Global Log Receivers
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
   kind: global_log_receiver
@@ -8,17 +8,18 @@ console:
   workspace: audit-logs-and-alerts
   workspace_label: Audit Logs & Alerts
   route_prefix: /web/workspaces/audit-logs-and-alerts
-  route_pattern: /namespaces/{namespace}/manage/audit_logs/global_log_receivers
+  route_pattern: /namespaces/system/manage/global_log_receivers
   menu_path:
     - Audit Logs & Alerts
     - Manage
-    - Audit Logs
+    - Global Log Receivers
   breadcrumbs:
     - Home
     - Audit Logs & Alerts
-    - '{namespace}'
+    - system
     - Manage
-    - Audit Logs
+    - Global Log Receivers
+  namespace_scoped: false
 add_action:
   type: tab
   label: Add Global Log Receiver
@@ -42,7 +43,7 @@ enriched_fields:
   count: 5
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: '2026-06-16'
   console_version: '2025.06'
-  notes: Inferred from API spec and console home page workspace listing
+  notes: Validated via URL probe against live staging console
