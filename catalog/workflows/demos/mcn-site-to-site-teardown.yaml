@@ -1,0 +1,69 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "mcn-site-to-site-teardown"
+label: "MCN Site-to-Site Teardown — Delete Site Mesh Group + AWS VPC Site"
+resource:
+  - "site-mesh-group"
+  - "aws-vpc-site"
+operation: "demo"
+
+preconditions:
+  - "user_logged_in"
+  - "role_minimum: admin"
+
+params:
+  site_name:
+    required: true
+    description: "AWS VPC site name"
+    example: "aws-site-east"
+  mesh_name:
+    required: true
+    description: "Site mesh group name"
+    example: "east-west-mesh"
+
+steps:
+  - id: "navigate-mesh"
+    action: "navigate"
+    url: "/web/workspaces/multi-cloud-network-connect/manage/networking/site_to_site_connectivity/site_mesh_groups"
+    wait_for: "text('Site Mesh Groups')"
+    description: "Navigate to Site Mesh Groups"
+
+  - id: "delete-mesh"
+    action: "click"
+    selector: "button:text('...')"
+    context: "row containing {mesh_name}"
+    description: "Open actions menu for the Site Mesh Group"
+    then:
+      - id: "confirm-delete-mesh"
+        action: "click"
+        selector: "option:text('Delete')"
+        description: "Select Delete from actions menu"
+
+  - id: "navigate-aws-sites"
+    action: "navigate"
+    url: "/web/workspaces/multi-cloud-network-connect/manage/site_management/legacy_configs/aws_vpc_site"
+    wait_for: "text('AWS VPC Sites')"
+    description: "Navigate to AWS VPC Sites"
+
+  - id: "delete-aws-site"
+    action: "click"
+    selector: "button:text('...')"
+    context: "row containing {site_name}"
+    description: "Open actions menu for the AWS VPC Site"
+    then:
+      - id: "confirm-delete-site"
+        action: "click"
+        selector: "option:text('Delete')"
+        description: "Select Delete from actions menu"
+
+postconditions:
+  - "resource_deleted: {mesh_name}"
+  - "resource_deleted: {site_name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-16"
+  console_version: "2025.06"
+  estimated_duration_seconds: 45
+  notes: >
+    Teardown companion for mcn-site-to-site demo. Deletes mesh group first
+    (depends on sites), then the AWS VPC site. MCN workspace is tenant-scoped.

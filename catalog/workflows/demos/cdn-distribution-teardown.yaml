@@ -1,0 +1,59 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "cdn-distribution-teardown"
+label: "CDN Distribution Teardown — Delete CDN Distribution + Origin Pool"
+resource:
+  - "cdn-loadbalancer"
+  - "origin-pool"
+operation: "demo"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+
+params:
+  namespace:
+    required: true
+    description: "Namespace containing the resources"
+    example: "demo"
+  app_name:
+    required: true
+    description: "Base name used when creating resources"
+    example: "my-cdn"
+
+steps:
+  - id: "navigate-cdn"
+    action: "navigate"
+    url: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/cdn/cdn_loadbalancers"
+    wait_for: "text('CDN Distributions')"
+    description: "Navigate to CDN Distributions"
+
+  - id: "delete-cdn"
+    action: "click"
+    selector: "button:text('...')"
+    context: "row containing {app_name}-cdn"
+    description: "Open actions menu for the CDN Distribution"
+    then:
+      - id: "confirm-delete-cdn"
+        action: "click"
+        selector: "option:text('Delete')"
+        description: "Select Delete from actions menu"
+
+  - id: "delete-origin-pool"
+    action: "run-workflow"
+    workflow: "origin-pool/delete"
+    with:
+      namespace: "{namespace}"
+      name: "{app_name}-origin"
+    description: "Delete the origin pool"
+
+postconditions:
+  - "resource_deleted: {app_name}-cdn"
+  - "resource_deleted: {app_name}-origin"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-16"
+  console_version: "2025.06"
+  estimated_duration_seconds: 40
+  notes: "Teardown companion for cdn-distribution demo."

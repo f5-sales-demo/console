@@ -1,0 +1,63 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "dns-lb-stack-teardown"
+label: "DNS LB Stack Teardown — Delete DNS LB + DNS Zone"
+resource:
+  - "dns-load-balancer"
+  - "dns-zone"
+operation: "demo"
+
+preconditions:
+  - "user_logged_in"
+  - "role_minimum: admin"
+
+params:
+  app_name:
+    required: true
+    description: "Base name used when creating resources"
+    example: "my-app"
+
+steps:
+  - id: "navigate-dns-lb"
+    action: "navigate"
+    url: "/web/workspaces/dns-management/namespaces/system/manage/dns_load_balancers"
+    wait_for: "text('DNS Load Balancers')"
+    description: "Navigate to DNS Load Balancers"
+
+  - id: "delete-dns-lb"
+    action: "click"
+    selector: "button:text('...')"
+    context: "row containing {app_name}-dns-lb"
+    description: "Open actions menu for the DNS Load Balancer"
+    then:
+      - id: "confirm-delete-dns-lb"
+        action: "click"
+        selector: "option:text('Delete')"
+        description: "Select Delete from actions menu"
+
+  - id: "navigate-dns-zones"
+    action: "navigate"
+    url: "/web/workspaces/dns-management/namespaces/system/manage/dns_zone_management/dns_zones"
+    wait_for: "text('DNS Zones')"
+    description: "Navigate to DNS Zones"
+
+  - id: "delete-dns-zone"
+    action: "click"
+    selector: "button:text('...')"
+    context: "row containing {app_name}-zone"
+    description: "Open actions menu for the DNS Zone"
+    then:
+      - id: "confirm-delete-zone"
+        action: "click"
+        selector: "option:text('Delete')"
+        description: "Select Delete from actions menu"
+
+postconditions:
+  - "resource_deleted: {app_name}-dns-lb"
+  - "resource_deleted: {app_name}-zone"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-16"
+  console_version: "2025.06"
+  estimated_duration_seconds: 45
+  notes: "Teardown companion for dns-lb-stack demo."

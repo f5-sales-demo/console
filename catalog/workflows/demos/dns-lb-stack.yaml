@@ -1,0 +1,131 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "dns-lb-stack-demo"
+label: "DNS Load Balancer Demo — DNS Zone + DNS LB Pool + DNS Load Balancer"
+resource:
+  - "dns-zone"
+  - "dns-lb-pool"
+  - "dns-load-balancer"
+operation: "demo"
+
+preconditions:
+  - "user_logged_in"
+  - "role_minimum: admin"
+
+params:
+  app_name:
+    required: true
+    description: "Base name for all resources"
+    example: "my-app"
+  domain:
+    required: true
+    description: "DNS zone domain name"
+    example: "example.com"
+  record_name:
+    required: true
+    description: "DNS record name to load balance"
+    example: "www"
+  pool_member_1:
+    required: true
+    description: "First pool member IP or CNAME"
+    example: "1.2.3.4"
+  pool_member_2:
+    required: false
+    description: "Second pool member IP or CNAME"
+    example: "5.6.7.8"
+
+steps:
+  - id: "screenshot-start"
+    action: "screenshot"
+    screenshot_name: "dns-demo-start"
+    description: "Capture starting state"
+
+  - id: "navigate-dns-zones"
+    action: "navigate"
+    url: "/web/workspaces/dns-management/namespaces/system/manage/dns_zone_management/dns_zones"
+    wait_for: "text('DNS Zones')"
+    description: "Step 1: Navigate to DNS Zones in DNS Management workspace"
+
+  - id: "click-add-dns-zone"
+    action: "click"
+    selector: "tab:text('Add DNS Zone')"
+    wait_for: "textbox[name='Name']"
+    description: "Open the Add DNS Zone form"
+    note: "DNS Management uses system namespace (no namespace selector)"
+
+  - id: "fill-zone-name"
+    action: "fill"
+    selector: "textbox[name='Name']"
+    value: "{app_name}-zone"
+    description: "Enter the DNS zone name"
+
+  - id: "fill-zone-domain"
+    action: "fill"
+    selector: "textbox[name='Domain']"
+    value: "{domain}"
+    description: "Enter the DNS zone domain"
+    note: "Domain field may be labeled differently — verify during live validation"
+
+  - id: "save-dns-zone"
+    action: "click"
+    selector: "button:text('Add DNS Zone')"
+    context: "footer"
+    wait_for: "text('{app_name}-zone')"
+    wait_timeout_ms: 30000
+    description: "Save the DNS Zone"
+
+  - id: "screenshot-zone-created"
+    action: "screenshot"
+    screenshot_name: "dns-demo-zone-created"
+    description: "Capture DNS zone creation"
+
+  - id: "navigate-dns-lb"
+    action: "navigate"
+    url: "/web/workspaces/dns-management/namespaces/system/manage/dns_load_balancers"
+    wait_for: "text('DNS Load Balancers')"
+    description: "Step 2: Navigate to DNS Load Balancers"
+
+  - id: "click-add-dns-lb"
+    action: "click"
+    selector: "tab:text('Add DNS Load Balancer')"
+    wait_for: "textbox[name='Name']"
+    description: "Open the Add DNS Load Balancer form"
+
+  - id: "fill-dns-lb-name"
+    action: "fill"
+    selector: "textbox[name='Name']"
+    value: "{app_name}-dns-lb"
+    description: "Enter the DNS load balancer name"
+
+  - id: "fill-dns-lb-record"
+    action: "fill"
+    selector: "textbox"
+    context: "Record Name"
+    value: "{record_name}"
+    description: "Enter the DNS record name to load balance"
+
+  - id: "save-dns-lb"
+    action: "click"
+    selector: "button:text('Add DNS Load Balancer')"
+    context: "footer"
+    wait_for: "text('{app_name}-dns-lb')"
+    wait_timeout_ms: 30000
+    description: "Save the DNS Load Balancer"
+
+  - id: "screenshot-final"
+    action: "screenshot"
+    screenshot_name: "dns-demo-complete"
+    description: "Capture completed DNS LB stack"
+
+postconditions:
+  - "resource_name_in_list: {app_name}-dns-lb"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-16"
+  console_version: "2025.06"
+  estimated_duration_seconds: 90
+  notes: >
+    DNS Load Balancer demo workflow. DNS Management workspace uses system
+    namespace (no namespace selector). Zone and LB forms need live validation
+    to confirm exact field selectors. Pool member configuration may require
+    additional sub-form steps not yet mapped.
