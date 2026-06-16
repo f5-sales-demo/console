@@ -65,12 +65,20 @@ function main() {
 	console.log(`Workspaces: ${Object.keys(workspaces).length}`);
 	console.log();
 
+	// Map API kinds to catalog IDs (preserving established naming)
+	const ID_OVERRIDES = {
+		http_loadbalancer: "http-load-balancer",
+		tcp_loadbalancer: "tcp-load-balancer",
+		healthcheck: "health-check",
+		route: "route-object",
+	};
+
 	let generated = 0;
 
 	for (const [kind, config] of Object.entries(resources)) {
 		const workspace = workspaces[config.workspace] || {};
 		const fields = fieldConfig.resources?.[kind] || {};
-		const id = kind.replace(/_/g, "-");
+		const id = ID_OVERRIDES[kind] || kind.replace(/_/g, "-");
 
 		const doc = {
 			schema: "urn:f5xc:console:resource:v1",

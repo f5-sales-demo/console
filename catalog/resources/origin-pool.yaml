@@ -1,143 +1,65 @@
-schema: "urn:f5xc:console:resource:v1"
-id: "origin-pool"
-label: "Origin Pool"
-
+schema: urn:f5xc:console:resource:v1
+id: origin-pool
+label: Origin Pools
+_source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: "origin_pool"
-  group: "ves.io.schema.views"
-  version: "v1"
-  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.views.origin_pool.ves-swagger.json"
-  crud_endpoints:
-    create: "POST /api/config/namespaces/{namespace}/origin_pools"
-    read: "GET /api/config/namespaces/{namespace}/origin_pools/{name}"
-    update: "PUT /api/config/namespaces/{namespace}/origin_pools/{name}"
-    delete: "DELETE /api/config/namespaces/{namespace}/origin_pools/{name}"
-    list: "GET /api/config/namespaces/{namespace}/origin_pools"
-
+  kind: origin_pool
 console:
-  list_route: "routes/load-balancers/origin-pools.yaml"
-  detail_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/origin_pools/{name}"
-  create_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/origin_pools"
-  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
-
-  navigation:
-    workspace: "web-app-and-api-protection"
-    menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "Origin Pools"]
-    product_area: "load-balancers"
-    breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "Load Balancers", "Origin Pools"]
-
-workflows:
-  create: "workflows/origin-pool/create.yaml"
-  delete: "workflows/origin-pool/delete.yaml"
-
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/load_balancers/origin_pools
+  menu_path:
+    - Web App & API Protection
+    - Manage
+    - Load Balancers
+    - Origin Pools
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Load Balancers
+    - Origin Pools
+add_action:
+  type: tab
+  label: Add Origin Pool
+save_action:
+  label: Add Origin Pool
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
 form:
-  tabs: ["Form", "Documentation", "JSON"]
-  footer_buttons:
-    - id: "cancel"
-      label: "Cancel All"
-    - id: "save"
-      label: "Add Origin Pool"
   sections:
-    - id: "metadata"
-      label: "Metadata"
-      fields:
-        - id: "name"
-          label: "Name"
-          type: "textbox"
-          required: true
-          api_field: "metadata.name"
-          validation:
-            pattern: "^[a-z][a-z0-9-]*$"
-            max_length: 64
-        - id: "labels"
-          label: "Labels"
-          type: "key-value-pairs"
-          required: false
-          api_field: "metadata.labels"
-          add_action: "Add Label"
-        - id: "description"
-          label: "Description"
-          type: "textbox"
-          required: false
-          api_field: "metadata.description"
-
-    - id: "origin-servers"
-      label: "Origin Servers"
-      fields:
-        - id: "origin_servers"
-          label: "Origin Servers"
-          type: "nested-resource-list"
-          required: false
-          api_field: "spec.origin_servers"
-          add_action: "Add Item"
-          description: "List of backend origin servers"
-        - id: "port"
-          label: "Port"
-          type: "listbox"
-          required: false
-          default: "Port"
-          api_field: "spec.port"
-        - id: "port_value"
-          label: "Port Value"
-          type: "listbox"
-          required: false
-          default: "443"
-        - id: "connection_pool_reuse"
-          label: "Connection Pool Reuse"
-          type: "listbox"
-          required: false
-          default: "Enable Connection Pool Reuse"
-        - id: "health_check_port"
-          label: "Health Check Port"
-          type: "listbox"
-          required: false
-          default: "Endpoint port"
-        - id: "lb_algorithm"
-          label: "LB Algorithm"
-          type: "listbox"
-          required: false
-          default: "Load Balancer Override"
-        - id: "endpoint_selection"
-          label: "Endpoint Selection"
-          type: "listbox"
-          required: false
-          default: "Local Endpoints Preferred"
-
-    - id: "health-checks"
-      label: "Health Checks"
-      fields:
-        - id: "health_checks"
-          label: "Health Checks"
-          type: "nested-resource-list"
-          required: false
-          api_field: "spec.healthcheck"
-          add_action: "Add Item"
-          nested_resource: "health-check"
-          description: "Table of Health Check objects attached to this origin pool"
-
-    - id: "tls"
-      label: "TLS"
-      fields:
-        - id: "tls"
-          label: "TLS"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          api_field: "spec.use_tls"
-
-    - id: "other-settings"
-      label: "Other Settings"
-      fields:
-        - id: "other_settings"
-          label: "Other Settings"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+    - id: origin-servers
+      label: Origin Servers
+      api_fields:
+        - spec.origin_servers
+        - spec.port
+    - id: health-checks
+      label: Health Checks
+      api_fields:
+        - spec.healthcheck
+    - id: tls
+      label: TLS
+      api_fields:
+        - spec.use_tls
+    - id: other-settings
+      label: Other Settings
+      api_fields: []
+enriched_fields:
+  count: 8
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: "validated"
-  discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
-  console_version: "2025.06"
-  notes: "All 5 form sections validated via live browser session against staging console"
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

@@ -1,68 +1,49 @@
-schema: "urn:f5xc:console:resource:v1"
-id: "virtual-host"
-label: "Virtual Host"
-
+schema: urn:f5xc:console:resource:v1
+id: virtual-host
+label: Virtual Hosts
+_source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: "virtual_host"
-  group: "ves.io.schema"
-  version: "v1"
-  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.virtual_host.ves-swagger.json"
-  crud_endpoints:
-    create: "POST /api/config/namespaces/{namespace}/virtual_hosts"
-    read: "GET /api/config/namespaces/{namespace}/virtual_hosts/{name}"
-    update: "PUT /api/config/namespaces/{namespace}/virtual_hosts/{name}"
-    delete: "DELETE /api/config/namespaces/{namespace}/virtual_hosts/{name}"
-    list: "GET /api/config/namespaces/{namespace}/virtual_hosts"
-
+  kind: virtual_host
 console:
-  list_route: "routes/load-balancers/virtual-hosts.yaml"
-  detail_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/virtual_hosts/{name}"
-  create_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/virtual_hosts"
-  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
-
-  navigation:
-    workspace: "multi-cloud-app-connect"
-    menu_path: ["Multi-Cloud App Connect", "Manage", "Virtual Host", "Virtual Hosts"]
-    product_area: "load-balancers"
-    breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Virtual Host", "Virtual Hosts"]
-
-workflows:
-  create: "workflows/virtual-host/create.yaml"
-  delete: "workflows/virtual-host/delete.yaml"
-
+  workspace: multi-cloud-app-connect
+  workspace_label: Multi-Cloud App Connect
+  route_prefix: /web/workspaces/multi-cloud-app-connect
+  route_pattern: /namespaces/{namespace}/manage/virtual_host/virtual_hosts
+  menu_path:
+    - Multi-Cloud App Connect
+    - Manage
+    - Virtual Host
+    - Virtual Hosts
+  breadcrumbs:
+    - Home
+    - Multi-Cloud App Connect
+    - '{namespace}'
+    - Manage
+    - Virtual Host
+    - Virtual Hosts
+add_action:
+  type: tab
+  label: Add Virtual Host
+save_action:
+  label: Add Virtual Host
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
 form:
-  tabs: ["Form", "Documentation", "JSON"]
-  footer_buttons:
-    - id: "cancel"
-      label: "Cancel All"
-    - id: "save"
-      label: "Add Virtual Host"
   sections:
-    - id: "metadata"
-      label: "Metadata"
-      fields:
-        - id: "name"
-          label: "Name"
-          type: "textbox"
-          required: true
-          api_field: "metadata.name"
-          validation:
-            pattern: "^[a-z][a-z0-9-]*$"
-            max_length: 64
-        - id: "labels"
-          label: "Labels"
-          type: "key-value-pairs"
-          required: false
-          api_field: "metadata.labels"
-        - id: "description"
-          label: "Description"
-          type: "textbox"
-          required: false
-          api_field: "metadata.description"
-
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+enriched_fields:
+  count: 13
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: "validated"
-  discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
-  console_version: "2025.06"
-  notes: "Route validated via live console. Form fields are draft — only Metadata section inspected so far."
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

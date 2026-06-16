@@ -1,68 +1,47 @@
-schema: "urn:f5xc:console:resource:v1"
-id: "namespace"
-label: "Namespace"
-
+schema: urn:f5xc:console:resource:v1
+id: namespace
+label: My Namespaces
+_source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: "namespace"
-  group: "ves.io.schema"
-  version: "v1"
-  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.namespace.ves-swagger.json"
-  crud_endpoints:
-    create: "POST /api/web/namespaces"
-    read: "GET /api/web/namespaces/{name}"
-    update: "PUT /api/web/namespaces/{name}"
-    delete: "DELETE /api/web/namespaces/{name}"
-    list: "GET /api/web/namespaces"
-
+  kind: namespace
 console:
-  list_route: "routes/administration/namespaces.yaml"
-  detail_route_pattern: "/web/workspaces/administration/personal-management/namespaces/{name}"
-  create_route_pattern: "/web/workspaces/administration/personal-management/namespaces"
-  create_note: "Namespace is system-level, not namespace-scoped. No namespace param in route."
-
-  navigation:
-    workspace: "administration"
-    menu_path: ["Administration", "Personal Management", "My Namespaces"]
-    product_area: "administration"
-    breadcrumbs: ["Home", "Administration", "Personal Management", "My Namespaces"]
-
-workflows:
-  create: "workflows/namespace/create.yaml"
-  delete: "workflows/namespace/delete.yaml"
-
+  workspace: administration
+  workspace_label: Administration
+  route_prefix: /web/workspaces/administration
+  route_pattern: /personal-management/namespaces
+  menu_path:
+    - Administration
+    - Personal Management
+    - My Namespaces
+  breadcrumbs:
+    - Home
+    - Administration
+    - Personal Management
+    - My Namespaces
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Namespace
+save_action:
+  label: Add Namespace
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
 form:
-  tabs: ["Form", "Documentation", "JSON"]
-  footer_buttons:
-    - id: "cancel"
-      label: "Cancel All"
-    - id: "save"
-      label: "Add Namespace"
   sections:
-    - id: "metadata"
-      label: "Metadata"
-      fields:
-        - id: "name"
-          label: "Name"
-          type: "textbox"
-          required: true
-          api_field: "metadata.name"
-          validation:
-            pattern: "^[a-z][a-z0-9-]*$"
-            max_length: 64
-        - id: "labels"
-          label: "Labels"
-          type: "key-value-pairs"
-          required: false
-          api_field: "metadata.labels"
-        - id: "description"
-          label: "Description"
-          type: "textbox"
-          required: false
-          api_field: "metadata.description"
-
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+enriched_fields:
+  count: 2
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: "validated"
-  discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
-  console_version: "2025.06"
-  notes: "Route validated via live console. Form fields are draft — only Metadata section inspected so far. Namespace is system-level, not namespace-scoped."
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

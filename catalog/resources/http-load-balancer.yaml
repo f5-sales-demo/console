@@ -1,462 +1,171 @@
-schema: "urn:f5xc:console:resource:v1"
-id: "http-load-balancer"
-label: "HTTP Load Balancer"
-
+schema: urn:f5xc:console:resource:v1
+id: http-load-balancer
+label: HTTP Load Balancers
+_source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: "http_loadbalancer"
-  group: "ves.io.schema.views"
-  version: "v1"
-  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.views.http_loadbalancer.ves-swagger.json"
-  crud_endpoints:
-    create: "POST /api/config/namespaces/{namespace}/http_loadbalancers"
-    read: "GET /api/config/namespaces/{namespace}/http_loadbalancers/{name}"
-    update: "PUT /api/config/namespaces/{namespace}/http_loadbalancers/{name}"
-    delete: "DELETE /api/config/namespaces/{namespace}/http_loadbalancers/{name}"
-    list: "GET /api/config/namespaces/{namespace}/http_loadbalancers"
-
+  kind: http_loadbalancer
 console:
-  list_route: "routes/load-balancers/http-load-balancers.yaml"
-  detail_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/http_loadbalancers/{name}"
-  create_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/load_balancers/http_loadbalancers"
-  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
-
-  navigation:
-    workspace: "web-app-and-api-protection"
-    menu_path: ["Web App & API Protection", "Manage", "Load Balancers", "HTTP Load Balancers"]
-    product_area: "load-balancers"
-    breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "Load Balancers", "HTTP Load Balancers"]
-
-workflows:
-  create: "workflows/http-load-balancer/create.yaml"
-  view: "workflows/http-load-balancer/view.yaml"
-  edit: "workflows/http-load-balancer/edit.yaml"
-  delete: "workflows/http-load-balancer/delete.yaml"
-  clone: "workflows/http-load-balancer/clone.yaml"
-
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/load_balancers/http_loadbalancers
+  menu_path:
+    - Web App & API Protection
+    - Manage
+    - Load Balancers
+    - HTTP Load Balancers
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Load Balancers
+    - HTTP Load Balancers
+add_action:
+  type: tab
+  label: Add HTTP Load Balancer
+save_action:
+  label: Add HTTP Load Balancer
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
 form:
-  tabs: ["Form", "Documentation", "JSON"]
-  footer_buttons:
-    - id: "cancel"
-      label: "Cancel All"
-    - id: "save"
-      label: "Add HTTP Load Balancer"
   sections:
-    - id: "metadata"
-      label: "Metadata"
-      fields:
-        - id: "name"
-          label: "Name"
-          type: "textbox"
-          required: true
-          api_field: "metadata.name"
-          validation:
-            pattern: "^[a-z][a-z0-9-]*$"
-            max_length: 64
-        - id: "labels"
-          label: "Labels"
-          type: "key-value-pairs"
-          required: false
-          api_field: "metadata.labels"
-          add_action: "Add Label"
-        - id: "description"
-          label: "Description"
-          type: "textbox"
-          required: false
-          api_field: "metadata.description"
-
-    - id: "domains-and-lb-type"
-      label: "Domains and LB Type"
-      fields:
-        - id: "domains"
-          label: "Domains"
-          type: "table"
-          required: true
-          api_field: "spec.domains"
-          add_action: "Add Item"
-          description: "One or more domains this load balancer serves"
-        - id: "load_balancer_type"
-          label: "Load Balancer Type"
-          type: "listbox"
-          required: true
-          default: "HTTPS with Automatic Certificate"
-          options:
-            - "HTTP"
-            - "HTTPS with Automatic Certificate"
-            - "HTTPS with Custom Certificate"
-          api_field: "spec.https_auto_cert"
-        - id: "http_redirect"
-          label: "HTTP Redirect"
-          type: "checkbox"
-          required: false
-          default: false
-        - id: "hsts"
-          label: "HSTS"
-          type: "checkbox"
-          required: false
-          default: false
-        - id: "https_listen_port"
-          label: "HTTPS Listen Port"
-          type: "spinbutton"
-          required: false
-          default: 443
-          api_field: "spec.https_auto_cert.http_redirect"
-        - id: "tls_security_level"
-          label: "TLS Security Level"
-          type: "listbox"
-          required: false
-          default: "High"
-          options:
-            - "Low"
-            - "Medium"
-            - "High"
-        - id: "http_protocol_config"
-          label: "HTTP Protocol Config"
-          type: "listbox"
-          required: false
-          default: "HTTP/1.1 and HTTP/2"
-          options:
-            - "HTTP/1.1"
-            - "HTTP/2"
-            - "HTTP/1.1 and HTTP/2"
-
-    - id: "origins"
-      label: "Origins"
-      fields:
-        - id: "origin_pools"
-          label: "Origin Pools"
-          type: "nested-resource-list"
-          required: false
-          api_field: "spec.default_route_pools"
-          add_action: "Add Item"
-          nested_resource: "origin-pool"
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+    - id: domains-and-lb-type
+      label: Domains and LB Type
+      api_fields:
+        - spec.domains
+        - spec.http
+        - spec.https
+        - spec.https_auto_cert
+    - id: origins
+      label: Origins
       show_advanced_fields: true
-
-    - id: "routes"
-      label: "Routes"
-      fields:
-        - id: "routes"
-          label: "Routes"
-          type: "configurable"
-          required: false
-          api_field: "spec.routes"
-          default_state: "Not configured"
-          configure_action: "Configure"
-
-    - id: "cdn"
-      label: "CDN"
-      fields:
-        - id: "caching"
-          label: "Caching"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-
-    - id: "waf"
-      label: "Web Application Firewall"
-      fields:
-        - id: "waf"
-          label: "WAF"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          api_field: "spec.app_firewall"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "waf_exclusion"
-          label: "WAF Exclusion"
-          type: "listbox"
-          required: false
-          default: "Inline Rules"
-          options:
-            - "Inline Rules"
-            - "Custom Rules"
-        - id: "data_guard_rules"
-          label: "Data Guard Rules"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "csrf_protection"
-          label: "CSRF Protection"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "graphql_inspection"
-          label: "GraphQL Inspection"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "cookie_protection"
-          label: "Cookie Protection"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-
-    - id: "bot-protection"
-      label: "Bot Protection"
-      fields:
-        - id: "bot_defense"
-          label: "Bot Defense"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          api_field: "spec.bot_defense"
-          options:
-            - "Disable"
-            - "Enable"
+      api_fields:
+        - spec.default_route_pools
+        - spec.default_pool
+        - spec.default_pool_list
+        - spec.origin_server_subset_rule_list
+    - id: routes
+      label: Routes
+      api_fields:
+        - spec.routes
+    - id: cdn
+      label: CDN
+      api_fields:
+        - spec.disable_caching
+    - id: waf
+      label: Web Application Firewall
+      api_fields:
+        - spec.app_firewall
+        - spec.disable_waf
+        - spec.waf_exclusion
+        - spec.data_guard_rules
+        - spec.csrf_policy
+        - spec.graphql_rules
+        - spec.protected_cookies
+    - id: bot-protection
+      label: Bot Protection
       show_advanced_fields: true
-
-    - id: "api-protection"
-      label: "API Protection"
-      fields:
-        - id: "api_definition"
-          label: "API Definition"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "api_protection_rules"
-          label: "API Protection Rules"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "jwt_validation"
-          label: "JWT Validation"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "api_discovery"
-          label: "API Discovery"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "sensitive_data_discovery"
-          label: "Sensitive Data Discovery"
-          type: "listbox"
-          required: false
-          default: "Default"
-          options:
-            - "Default"
-            - "Custom"
-        - id: "api_testing"
-          label: "API Testing"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "sensitive_data_exposure_rules"
-          label: "Sensitive Data Exposure Rules"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-
-    - id: "malware-protection"
-      label: "Malware Protection"
+      api_fields:
+        - spec.bot_defense
+        - spec.bot_defense_advanced
+        - spec.disable_bot_defense
+    - id: api-protection
+      label: API Protection
+      api_fields:
+        - spec.api_specification
+        - spec.api_protection_rules
+        - spec.jwt_validation
+        - spec.enable_api_discovery
+        - spec.disable_api_discovery
+        - spec.disable_api_definition
+        - spec.sensitive_data_policy
+        - spec.default_sensitive_data_policy
+        - spec.api_rate_limit
+        - spec.api_testing
+        - spec.disable_api_testing
+        - spec.sensitive_data_disclosure_rules
+    - id: malware-protection
+      label: Malware Protection
       disabled: true
-      disabled_reason: "Upgrade required"
-
-    - id: "dos-settings"
-      label: "DoS Settings"
-      fields:
-        - id: "mitigation_action"
-          label: "Mitigation Action"
-          type: "listbox"
-          required: false
-          default: "Block"
-          options:
-            - "Block"
-            - "None"
-            - "JavaScript Challenge"
-            - "Captcha Challenge"
-        - id: "rps_threshold"
-          label: "RPS Threshold"
-          type: "listbox"
-          required: false
-          default: "Default"
-          options:
-            - "Default"
-            - "Custom"
-        - id: "client_side_challenge"
-          label: "Client-Side Challenge"
-          type: "listbox"
-          required: false
-          default: "None"
-          options:
-            - "None"
-            - "JavaScript Challenge"
-            - "Captcha Challenge"
-        - id: "custom_service_policy"
-          label: "Custom Service Policy"
-          type: "listbox"
-          required: false
-          default: "None"
-          options:
-            - "None"
-            - "Custom"
-        - id: "ddos_mitigation_rules"
-          label: "DDoS Mitigation Rules"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "slow_ddos_mitigation"
-          label: "Slow DDoS Mitigation"
-          type: "listbox"
-          required: false
-          default: "Default"
-          options:
-            - "Default"
-            - "Custom"
-
-    - id: "client-side-defense"
-      label: "Client-Side Defense"
+      disabled_reason: Upgrade required
+      api_fields:
+        - spec.malware_protection_settings
+        - spec.disable_malware_protection
+    - id: dos-settings
+      label: DoS Settings
+      api_fields:
+        - spec.l7_ddos_protection
+        - spec.l7_ddos_action_block
+        - spec.l7_ddos_action_default
+        - spec.l7_ddos_action_js_challenge
+        - spec.ddos_mitigation_rules
+        - spec.slow_ddos_mitigation
+        - spec.captcha_challenge
+        - spec.js_challenge
+        - spec.no_challenge
+        - spec.policy_based_challenge
+        - spec.enable_challenge
+    - id: client-side-defense
+      label: Client-Side Defense
       disabled: true
-      disabled_reason: "Upgrade required"
-
-    - id: "common-security-controls"
-      label: "Common Security Controls"
-      fields:
-        - id: "service_policies"
-          label: "Service Policies"
-          type: "listbox"
-          required: false
-          default: "Apply Namespace Service Policies"
-          options:
-            - "Apply Namespace Service Policies"
-            - "Do Not Apply Service Policies"
-            - "Apply Specified Service Policies"
-        - id: "ip_reputation"
-          label: "IP Reputation"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "threat_mesh"
-          label: "Threat Mesh"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "user_identifier"
-          label: "User Identifier"
-          type: "listbox"
-          required: false
-          default: "Client IP Address"
-          options:
-            - "Client IP Address"
-            - "TLS Fingerprint"
-            - "Custom"
-        - id: "malicious_user_detection"
-          label: "Malicious User Detection"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "malicious_user_mitigation"
-          label: "Malicious User Mitigation"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "rate_limiting"
-          label: "Rate Limiting"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          api_field: "spec.rate_limiter"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "trusted_client_rules"
-          label: "Trusted Client Rules"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "client_blocking_rules"
-          label: "Client Blocking Rules"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-        - id: "cors_policy"
-          label: "CORS Policy"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-          configure_action: "Configure"
-
-    - id: "other-settings"
-      label: "Other Settings"
-      fields:
-        - id: "vip_advertisement"
-          label: "VIP Advertisement"
-          type: "listbox"
-          required: false
-          default: "Internet"
-          api_field: "spec.advertise_on_public"
-          options:
-            - "Internet"
-            - "Internet with VIP on RE"
-            - "Custom"
-        - id: "lb_algorithm"
-          label: "LB Algorithm"
-          type: "listbox"
-          required: false
-          default: "Round Robin"
-          options:
-            - "Round Robin"
-            - "Least Active Request"
-            - "Random"
-            - "Source IP Stickiness"
-            - "Cookie Stickiness"
-            - "Ring Hash"
-        - id: "trusted_client_ip_headers"
-          label: "Trusted Client IP Headers"
-          type: "listbox"
-          required: false
-          default: "Disable"
-          options:
-            - "Disable"
-            - "Enable"
-        - id: "add_location"
-          label: "Add Location"
-          type: "checkbox"
-          required: false
-          default: true
-        - id: "more_options"
-          label: "More Options"
-          type: "expandable"
-          required: false
-
+      disabled_reason: Upgrade required
+      api_fields:
+        - spec.client_side_defense
+        - spec.disable_client_side_defense
+    - id: common-security-controls
+      label: Common Security Controls
+      api_fields:
+        - spec.active_service_policies
+        - spec.no_service_policies
+        - spec.service_policies_from_namespace
+        - spec.enable_ip_reputation
+        - spec.disable_ip_reputation
+        - spec.enable_threat_mesh
+        - spec.disable_threat_mesh
+        - spec.user_id_client_ip
+        - spec.user_identification
+        - spec.enable_malicious_user_detection
+        - spec.disable_malicious_user_detection
+        - spec.rate_limit
+        - spec.disable_rate_limit
+        - spec.trusted_clients
+        - spec.blocked_clients
+        - spec.cors_policy
+    - id: other-settings
+      label: Other Settings
+      api_fields:
+        - spec.advertise_on_public
+        - spec.advertise_on_public_default_vip
+        - spec.advertise_custom
+        - spec.do_not_advertise
+        - spec.round_robin
+        - spec.least_active
+        - spec.random
+        - spec.ring_hash
+        - spec.source_ip_stickiness
+        - spec.cookie_stickiness
+        - spec.disable_trust_client_ip_headers
+        - spec.enable_trust_client_ip_headers
+        - spec.add_location
+        - spec.more_option
+        - spec.multi_lb_app
+        - spec.single_lb_app
+        - spec.system_default_timeouts
+enriched_fields:
+  count: 83
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: "validated"
-  discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
-  console_version: "2025.06"
-  notes: "All 13 form sections validated via live browser session against staging console"
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

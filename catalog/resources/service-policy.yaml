@@ -1,95 +1,55 @@
-schema: "urn:f5xc:console:resource:v1"
-id: "service-policy"
-label: "Service Policy"
-
+schema: urn:f5xc:console:resource:v1
+id: service-policy
+label: Service Policies
+_source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: "service_policy"
-  group: "ves.io.schema"
-  version: "v1"
-  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.service_policy.ves-swagger.json"
-  crud_endpoints:
-    create: "POST /api/config/namespaces/{namespace}/service_policys"
-    read: "GET /api/config/namespaces/{namespace}/service_policys/{name}"
-    update: "PUT /api/config/namespaces/{namespace}/service_policys/{name}"
-    delete: "DELETE /api/config/namespaces/{namespace}/service_policys/{name}"
-    list: "GET /api/config/namespaces/{namespace}/service_policys"
-
+  kind: service_policy
 console:
-  list_route: "routes/security/service-policies.yaml"
-  detail_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/service_policies/service_policies/{name}"
-  create_route_pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/service_policies/service_policies"
-  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
-
-  navigation:
-    workspace: "web-app-and-api-protection"
-    menu_path: ["Web App & API Protection", "Manage", "Service Policies", "Service Policies"]
-    product_area: "security"
-    breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "Service Policies", "Service Policies"]
-
-workflows:
-  create: "workflows/service-policy/create.yaml"
-  delete: "workflows/service-policy/delete.yaml"
-
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/service_policies/service_policies
+  menu_path:
+    - Web App & API Protection
+    - Manage
+    - Service Policies
+    - Service Policies
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Service Policies
+    - Service Policies
+add_action:
+  type: tab
+  label: Add Service policy
+save_action:
+  label: Add Service policy
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
 form:
-  tabs: ["Form", "Documentation", "JSON"]
-  footer_buttons:
-    - id: "cancel"
-      label: "Cancel All"
-    - id: "save"
-      label: "Add Service policy"
   sections:
-    - id: "metadata"
-      label: "Metadata"
-      fields:
-        - id: "name"
-          label: "Name"
-          type: "textbox"
-          required: true
-          api_field: "metadata.name"
-          validation:
-            pattern: "^[a-z][a-z0-9-]*$"
-            max_length: 64
-        - id: "labels"
-          label: "Labels"
-          type: "key-value-pairs"
-          required: false
-          api_field: "metadata.labels"
-        - id: "description"
-          label: "Description"
-          type: "textbox"
-          required: false
-          api_field: "metadata.description"
-
-    - id: "servers"
-      label: "Servers"
-      fields:
-        - id: "server_selection"
-          label: "Server Selection"
-          type: "listbox"
-          required: false
-          default: "Any Server"
-          options:
-            - "Any Server"
-
-    - id: "rules"
-      label: "Rules"
-      fields:
-        - id: "select_policy_rules"
-          label: "Select Policy Rules"
-          type: "listbox"
-          required: false
-          default: "Custom Rule List"
-          options:
-            - "Custom Rule List"
-        - id: "rules"
-          label: "Rules"
-          type: "configurable"
-          required: false
-          default_state: "Not configured"
-
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+    - id: servers
+      label: Servers
+      api_fields: []
+    - id: rules
+      label: Rules
+      api_fields: []
+enriched_fields:
+  count: 5
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: "validated"
-  discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
-  console_version: "2025.06"
-  notes: "All 3 form sections validated via live browser session against staging console"
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

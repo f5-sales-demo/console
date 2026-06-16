@@ -1,68 +1,46 @@
-schema: "urn:f5xc:console:resource:v1"
-id: "route-object"
-label: "Route"
-
+schema: urn:f5xc:console:resource:v1
+id: route-object
+label: Routes
+_source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: "route"
-  group: "ves.io.schema"
-  version: "v1"
-  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.route.ves-swagger.json"
-  crud_endpoints:
-    create: "POST /api/config/namespaces/{namespace}/routes"
-    read: "GET /api/config/namespaces/{namespace}/routes/{name}"
-    update: "PUT /api/config/namespaces/{namespace}/routes/{name}"
-    delete: "DELETE /api/config/namespaces/{namespace}/routes/{name}"
-    list: "GET /api/config/namespaces/{namespace}/routes"
-
+  kind: route
 console:
-  list_route: "routes/load-balancers/routes.yaml"
-  detail_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/routes/{name}"
-  create_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/routes"
-  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
-
-  navigation:
-    workspace: "multi-cloud-app-connect"
-    menu_path: ["Multi-Cloud App Connect", "Manage", "Virtual Host", "Routes"]
-    product_area: "load-balancers"
-    breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Virtual Host", "Routes"]
-
-workflows:
-  create: "workflows/route-object/create.yaml"
-  delete: "workflows/route-object/delete.yaml"
-
+  workspace: multi-cloud-app-connect
+  workspace_label: Multi-Cloud App Connect
+  route_prefix: /web/workspaces/multi-cloud-app-connect
+  route_pattern: /namespaces/{namespace}/manage/virtual_host/routes
+  menu_path:
+    - Multi-Cloud App Connect
+    - Manage
+    - Virtual Host
+    - Routes
+  breadcrumbs:
+    - Home
+    - Multi-Cloud App Connect
+    - '{namespace}'
+    - Manage
+    - Virtual Host
+    - Routes
+add_action:
+  type: tab
+  label: Add Route
+save_action:
+  label: Add Route
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
 form:
-  tabs: ["Form", "Documentation", "JSON"]
-  footer_buttons:
-    - id: "cancel"
-      label: "Cancel All"
-    - id: "save"
-      label: "Add Route"
   sections:
-    - id: "metadata"
-      label: "Metadata"
-      fields:
-        - id: "name"
-          label: "Name"
-          type: "textbox"
-          required: true
-          api_field: "metadata.name"
-          validation:
-            pattern: "^[a-z][a-z0-9-]*$"
-            max_length: 64
-        - id: "labels"
-          label: "Labels"
-          type: "key-value-pairs"
-          required: false
-          api_field: "metadata.labels"
-        - id: "description"
-          label: "Description"
-          type: "textbox"
-          required: false
-          api_field: "metadata.description"
-
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
 metadata:
-  confidence: "validated"
-  discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
-  console_version: "2025.06"
-  notes: "Route validated via live console. Form fields are draft — only Metadata section inspected so far."
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'

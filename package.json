@@ -7,7 +7,7 @@
   "scripts": {
     "validate": "node tools/validate.mjs",
     "lint": "node tools/lint.mjs",
-    "generate": "node tools/generate-from-enriched.mjs"
+    "generate": "node tools/generate-from-enriched.mjs --output-dir catalog/resources"
   },
   "devDependencies": {
     "ajv": "^8.17.1",

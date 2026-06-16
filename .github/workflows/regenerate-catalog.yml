@@ -1,0 +1,65 @@
+name: Regenerate Catalog
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [upstream-enrichment-changed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  regenerate:
+    name: Regenerate from enriched specs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: f5xc-salesdemos/api-specs-enriched
+          path: api-specs-enriched
+          token: ${{ secrets.REPO_SYNC_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Regenerate catalog resources
+        run: node tools/generate-from-enriched.mjs --config-dir api-specs-enriched/config --output-dir catalog/resources
+
+      - name: Validate regenerated catalog
+        run: npm run validate
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet catalog/resources/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes detected"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Changes detected:"
+            git diff --stat catalog/resources/
+          fi
+
+      - name: Commit and push changes
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.REPO_SYNC_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b chore/regenerate-catalog
+          git add catalog/resources/
+          git commit -m "chore: regenerate catalog from enriched specs"
+          git push -u origin chore/regenerate-catalog --force
+          gh pr create \
+            --title "chore: regenerate catalog from enriched specs" \
+            --body "Automated regeneration from api-specs-enriched config. Run by regenerate-catalog workflow." \
+            --head chore/regenerate-catalog \
+            --base main || true

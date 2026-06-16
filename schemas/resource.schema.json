@@ -50,15 +50,43 @@
     "console": {
       "type": "object",
       "properties": {
+        "workspace": {
+          "type": "string",
+          "description": "Workspace ID (e.g., web-app-and-api-protection)"
+        },
+        "workspace_label": {
+          "type": "string"
+        },
+        "route_prefix": {
+          "type": "string",
+          "description": "Workspace URL prefix"
+        },
+        "route_pattern": {
+          "type": "string",
+          "description": "URL path relative to workspace prefix"
+        },
         "list_route": {
           "type": "string",
-          "description": "Relative path to route YAML for the list view"
+          "description": "Relative path to route YAML (legacy)"
         },
         "detail_route_pattern": {
           "type": "string"
         },
         "create_route_pattern": {
           "type": "string"
+        },
+        "menu_path": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Sidebar navigation path"
+        },
+        "breadcrumbs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "namespace_scoped": {
+          "type": "boolean",
+          "description": "False for system-level resources like namespace"
         },
         "navigation": {
           "type": "object",
@@ -70,11 +98,9 @@
             "product_area": {
               "type": "string"
             }
-          },
-          "required": ["menu_path"]
+          }
         }
-      },
-      "required": ["list_route"]
+      }
     },
     "workflows": {
       "type": "object",

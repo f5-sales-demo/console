@@ -1,150 +1,69 @@
-schema: "urn:f5xc:console:resource:v1"
-id: "tcp-load-balancer"
-label: "TCP Load Balancer"
-
+schema: urn:f5xc:console:resource:v1
+id: tcp-load-balancer
+label: TCP Load Balancers
+_source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: "tcp_loadbalancer"
-  group: "ves.io.schema.views"
-  version: "v1"
-  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.views.tcp_loadbalancer.ves-swagger.json"
-  crud_endpoints:
-    create: "POST /api/config/namespaces/{namespace}/tcp_loadbalancers"
-    read: "GET /api/config/namespaces/{namespace}/tcp_loadbalancers/{name}"
-    update: "PUT /api/config/namespaces/{namespace}/tcp_loadbalancers/{name}"
-    delete: "DELETE /api/config/namespaces/{namespace}/tcp_loadbalancers/{name}"
-    list: "GET /api/config/namespaces/{namespace}/tcp_loadbalancers"
-
+  kind: tcp_loadbalancer
 console:
-  list_route: "routes/load-balancers/tcp-load-balancers.yaml"
-  detail_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers/{name}"
-  create_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers"
-  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
-
-  navigation:
-    workspace: "multi-cloud-app-connect"
-    menu_path: ["Multi-Cloud App Connect", "Manage", "Load Balancers", "TCP Load Balancers"]
-    product_area: "load-balancers"
-    breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Load Balancers", "TCP Load Balancers"]
-
-workflows:
-  create: "workflows/tcp-load-balancer/create.yaml"
-  delete: "workflows/tcp-load-balancer/delete.yaml"
-
+  workspace: multi-cloud-app-connect
+  workspace_label: Multi-Cloud App Connect
+  route_prefix: /web/workspaces/multi-cloud-app-connect
+  route_pattern: /namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers
+  menu_path:
+    - Multi-Cloud App Connect
+    - Manage
+    - Load Balancers
+    - TCP Load Balancers
+  breadcrumbs:
+    - Home
+    - Multi-Cloud App Connect
+    - '{namespace}'
+    - Manage
+    - Load Balancers
+    - TCP Load Balancers
+add_action:
+  type: tab
+  label: Add TCP Load Balancer
+save_action:
+  label: Add TCP Load Balancer
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
 form:
-  tabs: ["Form", "Documentation", "JSON"]
-  footer_buttons:
-    - id: "cancel"
-      label: "Cancel All"
-    - id: "save"
-      label: "Add TCP Load Balancer"
   sections:
-    - id: "metadata"
-      label: "Metadata"
-      fields:
-        - id: "name"
-          label: "Name"
-          type: "textbox"
-          required: true
-          api_field: "metadata.name"
-          validation:
-            pattern: "^[a-z][a-z0-9-]*$"
-            max_length: 64
-        - id: "labels"
-          label: "Labels"
-          type: "key-value-pairs"
-          required: false
-          api_field: "metadata.labels"
-        - id: "description"
-          label: "Description"
-          type: "textbox"
-          required: false
-          api_field: "metadata.description"
-
-    - id: "basic-configuration"
-      label: "Basic Configuration"
-      fields:
-        - id: "domains"
-          label: "Domains"
-          type: "table"
-          required: false
-          api_field: "spec.domains"
-          add_action: "Add Item"
-        - id: "listen_port"
-          label: "Listen Port"
-          type: "listbox"
-          required: false
-          default: 0
-          api_field: "spec.listen_port"
-          description: "TCP port to listen on (listbox + spinbutton combo, default 0)"
-        - id: "sni"
-          label: "SNI"
-          type: "listbox"
-          required: false
-          default: "No SNI"
-          api_field: "spec.sni"
-          options:
-            - "No SNI"
-        - id: "auto_manage_dns"
-          label: "Auto Manage DNS"
-          type: "checkbox"
-          required: false
-          default: false
-        - id: "origin_pools"
-          label: "Origin Pools"
-          type: "nested-resource-list"
-          required: false
-          api_field: "spec.origin_pools"
-          add_action: "Add Item"
-          nested_resource: "origin-pool"
-        - id: "vip_advertisement"
-          label: "VIP Advertisement"
-          type: "listbox"
-          required: false
-          default: "Advertise On Public"
-          api_field: "spec.advertise_on_public"
-          options:
-            - "Advertise On Public"
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+    - id: basic-configuration
+      label: Basic Configuration
       show_advanced_fields: true
-
-    - id: "load-balancing-control"
-      label: "Load Balancing Control"
-      fields:
-        - id: "lb_type"
-          label: "LB Type"
-          type: "listbox"
-          required: false
-          default: "TCP"
-          options:
-            - "TCP"
-        - id: "lb_control"
-          label: "LB Control"
-          type: "listbox"
-          required: false
-          default: "Round Robin"
-          options:
-            - "Round Robin"
+      api_fields:
+        - spec.domains
+        - spec.listen_port
+        - spec.sni
+        - spec.origin_pools
+        - spec.advertise_on_public
+    - id: load-balancing-control
+      label: Load Balancing Control
       show_advanced_fields: true
-
-    - id: "service-policies"
-      label: "Service Policies"
-      fields:
-        - id: "service_policies"
-          label: "Service Policies"
-          type: "listbox"
-          required: false
-          default: "Apply Namespace Service Policies"
-          options:
-            - "Apply Namespace Service Policies"
-            - "Do Not Apply Service Policies"
-            - "Apply Specified Service Policies"
-
-    - id: "advanced-configuration"
-      label: "Advanced Configuration"
+      api_fields: []
+    - id: service-policies
+      label: Service Policies
+      api_fields: []
+    - id: advanced-configuration
+      label: Advanced Configuration
       show_advanced_fields: true
-
+      api_fields: []
+enriched_fields:
+  count: 8
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
-  confidence: "validated"
-  discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
-  console_version: "2025.06"
-  notes: "All 5 form sections validated via live browser session against staging console"
+  confidence: validated
+  discovered_at: '2026-06-15'
+  console_version: '2025.06'
