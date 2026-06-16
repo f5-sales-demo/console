@@ -1,0 +1,76 @@
+schema: "urn:f5xc:console:route:v1"
+id: "service-policies"
+label: "Service Policies"
+
+route:
+  pattern: "/web/namespace/{namespace}/security/service-policies"
+  params:
+    namespace:
+      required: true
+      description: "F5 XC namespace"
+      example: "demo"
+  supports_direct_link: true
+  breadcrumbs: ["Home", "Security", "Service Policies"]
+
+context:
+  requires_login: true
+  requires_namespace: true
+  minimum_role: "admin"
+
+screen:
+  type: "list"
+  description: "Table listing all Service Policies in the selected namespace"
+  primary_resource: "service-policy"
+
+  controls:
+    - id: "add-btn"
+      type: "button"
+      label: "Add Service Policy"
+      action: "create"
+      selector: "[data-testid='add-service-policy']"
+    - id: "search"
+      type: "search-input"
+      label: "Search"
+      selector: "[data-testid='search-input']"
+    - id: "namespace-selector"
+      type: "dropdown"
+      label: "Namespace"
+      selector: "[data-testid='namespace-selector']"
+
+  table:
+    columns:
+      - id: "name"
+        label: "Name"
+        sortable: true
+        links_to: "detail"
+      - id: "rules"
+        label: "Rules"
+      - id: "server-selector"
+        label: "Server Selector"
+      - id: "algorithm"
+        label: "Combining Algorithm"
+      - id: "status"
+        label: "Status"
+    row_actions:
+      - id: "edit"
+        label: "Edit"
+        operation: "update"
+      - id: "delete"
+        label: "Delete"
+        operation: "delete"
+
+  detail_route: "/web/namespace/{namespace}/security/service-policies/{name}"
+
+operations:
+  - type: "create"
+    workflow: "workflows/service-policy/create.yaml"
+  - type: "list"
+    inline: true
+  - type: "delete"
+    workflow: "workflows/service-policy/delete.yaml"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Selectors are placeholders — will be validated via browser-first discovery"

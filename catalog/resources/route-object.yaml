@@ -1,0 +1,123 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "route-object"
+label: "Route"
+
+api:
+  kind: "route"
+  group: "ves.io.schema"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.route.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/config/namespaces/{namespace}/routes"
+    read: "GET /api/config/namespaces/{namespace}/routes/{name}"
+    update: "PUT /api/config/namespaces/{namespace}/routes/{name}"
+    delete: "DELETE /api/config/namespaces/{namespace}/routes/{name}"
+    list: "GET /api/config/namespaces/{namespace}/routes"
+
+console:
+  list_route: "routes/load-balancers/routes.yaml"
+  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/routes/{name}"
+  create_route_pattern: "/web/namespace/{namespace}/load-balancers/routes/create"
+
+  navigation:
+    menu_path: ["Manage", "Load Balancers", "Routes"]
+    product_area: "load-balancers"
+
+workflows:
+  create: "workflows/route-object/create.yaml"
+  delete: "workflows/route-object/delete.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
+
+    - id: "match"
+      label: "Match Conditions"
+      fields:
+        - id: "match_path"
+          label: "Path Match"
+          type: "text"
+          required: true
+          api_field: "spec.match.path"
+          description: "URL path prefix or regex to match"
+        - id: "match_method"
+          label: "HTTP Methods"
+          type: "select"
+          required: false
+          options:
+            - "ANY"
+            - "GET"
+            - "POST"
+            - "PUT"
+            - "DELETE"
+            - "PATCH"
+          api_field: "spec.match.http_method"
+          description: "HTTP methods to match"
+        - id: "match_headers"
+          label: "Header Matchers"
+          type: "json"
+          required: false
+          api_field: "spec.match.headers"
+          description: "HTTP headers to match against"
+
+    - id: "actions"
+      label: "Route Actions"
+      fields:
+        - id: "route_action"
+          label: "Route Action"
+          type: "select"
+          required: true
+          options:
+            - "Route to Origin Pools"
+            - "Redirect"
+            - "Direct Response"
+          api_field: "spec.route_action"
+          description: "Action to take when the route matches"
+
+    - id: "destinations"
+      label: "Destinations"
+      type: "nested-resource-list"
+      description: "Origin Pools that receive matched traffic"
+      nested_resource: "origin-pool"
+      fields:
+        - id: "destination_pool"
+          label: "Origin Pool"
+          type: "resource-selector"
+          resource_type: "origin-pool"
+          required: false
+          api_field: "spec.destinations[].pool"
+        - id: "weight"
+          label: "Weight"
+          type: "number"
+          required: false
+          default: 1
+          api_field: "spec.destinations[].weight"
+          validation:
+            min: 0
+            max: 100
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Form sections and fields are draft — will be validated via browser-first discovery"

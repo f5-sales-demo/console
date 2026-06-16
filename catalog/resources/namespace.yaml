@@ -1,0 +1,53 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "namespace"
+label: "Namespace"
+
+api:
+  kind: "namespace"
+  group: "ves.io.schema"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.namespace.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/web/namespaces"
+    read: "GET /api/web/namespaces/{name}"
+    update: "PUT /api/web/namespaces/{name}"
+    delete: "DELETE /api/web/namespaces/{name}"
+    list: "GET /api/web/namespaces"
+
+console:
+  list_route: "routes/administration/namespaces.yaml"
+  detail_route_pattern: "/web/namespaces/{name}"
+  create_route_pattern: "/web/namespaces/create"
+
+  navigation:
+    menu_path: ["Administration", "Namespaces"]
+    product_area: "administration"
+
+workflows:
+  create: "workflows/namespace/create.yaml"
+  delete: "workflows/namespace/delete.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "System-level resource — not namespace-scoped. Form sections are draft."

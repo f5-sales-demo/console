@@ -1,0 +1,68 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "tcp-load-balancer-delete"
+label: "Delete TCP Load Balancer"
+resource: "tcp-load-balancer"
+operation: "delete"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+  - "resource_exists: {name}"
+
+params:
+  namespace:
+    required: true
+    description: "Namespace containing the TCP load balancer"
+    example: "demo"
+  name:
+    required: true
+    description: "Name of the TCP load balancer to delete"
+    example: "my-tcp-lb"
+
+steps:
+  - id: "navigate-to-list"
+    action: "navigate"
+    url: "/web/namespace/{namespace}/load-balancers/tcp"
+    wait_for: "[data-testid='resource-table']"
+    description: "Navigate to TCP Load Balancers list page"
+
+  - id: "find-row"
+    action: "assert"
+    selector: "[data-testid='resource-row-{name}']"
+    expected_text: "{name}"
+    description: "Locate the target resource row in the table"
+
+  - id: "open-actions"
+    action: "click"
+    selector: "[data-testid='resource-row-{name}'] [data-testid='row-actions']"
+    wait_for: "[data-testid='action-delete']"
+    description: "Open the row actions menu"
+
+  - id: "click-delete"
+    action: "click"
+    selector: "[data-testid='action-delete']"
+    wait_for: "[data-testid='confirm-delete-modal']"
+    description: "Click Delete to open the confirmation modal"
+
+  - id: "confirm-delete"
+    action: "click"
+    selector: "[data-testid='confirm-delete-btn']"
+    wait_for: "[data-testid='resource-table']"
+    wait_timeout_ms: 15000
+    description: "Confirm deletion and wait for the table to refresh"
+
+  - id: "verify-deleted"
+    action: "assert"
+    selector: "[data-testid='resource-table']"
+    description: "Verify the resource no longer appears in the table"
+
+postconditions:
+  - "resource_removed_from_list"
+  - "list_page_visible"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  estimated_duration_seconds: 15

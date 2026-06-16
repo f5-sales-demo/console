@@ -1,0 +1,69 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "namespace-create"
+label: "Create Namespace"
+resource: "namespace"
+operation: "create"
+
+preconditions:
+  - "user_logged_in"
+  - "role_minimum: admin"
+
+params:
+  name:
+    required: true
+    description: "Namespace name (lowercase alphanumeric and hyphens)"
+    example: "my-namespace"
+  description:
+    required: false
+    description: "Description for the namespace"
+    example: "Demo namespace for testing"
+
+steps:
+  - id: "navigate-to-list"
+    action: "navigate"
+    url: "/web/namespaces"
+    wait_for: "[data-testid='add-namespace']"
+    description: "Navigate to Namespaces list page"
+
+  - id: "click-add"
+    action: "click"
+    selector: "[data-testid='add-namespace']"
+    wait_for: "input[data-testid='name-input']"
+    description: "Click Add Namespace button to open the create form"
+
+  - id: "fill-name"
+    action: "fill"
+    selector: "input[data-testid='name-input']"
+    value: "{name}"
+    description: "Enter the namespace name"
+
+  - id: "fill-description"
+    condition: "params.description is set"
+    action: "fill"
+    selector: "textarea[data-testid='description-input']"
+    value: "{description}"
+    description: "Enter the namespace description"
+
+  - id: "save"
+    action: "click"
+    selector: "[data-testid='save-and-exit']"
+    wait_for: "[data-testid='resource-detail']"
+    wait_timeout_ms: 30000
+    description: "Save the namespace and wait for the detail page"
+
+  - id: "verify-created"
+    action: "assert"
+    selector: "[data-testid='resource-name']"
+    expected_text: "{name}"
+    description: "Verify the resource was created by checking the name on the detail page"
+
+postconditions:
+  - "resource_detail_page_visible"
+  - "resource_name_matches: {name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  estimated_duration_seconds: 15
+  notes: "System-level resource — no namespace param required. Selectors are placeholders."

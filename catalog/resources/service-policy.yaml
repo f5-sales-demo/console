@@ -1,0 +1,107 @@
+schema: "urn:f5xc:console:resource:v1"
+id: "service-policy"
+label: "Service Policy"
+
+api:
+  kind: "service_policy"
+  group: "ves.io.schema"
+  version: "v1"
+  api_spec_file: "docs-cloud-f5-com.public.ves.io.schema.service_policy.ves-swagger.json"
+  crud_endpoints:
+    create: "POST /api/config/namespaces/{namespace}/service_policys"
+    read: "GET /api/config/namespaces/{namespace}/service_policys/{name}"
+    update: "PUT /api/config/namespaces/{namespace}/service_policys/{name}"
+    delete: "DELETE /api/config/namespaces/{namespace}/service_policys/{name}"
+    list: "GET /api/config/namespaces/{namespace}/service_policys"
+
+console:
+  list_route: "routes/security/service-policies.yaml"
+  detail_route_pattern: "/web/namespace/{namespace}/security/service-policies/{name}"
+  create_route_pattern: "/web/namespace/{namespace}/security/service-policies/create"
+
+  navigation:
+    menu_path: ["Manage", "Security", "Service Policies"]
+    product_area: "security"
+
+workflows:
+  create: "workflows/service-policy/create.yaml"
+  delete: "workflows/service-policy/delete.yaml"
+
+form:
+  sections:
+    - id: "metadata"
+      label: "Metadata"
+      fields:
+        - id: "name"
+          label: "Name"
+          type: "text"
+          required: true
+          api_field: "metadata.name"
+          validation:
+            pattern: "^[a-z][a-z0-9-]*$"
+            max_length: 64
+        - id: "description"
+          label: "Description"
+          type: "textarea"
+          required: false
+          api_field: "metadata.description"
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
+
+    - id: "rules"
+      label: "Rules"
+      type: "nested-resource-list"
+      description: "Allow or deny rules for this service policy"
+      fields:
+        - id: "action"
+          label: "Action"
+          type: "select"
+          required: true
+          options:
+            - "Allow"
+            - "Deny"
+          api_field: "spec.rules[].action"
+          description: "Whether to allow or deny matching traffic"
+        - id: "client_selector"
+          label: "Client Selector"
+          type: "json"
+          required: false
+          api_field: "spec.rules[].client_selector"
+          description: "Label selector to match client identities"
+
+    - id: "server-selector"
+      label: "Server Selector"
+      collapsible: true
+      initially_collapsed: false
+      fields:
+        - id: "server_selector"
+          label: "Server Selector"
+          type: "json"
+          required: false
+          api_field: "spec.server_selector"
+          description: "Label selector to match target servers"
+
+    - id: "advanced"
+      label: "Advanced Settings"
+      collapsible: true
+      initially_collapsed: true
+      fields:
+        - id: "algo"
+          label: "Rule Combining Algorithm"
+          type: "select"
+          required: false
+          options:
+            - "First Match"
+            - "Allow Overrides"
+            - "Deny Overrides"
+          api_field: "spec.algo"
+          description: "Algorithm used to combine multiple rules"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Form sections and fields are draft — will be validated via browser-first discovery"

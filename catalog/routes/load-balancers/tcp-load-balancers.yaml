@@ -1,0 +1,76 @@
+schema: "urn:f5xc:console:route:v1"
+id: "tcp-load-balancers"
+label: "TCP Load Balancers"
+
+route:
+  pattern: "/web/namespace/{namespace}/load-balancers/tcp"
+  params:
+    namespace:
+      required: true
+      description: "F5 XC namespace"
+      example: "demo"
+  supports_direct_link: true
+  breadcrumbs: ["Home", "Load Balancers", "TCP Load Balancers"]
+
+context:
+  requires_login: true
+  requires_namespace: true
+  minimum_role: "admin"
+
+screen:
+  type: "list"
+  description: "Table listing all TCP Load Balancers in the selected namespace"
+  primary_resource: "tcp-load-balancer"
+
+  controls:
+    - id: "add-btn"
+      type: "button"
+      label: "Add TCP Load Balancer"
+      action: "create"
+      selector: "[data-testid='add-tcp-load-balancer']"
+    - id: "search"
+      type: "search-input"
+      label: "Search"
+      selector: "[data-testid='search-input']"
+    - id: "namespace-selector"
+      type: "dropdown"
+      label: "Namespace"
+      selector: "[data-testid='namespace-selector']"
+
+  table:
+    columns:
+      - id: "name"
+        label: "Name"
+        sortable: true
+        links_to: "detail"
+      - id: "listen-port"
+        label: "Listen Port"
+      - id: "origin-pools"
+        label: "Origin Pools"
+      - id: "sni"
+        label: "SNI"
+      - id: "status"
+        label: "Status"
+    row_actions:
+      - id: "edit"
+        label: "Edit"
+        operation: "update"
+      - id: "delete"
+        label: "Delete"
+        operation: "delete"
+
+  detail_route: "/web/namespace/{namespace}/load-balancers/tcp/{name}"
+
+operations:
+  - type: "create"
+    workflow: "workflows/tcp-load-balancer/create.yaml"
+  - type: "list"
+    inline: true
+  - type: "delete"
+    workflow: "workflows/tcp-load-balancer/delete.yaml"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  notes: "Selectors are placeholders — will be validated via browser-first discovery"

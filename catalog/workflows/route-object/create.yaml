@@ -1,0 +1,106 @@
+schema: "urn:f5xc:console:workflow:v1"
+id: "route-object-create"
+label: "Create Route"
+resource: "route-object"
+operation: "create"
+
+preconditions:
+  - "user_logged_in"
+  - "namespace_selected"
+  - "role_minimum: admin"
+
+params:
+  namespace:
+    required: true
+    description: "Target namespace"
+    example: "demo"
+  name:
+    required: true
+    description: "Route name (lowercase alphanumeric and hyphens)"
+    example: "my-route"
+  match_path:
+    required: true
+    description: "URL path prefix or regex to match"
+    example: "/api"
+  route_action:
+    required: true
+    description: "Action to take when matched (Route to Origin Pools, Redirect, Direct Response)"
+    example: "Route to Origin Pools"
+  origin_pool:
+    required: false
+    description: "Existing origin pool name for destination"
+    example: "my-origin-pool"
+
+steps:
+  - id: "navigate-to-list"
+    action: "navigate"
+    url: "/web/namespace/{namespace}/load-balancers/routes"
+    wait_for: "[data-testid='add-route']"
+    description: "Navigate to Routes list page"
+
+  - id: "click-add"
+    action: "click"
+    selector: "[data-testid='add-route']"
+    wait_for: "input[data-testid='name-input']"
+    description: "Click Add Route button to open the create form"
+
+  - id: "fill-name"
+    action: "fill"
+    selector: "input[data-testid='name-input']"
+    value: "{name}"
+    description: "Enter the route name"
+
+  - id: "fill-match-path"
+    action: "fill"
+    selector: "input[data-testid='match-path-input']"
+    value: "{match_path}"
+    description: "Enter the path match pattern"
+
+  - id: "select-route-action"
+    action: "select"
+    selector: "[data-testid='route-action-select']"
+    value: "{route_action}"
+    description: "Select the route action"
+
+  - id: "add-destination"
+    condition: "params.origin_pool is set"
+    action: "click"
+    selector: "[data-testid='add-destination']"
+    wait_for: "[data-testid='origin-pool-selector']"
+    description: "Open destination selector"
+    then:
+      - id: "select-origin-pool"
+        action: "select"
+        selector: "[data-testid='origin-pool-selector']"
+        value: "{origin_pool}"
+        description: "Select the origin pool from the list"
+
+      - id: "apply-destination"
+        action: "click"
+        selector: "[data-testid='apply-btn']"
+        wait_for: "[data-testid='destination-row']"
+        description: "Confirm destination selection"
+
+  - id: "save"
+    action: "click"
+    selector: "[data-testid='save-and-exit']"
+    wait_for: "[data-testid='resource-detail']"
+    wait_timeout_ms: 30000
+    description: "Save the route and wait for the detail page"
+
+  - id: "verify-created"
+    action: "assert"
+    selector: "[data-testid='resource-name']"
+    expected_text: "{name}"
+    description: "Verify the resource was created by checking the name on the detail page"
+
+postconditions:
+  - "resource_detail_page_visible"
+  - "resource_name_matches: {name}"
+
+metadata:
+  confidence: "draft"
+  discovered_at: "2026-06-15"
+  console_version: "2025.06"
+  estimated_duration_seconds: 30
+  notes: "Selectors are placeholders — must be validated against the live console"
