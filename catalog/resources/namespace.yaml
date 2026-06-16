@@ -16,38 +16,53 @@ api:
 
 console:
   list_route: "routes/administration/namespaces.yaml"
-  detail_route_pattern: "/web/namespaces/{name}"
-  create_route_pattern: "/web/namespaces/create"
+  detail_route_pattern: "/web/workspaces/administration/personal-management/namespaces/{name}"
+  create_route_pattern: "/web/workspaces/administration/personal-management/namespaces"
+  create_note: "Namespace is system-level, not namespace-scoped. No namespace param in route."
 
   navigation:
-    menu_path: ["Administration", "Namespaces"]
+    workspace: "administration"
+    menu_path: ["Administration", "Personal Management", "My Namespaces"]
     product_area: "administration"
+    breadcrumbs: ["Home", "Administration", "Personal Management", "My Namespaces"]
 
 workflows:
   create: "workflows/namespace/create.yaml"
   delete: "workflows/namespace/delete.yaml"
 
 form:
+  tabs: ["Form", "Documentation", "JSON"]
+  footer_buttons:
+    - id: "cancel"
+      label: "Cancel All"
+    - id: "save"
+      label: "Add Namespace"
   sections:
     - id: "metadata"
       label: "Metadata"
       fields:
         - id: "name"
           label: "Name"
-          type: "text"
+          type: "textbox"
           required: true
           api_field: "metadata.name"
           validation:
             pattern: "^[a-z][a-z0-9-]*$"
             max_length: 64
+        - id: "labels"
+          label: "Labels"
+          type: "key-value-pairs"
+          required: false
+          api_field: "metadata.labels"
         - id: "description"
           label: "Description"
-          type: "textarea"
+          type: "textbox"
           required: false
           api_field: "metadata.description"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "System-level resource — not namespace-scoped. Form sections are draft."
+  notes: "Route validated via live console. Form fields are draft — only Metadata section inspected so far. Namespace is system-level, not namespace-scoped."

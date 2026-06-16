@@ -16,97 +16,53 @@ api:
 
 console:
   list_route: "routes/load-balancers/virtual-hosts.yaml"
-  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/virtual-hosts/{name}"
-  create_route_pattern: "/web/namespace/{namespace}/load-balancers/virtual-hosts/create"
+  detail_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/virtual_hosts/{name}"
+  create_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/virtual_hosts"
+  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
 
   navigation:
-    menu_path: ["Manage", "Load Balancers", "Virtual Hosts"]
+    workspace: "multi-cloud-app-connect"
+    menu_path: ["Multi-Cloud App Connect", "Manage", "Virtual Host", "Virtual Hosts"]
     product_area: "load-balancers"
+    breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Virtual Host", "Virtual Hosts"]
 
 workflows:
   create: "workflows/virtual-host/create.yaml"
   delete: "workflows/virtual-host/delete.yaml"
 
 form:
+  tabs: ["Form", "Documentation", "JSON"]
+  footer_buttons:
+    - id: "cancel"
+      label: "Cancel All"
+    - id: "save"
+      label: "Add Virtual Host"
   sections:
     - id: "metadata"
       label: "Metadata"
       fields:
         - id: "name"
           label: "Name"
-          type: "text"
+          type: "textbox"
           required: true
           api_field: "metadata.name"
           validation:
             pattern: "^[a-z][a-z0-9-]*$"
             max_length: 64
-        - id: "description"
-          label: "Description"
-          type: "textarea"
-          required: false
-          api_field: "metadata.description"
         - id: "labels"
           label: "Labels"
           type: "key-value-pairs"
           required: false
           api_field: "metadata.labels"
-
-    - id: "domains"
-      label: "Domains"
-      fields:
-        - id: "domains"
-          label: "Domains"
-          type: "string-list"
-          required: true
-          api_field: "spec.domains"
-          description: "Domain names this virtual host serves"
-
-    - id: "routes"
-      label: "Routes"
-      type: "nested-resource-list"
-      description: "HTTP routes for this virtual host"
-      fields:
-        - id: "route"
-          label: "Route"
-          type: "resource-selector"
-          resource_type: "route-object"
+        - id: "description"
+          label: "Description"
+          type: "textbox"
           required: false
-          api_field: "spec.routes[].ref"
-          description: "Reference to a route object"
-
-    - id: "tls"
-      label: "TLS Configuration"
-      collapsible: true
-      initially_collapsed: false
-      fields:
-        - id: "tls_type"
-          label: "TLS Type"
-          type: "select"
-          required: false
-          options:
-            - "No TLS"
-            - "TLS with Automatic Certificate"
-            - "TLS with Custom Certificate"
-          api_field: "spec.tls_parameters"
-          description: "TLS termination configuration"
-
-    - id: "proxy"
-      label: "Proxy Settings"
-      collapsible: true
-      initially_collapsed: true
-      fields:
-        - id: "proxy_type"
-          label: "Proxy Type"
-          type: "select"
-          required: false
-          options:
-            - "HTTP"
-            - "HTTPS"
-          api_field: "spec.proxy_type"
-          description: "Type of proxy for this virtual host"
+          api_field: "metadata.description"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Form sections and fields are draft — will be validated via browser-first discovery"
+  notes: "Route validated via live console. Form fields are draft — only Metadata section inspected so far."

@@ -19,89 +19,75 @@ params:
     description: "TCP load balancer name (lowercase alphanumeric and hyphens)"
     example: "my-tcp-lb"
   listen_port:
-    required: true
+    required: false
     type: "number"
-    description: "TCP port to listen on"
+    description: "TCP port to listen on (default 0)"
     example: 443
   origin_pool:
-    required: true
+    required: false
     description: "Existing origin pool name to attach"
     example: "my-origin-pool"
-  sni:
-    required: false
-    description: "Server Name Indication for TLS routing"
-    example: "app.example.com"
 
 steps:
   - id: "navigate-to-list"
     action: "navigate"
-    url: "/web/namespace/{namespace}/load-balancers/tcp"
-    wait_for: "[data-testid='add-tcp-load-balancer']"
-    description: "Navigate to TCP Load Balancers list page"
+    url: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers"
+    wait_for: "text('TCP Load Balancers')"
+    description: "Navigate to TCP Load Balancers list page within Multi-Cloud App Connect workspace"
 
-  - id: "click-add"
+  - id: "click-add-tab"
     action: "click"
-    selector: "[data-testid='add-tcp-load-balancer']"
-    wait_for: "input[data-testid='name-input']"
-    description: "Click Add TCP Load Balancer button to open the create form"
+    selector: "tab:text('Add TCP Load Balancer')"
+    wait_for: "textbox[name='Name']"
+    description: "Click the Add TCP Load Balancer tab to open the inline create form"
 
   - id: "fill-name"
     action: "fill"
-    selector: "input[data-testid='name-input']"
+    selector: "textbox[name='Name']"
     value: "{name}"
-    description: "Enter the TCP load balancer name"
+    description: "Enter the TCP load balancer name in the Name textbox"
 
-  - id: "fill-listen-port"
-    action: "fill"
-    selector: "input[data-testid='listen-port-input']"
-    value: "{listen_port}"
-    description: "Enter the listen port"
-
-  - id: "fill-sni"
-    condition: "params.sni is set"
-    action: "fill"
-    selector: "input[data-testid='sni-input']"
-    value: "{sni}"
-    description: "Enter the SNI value"
-
-  - id: "add-origin-pool"
+  - id: "attach-origin-pool"
+    condition: "params.origin_pool is set"
     action: "click"
-    selector: "[data-testid='add-origin-pool']"
-    wait_for: "[data-testid='origin-pool-selector']"
-    description: "Open origin pool selector"
+    selector: "button:text('Add Item')"
+    context: "Origin Pools section"
+    wait_for: "listbox"
+    description: "Click Add Item in the Origin Pools section to add an origin pool"
     then:
-      - id: "select-origin-pool"
+      - id: "select-pool"
         action: "select"
-        selector: "[data-testid='origin-pool-selector']"
+        selector: "listbox"
+        context: "Origin Pool selector"
         value: "{origin_pool}"
-        description: "Select the origin pool from the list"
+        description: "Select the named origin pool from the dropdown"
 
-      - id: "apply-origin-pool"
+      - id: "apply-pool"
         action: "click"
-        selector: "[data-testid='apply-btn']"
-        wait_for: "[data-testid='origin-pool-row']"
+        selector: "button:text('Apply')"
         description: "Confirm origin pool selection"
 
   - id: "save"
     action: "click"
-    selector: "[data-testid='save-and-exit']"
-    wait_for: "[data-testid='resource-detail']"
+    selector: "button:text('Add TCP Load Balancer')"
+    context: "footer"
+    wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Save the TCP load balancer and wait for the detail page"
+    description: "Click the Add TCP Load Balancer button in the form footer to save"
 
   - id: "verify-created"
     action: "assert"
-    selector: "[data-testid='resource-name']"
-    expected_text: "{name}"
-    description: "Verify the resource was created by checking the name on the detail page"
+    selector: "text('{name}')"
+    description: "Verify the resource was created by checking the name appears in the list"
 
 postconditions:
-  - "resource_detail_page_visible"
-  - "resource_name_matches: {name}"
+  - "resource_list_page_visible"
+  - "resource_name_in_list: {name}"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
   estimated_duration_seconds: 30
-  notes: "Selectors are placeholders — must be validated against the live console"
+  notes: "Selectors use aria/text-based patterns validated against live console. No data-testid attributes exist."

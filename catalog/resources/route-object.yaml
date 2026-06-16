@@ -16,108 +16,53 @@ api:
 
 console:
   list_route: "routes/load-balancers/routes.yaml"
-  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/routes/{name}"
-  create_route_pattern: "/web/namespace/{namespace}/load-balancers/routes/create"
+  detail_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/routes/{name}"
+  create_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/routes"
+  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
 
   navigation:
-    menu_path: ["Manage", "Load Balancers", "Routes"]
+    workspace: "multi-cloud-app-connect"
+    menu_path: ["Multi-Cloud App Connect", "Manage", "Virtual Host", "Routes"]
     product_area: "load-balancers"
+    breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Virtual Host", "Routes"]
 
 workflows:
   create: "workflows/route-object/create.yaml"
   delete: "workflows/route-object/delete.yaml"
 
 form:
+  tabs: ["Form", "Documentation", "JSON"]
+  footer_buttons:
+    - id: "cancel"
+      label: "Cancel All"
+    - id: "save"
+      label: "Add Route"
   sections:
     - id: "metadata"
       label: "Metadata"
       fields:
         - id: "name"
           label: "Name"
-          type: "text"
+          type: "textbox"
           required: true
           api_field: "metadata.name"
           validation:
             pattern: "^[a-z][a-z0-9-]*$"
             max_length: 64
-        - id: "description"
-          label: "Description"
-          type: "textarea"
-          required: false
-          api_field: "metadata.description"
         - id: "labels"
           label: "Labels"
           type: "key-value-pairs"
           required: false
           api_field: "metadata.labels"
-
-    - id: "match"
-      label: "Match Conditions"
-      fields:
-        - id: "match_path"
-          label: "Path Match"
-          type: "text"
-          required: true
-          api_field: "spec.match.path"
-          description: "URL path prefix or regex to match"
-        - id: "match_method"
-          label: "HTTP Methods"
-          type: "select"
+        - id: "description"
+          label: "Description"
+          type: "textbox"
           required: false
-          options:
-            - "ANY"
-            - "GET"
-            - "POST"
-            - "PUT"
-            - "DELETE"
-            - "PATCH"
-          api_field: "spec.match.http_method"
-          description: "HTTP methods to match"
-        - id: "match_headers"
-          label: "Header Matchers"
-          type: "json"
-          required: false
-          api_field: "spec.match.headers"
-          description: "HTTP headers to match against"
-
-    - id: "actions"
-      label: "Route Actions"
-      fields:
-        - id: "route_action"
-          label: "Route Action"
-          type: "select"
-          required: true
-          options:
-            - "Route to Origin Pools"
-            - "Redirect"
-            - "Direct Response"
-          api_field: "spec.route_action"
-          description: "Action to take when the route matches"
-
-    - id: "destinations"
-      label: "Destinations"
-      type: "nested-resource-list"
-      description: "Origin Pools that receive matched traffic"
-      nested_resource: "origin-pool"
-      fields:
-        - id: "destination_pool"
-          label: "Origin Pool"
-          type: "resource-selector"
-          resource_type: "origin-pool"
-          required: false
-          api_field: "spec.destinations[].pool"
-        - id: "weight"
-          label: "Weight"
-          type: "number"
-          required: false
-          default: 1
-          api_field: "spec.destinations[].weight"
-          validation:
-            min: 0
-            max: 100
+          api_field: "metadata.description"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Form sections and fields are draft — will be validated via browser-first discovery"
+  notes: "Route validated via live console. Form fields are draft — only Metadata section inspected so far."

@@ -3,31 +3,35 @@ id: "namespaces"
 label: "Namespaces"
 
 route:
-  pattern: "/web/namespaces"
+  pattern: "/web/workspaces/administration/personal-management/namespaces"
   params: {}
   supports_direct_link: true
-  breadcrumbs: ["Home", "Administration", "Namespaces"]
+  breadcrumbs: ["Home", "Administration", "Personal Management", "My Namespaces"]
 
 context:
   requires_login: true
   requires_namespace: false
   minimum_role: "admin"
+  workspace: "administration"
 
 screen:
   type: "list"
-  description: "Table listing all Namespaces in the tenant"
+  description: "Table listing all Namespaces accessible to the current user"
   primary_resource: "namespace"
 
+  form_tabs: ["Form", "Documentation", "JSON"]
+  form_note: "Create form opens inline on the same page when the Add tab is clicked"
+
   controls:
-    - id: "add-btn"
-      type: "button"
+    - id: "add-tab"
+      type: "tab"
       label: "Add Namespace"
       action: "create"
-      selector: "[data-testid='add-namespace']"
+      selector: "tab:text('Add Namespace')"
+      note: "This is a tab element, not a button. Clicking it opens the create form inline."
     - id: "search"
       type: "search-input"
       label: "Search"
-      selector: "[data-testid='search-input']"
 
   table:
     columns:
@@ -37,8 +41,12 @@ screen:
         links_to: "detail"
       - id: "description"
         label: "Description"
-      - id: "status"
-        label: "Status"
+      - id: "iam-users"
+        label: "IAM Users"
+      - id: "type"
+        label: "Type"
+      - id: "actions"
+        label: "Actions"
     row_actions:
       - id: "edit"
         label: "Edit"
@@ -47,7 +55,7 @@ screen:
         label: "Delete"
         operation: "delete"
 
-  detail_route: "/web/namespaces/{name}"
+  detail_route: "/web/workspaces/administration/personal-management/namespaces/{name}"
 
 operations:
   - type: "create"
@@ -58,7 +66,8 @@ operations:
     workflow: "workflows/namespace/delete.yaml"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "System-level resource — no namespace-selector control. Selectors are placeholders."
+  notes: "System-level resource — no namespace-selector control or namespace param. Route pattern and table columns validated via live browser session."

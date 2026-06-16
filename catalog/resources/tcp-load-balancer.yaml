@@ -16,107 +16,135 @@ api:
 
 console:
   list_route: "routes/load-balancers/tcp-load-balancers.yaml"
-  detail_route_pattern: "/web/namespace/{namespace}/load-balancers/tcp/{name}"
-  create_route_pattern: "/web/namespace/{namespace}/load-balancers/tcp/create"
+  detail_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers/{name}"
+  create_route_pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers"
+  create_note: "Create form opens inline via Add tab on the list page, not a separate route"
 
   navigation:
-    menu_path: ["Manage", "Load Balancers", "TCP Load Balancers"]
+    workspace: "multi-cloud-app-connect"
+    menu_path: ["Multi-Cloud App Connect", "Manage", "Load Balancers", "TCP Load Balancers"]
     product_area: "load-balancers"
+    breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Load Balancers", "TCP Load Balancers"]
 
 workflows:
   create: "workflows/tcp-load-balancer/create.yaml"
   delete: "workflows/tcp-load-balancer/delete.yaml"
 
 form:
+  tabs: ["Form", "Documentation", "JSON"]
+  footer_buttons:
+    - id: "cancel"
+      label: "Cancel All"
+    - id: "save"
+      label: "Add TCP Load Balancer"
   sections:
     - id: "metadata"
       label: "Metadata"
       fields:
         - id: "name"
           label: "Name"
-          type: "text"
+          type: "textbox"
           required: true
           api_field: "metadata.name"
           validation:
             pattern: "^[a-z][a-z0-9-]*$"
             max_length: 64
-        - id: "description"
-          label: "Description"
-          type: "textarea"
-          required: false
-          api_field: "metadata.description"
         - id: "labels"
           label: "Labels"
           type: "key-value-pairs"
           required: false
           api_field: "metadata.labels"
+        - id: "description"
+          label: "Description"
+          type: "textbox"
+          required: false
+          api_field: "metadata.description"
 
-    - id: "listen-port"
-      label: "Listen Port"
+    - id: "basic-configuration"
+      label: "Basic Configuration"
       fields:
+        - id: "domains"
+          label: "Domains"
+          type: "table"
+          required: false
+          api_field: "spec.domains"
+          add_action: "Add Item"
         - id: "listen_port"
           label: "Listen Port"
-          type: "number"
-          required: true
+          type: "listbox"
+          required: false
+          default: 0
           api_field: "spec.listen_port"
-          description: "TCP port to listen on for incoming connections"
-          validation:
-            min: 1
-            max: 65535
-
-    - id: "sni"
-      label: "SNI"
-      collapsible: true
-      initially_collapsed: false
-      fields:
+          description: "TCP port to listen on (listbox + spinbutton combo, default 0)"
         - id: "sni"
           label: "SNI"
-          type: "text"
+          type: "listbox"
           required: false
+          default: "No SNI"
           api_field: "spec.sni"
-          description: "Server Name Indication for TLS routing"
-
-    - id: "origin-pools"
-      label: "Origin Pools"
-      type: "nested-resource-list"
-      description: "Origin Pools that receive TCP traffic"
-      nested_resource: "origin-pool"
-      fields:
-        - id: "origin_pool"
-          label: "Origin Pool"
-          type: "resource-selector"
-          resource_type: "origin-pool"
-          required: true
-          api_field: "spec.origin_pools[].pool"
-        - id: "weight"
-          label: "Weight"
-          type: "number"
+          options:
+            - "No SNI"
+        - id: "auto_manage_dns"
+          label: "Auto Manage DNS"
+          type: "checkbox"
           required: false
-          default: 1
-          api_field: "spec.origin_pools[].weight"
-          validation:
-            min: 0
-            max: 100
-
-    - id: "advertise"
-      label: "Advertise Policy"
-      collapsible: true
-      initially_collapsed: true
-      fields:
-        - id: "advertise_on_public"
-          label: "Advertise on Public"
-          type: "toggle"
+          default: false
+        - id: "origin_pools"
+          label: "Origin Pools"
+          type: "nested-resource-list"
           required: false
+          api_field: "spec.origin_pools"
+          add_action: "Add Item"
+          nested_resource: "origin-pool"
+        - id: "vip_advertisement"
+          label: "VIP Advertisement"
+          type: "listbox"
+          required: false
+          default: "Advertise On Public"
           api_field: "spec.advertise_on_public"
-        - id: "advertise_custom"
-          label: "Custom Advertise VIP"
-          type: "resource-selector"
-          resource_type: "advertise-policy"
+          options:
+            - "Advertise On Public"
+      show_advanced_fields: true
+
+    - id: "load-balancing-control"
+      label: "Load Balancing Control"
+      fields:
+        - id: "lb_type"
+          label: "LB Type"
+          type: "listbox"
           required: false
-          api_field: "spec.advertise_custom"
+          default: "TCP"
+          options:
+            - "TCP"
+        - id: "lb_control"
+          label: "LB Control"
+          type: "listbox"
+          required: false
+          default: "Round Robin"
+          options:
+            - "Round Robin"
+      show_advanced_fields: true
+
+    - id: "service-policies"
+      label: "Service Policies"
+      fields:
+        - id: "service_policies"
+          label: "Service Policies"
+          type: "listbox"
+          required: false
+          default: "Apply Namespace Service Policies"
+          options:
+            - "Apply Namespace Service Policies"
+            - "Do Not Apply Service Policies"
+            - "Apply Specified Service Policies"
+
+    - id: "advanced-configuration"
+      label: "Advanced Configuration"
+      show_advanced_fields: true
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Form sections and fields are draft — will be validated via browser-first discovery"
+  notes: "All 5 form sections validated via live browser session against staging console"

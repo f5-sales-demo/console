@@ -13,57 +13,47 @@ params:
     required: true
     description: "Namespace name (lowercase alphanumeric and hyphens)"
     example: "my-namespace"
-  description:
-    required: false
-    description: "Description for the namespace"
-    example: "Demo namespace for testing"
 
 steps:
   - id: "navigate-to-list"
     action: "navigate"
-    url: "/web/namespaces"
-    wait_for: "[data-testid='add-namespace']"
-    description: "Navigate to Namespaces list page"
+    url: "/web/workspaces/administration/personal-management/namespaces"
+    wait_for: "text('My Namespaces')"
+    description: "Navigate to My Namespaces list page within Administration workspace"
 
-  - id: "click-add"
+  - id: "click-add-tab"
     action: "click"
-    selector: "[data-testid='add-namespace']"
-    wait_for: "input[data-testid='name-input']"
-    description: "Click Add Namespace button to open the create form"
+    selector: "tab:text('Add Namespace')"
+    wait_for: "textbox[name='Name']"
+    description: "Click the Add Namespace tab to open the inline create form"
 
   - id: "fill-name"
     action: "fill"
-    selector: "input[data-testid='name-input']"
+    selector: "textbox[name='Name']"
     value: "{name}"
-    description: "Enter the namespace name"
-
-  - id: "fill-description"
-    condition: "params.description is set"
-    action: "fill"
-    selector: "textarea[data-testid='description-input']"
-    value: "{description}"
-    description: "Enter the namespace description"
+    description: "Enter the namespace name in the Name textbox"
 
   - id: "save"
     action: "click"
-    selector: "[data-testid='save-and-exit']"
-    wait_for: "[data-testid='resource-detail']"
+    selector: "button:text('Add Namespace')"
+    context: "footer"
+    wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Save the namespace and wait for the detail page"
+    description: "Click the Add Namespace button in the form footer to save"
 
   - id: "verify-created"
     action: "assert"
-    selector: "[data-testid='resource-name']"
-    expected_text: "{name}"
-    description: "Verify the resource was created by checking the name on the detail page"
+    selector: "text('{name}')"
+    description: "Verify the resource was created by checking the name appears in the list"
 
 postconditions:
-  - "resource_detail_page_visible"
-  - "resource_name_matches: {name}"
+  - "resource_list_page_visible"
+  - "resource_name_in_list: {name}"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
   estimated_duration_seconds: 15
-  notes: "System-level resource — no namespace param required. Selectors are placeholders."
+  notes: "System-level resource — no namespace param required. Selectors use aria/text-based patterns validated against live console."

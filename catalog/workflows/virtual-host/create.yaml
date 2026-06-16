@@ -18,56 +18,47 @@ params:
     required: true
     description: "Virtual host name (lowercase alphanumeric and hyphens)"
     example: "my-virtual-host"
-  domain:
-    required: true
-    description: "Domain name this virtual host serves"
-    example: "app.example.com"
 
 steps:
   - id: "navigate-to-list"
     action: "navigate"
-    url: "/web/namespace/{namespace}/load-balancers/virtual-hosts"
-    wait_for: "[data-testid='add-virtual-host']"
-    description: "Navigate to Virtual Hosts list page"
+    url: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/virtual_hosts"
+    wait_for: "text('Virtual Hosts')"
+    description: "Navigate to Virtual Hosts list page within Multi-Cloud App Connect workspace"
 
-  - id: "click-add"
+  - id: "click-add-tab"
     action: "click"
-    selector: "[data-testid='add-virtual-host']"
-    wait_for: "input[data-testid='name-input']"
-    description: "Click Add Virtual Host button to open the create form"
+    selector: "tab:text('Add Virtual Host')"
+    wait_for: "textbox[name='Name']"
+    description: "Click the Add Virtual Host tab to open the inline create form"
 
   - id: "fill-name"
     action: "fill"
-    selector: "input[data-testid='name-input']"
+    selector: "textbox[name='Name']"
     value: "{name}"
-    description: "Enter the virtual host name"
-
-  - id: "fill-domain"
-    action: "fill"
-    selector: "input[data-testid='domain-input']"
-    value: "{domain}"
-    description: "Enter the domain name"
+    description: "Enter the virtual host name in the Name textbox"
 
   - id: "save"
     action: "click"
-    selector: "[data-testid='save-and-exit']"
-    wait_for: "[data-testid='resource-detail']"
+    selector: "button:text('Add Virtual Host')"
+    context: "footer"
+    wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Save the virtual host and wait for the detail page"
+    description: "Click the Add Virtual Host button in the form footer to save"
 
   - id: "verify-created"
     action: "assert"
-    selector: "[data-testid='resource-name']"
-    expected_text: "{name}"
-    description: "Verify the resource was created by checking the name on the detail page"
+    selector: "text('{name}')"
+    description: "Verify the resource was created by checking the name appears in the list"
 
 postconditions:
-  - "resource_detail_page_visible"
-  - "resource_name_matches: {name}"
+  - "resource_list_page_visible"
+  - "resource_name_in_list: {name}"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
   estimated_duration_seconds: 20
-  notes: "Selectors are placeholders — must be validated against the live console"
+  notes: "Selectors use aria/text-based patterns validated against live console. No data-testid attributes exist."

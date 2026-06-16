@@ -3,39 +3,42 @@ id: "service-policies"
 label: "Service Policies"
 
 route:
-  pattern: "/web/namespace/{namespace}/security/service-policies"
+  pattern: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/service_policies/service_policies"
   params:
     namespace:
       required: true
       description: "F5 XC namespace"
       example: "demo"
   supports_direct_link: true
-  breadcrumbs: ["Home", "Security", "Service Policies"]
+  breadcrumbs: ["Home", "Web App & API Protection", "{namespace}", "Manage", "Service Policies", "Service Policies"]
 
 context:
   requires_login: true
   requires_namespace: true
   minimum_role: "admin"
+  workspace: "web-app-and-api-protection"
 
 screen:
   type: "list"
   description: "Table listing all Service Policies in the selected namespace"
   primary_resource: "service-policy"
 
+  form_tabs: ["Form", "Documentation", "JSON"]
+  form_note: "Create form opens inline on the same page when the Add tab is clicked"
+
   controls:
-    - id: "add-btn"
-      type: "button"
-      label: "Add Service Policy"
+    - id: "add-tab"
+      type: "tab"
+      label: "Add Service policy"
       action: "create"
-      selector: "[data-testid='add-service-policy']"
+      selector: "tab:text('Add Service policy')"
+      note: "This is a tab element, not a button. Clicking it opens the create form inline."
     - id: "search"
       type: "search-input"
       label: "Search"
-      selector: "[data-testid='search-input']"
     - id: "namespace-selector"
       type: "dropdown"
       label: "Namespace"
-      selector: "[data-testid='namespace-selector']"
 
   table:
     columns:
@@ -43,14 +46,16 @@ screen:
         label: "Name"
         sortable: true
         links_to: "detail"
-      - id: "rules"
-        label: "Rules"
-      - id: "server-selector"
-        label: "Server Selector"
-      - id: "algorithm"
-        label: "Combining Algorithm"
-      - id: "status"
-        label: "Status"
+      - id: "namespace"
+        label: "Namespace"
+      - id: "rule-count"
+        label: "Rule Count"
+      - id: "avg-latency"
+        label: "Avg. Latency"
+      - id: "hits"
+        label: "Hits"
+      - id: "actions"
+        label: "Actions"
     row_actions:
       - id: "edit"
         label: "Edit"
@@ -59,7 +64,7 @@ screen:
         label: "Delete"
         operation: "delete"
 
-  detail_route: "/web/namespace/{namespace}/security/service-policies/{name}"
+  detail_route: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/service_policies/service_policies/{name}"
 
 operations:
   - type: "create"
@@ -70,7 +75,8 @@ operations:
     workflow: "workflows/service-policy/delete.yaml"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Selectors are placeholders — will be validated via browser-first discovery"
+  notes: "Route pattern, table columns, and screen structure validated via live browser session. Add action is a tab, not a button."

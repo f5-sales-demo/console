@@ -3,39 +3,42 @@ id: "virtual-hosts"
 label: "Virtual Hosts"
 
 route:
-  pattern: "/web/namespace/{namespace}/load-balancers/virtual-hosts"
+  pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/virtual_hosts"
   params:
     namespace:
       required: true
       description: "F5 XC namespace"
       example: "demo"
   supports_direct_link: true
-  breadcrumbs: ["Home", "Load Balancers", "Virtual Hosts"]
+  breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Virtual Host", "Virtual Hosts"]
 
 context:
   requires_login: true
   requires_namespace: true
   minimum_role: "admin"
+  workspace: "multi-cloud-app-connect"
 
 screen:
   type: "list"
   description: "Table listing all Virtual Hosts in the selected namespace"
   primary_resource: "virtual-host"
 
+  form_tabs: ["Form", "Documentation", "JSON"]
+  form_note: "Create form opens inline on the same page when the Add tab is clicked"
+
   controls:
-    - id: "add-btn"
-      type: "button"
+    - id: "add-tab"
+      type: "tab"
       label: "Add Virtual Host"
       action: "create"
-      selector: "[data-testid='add-virtual-host']"
+      selector: "tab:text('Add Virtual Host')"
+      note: "This is a tab element, not a button. Clicking it opens the create form inline."
     - id: "search"
       type: "search-input"
       label: "Search"
-      selector: "[data-testid='search-input']"
     - id: "namespace-selector"
       type: "dropdown"
       label: "Namespace"
-      selector: "[data-testid='namespace-selector']"
 
   table:
     columns:
@@ -59,7 +62,7 @@ screen:
         label: "Delete"
         operation: "delete"
 
-  detail_route: "/web/namespace/{namespace}/load-balancers/virtual-hosts/{name}"
+  detail_route: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/virtual_hosts/{name}"
 
 operations:
   - type: "create"
@@ -70,7 +73,8 @@ operations:
     workflow: "workflows/virtual-host/delete.yaml"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Selectors are placeholders — will be validated via browser-first discovery"
+  notes: "Route pattern validated via live browser session. Add action is a tab, not a button."

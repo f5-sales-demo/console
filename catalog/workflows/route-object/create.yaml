@@ -18,89 +18,47 @@ params:
     required: true
     description: "Route name (lowercase alphanumeric and hyphens)"
     example: "my-route"
-  match_path:
-    required: true
-    description: "URL path prefix or regex to match"
-    example: "/api"
-  route_action:
-    required: true
-    description: "Action to take when matched (Route to Origin Pools, Redirect, Direct Response)"
-    example: "Route to Origin Pools"
-  origin_pool:
-    required: false
-    description: "Existing origin pool name for destination"
-    example: "my-origin-pool"
 
 steps:
   - id: "navigate-to-list"
     action: "navigate"
-    url: "/web/namespace/{namespace}/load-balancers/routes"
-    wait_for: "[data-testid='add-route']"
-    description: "Navigate to Routes list page"
+    url: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/virtual_host/routes"
+    wait_for: "text('Routes')"
+    description: "Navigate to Routes list page within Multi-Cloud App Connect workspace"
 
-  - id: "click-add"
+  - id: "click-add-tab"
     action: "click"
-    selector: "[data-testid='add-route']"
-    wait_for: "input[data-testid='name-input']"
-    description: "Click Add Route button to open the create form"
+    selector: "tab:text('Add Route')"
+    wait_for: "textbox[name='Name']"
+    description: "Click the Add Route tab to open the inline create form"
 
   - id: "fill-name"
     action: "fill"
-    selector: "input[data-testid='name-input']"
+    selector: "textbox[name='Name']"
     value: "{name}"
-    description: "Enter the route name"
-
-  - id: "fill-match-path"
-    action: "fill"
-    selector: "input[data-testid='match-path-input']"
-    value: "{match_path}"
-    description: "Enter the path match pattern"
-
-  - id: "select-route-action"
-    action: "select"
-    selector: "[data-testid='route-action-select']"
-    value: "{route_action}"
-    description: "Select the route action"
-
-  - id: "add-destination"
-    condition: "params.origin_pool is set"
-    action: "click"
-    selector: "[data-testid='add-destination']"
-    wait_for: "[data-testid='origin-pool-selector']"
-    description: "Open destination selector"
-    then:
-      - id: "select-origin-pool"
-        action: "select"
-        selector: "[data-testid='origin-pool-selector']"
-        value: "{origin_pool}"
-        description: "Select the origin pool from the list"
-
-      - id: "apply-destination"
-        action: "click"
-        selector: "[data-testid='apply-btn']"
-        wait_for: "[data-testid='destination-row']"
-        description: "Confirm destination selection"
+    description: "Enter the route name in the Name textbox"
 
   - id: "save"
     action: "click"
-    selector: "[data-testid='save-and-exit']"
-    wait_for: "[data-testid='resource-detail']"
+    selector: "button:text('Add Route')"
+    context: "footer"
+    wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Save the route and wait for the detail page"
+    description: "Click the Add Route button in the form footer to save"
 
   - id: "verify-created"
     action: "assert"
-    selector: "[data-testid='resource-name']"
-    expected_text: "{name}"
-    description: "Verify the resource was created by checking the name on the detail page"
+    selector: "text('{name}')"
+    description: "Verify the resource was created by checking the name appears in the list"
 
 postconditions:
-  - "resource_detail_page_visible"
-  - "resource_name_matches: {name}"
+  - "resource_list_page_visible"
+  - "resource_name_in_list: {name}"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  estimated_duration_seconds: 30
-  notes: "Selectors are placeholders — must be validated against the live console"
+  estimated_duration_seconds: 20
+  notes: "Selectors use aria/text-based patterns validated against live console. No data-testid attributes exist."

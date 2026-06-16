@@ -3,39 +3,42 @@ id: "tcp-load-balancers"
 label: "TCP Load Balancers"
 
 route:
-  pattern: "/web/namespace/{namespace}/load-balancers/tcp"
+  pattern: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers"
   params:
     namespace:
       required: true
       description: "F5 XC namespace"
       example: "demo"
   supports_direct_link: true
-  breadcrumbs: ["Home", "Load Balancers", "TCP Load Balancers"]
+  breadcrumbs: ["Home", "Multi-Cloud App Connect", "{namespace}", "Manage", "Load Balancers", "TCP Load Balancers"]
 
 context:
   requires_login: true
   requires_namespace: true
   minimum_role: "admin"
+  workspace: "multi-cloud-app-connect"
 
 screen:
   type: "list"
   description: "Table listing all TCP Load Balancers in the selected namespace"
   primary_resource: "tcp-load-balancer"
 
+  form_tabs: ["Form", "Documentation", "JSON"]
+  form_note: "Create form opens inline on the same page when the Add tab is clicked"
+
   controls:
-    - id: "add-btn"
-      type: "button"
+    - id: "add-tab"
+      type: "tab"
       label: "Add TCP Load Balancer"
       action: "create"
-      selector: "[data-testid='add-tcp-load-balancer']"
+      selector: "tab:text('Add TCP Load Balancer')"
+      note: "This is a tab element, not a button. Clicking it opens the create form inline."
     - id: "search"
       type: "search-input"
       label: "Search"
-      selector: "[data-testid='search-input']"
     - id: "namespace-selector"
       type: "dropdown"
       label: "Namespace"
-      selector: "[data-testid='namespace-selector']"
 
   table:
     columns:
@@ -59,7 +62,7 @@ screen:
         label: "Delete"
         operation: "delete"
 
-  detail_route: "/web/namespace/{namespace}/load-balancers/tcp/{name}"
+  detail_route: "/web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers/{name}"
 
 operations:
   - type: "create"
@@ -70,7 +73,8 @@ operations:
     workflow: "workflows/tcp-load-balancer/delete.yaml"
 
 metadata:
-  confidence: "draft"
+  confidence: "validated"
   discovered_at: "2026-06-15"
+  validated_at: "2026-06-15"
   console_version: "2025.06"
-  notes: "Selectors are placeholders — will be validated via browser-first discovery"
+  notes: "Route pattern and screen structure validated via live browser session. Add action is a tab, not a button."
