@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: app-api-group
+label: API Groups
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: app_api_group
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/api_security/api_groups
+  menu_path:
+    - Manage
+    - API Security
+    - API Groups
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - API Security
+    - API Groups
+add_action:
+  type: tab
+  label: Add API Group
+save_action:
+  label: Add API Group
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'

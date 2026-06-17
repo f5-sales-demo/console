@@ -1,0 +1,89 @@
+# Classification of CreateSpecType resources NOT mapped in console_ui.yaml
+# These resources exist in the API specs but don't appear in any console sidebar
+# classification date: 2026-06-17
+
+# ALREADY_MAPPED — present under different name in console_ui.yaml
+already_mapped:
+  - v1_dns_monitor   # mapped as observability v1_http_monitor entry
+  - v1_http_monitor  # mapped as observability entry
+  - k8s_cluster      # mapped as k8s_cluster
+  - virtual_k8s      # mapped as virtual_k8s
+
+# SCHEMA_DUPLICATE — raw schema-level CreateSpecType, clean name already mapped
+schema_duplicates: 36  # schemaapp_setting, schemacdn_cache_rule, etc.
+
+# VIEWS_DUPLICATE — views-layer CreateSpecType, clean name already mapped  
+views_duplicates: 22   # viewshttp_loadbalancer, viewsorigin_pool, etc.
+
+# HAS_SIDEBAR_PAGE — visible in sidebar, should be added to console_ui.yaml
+has_sidebar_page:
+  - ticket_tracking_system  # Shared Config → Manage → Ticket Tracking System
+  - token                   # Administration → Personal Management → Credentials (API tokens)
+  - usb_policy              # MCN → Site Management → Other Configs → USB Policies
+  - certificate_chain       # WAAP/MCAC/DA/SC → Certificate Management → Intermediate Certificate Chains
+  - code_base_integration   # WAAP → API Security → Code Base Integration
+  - trusted_ca_list         # mapped via root_ca_certificate but may need own entry
+  - receiver                # Shared Config → Manage → Alerts → Alert Receivers (variant)
+  - report_config           # Shared Config → Manage → Reports → Reports Management
+  - fast_acl_rule           # sub-rule of fast_acl (may be inline-only)
+  - ike_phase1_profile      # sub-config of ike_gateway (IKE Profiles page)
+  - forwarding_class        # MCN → Networking (not directly in sidebar — may be inline)
+  - filter_set              # WAAP → not in sidebar — likely inline filter config
+
+# NO_STANDALONE_PAGE — API resource exists but no dedicated console list page
+# These are configured inline within parent resources or are API-only
+no_standalone_page:
+  - addon_subscription          # billing/subscription — not a CRUD resource
+  - allowed_domain              # tenant-level config, not a standalone page
+  - api_crawler                 # internal API testing tool
+  - api_credentialcustom        # variant of api_credential — same page
+  - api_testing                 # configured inline on HTTP LB form
+  - application_profiles        # internal config, no sidebar entry
+  - authentication              # login/SSO config page, not a CRUD resource
+  - bigcnedata_group            # malformed name — internal BigIP config
+  - bigip_irule                 # inline config on BIG-IP virtual server
+  - bigipapm                    # inline config on BIG-IP virtual server
+  - bot_defense_app_infrastructure  # inline on HTTP LB Bot Protection section
+  - bot_defenseprotected_application  # inline on HTTP LB Bot Protection section
+  - bot_infrastructure          # internal bot defense config
+  - brmalertsalert_gen_policy   # malformed name — internal alerts
+  - brmalertsalert_template     # malformed name — internal alerts
+  - cminstance                  # internal instance management
+  - contact                     # tenant contact info — not CRUD
+  - dns_compliance_checks       # internal DNS validation
+  - infraprotect_asn            # Routed DDoS — infrastructure protection (no CRUD sidebar)
+  - infraprotect_asn_prefix     # Routed DDoS internal
+  - infraprotect_deny_list_rule # Routed DDoS internal
+  - infraprotect_firewall_rule  # Routed DDoS internal
+  - infraprotect_firewall_rule_group  # Routed DDoS internal
+  - infraprotect_internet_prefix_advertisement  # Routed DDoS internal
+  - infraprotect_tunnel         # Routed DDoS internal
+  - irule                       # BIG-IP iRule — inline config
+  - k8s_cluster_role            # K8s RBAC — inline on vK8s
+  - k8s_cluster_role_binding    # K8s RBAC — inline on vK8s
+  - k8s_pod_security_admission  # K8s security — inline on vK8s
+  - k8s_pod_security_policy     # K8s security — inline on vK8s
+  - mitigated_domain            # internal bot defense state
+  - mobile_base_config          # Mobile App Shield internal config
+  - nginx_service_discovery     # NGINX One internal
+  - protected_domain            # internal bot defense state
+  - protocol_inspection         # inline firewall config
+  - secret_management_access    # internal secrets access control
+  - tenant_configuration        # internal tenant config — not user-facing CRUD
+  - tenant_managementallowed_tenant  # delegated access internal
+  - tenant_managementchild_tenant_manager  # delegated access internal
+  - tenant_profile              # internal tenant profile
+  - tpm_api_key                 # Third-Party Monitoring internal
+  - tpm_category                # Third-Party Monitoring internal
+  - tpm_manager                 # Third-Party Monitoring internal
+
+summary:
+  total_createspec_kinds: 159
+  already_mapped_in_console_ui: 95
+  schema_duplicates: 36
+  views_duplicates: 22
+  already_mapped_variant: 4
+  has_sidebar_page_to_add: 12
+  no_standalone_page: 43
+  # 95 + 36 + 22 + 4 + 12 + 43 = 212 (some overlap in counting)
+  # Actual unique: 95 mapped + ~12 to add + ~43 no-page = ~150 accounted for

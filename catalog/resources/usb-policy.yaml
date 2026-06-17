@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: usb-policy
+label: USB Policies
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: usb_policy
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/site_management/other_configs/usb_policies
+  menu_path:
+    - Manage
+    - Site Management
+    - Other Configurations
+    - USB Policies
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Site Management
+    - Other Configurations
+    - USB Policies
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add USB Policy
+save_action:
+  label: Add USB Policy
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'

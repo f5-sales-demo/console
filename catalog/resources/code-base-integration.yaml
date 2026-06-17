@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: code-base-integration
+label: Code Base Integration
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: code_base_integration
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/api_security/code_base_integration
+  menu_path:
+    - Manage
+    - API Security
+    - Code Base Integration
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - API Security
+    - Code Base Integration
+add_action:
+  type: tab
+  label: Add Code Base Integration
+save_action:
+  label: Add Code Base Integration
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'
