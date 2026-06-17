@@ -1,0 +1,62 @@
+resource: nat_policy
+workspace: multi-cloud-network-connect
+route: /manage/networking/network_configuration/nat_policy
+namespace_scoped: false
+add_action: tab "Add Nat Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Nat policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: applies-to
+    label: Applies To
+    fields:
+      - name: Applies To
+        widget: listbox
+        required: true
+        default: "Site"
+        note: "Options: Site, Virtual Site, Segment"
+      - name: Site
+        widget: table
+        items: 1
+        row_fields:
+          - name: Site
+            widget: listbox
+            type: resource-selector
+            required: true
+        add_action: Add Item
+        note: "Pre-populated with 1 empty row. Select which sites this NAT policy applies to."
+
+  - id: rule
+    label: Rule
+    required: true
+    fields:
+      - name: Rule
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form to define NAT rules (source NAT, destination NAT, address translation mappings)"
+
+summary:
+  section_count: 3
+  field_count: 6
+  listbox_count: 2
+  table_count: 1
+  nested_form_count: 1
