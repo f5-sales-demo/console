@@ -1,0 +1,49 @@
+resource: cdn_cache_rule
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/cdn/cdn_cache_rule
+add_action: tab "Add CDN Cache Rules"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add CDN Cache Rules
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: cache-rule
+    label: Cache Rule
+    fields:
+      - name: Rule Name
+        widget: textbox
+        required: true
+      - name: Expressions
+        widget: table
+        required: true
+        items: 0
+        add_action: Add Item
+        note: "Opens nested expression builder sub-form"
+      - name: Cache Actions
+        widget: listbox
+        required: true
+        default: "Bypass Cache"
+
+summary:
+  section_count: 2
+  field_count: 5
+  table_count: 1
+  nested_form_count: 1
+  listbox_count: 1

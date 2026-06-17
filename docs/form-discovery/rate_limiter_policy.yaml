@@ -1,0 +1,39 @@
+resource: rate_limiter_policy
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/rate_limiter_policies
+add_action: tab "Add Rate Limiter Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Rate limiter policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: rules
+    label: Rules
+    fields:
+      - name: Rules
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested Rules configuration sub-form"
+
+summary:
+  section_count: 2
+  field_count: 4
+  nested_form_count: 1

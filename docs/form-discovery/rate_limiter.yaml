@@ -1,0 +1,50 @@
+resource: rate_limiter
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/shared_objects/rate_limiters
+add_action: tab "Add Rate Limiter"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Rate limiter
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: rate-limit-values
+    label: Rate Limit Values
+    required: true
+    fields:
+      - name: Rate Limit Values
+        widget: configure-link
+        state: "Configured with default values"
+        action: "View Configuration"
+        note: "Pre-configured with defaults. Opens nested form to set total_number, unit (second/minute), burst_multiplier."
+
+  - id: user-identification-policy
+    label: User Identification Policy
+    fields:
+      - name: User Identification Policy
+        widget: listbox
+        required: false
+        default: ""
+        note: "Resource selector — references a user_identification object"
+
+summary:
+  section_count: 3
+  field_count: 5
+  listbox_count: 1
+  nested_form_count: 1

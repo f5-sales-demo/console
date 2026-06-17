@@ -1,0 +1,48 @@
+resource: bgp_asn_set
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/shared_objects/bgp_asn_sets
+add_action: tab "Add BGP ASN Set"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add BGP ASN set
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: list-of-as-numbers
+    label: List of AS Numbers
+    fields:
+      - name: AS Numbers
+        widget: table
+        items: 1
+        columns:
+          - Order
+          - "*AS Numbers"
+          - Actions
+        row_fields:
+          - name: AS Number
+            widget: spinbutton
+            default: 0
+        add_action: Add Item
+        note: "Pre-populated with 1 empty row. Each row is a single ASN (spinbutton)."
+
+summary:
+  section_count: 2
+  field_count: 4
+  table_count: 1
+  spinbutton_count: 1
