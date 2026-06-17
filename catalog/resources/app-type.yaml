@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: app-type
+label: App Types
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: app_type
+console:
+  workspace: shared-configuration
+  workspace_label: Shared Configuration
+  route_prefix: /web/workspaces/shared-configuration
+  route_pattern: /security/ai_ml/app_types
+  menu_path:
+    - Security
+    - AI & ML
+    - App Types
+  breadcrumbs:
+    - Home
+    - Shared Configuration
+    - Security
+    - AI & ML
+    - App Types
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add App Type
+save_action:
+  label: Add App Type
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'

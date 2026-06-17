@@ -1,0 +1,43 @@
+schema: urn:f5xc:console:resource:v1
+id: discovery
+label: Service Discoveries
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: discovery
+console:
+  workspace: shared-configuration
+  workspace_label: Shared Configuration
+  route_prefix: /web/workspaces/shared-configuration
+  route_pattern: /manage/discovery
+  menu_path:
+    - Manage
+    - Service Discoveries
+  breadcrumbs:
+    - Home
+    - Shared Configuration
+    - Manage
+    - Service Discoveries
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Service Discovery
+save_action:
+  label: Add Service Discovery
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'
