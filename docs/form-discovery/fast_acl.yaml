@@ -1,0 +1,56 @@
+resource: fast_acl
+workspace: multi-cloud-network-connect
+route: /manage/firewall/fast_acls
+namespace_scoped: false
+add_action: tab "Add Fast ACL"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Fast ACL
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: fast-acl-type
+    label: Fast ACL Type
+    fields:
+      - name: Select Site Type For acl
+        widget: listbox
+        required: true
+        default: "Site Type Regional Edge"
+        note: "Options: Site Type Regional Edge, Site Type Customer Edge"
+      - name: Site Type Regional Edge
+        widget: configure-link
+        required: true
+        state: "Configured"
+        action: "Edit Configuration"
+        has_reset: true
+        note: "Pre-configured with defaults. Opens nested form to define source/destination prefixes, protocols, ports, and allow/deny actions."
+
+  - id: fast-acl-protocol-policer
+    label: Fast ACL Protocol Policer
+    fields:
+      - name: Default Protocol Policer
+        widget: listbox
+        type: resource-selector
+        note: "Optional reference to a protocol_policer object for rate limiting"
+
+summary:
+  section_count: 3
+  field_count: 6
+  listbox_count: 2
+  nested_form_count: 1
