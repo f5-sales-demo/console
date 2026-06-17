@@ -1,0 +1,60 @@
+resource: nfv_service
+workspace: multi-cloud-network-connect
+route: /manage/nfv_services
+namespace_scoped: false
+add_action: tab "Add NFV Service"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add NFV Service
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: spec
+    label: Spec
+    has_advanced_toggle: true
+    fields:
+      - name: External Service Provider
+        widget: listbox
+        required: true
+        default: "Virtual BIG-IP on AWS"
+        note: "Options: Virtual BIG-IP on AWS, Palo Alto Networks VM-Series on AWS, F5 BIG-IP on AWS. Form fields change based on provider."
+      - name: Provider Configuration
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form to configure the selected NFV provider (VPC, instance type, AMI, credentials, etc.)"
+      - name: HTTPS Based Management of Nodes
+        widget: listbox
+        required: true
+        default: "Disable HTTPS Based Management"
+        note: "Options: Disable, Enable (with domain/port/credentials)"
+      - name: SSH based management of nodes
+        widget: listbox
+        required: true
+        default: "Disable SSH access"
+        note: "Options: Disable, Enable (with SSH key)"
+
+summary:
+  section_count: 2
+  field_count: 7
+  listbox_count: 3
+  nested_form_count: 1
+  has_advanced_toggle: true
+  dynamic_form: true
