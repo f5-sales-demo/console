@@ -1,106 +1,106 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "common.schema.json",
-	"title": "F5 XC Console Catalog — Common Definitions",
-	"definitions": {
-		"metadata": {
-			"type": "object",
-			"properties": {
-				"confidence": {
-					"type": "string",
-					"enum": ["draft", "validated", "inferred", "stale"],
-					"description": "Validation status of this entry"
-				},
-				"discovered_at": {
-					"type": "string",
-					"format": "date",
-					"description": "Date this entry was discovered or last verified (YYYY-MM-DD)"
-				},
-				"console_version": {
-					"type": "string",
-					"description": "Console version this entry was verified against"
-				},
-				"notes": {
-					"type": "string",
-					"description": "Free-form notes about this entry"
-				}
-			},
-			"required": ["confidence", "discovered_at", "console_version"]
-		},
-		"selector": {
-			"type": "object",
-			"properties": {
-				"selector": {
-					"type": "string",
-					"description": "CSS selector, data-testid, aria label, or XPath"
-				},
-				"type": {
-					"type": "string",
-					"enum": ["css", "data-testid", "aria", "xpath"],
-					"default": "css"
-				},
-				"fallback": {
-					"$ref": "#/definitions/selector"
-				}
-			},
-			"required": ["selector"]
-		},
-		"selector_string": {
-			"type": "string",
-			"description": "Shorthand CSS selector string (use selector object for complex cases)"
-		},
-		"operation_type": {
-			"type": "string",
-			"enum": [
-				"create",
-				"read",
-				"update",
-				"delete",
-				"list",
-				"clone",
-				"enable",
-				"disable",
-				"attach",
-				"detach",
-				"deploy",
-				"demo"
-			]
-		},
-		"context": {
-			"type": "object",
-			"properties": {
-				"requires_login": {
-					"type": "boolean",
-					"default": true
-				},
-				"requires_namespace": {
-					"type": "boolean",
-					"default": false
-				},
-				"requires_tenant": {
-					"type": "boolean",
-					"default": false
-				},
-				"minimum_role": {
-					"type": "string",
-					"description": "Minimum RBAC role required"
-				}
-			}
-		},
-		"route_param": {
-			"type": "object",
-			"properties": {
-				"required": {
-					"type": "boolean",
-					"default": true
-				},
-				"description": {
-					"type": "string"
-				},
-				"example": {
-					"type": "string"
-				}
-			}
-		}
-	}
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "common.schema.json",
+  "title": "F5 XC Console Catalog — Common Definitions",
+  "definitions": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "string",
+          "enum": ["draft", "validated", "inferred", "stale"],
+          "description": "Validation status of this entry"
+        },
+        "discovered_at": {
+          "type": "string",
+          "format": "date",
+          "description": "Date this entry was discovered or last verified (YYYY-MM-DD)"
+        },
+        "console_version": {
+          "type": "string",
+          "description": "Console version this entry was verified against"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form notes about this entry"
+        }
+      },
+      "required": ["confidence", "discovered_at", "console_version"]
+    },
+    "selector": {
+      "type": "object",
+      "properties": {
+        "selector": {
+          "type": "string",
+          "description": "CSS selector, data-testid, aria label, or XPath"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["css", "data-testid", "aria", "xpath"],
+          "default": "css"
+        },
+        "fallback": {
+          "$ref": "#/definitions/selector"
+        }
+      },
+      "required": ["selector"]
+    },
+    "selector_string": {
+      "type": "string",
+      "description": "Shorthand CSS selector string (use selector object for complex cases)"
+    },
+    "operation_type": {
+      "type": "string",
+      "enum": [
+        "create",
+        "read",
+        "update",
+        "delete",
+        "list",
+        "clone",
+        "enable",
+        "disable",
+        "attach",
+        "detach",
+        "deploy",
+        "demo"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "requires_login": {
+          "type": "boolean",
+          "default": true
+        },
+        "requires_namespace": {
+          "type": "boolean",
+          "default": false
+        },
+        "requires_tenant": {
+          "type": "boolean",
+          "default": false
+        },
+        "minimum_role": {
+          "type": "string",
+          "description": "Minimum RBAC role required"
+        }
+      }
+    },
+    "route_param": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "default": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "example": {
+          "type": "string"
+        }
+      }
+    }
+  }
 }

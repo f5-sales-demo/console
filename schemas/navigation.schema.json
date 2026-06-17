@@ -1,68 +1,68 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "navigation.schema.json",
-	"title": "F5 XC Console Navigation Tree",
-	"description": "Represents the console's menu structure as a navigable tree",
-	"type": "object",
-	"properties": {
-		"schema": {
-			"type": "string",
-			"const": "urn:f5xc:console:navigation:v1"
-		},
-		"console_version": {
-			"type": "string"
-		},
-		"discovered_at": {
-			"type": "string",
-			"format": "date"
-		},
-		"tree": {
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/nav_node"
-			},
-			"minItems": 1
-		}
-	},
-	"required": ["schema", "tree"],
-	"definitions": {
-		"nav_node": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string",
-					"pattern": "^[a-z0-9-]+$",
-					"description": "Unique kebab-case identifier"
-				},
-				"label": {
-					"type": "string",
-					"description": "Display label as shown in the console menu"
-				},
-				"menu_path": {
-					"type": "array",
-					"items": { "type": "string" },
-					"description": "Ordered list of menu labels from root to this node"
-				},
-				"route": {
-					"type": "string",
-					"description": "Console URL path for this node (if it's a leaf)"
-				},
-				"route_file": {
-					"type": "string",
-					"description": "Relative path to the route definition YAML"
-				},
-				"icon": {
-					"type": "string",
-					"description": "Icon identifier if shown in menu"
-				},
-				"children": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/nav_node"
-					}
-				}
-			},
-			"required": ["id", "label"]
-		}
-	}
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "navigation.schema.json",
+  "title": "F5 XC Console Navigation Tree",
+  "description": "Represents the console's menu structure as a navigable tree",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "urn:f5xc:console:navigation:v1"
+    },
+    "console_version": {
+      "type": "string"
+    },
+    "discovered_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "tree": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/nav_node"
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["schema", "tree"],
+  "definitions": {
+    "nav_node": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique kebab-case identifier"
+        },
+        "label": {
+          "type": "string",
+          "description": "Display label as shown in the console menu"
+        },
+        "menu_path": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ordered list of menu labels from root to this node"
+        },
+        "route": {
+          "type": "string",
+          "description": "Console URL path for this node (if it's a leaf)"
+        },
+        "route_file": {
+          "type": "string",
+          "description": "Relative path to the route definition YAML"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon identifier if shown in menu"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/nav_node"
+          }
+        }
+      },
+      "required": ["id", "label"]
+    }
+  }
 }

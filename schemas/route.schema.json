@@ -1,177 +1,169 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "route.schema.json",
-	"title": "F5 XC Console Route Definition",
-	"description": "Describes a console screen at a specific URL — its layout, controls, and available operations",
-	"type": "object",
-	"properties": {
-		"schema": {
-			"type": "string",
-			"const": "urn:f5xc:console:route:v1"
-		},
-		"id": {
-			"type": "string",
-			"pattern": "^[a-z0-9-]+$"
-		},
-		"label": {
-			"type": "string"
-		},
-		"route": {
-			"type": "object",
-			"properties": {
-				"pattern": {
-					"type": "string",
-					"description": "URL path pattern with {param} placeholders"
-				},
-				"params": {
-					"type": "object",
-					"additionalProperties": {
-						"$ref": "common.schema.json#/definitions/route_param"
-					}
-				},
-				"supports_direct_link": {
-					"type": "boolean",
-					"default": true,
-					"description": "Whether the page can be reached by URL alone"
-				},
-				"breadcrumbs": {
-					"type": "array",
-					"items": { "type": "string" }
-				}
-			},
-			"required": ["pattern"]
-		},
-		"context": {
-			"$ref": "common.schema.json#/definitions/context"
-		},
-		"screen": {
-			"type": "object",
-			"properties": {
-				"type": {
-					"type": "string",
-					"enum": ["list", "detail", "form", "wizard", "dashboard", "settings"],
-					"description": "Primary screen layout type"
-				},
-				"description": {
-					"type": "string"
-				},
-				"primary_resource": {
-					"type": "string",
-					"description": "Resource ID this screen primarily operates on"
-				},
-				"controls": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/control"
-					}
-				},
-				"table": {
-					"$ref": "#/definitions/table_def"
-				},
-				"tabs": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/tab_def"
-					}
-				},
-				"detail_route": {
-					"type": "string",
-					"description": "URL pattern for the detail view of items listed on this screen"
-				}
-			},
-			"required": ["type"]
-		},
-		"operations": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"type": {
-						"$ref": "common.schema.json#/definitions/operation_type"
-					},
-					"workflow": {
-						"type": "string",
-						"description": "Relative path to workflow YAML"
-					},
-					"inline": {
-						"type": "boolean",
-						"description": "True if operation is handled inline on this page (e.g., list)"
-					}
-				},
-				"required": ["type"]
-			}
-		},
-		"metadata": {
-			"$ref": "common.schema.json#/definitions/metadata"
-		}
-	},
-	"required": ["schema", "id", "label", "route", "screen"],
-	"definitions": {
-		"control": {
-			"type": "object",
-			"properties": {
-				"id": { "type": "string" },
-				"type": {
-					"type": "string",
-					"enum": [
-						"button",
-						"tab",
-						"search-input",
-						"filter",
-						"dropdown",
-						"toggle",
-						"link"
-					]
-				},
-				"label": { "type": "string" },
-				"action": {
-					"$ref": "common.schema.json#/definitions/operation_type"
-				},
-				"selector": { "type": "string" }
-			},
-			"required": ["id", "type", "label"]
-		},
-		"table_def": {
-			"type": "object",
-			"properties": {
-				"columns": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"id": { "type": "string" },
-							"label": { "type": "string" },
-							"sortable": { "type": "boolean" },
-							"links_to": { "type": "string" }
-						},
-						"required": ["id", "label"]
-					}
-				},
-				"row_actions": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"id": { "type": "string" },
-							"label": { "type": "string" },
-							"operation": {
-								"$ref": "common.schema.json#/definitions/operation_type"
-							}
-						},
-						"required": ["id", "label", "operation"]
-					}
-				}
-			}
-		},
-		"tab_def": {
-			"type": "object",
-			"properties": {
-				"id": { "type": "string" },
-				"label": { "type": "string" },
-				"selector": { "type": "string" },
-				"description": { "type": "string" }
-			},
-			"required": ["id", "label"]
-		}
-	}
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "route.schema.json",
+  "title": "F5 XC Console Route Definition",
+  "description": "Describes a console screen at a specific URL — its layout, controls, and available operations",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "urn:f5xc:console:route:v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "label": {
+      "type": "string"
+    },
+    "route": {
+      "type": "object",
+      "properties": {
+        "pattern": {
+          "type": "string",
+          "description": "URL path pattern with {param} placeholders"
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "common.schema.json#/definitions/route_param"
+          }
+        },
+        "supports_direct_link": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether the page can be reached by URL alone"
+        },
+        "breadcrumbs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["pattern"]
+    },
+    "context": {
+      "$ref": "common.schema.json#/definitions/context"
+    },
+    "screen": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["list", "detail", "form", "wizard", "dashboard", "settings"],
+          "description": "Primary screen layout type"
+        },
+        "description": {
+          "type": "string"
+        },
+        "primary_resource": {
+          "type": "string",
+          "description": "Resource ID this screen primarily operates on"
+        },
+        "controls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/control"
+          }
+        },
+        "table": {
+          "$ref": "#/definitions/table_def"
+        },
+        "tabs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tab_def"
+          }
+        },
+        "detail_route": {
+          "type": "string",
+          "description": "URL pattern for the detail view of items listed on this screen"
+        }
+      },
+      "required": ["type"]
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "common.schema.json#/definitions/operation_type"
+          },
+          "workflow": {
+            "type": "string",
+            "description": "Relative path to workflow YAML"
+          },
+          "inline": {
+            "type": "boolean",
+            "description": "True if operation is handled inline on this page (e.g., list)"
+          }
+        },
+        "required": ["type"]
+      }
+    },
+    "metadata": {
+      "$ref": "common.schema.json#/definitions/metadata"
+    }
+  },
+  "required": ["schema", "id", "label", "route", "screen"],
+  "definitions": {
+    "control": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["button", "tab", "search-input", "filter", "dropdown", "toggle", "link"]
+        },
+        "label": { "type": "string" },
+        "action": {
+          "$ref": "common.schema.json#/definitions/operation_type"
+        },
+        "selector": { "type": "string" }
+      },
+      "required": ["id", "type", "label"]
+    },
+    "table_def": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "sortable": { "type": "boolean" },
+              "links_to": { "type": "string" }
+            },
+            "required": ["id", "label"]
+          }
+        },
+        "row_actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "label": { "type": "string" },
+              "operation": {
+                "$ref": "common.schema.json#/definitions/operation_type"
+              }
+            },
+            "required": ["id", "label", "operation"]
+          }
+        }
+      }
+    },
+    "tab_def": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "label": { "type": "string" },
+        "selector": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["id", "label"]
+    }
+  }
 }

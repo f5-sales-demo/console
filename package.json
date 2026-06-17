@@ -1,17 +1,17 @@
 {
-	"name": "@f5xc-salesdemos/console",
-	"version": "0.1.0",
-	"private": true,
-	"type": "module",
-	"description": "Schema-driven inventory of the F5 Distributed Cloud administration console UI",
-	"scripts": {
-		"validate": "node tools/validate.mjs",
-		"lint": "node tools/lint.mjs",
-		"generate": "node tools/generate-from-enriched.mjs --output-dir catalog/resources"
-	},
-	"devDependencies": {
-		"ajv": "^8.17.1",
-		"ajv-formats": "^3.0.1",
-		"js-yaml": "^4.1.0"
-	}
+  "name": "@f5xc-salesdemos/console",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Schema-driven inventory of the F5 Distributed Cloud administration console UI",
+  "scripts": {
+    "validate": "node tools/validate.mjs",
+    "lint": "node tools/lint.mjs",
+    "generate": "node tools/generate-from-enriched.mjs --output-dir catalog/resources"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "js-yaml": "^4.1.0"
+  }
 }

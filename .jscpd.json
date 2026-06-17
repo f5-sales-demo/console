@@ -1,0 +1,6 @@
+{
+  "threshold": 15,
+  "reporters": ["console"],
+  "ignore": ["node_modules", "docs/snapshots"],
+  "absolute": true
+}

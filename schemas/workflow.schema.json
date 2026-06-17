@@ -1,186 +1,183 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "workflow.schema.json",
-	"title": "F5 XC Console Automation Workflow",
-	"description": "Step-by-step browser automation sequence for a CRUD operation on a console resource",
-	"type": "object",
-	"properties": {
-		"schema": {
-			"type": "string",
-			"const": "urn:f5xc:console:workflow:v1"
-		},
-		"id": {
-			"type": "string",
-			"pattern": "^[a-z0-9-]+$"
-		},
-		"label": {
-			"type": "string"
-		},
-		"resource": {
-			"oneOf": [
-				{ "type": "string" },
-				{ "type": "array", "items": { "type": "string" } }
-			],
-			"description": "Resource ID(s) this workflow operates on; array for composite workflows"
-		},
-		"operation": {
-			"$ref": "common.schema.json#/definitions/operation_type"
-		},
-		"preconditions": {
-			"type": "array",
-			"items": { "type": "string" },
-			"description": "Required state before workflow can execute"
-		},
-		"params": {
-			"type": "object",
-			"additionalProperties": {
-				"$ref": "#/definitions/workflow_param"
-			},
-			"description": "Parameters that must be supplied to run this workflow"
-		},
-		"steps": {
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/step"
-			},
-			"minItems": 1
-		},
-		"postconditions": {
-			"type": "array",
-			"items": { "type": "string" },
-			"description": "Expected state after workflow completes successfully"
-		},
-		"metadata": {
-			"allOf": [
-				{ "$ref": "common.schema.json#/definitions/metadata" },
-				{
-					"type": "object",
-					"properties": {
-						"estimated_duration_seconds": {
-							"type": "integer",
-							"description": "Approximate execution time in seconds"
-						}
-					}
-				}
-			]
-		}
-	},
-	"required": ["schema", "id", "label", "resource", "operation", "steps"],
-	"definitions": {
-		"workflow_param": {
-			"type": "object",
-			"properties": {
-				"required": {
-					"type": "boolean",
-					"default": true
-				},
-				"type": {
-					"type": "string",
-					"enum": ["string", "string[]", "number", "boolean"],
-					"default": "string"
-				},
-				"description": {
-					"type": "string"
-				},
-				"default": {},
-				"example": {}
-			}
-		},
-		"step": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string",
-					"description": "Unique step identifier within this workflow"
-				},
-				"action": {
-					"type": "string",
-					"enum": [
-						"navigate",
-						"click",
-						"fill",
-						"fill-list",
-						"select",
-						"check",
-						"uncheck",
-						"hover",
-						"scroll",
-						"wait",
-						"assert",
-						"screenshot",
-						"key-press",
-						"run-workflow"
-					]
-				},
-				"description": {
-					"type": "string",
-					"description": "Human-readable description of what this step does"
-				},
-				"selector": {
-					"type": "string",
-					"description": "CSS selector for the target element"
-				},
-				"url": {
-					"type": "string",
-					"description": "URL to navigate to (for navigate action)"
-				},
-				"value": {
-					"description": "Value to input (for fill/select actions), supports {param} interpolation"
-				},
-				"values": {
-					"oneOf": [{ "type": "array" }, { "type": "string" }],
-					"description": "Multiple values or {param} reference (for fill-list action)"
-				},
-				"expected_text": {
-					"type": "string",
-					"description": "Expected text content (for assert action)"
-				},
-				"wait_for": {
-					"type": "string",
-					"description": "Selector to wait for after this step completes"
-				},
-				"wait_timeout_ms": {
-					"type": "integer",
-					"default": 10000
-				},
-				"condition": {
-					"type": "string",
-					"description": "Condition expression; step is skipped if false"
-				},
-				"then": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/step"
-					},
-					"description": "Sub-steps to execute after this step (for conditional blocks)"
-				},
-				"key": {
-					"type": "string",
-					"description": "Key to press (for key-press action)"
-				},
-				"screenshot_name": {
-					"type": "string",
-					"description": "Filename for screenshot capture (for screenshot action)"
-				},
-				"workflow": {
-					"type": "string",
-					"description": "Workflow file path to execute (for run-workflow action), e.g. origin-pool/create"
-				},
-				"with": {
-					"type": "object",
-					"additionalProperties": true,
-					"description": "Parameter values to pass to the referenced workflow, supports {param} interpolation"
-				},
-				"note": {
-					"type": "string",
-					"description": "Human-readable note about this step"
-				},
-				"context": {
-					"type": "string",
-					"description": "UI context hint for disambiguating selectors"
-				}
-			},
-			"required": ["id", "action"]
-		}
-	}
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "workflow.schema.json",
+  "title": "F5 XC Console Automation Workflow",
+  "description": "Step-by-step browser automation sequence for a CRUD operation on a console resource",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "urn:f5xc:console:workflow:v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "label": {
+      "type": "string"
+    },
+    "resource": {
+      "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }],
+      "description": "Resource ID(s) this workflow operates on; array for composite workflows"
+    },
+    "operation": {
+      "$ref": "common.schema.json#/definitions/operation_type"
+    },
+    "preconditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required state before workflow can execute"
+    },
+    "params": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/workflow_param"
+      },
+      "description": "Parameters that must be supplied to run this workflow"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/step"
+      },
+      "minItems": 1
+    },
+    "postconditions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Expected state after workflow completes successfully"
+    },
+    "metadata": {
+      "allOf": [
+        { "$ref": "common.schema.json#/definitions/metadata" },
+        {
+          "type": "object",
+          "properties": {
+            "estimated_duration_seconds": {
+              "type": "integer",
+              "description": "Approximate execution time in seconds"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": ["schema", "id", "label", "resource", "operation", "steps"],
+  "definitions": {
+    "workflow_param": {
+      "type": "object",
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "default": true
+        },
+        "type": {
+          "type": "string",
+          "enum": ["string", "string[]", "number", "boolean"],
+          "default": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "default": {},
+        "example": {}
+      }
+    },
+    "step": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique step identifier within this workflow"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "navigate",
+            "click",
+            "fill",
+            "fill-list",
+            "select",
+            "check",
+            "uncheck",
+            "hover",
+            "scroll",
+            "wait",
+            "assert",
+            "screenshot",
+            "key-press",
+            "run-workflow"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of what this step does"
+        },
+        "selector": {
+          "type": "string",
+          "description": "CSS selector for the target element"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL to navigate to (for navigate action)"
+        },
+        "value": {
+          "description": "Value to input (for fill/select actions), supports {param} interpolation"
+        },
+        "values": {
+          "oneOf": [{ "type": "array" }, { "type": "string" }],
+          "description": "Multiple values or {param} reference (for fill-list action)"
+        },
+        "expected_text": {
+          "type": "string",
+          "description": "Expected text content (for assert action)"
+        },
+        "wait_for": {
+          "type": "string",
+          "description": "Selector to wait for after this step completes"
+        },
+        "wait_timeout_ms": {
+          "type": "integer",
+          "default": 10000
+        },
+        "condition": {
+          "type": "string",
+          "description": "Condition expression; step is skipped if false"
+        },
+        "then": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/step"
+          },
+          "description": "Sub-steps to execute after this step (for conditional blocks)"
+        },
+        "key": {
+          "type": "string",
+          "description": "Key to press (for key-press action)"
+        },
+        "screenshot_name": {
+          "type": "string",
+          "description": "Filename for screenshot capture (for screenshot action)"
+        },
+        "workflow": {
+          "type": "string",
+          "description": "Workflow file path to execute (for run-workflow action), e.g. origin-pool/create"
+        },
+        "with": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Parameter values to pass to the referenced workflow, supports {param} interpolation"
+        },
+        "note": {
+          "type": "string",
+          "description": "Human-readable note about this step"
+        },
+        "context": {
+          "type": "string",
+          "description": "UI context hint for disambiguating selectors"
+        }
+      },
+      "required": ["id", "action"]
+    }
+  }
 }
