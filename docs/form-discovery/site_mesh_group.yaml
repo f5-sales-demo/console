@@ -1,0 +1,85 @@
+resource: site_mesh_group
+workspace: multi-cloud-network-connect
+route: /manage/networking/site_to_site_connectivity/site_mesh_groups
+namespace_scoped: false
+add_action: tab "Add Site Mesh Group"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Site mesh group
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: virtual-site
+    label: Virtual Site (Sites in this group)
+    fields:
+      - name: Virtual Site
+        widget: listbox
+        type: resource-selector
+        note: "Select a virtual_site object that defines which CE sites belong to this mesh group"
+
+  - id: mesh-choice
+    label: Mesh Choice
+    fields:
+      - name: Mesh Choice
+        widget: listbox
+        default: "Full Mesh"
+        note: "Options: Full Mesh, Hub Mesh"
+      - name: Full Mesh Choice
+        widget: listbox
+        default: "Data Plane Mesh"
+        note: "Options: Data Plane Mesh, Control and Data Plane Mesh"
+
+  - id: re-fallback
+    label: RE Fallback
+    fields:
+      - name: RE Fallback
+        widget: listbox
+        required: true
+        default: "Enable"
+        note: "When enabled, traffic falls back through Regional Edge if direct site-to-site tunnel fails"
+
+  - id: bfd
+    label: BFD
+    fields:
+      - name: BFD
+        widget: listbox
+        required: true
+        default: "Enabled"
+        note: "Bidirectional Forwarding Detection — fast failure detection for tunnels"
+      - name: Transmit Interval
+        widget: spinbutton
+        required: true
+        default: 3333
+        unit: milliseconds
+      - name: Minimum Receive Interval
+        widget: spinbutton
+        required: true
+        default: 3333
+        unit: milliseconds
+      - name: Multiplier
+        widget: spinbutton
+        required: true
+        default: 3
+        note: "Number of missed BFD packets before declaring tunnel down"
+
+summary:
+  section_count: 5
+  field_count: 11
+  listbox_count: 5
+  spinbutton_count: 3
