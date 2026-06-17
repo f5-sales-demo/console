@@ -1,0 +1,39 @@
+resource: dc_cluster_group
+workspace: multi-cloud-network-connect
+route: /manage/networking/site_to_site_connectivity/dc_cluster_groups
+namespace_scoped: false
+add_action: tab "Add DC Cluster Group"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add DC cluster group
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: mesh-type
+    label: Mesh Type
+    fields:
+      - name: Mesh Type
+        widget: listbox
+        default: "Data Plane Mesh"
+        note: "Options: Data Plane Mesh, Control and Data Plane Mesh. DC Cluster Groups use underlay network (no IPsec/SSL overhead) unlike Site Mesh Groups."
+
+summary:
+  section_count: 2
+  field_count: 4
+  listbox_count: 1
