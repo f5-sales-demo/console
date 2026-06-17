@@ -1,0 +1,73 @@
+resource: cloud_link
+workspace: multi-cloud-network-connect
+route: /manage/networking/external_connectivity/cloud_links
+namespace_scoped: false
+add_action: tab "Add CloudLink"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add CloudLink
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: cloud-option
+    label: Cloud Option
+    fields:
+      - name: Type
+        widget: listbox
+        required: true
+        default: "Amazon Web Services(AWS)"
+        note: "Options: AWS, Azure. Form fields change based on cloud provider."
+      - name: Bring Your Own Connections
+        widget: table
+        required: true
+        items: 0
+        add_action: Add Item
+        note: "Direct Connect connections to bring into the CloudLink"
+      - name: Account Credential
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References a cloud_credentials object"
+      - name: Direct Connect Gateway ASN
+        widget: listbox
+        required: true
+        default: "Custom ASN"
+        note: "Options: Custom ASN, F5 Default ASN"
+      - name: Custom ASN
+        widget: spinbutton
+        required: true
+        default: 0
+        note: "BGP Autonomous System Number for the Direct Connect Gateway"
+
+  - id: private-connectivity
+    label: Private Connectivity to F5 Distributed Cloud Global Network
+    fields:
+      - name: Private Connectivity via Regional Edge (RE)
+        widget: listbox
+        required: true
+        default: "Disable"
+        note: "Enable to route traffic through F5 Regional Edge instead of public internet"
+
+summary:
+  section_count: 3
+  field_count: 8
+  listbox_count: 4
+  spinbutton_count: 1
+  table_count: 1
+  note: "Dynamic form — fields change based on cloud provider Type selection (AWS shows Direct Connect, Azure shows Express Route)"
