@@ -1,0 +1,66 @@
+resource: policer
+workspace: multi-cloud-network-connect
+route: /manage/firewall/policers
+namespace_scoped: false
+add_action: tab "Add Policer"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Policer
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: policer-mode
+    label: Policer Mode
+    fields:
+      - name: Policer Mode
+        widget: listbox
+        default: "Not Shared"
+        note: "Options: Not Shared, Shared"
+
+  - id: cir
+    label: Committed Information Rate(pps)
+    fields:
+      - name: Committed Information Rate
+        widget: spinbutton
+        required: true
+        default: 0
+        unit: "packets per second"
+
+  - id: burst-size
+    label: Burst Size(pps)
+    fields:
+      - name: Burst Size
+        widget: spinbutton
+        required: true
+        default: 0
+        unit: "packets per second"
+
+  - id: policer-type
+    label: Policer Type
+    fields:
+      - name: Policer Type
+        widget: listbox
+        default: "Single-Rate Two-Color Policer"
+        note: "Options: Single-Rate Two-Color Policer, Single-Rate Three-Color Policer"
+
+summary:
+  section_count: 5
+  field_count: 7
+  listbox_count: 2
+  spinbutton_count: 2
