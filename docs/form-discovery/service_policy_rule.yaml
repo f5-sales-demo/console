@@ -1,0 +1,20 @@
+resource: service_policy_rule
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/service_policies/service_policy_rules
+discovered_at: "2026-06-17"
+list_only: true
+add_action: none
+note: >
+  This resource has NO Add tab or button on its list page. Service
+  Policy Rules are created INLINE within a Service Policy's "Rules"
+  configure-link sub-form. The list page only shows rules that were
+  created as part of Service Policies. This is a view-only listing page.
+
+form_tabs: null
+footer_buttons: null
+sections: null
+
+summary:
+  has_create_form: false
+  created_inline_via: service_policy
+  inline_field: "Rules → Configure"
