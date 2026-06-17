@@ -1,0 +1,187 @@
+resource: virtual_host
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/virtual_host/virtual_hosts
+namespace_scoped: true
+add_action: tab "Add Virtual Host"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Virtual host
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: spec
+    label: Spec
+    fields:
+      - name: Proxy Type
+        widget: listbox
+      - name: Domains
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Routes
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Route references"
+      - name: Advertise Policies
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Web Application Firewall (WAF)
+        widget: listbox
+        required: true
+        default: "App Firewall"
+      - name: Application Firewall
+        widget: table
+        items: 1
+        add_action: Add Item
+        note: "Select App Firewall resource"
+      - name: Dynamic Reverse Proxy
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: Authentication Details
+        widget: listbox
+        default: "Disable Authentication"
+      - name: Add Request Headers
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Remove Request Headers
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Add Response Headers
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Remove Response Headers
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Add Cookies in Cookie Header
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Remove Cookies from Cookie Header
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Add Set-Cookie Headers
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Remove Cookies from Set-Cookie Headers
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Buffer Policy
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: CORS Policy
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: Add Location
+        widget: checkbox
+      - name: Retry Policy
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: Compression Parameters
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: Custom Error Responses
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: Disable default error pages
+        widget: checkbox
+      - name: Maximum Request Header Size (KiB)
+        widget: spinbutton
+        default: 0
+      - name: Select Type of Challenge
+        widget: listbox
+        required: true
+        default: "No Challenge"
+      - name: Rate Limiter Allowed Prefixes
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: User Identification Policy
+        widget: listbox
+        type: resource-selector
+      - name: Idle timeout (in milliseconds)
+        widget: spinbutton
+        default: 0
+      - name: Disable DNS resolution
+        widget: checkbox
+      - name: Default Load Balancer
+        widget: listbox
+        default: "No"
+      - name: Connection Idle Timeout
+        widget: spinbutton
+        default: 0
+      - name: Maximum Requests Per Connection
+        widget: listbox
+      - name: Server Header value to be used in response
+        widget: listbox
+        default: "Default value for Server header"
+      - name: Path normalize
+        widget: listbox
+        default: "Enable path normalization"
+      - name: CSRF Policy
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: HTTP Protocol Configuration
+        widget: listbox
+        required: true
+        default: "HTTP/1.1 and HTTP/2"
+      - name: Request Headers Timeout (ms)
+        widget: spinbutton
+        default: 10000
+      - name: Total Request Timeout
+        widget: listbox
+        required: true
+        default: "Custom Timeout"
+      - name: Custom Timeout (ms)
+        widget: spinbutton
+        required: true
+        default: 60000
+      - name: Sensitive Data Discovery
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: TLS Coalescing Choice
+        widget: listbox
+        required: true
+        default: "Default Coalescing"
+
+summary:
+  section_count: 2
+  field_count: 44
+  listbox_count: 14
+  spinbutton_count: 5
+  table_count: 13
+  checkbox_count: 3
+  configure_link_count: 7
+  note: "Most complex MCAC form. Legacy virtual host with extensive header manipulation, WAF, CORS, DRP, challenge, and protocol config. 44 fields in a single Spec section."

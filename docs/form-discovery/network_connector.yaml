@@ -1,0 +1,59 @@
+resource: network_connector
+workspace: multi-cloud-network-connect
+route: /manage/networking/legacy_network_configuration/network_connectors
+namespace_scoped: false
+add_action: tab "Add Network Connector"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Network connector
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: network-connector-configuration
+    label: Network Connector Configuration
+    fields:
+      - name: Select Network Connector Type
+        widget: listbox
+        required: true
+        default: "SNAT, Site Local Inside to Site Local Outside"
+        note: "Options: SNAT Site Local Inside to Outside, Direct Site Local Inside to Outside, SNAT Site Local to Global Network"
+      - name: Routing Mode
+        widget: listbox
+        required: true
+        default: "Default Gateway"
+      - name: SNAT Source IP Selection
+        widget: listbox
+        required: true
+        default: "Interface IP"
+        note: "Options: Interface IP, SNAT Pool (with IP list)"
+
+  - id: proxy-configuration
+    label: Proxy Configuration
+    fields:
+      - name: Select Forward Proxy
+        widget: listbox
+        required: true
+        default: "Disable Forward Proxy"
+        note: "Options: Disable Forward Proxy, Enable Forward Proxy (with policy selector)"
+
+summary:
+  section_count: 3
+  field_count: 7
+  listbox_count: 4
+  note: "Legacy network connector for SNAT/routing between site-local networks."

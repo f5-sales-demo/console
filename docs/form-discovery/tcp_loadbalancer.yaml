@@ -1,0 +1,100 @@
+resource: tcp_loadbalancer
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers
+namespace_scoped: true
+add_action: tab "Add TCP Load Balancer"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add TCP Load Balancer
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: basic-configuration
+    label: Basic Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Domains
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Listen Port
+        widget: listbox
+        required: true
+        default: "Listen Port"
+        note: "Options: Listen Port, Custom Port (with spinbutton)"
+      - name: Listen Port (value)
+        widget: spinbutton
+        required: true
+        default: 0
+      - name: SNI and Default LB choice
+        widget: listbox
+        required: true
+        default: "No SNI"
+        note: "Options: No SNI, SNI"
+      - name: Automatically Manage DNS Records
+        widget: checkbox
+      - name: Origin Pools
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Each item references an origin pool with weight and priority"
+      - name: Where to Advertise the VIP
+        widget: listbox
+        required: true
+        default: "Advertise On Public"
+        note: "Options: Advertise On Public, Advertise Custom, Do Not Advertise"
+
+  - id: load-balancing-control
+    label: Load Balancing Control
+    has_advanced_toggle: true
+    fields:
+      - name: Load Balancer Type
+        widget: listbox
+        required: true
+        default: "TCP"
+        note: "Options: TCP, TCP with TLS"
+      - name: Load Balancing Control
+        widget: listbox
+        required: true
+        default: "Round Robin"
+        note: "Options: Round Robin, Least Active Request, Random, Source IP Stickiness, Cookie Based Stickiness, Ring Hash"
+
+  - id: service-policies
+    label: Service Policies
+    fields:
+      - name: Service Policies
+        widget: listbox
+        required: true
+        default: "Apply Namespace Service Policies"
+        note: "Options: Apply Namespace Service Policies, Apply Custom Service Policies, No Service Policies"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    has_advanced_toggle: true
+    note: "Advanced fields hidden by default — toggle to reveal additional options"
+
+summary:
+  section_count: 5
+  field_count: 12
+  listbox_count: 6
+  spinbutton_count: 1
+  table_count: 2
+  checkbox_count: 1
+  has_advanced_toggle: true
+  note: "TCP Load Balancer form. Similar structure to HTTP LB but simpler — no WAF, API discovery, or bot defense sections."

@@ -1,12 +1,12 @@
 {
-  "workspace": "content-delivery-network",
-  "discovered_at": "2026-06-17",
-  "namespace_scoped": true,
-  "route_count": 2,
-  "submenus": {
-    "Manage": [
-      {"label": "CDN Distributions", "path": "/manage/distributions"},
-      {"label": "CDN Cache Rules", "path": "/manage/cdn_cache_rule"}
-    ]
-  }
+	"workspace": "content-delivery-network",
+	"discovered_at": "2026-06-17",
+	"namespace_scoped": true,
+	"route_count": 2,
+	"submenus": {
+		"Manage": [
+			{ "label": "CDN Distributions", "path": "/manage/distributions" },
+			{ "label": "CDN Cache Rules", "path": "/manage/cdn_cache_rule" }
+		]
+	}
 }

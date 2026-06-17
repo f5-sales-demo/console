@@ -1,0 +1,81 @@
+resource: dns_lb_pool
+workspace: dns-management
+route: /manage/dns_lb_management/dns_lb_pool
+namespace_scoped: false
+add_action: tab "Add DNS Load Balancer Pool"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add DNS Load Balancer Pool
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+      - name: Disable
+        widget: checkbox
+
+  - id: pool-type
+    label: Pool Type
+    fields:
+      - name: Pool Type
+        widget: listbox
+        required: true
+        default: "A"
+        note: "Options: A, AAAA, CNAME, MX, SRV"
+      - name: Pool Members
+        widget: table
+        required: true
+        items: 0
+        add_action: Add Item
+        note: "Each member is an IP address or record value"
+      - name: DNS Load Balancer Health Check
+        widget: listbox
+        required: true
+        default: "Disable Health Check"
+        note: "Options: Disable Health Check, or select a health check resource"
+      - name: Maximum Answers
+        widget: spinbutton
+        required: true
+        default: 1
+
+  - id: load-balancing-mode
+    label: Load Balancing Mode
+    fields:
+      - name: Load Balancing Mode
+        widget: listbox
+        default: "Round-Robin"
+        note: "Options: Round-Robin, Static Persist, Proximity-Based"
+
+  - id: ttl-choice
+    label: TTL choice
+    fields:
+      - name: TTL choice
+        widget: listbox
+        required: true
+        default: "TTL"
+      - name: TTL (s)
+        widget: spinbutton
+        required: true
+        default: 30
+
+summary:
+  section_count: 4
+  field_count: 11
+  listbox_count: 4
+  spinbutton_count: 2
+  table_count: 1
+  checkbox_count: 1
+  note: "DNS Load Balancer Pool — group of DNS records with health check, LB mode, and TTL."

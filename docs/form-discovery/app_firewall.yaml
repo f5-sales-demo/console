@@ -1,0 +1,57 @@
+resource: app_firewall
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/app_firewall
+namespace_scoped: true
+add_action: tab "Add App Firewall"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add App Firewall
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: enforcement-mode
+    label: Enforcement Mode
+    fields:
+      - name: Enforcement Mode
+        widget: listbox
+        required: true
+        default: "Blocking"
+        note: "Options: Blocking, Monitoring"
+
+  - id: detection-settings
+    label: Detection Settings
+    has_advanced_toggle: true
+    fields:
+      - name: Detection Settings
+        widget: listbox
+        required: true
+        default: "Default Detection Settings"
+        note: "Options: Default Detection Settings, Custom Detection Settings (with signature/bot/attack type config)"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    has_advanced_toggle: true
+    note: "Bot protection, allowed response codes, blocking page customization"
+
+summary:
+  section_count: 4
+  field_count: 6
+  listbox_count: 2
+  has_advanced_toggle: true
+  note: "App Firewall (WAF) configuration. Simple at default settings, complex when customized."

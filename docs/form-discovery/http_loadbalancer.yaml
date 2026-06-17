@@ -1,0 +1,149 @@
+resource: http_loadbalancer
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/load_balancers/http_loadbalancers
+namespace_scoped: true
+add_action: tab "Add HTTP Load Balancer"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add HTTP Load Balancer
+note: >
+  Most complex WAAP resource — the flagship form. 13 sections, 80+ fields.
+  Detailed field-level metadata is in config/console_field_metadata.yaml (255 entries).
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: domains-and-lb-type
+    label: Domains and LB Type
+    has_advanced_toggle: true
+    fields:
+      - name: Domains
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Load Balancer Type
+        widget: listbox
+        required: true
+        default: "HTTPS with Automatic Certificate"
+        note: "Options: HTTP, HTTPS with Automatic Certificate, HTTPS with Custom Certificate"
+      - name: HTTP Redirect to HTTPS
+        widget: checkbox
+      - name: Port
+        widget: spinbutton
+        default: 443
+      - name: Automatically Manage DNS Records
+        widget: checkbox
+
+  - id: origin-pools
+    label: Origin Pools
+    fields:
+      - name: Origin Pools
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Each item references an origin pool with weight, priority, and endpoints"
+
+  - id: where-to-advertise
+    label: Where to Advertise the VIP
+    fields:
+      - name: Where to Advertise the VIP
+        widget: listbox
+        required: true
+        default: "Advertise On Public Default VIP"
+
+  - id: waf
+    label: Web Application Firewall
+    fields:
+      - name: WAF
+        widget: listbox
+        required: true
+        default: "Disable"
+        note: "Options: Disable, Enable (with App Firewall resource selector)"
+      - name: App Firewall
+        widget: listbox
+        type: resource-selector
+        note: "Conditional — shown when WAF is 'Enable'"
+
+  - id: bot-defense
+    label: Bot Defense
+    has_advanced_toggle: true
+    fields:
+      - name: Bot Defense
+        widget: listbox
+        default: "Disable"
+
+  - id: api-protection
+    label: API Protection
+    has_advanced_toggle: true
+    fields:
+      - name: API Definition
+        widget: listbox
+        default: "Disable"
+      - name: API Discovery
+        widget: listbox
+        default: "Disable"
+
+  - id: ddos-protection
+    label: DDoS Protection
+    has_advanced_toggle: true
+    fields:
+      - name: DDoS Mitigation
+        widget: listbox
+        default: "Default DDoS Protection"
+
+  - id: malicious-user-detection
+    label: Malicious User Detection
+    fields:
+      - name: Malicious User Mitigation
+        widget: listbox
+        default: "Default Malicious User Detection"
+
+  - id: client-side-defense
+    label: Client-Side Defense
+    has_advanced_toggle: true
+
+  - id: service-policies
+    label: Service Policies
+    fields:
+      - name: Service Policies
+        widget: listbox
+        default: "Apply Namespace Service Policies"
+
+  - id: load-balancing-control
+    label: Load Balancing Control
+    has_advanced_toggle: true
+    fields:
+      - name: Load Balancing Algorithm
+        widget: listbox
+        default: "Round Robin"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    has_advanced_toggle: true
+    note: "Extensive advanced options: header manipulation, CORS, rate limiting, trusted clients, more"
+
+summary:
+  section_count: 13
+  field_count: 20
+  listbox_count: 12
+  spinbutton_count: 1
+  table_count: 2
+  checkbox_count: 2
+  has_advanced_toggle: true
+  dynamic_form: true
+  note: "Flagship resource — most complex form in the console. 13 sections with extensive advanced options. Detailed field metadata in console_field_metadata.yaml."

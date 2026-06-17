@@ -1,0 +1,76 @@
+resource: origin_pool
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/load_balancers/origin_pools
+namespace_scoped: true
+add_action: tab "Add Origin Pool"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Origin Pool
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: basic-configuration
+    label: Basic Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Origin Servers
+        widget: table
+        required: true
+        items: 0
+        add_action: Add Item
+        note: "Each item opens nested form: Origin Server Type (Public IP, Public Name, DNS Name, K8s Service, Custom Endpoint), IP/hostname, site/vsite selection"
+      - name: Port
+        widget: spinbutton
+        required: true
+        default: 0
+        note: "Origin server port (e.g., 80, 443, 8080)"
+      - name: Use TLS
+        widget: listbox
+        required: true
+        default: "Disable"
+        note: "Options: Disable, Use TLS (with SNI, TLS config)"
+
+  - id: health-checks
+    label: Health Checks
+    fields:
+      - name: Health Checks
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "References to health check resources"
+
+  - id: load-balancing-and-connections
+    label: Load Balancing and Connections
+    has_advanced_toggle: true
+    fields:
+      - name: Load Balancing Algorithm
+        widget: listbox
+        default: "Round Robin"
+      - name: Endpoint Selection
+        widget: listbox
+        default: "Local Preferred"
+
+summary:
+  section_count: 4
+  field_count: 9
+  listbox_count: 3
+  spinbutton_count: 1
+  table_count: 2
+  has_advanced_toggle: true
+  note: "Core WAAP resource. Origin server type selection opens nested form with provider-specific fields."

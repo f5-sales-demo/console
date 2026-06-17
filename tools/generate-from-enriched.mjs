@@ -54,7 +54,9 @@ function main() {
 	}
 
 	const uiConfig = load(readFileSync(uiConfigPath, "utf-8"));
-	const fieldConfig = existsSync(fieldConfigPath) ? load(readFileSync(fieldConfigPath, "utf-8")) : {};
+	const fieldConfig = existsSync(fieldConfigPath)
+		? load(readFileSync(fieldConfigPath, "utf-8"))
+		: {};
 	const workspaces = uiConfig.workspaces || {};
 	const resources = uiConfig.resources || {};
 
@@ -133,7 +135,9 @@ function main() {
 		const yaml = dump(doc, { lineWidth: 120, noRefs: true, sortKeys: false });
 		writeFileSync(outputPath, yaml);
 
-		console.log(`  ${filename}: ${config.form_sections?.length || 0} sections, ${fieldCount} enriched fields`);
+		console.log(
+			`  ${filename}: ${config.form_sections?.length || 0} sections, ${fieldCount} enriched fields`,
+		);
 		generated++;
 	}
 

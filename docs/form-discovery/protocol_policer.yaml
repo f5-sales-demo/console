@@ -1,0 +1,40 @@
+resource: protocol_policer
+workspace: multi-cloud-network-connect
+route: /manage/firewall/protocol_policers
+namespace_scoped: false
+add_action: tab "Add Protocol Policer"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Protocol Policer
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: protocol-policer
+    label: Protocol Policer
+    fields:
+      - name: Protocol Policer
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Each item defines rate limits for specific protocols (e.g., DNS, ICMP, ARP)"
+
+summary:
+  section_count: 2
+  field_count: 4
+  table_count: 1

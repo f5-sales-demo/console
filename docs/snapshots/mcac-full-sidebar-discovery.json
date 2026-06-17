@@ -1,74 +1,158 @@
 {
-  "workspace": "multi-cloud-app-connect",
-  "discovered_at": "2026-06-17",
-  "namespace_scoped": true,
-  "route_count": 30,
-  "submenus": {
-    "Manage": {
-      "top_level": [
-        {"label": "Virtual Sites", "path": "/manage/virtual_sites"},
-        {"label": "Public IP Addresses", "path": "/manage/public_ip"},
-        {"label": "Service Discoveries", "path": "/manage/discovery"},
-        {"label": "Saved Filters", "path": "/manage/saved_filters"},
-        {"label": "CDN Cache Rules", "path": "/manage/cdn_cache_rule"}
-      ],
-      "Load Balancers": [
-        {"label": "HTTP Load Balancers", "path": "/manage/load_balancers/http_loadbalancers"},
-        {"label": "TCP Load Balancers", "path": "/manage/load_balancers/tcp_loadbalancers"},
-        {"label": "HTTP Connect & DRPs", "path": "/manage/load_balancers/proxy"},
-        {"label": "Origin Pools", "path": "/manage/load_balancers/origin_pools"},
-        {"label": "Health Checks", "path": "/manage/load_balancers/health_checks"},
-        {"label": "Certificate Revocation List", "path": "/manage/load_balancers/crl"}
-      ],
-      "Virtual Host": [
-        {"label": "Virtual Hosts", "path": "/manage/virtual_host/virtual_hosts"},
-        {"label": "Routes", "path": "/manage/virtual_host/routes"},
-        {"label": "Clusters", "path": "/manage/virtual_host/clusters"},
-        {"label": "Endpoints", "path": "/manage/virtual_host/endpoints"},
-        {"label": "Health Checks", "path": "/manage/virtual_host/health_checks"},
-        {"label": "Advertise Policies", "path": "/manage/virtual_host/advertise_policies"}
-      ],
-      "Alerts Management": [
-        {"label": "Active Alert Policies", "path": "/manage/alert_config/active_alert_policies"},
-        {"label": "Alert Policies", "path": "/manage/alert_config/alert_policies"},
-        {"label": "Alert Receivers", "path": "/manage/alert_config/alert_receivers"}
-      ],
-      "Certificate Management": [
-        {"label": "TLS Certificates", "path": "/manage/certificate_management/tls_certificate"},
-        {"label": "Root CA Certificates", "path": "/manage/certificate_management/root_ca_certificate"},
-        {"label": "Intermediate Certificate Chains", "path": "/manage/certificate_management/intermediate_certificate_chains"}
-      ]
-    },
-    "Security": {
-      "top_level": [
-        {"label": "App Firewall", "path": "/security/app_firewall"},
-        {"label": "Forward Proxy Policies", "path": "/security/forward_proxy_policies"},
-        {"label": "Rate Limiter Policies", "path": "/security/rate_limiter_policies"}
-      ],
-      "Service Policies": [
-        {"label": "Active Service Policies", "path": "/security/service_policies/active_service_policies"},
-        {"label": "Service Policies", "path": "/security/service_policies/service_policies"},
-        {"label": "Service Policy Rules", "path": "/security/service_policies/service_policy_rules"}
-      ],
-      "Shared Objects": [
-        {"label": "IP Prefix Sets", "path": "/security/shared_objects/ip_prefix_sets"},
-        {"label": "BGP ASN Sets", "path": "/security/shared_objects/bgp_asn_sets"},
-        {"label": "Rate Limiters", "path": "/security/shared_objects/rate_limiters"},
-        {"label": "User Identifications", "path": "/security/shared_objects/user_identification"},
-        {"label": "Malicious User Mitigation", "path": "/security/shared_objects/malicious_user_mitigation"},
-        {"label": "Waf Exclusion Policy", "path": "/security/shared_objects/waf_exclusion_policy"}
-      ],
-      "AI & ML": [
-        {"label": "App Settings", "path": "/security/ai_ml/app_settings"}
-      ],
-      "Secrets": [
-        {"label": "Secret Policies", "path": "/security/secrets/secret_policies"},
-        {"label": "Secret Policy Rules", "path": "/security/secrets/secret_policy_rules"}
-      ]
-    },
-    "Notifications": [
-      {"label": "Alerts", "path": "/notifications/alerts"},
-      {"label": "Audit Logs", "path": "/notifications/audit_logs"}
-    ]
-  }
+	"workspace": "multi-cloud-app-connect",
+	"discovered_at": "2026-06-17",
+	"namespace_scoped": true,
+	"route_count": 30,
+	"submenus": {
+		"Manage": {
+			"top_level": [
+				{ "label": "Virtual Sites", "path": "/manage/virtual_sites" },
+				{ "label": "Public IP Addresses", "path": "/manage/public_ip" },
+				{ "label": "Service Discoveries", "path": "/manage/discovery" },
+				{ "label": "Saved Filters", "path": "/manage/saved_filters" },
+				{ "label": "CDN Cache Rules", "path": "/manage/cdn_cache_rule" }
+			],
+			"Load Balancers": [
+				{
+					"label": "HTTP Load Balancers",
+					"path": "/manage/load_balancers/http_loadbalancers"
+				},
+				{
+					"label": "TCP Load Balancers",
+					"path": "/manage/load_balancers/tcp_loadbalancers"
+				},
+				{
+					"label": "HTTP Connect & DRPs",
+					"path": "/manage/load_balancers/proxy"
+				},
+				{
+					"label": "Origin Pools",
+					"path": "/manage/load_balancers/origin_pools"
+				},
+				{
+					"label": "Health Checks",
+					"path": "/manage/load_balancers/health_checks"
+				},
+				{
+					"label": "Certificate Revocation List",
+					"path": "/manage/load_balancers/crl"
+				}
+			],
+			"Virtual Host": [
+				{
+					"label": "Virtual Hosts",
+					"path": "/manage/virtual_host/virtual_hosts"
+				},
+				{ "label": "Routes", "path": "/manage/virtual_host/routes" },
+				{ "label": "Clusters", "path": "/manage/virtual_host/clusters" },
+				{ "label": "Endpoints", "path": "/manage/virtual_host/endpoints" },
+				{
+					"label": "Health Checks",
+					"path": "/manage/virtual_host/health_checks"
+				},
+				{
+					"label": "Advertise Policies",
+					"path": "/manage/virtual_host/advertise_policies"
+				}
+			],
+			"Alerts Management": [
+				{
+					"label": "Active Alert Policies",
+					"path": "/manage/alert_config/active_alert_policies"
+				},
+				{
+					"label": "Alert Policies",
+					"path": "/manage/alert_config/alert_policies"
+				},
+				{
+					"label": "Alert Receivers",
+					"path": "/manage/alert_config/alert_receivers"
+				}
+			],
+			"Certificate Management": [
+				{
+					"label": "TLS Certificates",
+					"path": "/manage/certificate_management/tls_certificate"
+				},
+				{
+					"label": "Root CA Certificates",
+					"path": "/manage/certificate_management/root_ca_certificate"
+				},
+				{
+					"label": "Intermediate Certificate Chains",
+					"path": "/manage/certificate_management/intermediate_certificate_chains"
+				}
+			]
+		},
+		"Security": {
+			"top_level": [
+				{ "label": "App Firewall", "path": "/security/app_firewall" },
+				{
+					"label": "Forward Proxy Policies",
+					"path": "/security/forward_proxy_policies"
+				},
+				{
+					"label": "Rate Limiter Policies",
+					"path": "/security/rate_limiter_policies"
+				}
+			],
+			"Service Policies": [
+				{
+					"label": "Active Service Policies",
+					"path": "/security/service_policies/active_service_policies"
+				},
+				{
+					"label": "Service Policies",
+					"path": "/security/service_policies/service_policies"
+				},
+				{
+					"label": "Service Policy Rules",
+					"path": "/security/service_policies/service_policy_rules"
+				}
+			],
+			"Shared Objects": [
+				{
+					"label": "IP Prefix Sets",
+					"path": "/security/shared_objects/ip_prefix_sets"
+				},
+				{
+					"label": "BGP ASN Sets",
+					"path": "/security/shared_objects/bgp_asn_sets"
+				},
+				{
+					"label": "Rate Limiters",
+					"path": "/security/shared_objects/rate_limiters"
+				},
+				{
+					"label": "User Identifications",
+					"path": "/security/shared_objects/user_identification"
+				},
+				{
+					"label": "Malicious User Mitigation",
+					"path": "/security/shared_objects/malicious_user_mitigation"
+				},
+				{
+					"label": "Waf Exclusion Policy",
+					"path": "/security/shared_objects/waf_exclusion_policy"
+				}
+			],
+			"AI & ML": [
+				{ "label": "App Settings", "path": "/security/ai_ml/app_settings" }
+			],
+			"Secrets": [
+				{
+					"label": "Secret Policies",
+					"path": "/security/secrets/secret_policies"
+				},
+				{
+					"label": "Secret Policy Rules",
+					"path": "/security/secrets/secret_policy_rules"
+				}
+			]
+		},
+		"Notifications": [
+			{ "label": "Alerts", "path": "/notifications/alerts" },
+			{ "label": "Audit Logs", "path": "/notifications/audit_logs" }
+		]
+	}
 }

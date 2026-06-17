@@ -1,78 +1,154 @@
 {
-  "workspace": "distributed-apps",
-  "discovered_at": "2026-06-17",
-  "namespace_scoped": true,
-  "route_count": 34,
-  "submenus": {
-    "Sites": [
-      {"label": "App Site Map", "path": "/sites/site_map"},
-      {"label": "App Site List", "path": "/sites/site_list"},
-      {"label": "App Traffic", "path": "/sites/app_traffic"}
-    ],
-    "Applications": [
-      {"label": "Virtual Sites", "path": "/applications/virtual_sites"},
-      {"label": "Virtual K8s", "path": "/applications/virtual_k8s"},
-      {"label": "Container Registries", "path": "/applications/container_registries"}
-    ],
-    "Mesh": [
-      {"label": "Service Mesh", "path": "/mesh/service_mesh"}
-    ],
-    "Load Balancers (overview)": [
-      {"label": "HTTP Load Balancers", "path": "/load_balancers/http"},
-      {"label": "TCP Load Balancers", "path": "/load_balancers/tcp"}
-    ],
-    "Manage": {
-      "top_level": [
-        {"label": "Virtual Sites", "path": "/manage/virtual_sites"},
-        {"label": "Rate Limiter Policies", "path": "/manage/rate_limiter_policies"},
-        {"label": "Saved Filters", "path": "/manage/saved_filters"},
-        {"label": "CDN Cache Rules", "path": "/manage/cdn_cache_rule"}
-      ],
-      "Load Balancers": [
-        {"label": "HTTP Load Balancers", "path": "/manage/load_balancers/http_loadbalancers"},
-        {"label": "TCP Load Balancers", "path": "/manage/load_balancers/tcp_loadbalancers"},
-        {"label": "Origin Pools", "path": "/manage/load_balancers/origin_pools"},
-        {"label": "Health Checks", "path": "/manage/load_balancers/health_checks"}
-      ],
-      "Alerts Management": [
-        {"label": "Active Alert Policies", "path": "/manage/alert_config/active_alert_policies"},
-        {"label": "Alert Policies", "path": "/manage/alert_config/alert_policies"},
-        {"label": "Alert Receivers", "path": "/manage/alert_config/alert_receivers"}
-      ],
-      "Service Policies": [
-        {"label": "Active Service Policies", "path": "/manage/service_policies/active_service_policies"},
-        {"label": "Service Policies", "path": "/manage/service_policies/service_policies"},
-        {"label": "Service Policy Rules", "path": "/manage/service_policies/service_policy_rules"}
-      ],
-      "vK8s Network Policies": [
-        {"label": "Active Network Policies", "path": "/manage/network_policies/active_network_policies"},
-        {"label": "Network Policies", "path": "/manage/network_policies/network_policies"},
-        {"label": "Network Policy Rules", "path": "/manage/network_policies/network_policy_rules"}
-      ],
-      "Shared Objects": [
-        {"label": "IP Prefix Sets", "path": "/manage/shared_objects/ip_prefix_sets"},
-        {"label": "BGP ASN Sets", "path": "/manage/shared_objects/bgp_asn_sets"},
-        {"label": "Rate Limiters", "path": "/manage/shared_objects/rate_limiters"},
-        {"label": "User Identifications", "path": "/manage/shared_objects/user_identification"},
-        {"label": "Malicious User Mitigation", "path": "/manage/shared_objects/malicious_user_mitigation"},
-        {"label": "Waf Exclusion Policy", "path": "/manage/shared_objects/waf_exclusion_policy"}
-      ],
-      "AI & ML": [
-        {"label": "App Settings", "path": "/manage/ai_ml/app_settings"}
-      ],
-      "Secrets": [
-        {"label": "Secret Policies", "path": "/manage/secrets/secret_policies"},
-        {"label": "Secret Policy Rules", "path": "/manage/secrets/secret_policy_rules"}
-      ],
-      "Certificate Management": [
-        {"label": "TLS Certificates", "path": "/manage/certificate_management/tls_certificate"},
-        {"label": "Root CA Certificates", "path": "/manage/certificate_management/root_ca_certificate"},
-        {"label": "Intermediate Certificate Chains", "path": "/manage/certificate_management/intermediate_certificate_chains"}
-      ]
-    },
-    "Notifications": [
-      {"label": "Alerts", "path": "/notifications/alerts"},
-      {"label": "Audit Logs", "path": "/notifications/audit_logs"}
-    ]
-  }
+	"workspace": "distributed-apps",
+	"discovered_at": "2026-06-17",
+	"namespace_scoped": true,
+	"route_count": 34,
+	"submenus": {
+		"Sites": [
+			{ "label": "App Site Map", "path": "/sites/site_map" },
+			{ "label": "App Site List", "path": "/sites/site_list" },
+			{ "label": "App Traffic", "path": "/sites/app_traffic" }
+		],
+		"Applications": [
+			{ "label": "Virtual Sites", "path": "/applications/virtual_sites" },
+			{ "label": "Virtual K8s", "path": "/applications/virtual_k8s" },
+			{
+				"label": "Container Registries",
+				"path": "/applications/container_registries"
+			}
+		],
+		"Mesh": [{ "label": "Service Mesh", "path": "/mesh/service_mesh" }],
+		"Load Balancers (overview)": [
+			{ "label": "HTTP Load Balancers", "path": "/load_balancers/http" },
+			{ "label": "TCP Load Balancers", "path": "/load_balancers/tcp" }
+		],
+		"Manage": {
+			"top_level": [
+				{ "label": "Virtual Sites", "path": "/manage/virtual_sites" },
+				{
+					"label": "Rate Limiter Policies",
+					"path": "/manage/rate_limiter_policies"
+				},
+				{ "label": "Saved Filters", "path": "/manage/saved_filters" },
+				{ "label": "CDN Cache Rules", "path": "/manage/cdn_cache_rule" }
+			],
+			"Load Balancers": [
+				{
+					"label": "HTTP Load Balancers",
+					"path": "/manage/load_balancers/http_loadbalancers"
+				},
+				{
+					"label": "TCP Load Balancers",
+					"path": "/manage/load_balancers/tcp_loadbalancers"
+				},
+				{
+					"label": "Origin Pools",
+					"path": "/manage/load_balancers/origin_pools"
+				},
+				{
+					"label": "Health Checks",
+					"path": "/manage/load_balancers/health_checks"
+				}
+			],
+			"Alerts Management": [
+				{
+					"label": "Active Alert Policies",
+					"path": "/manage/alert_config/active_alert_policies"
+				},
+				{
+					"label": "Alert Policies",
+					"path": "/manage/alert_config/alert_policies"
+				},
+				{
+					"label": "Alert Receivers",
+					"path": "/manage/alert_config/alert_receivers"
+				}
+			],
+			"Service Policies": [
+				{
+					"label": "Active Service Policies",
+					"path": "/manage/service_policies/active_service_policies"
+				},
+				{
+					"label": "Service Policies",
+					"path": "/manage/service_policies/service_policies"
+				},
+				{
+					"label": "Service Policy Rules",
+					"path": "/manage/service_policies/service_policy_rules"
+				}
+			],
+			"vK8s Network Policies": [
+				{
+					"label": "Active Network Policies",
+					"path": "/manage/network_policies/active_network_policies"
+				},
+				{
+					"label": "Network Policies",
+					"path": "/manage/network_policies/network_policies"
+				},
+				{
+					"label": "Network Policy Rules",
+					"path": "/manage/network_policies/network_policy_rules"
+				}
+			],
+			"Shared Objects": [
+				{
+					"label": "IP Prefix Sets",
+					"path": "/manage/shared_objects/ip_prefix_sets"
+				},
+				{
+					"label": "BGP ASN Sets",
+					"path": "/manage/shared_objects/bgp_asn_sets"
+				},
+				{
+					"label": "Rate Limiters",
+					"path": "/manage/shared_objects/rate_limiters"
+				},
+				{
+					"label": "User Identifications",
+					"path": "/manage/shared_objects/user_identification"
+				},
+				{
+					"label": "Malicious User Mitigation",
+					"path": "/manage/shared_objects/malicious_user_mitigation"
+				},
+				{
+					"label": "Waf Exclusion Policy",
+					"path": "/manage/shared_objects/waf_exclusion_policy"
+				}
+			],
+			"AI & ML": [
+				{ "label": "App Settings", "path": "/manage/ai_ml/app_settings" }
+			],
+			"Secrets": [
+				{
+					"label": "Secret Policies",
+					"path": "/manage/secrets/secret_policies"
+				},
+				{
+					"label": "Secret Policy Rules",
+					"path": "/manage/secrets/secret_policy_rules"
+				}
+			],
+			"Certificate Management": [
+				{
+					"label": "TLS Certificates",
+					"path": "/manage/certificate_management/tls_certificate"
+				},
+				{
+					"label": "Root CA Certificates",
+					"path": "/manage/certificate_management/root_ca_certificate"
+				},
+				{
+					"label": "Intermediate Certificate Chains",
+					"path": "/manage/certificate_management/intermediate_certificate_chains"
+				}
+			]
+		},
+		"Notifications": [
+			{ "label": "Alerts", "path": "/notifications/alerts" },
+			{ "label": "Audit Logs", "path": "/notifications/audit_logs" }
+		]
+	}
 }

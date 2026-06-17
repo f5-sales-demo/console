@@ -1,0 +1,31 @@
+resource: public_ip
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/public_ip
+namespace_scoped: true
+add_action: tab "Add Public IP"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Public IP
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+summary:
+  section_count: 1
+  field_count: 3
+  note: "Simple metadata-only form. Public IP is a named resource used for VIP allocation."

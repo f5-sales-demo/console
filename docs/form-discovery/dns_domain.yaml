@@ -1,0 +1,50 @@
+resource: dns_domain
+workspace: dns-management
+route: /manage/dns_domain
+namespace_scoped: false
+console_label: "Delegated Domain Management"
+add_action: tab "Add Delegated Domain"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Delegated domain
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Domain Name
+        widget: textbox
+        required: true
+        note: "Field is 'Domain Name' not 'Name' — unique to this resource"
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: domain-configuration
+    label: Domain Configuration
+    fields:
+      - name: Domain Method
+        widget: listbox
+        required: true
+        default: "Managed by Distributed Cloud"
+        note: "Options: Managed by Distributed Cloud, Not Managed by Distributed Cloud"
+
+  - id: dnssec-mode
+    label: DNSSEC Mode
+    fields:
+      - name: DNSSEC Mode
+        widget: listbox
+        note: "Options: DNSSEC Disabled, DNSSEC Enabled"
+
+summary:
+  section_count: 3
+  field_count: 5
+  listbox_count: 2
+  note: "Simple domain delegation form. Domain Name field instead of Name."

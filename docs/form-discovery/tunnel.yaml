@@ -1,0 +1,80 @@
+resource: tunnel
+workspace: multi-cloud-network-connect
+route: /manage/networking/legacy_network_configuration/tunnels
+namespace_scoped: false
+add_action: tab "Add Tunnel"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Tunnel
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: tunnel-type
+    label: Tunnel Type
+    fields:
+      - name: Tunnel Type
+        widget: listbox
+        required: true
+        note: "Select tunnel encapsulation type (e.g., IPsec, GRE)"
+
+  - id: local-ip-address
+    label: Local IP Address selector
+    fields:
+      - name: Type
+        widget: listbox
+        default: "Local Interface"
+        note: "Options: Local Interface, Local IP Address"
+      - name: Local Interface
+        widget: listbox
+        type: resource-selector
+        note: "Select the local network interface for tunnel endpoint"
+
+  - id: remote-ip-address
+    label: Remote IP Address Selector
+    fields:
+      - name: Type
+        widget: listbox
+        default: "Remote IP address"
+        note: "Options: Remote IP address, Remote Interface"
+      - name: Version
+        widget: listbox
+        default: "IPv4 Address"
+      - name: IPv4 Address
+        widget: textbox
+
+  - id: tunnel-parameters
+    label: Tunnel Parameters
+    fields:
+      - name: Type
+        widget: listbox
+        default: "IPSEC parameters"
+        note: "Options: IPSEC parameters, GRE parameters"
+      - name: Ipsec PSK
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Pre-shared key for IPsec tunnel authentication"
+
+summary:
+  section_count: 5
+  field_count: 10
+  listbox_count: 5
+  textbox_count: 3
+  configure_link_count: 1
+  note: "Legacy tunnel configuration for IPsec/GRE tunnels with local/remote IP endpoints."

@@ -1,0 +1,44 @@
+resource: segment_connection
+workspace: multi-cloud-network-connect
+route: /manage/networking/network_configuration/segment_connection
+namespace_scoped: false
+add_action: tab "Manage Segment Connections"
+discovered_at: "2026-06-17"
+note: >
+  Singleton resource — opens as Edit form for pre-existing "default-segment-connection".
+  No "Add" action; the resource always exists and can only be modified.
+  Save button is "Save Segment connection" not "Add".
+
+form_pattern: singleton-edit
+footer_buttons:
+  - Cancel All
+  - Save Segment connection
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        disabled: true
+        note: "Pre-populated with 'default-segment-connection', not editable"
+      - name: Description
+        widget: textbox
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+
+  - id: segment-connectors
+    label: Segment Connectors
+    fields:
+      - name: Segment Connectors
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Each item defines a connection between source and destination segments"
+
+summary:
+  section_count: 2
+  field_count: 4
+  table_count: 1
+  form_pattern: singleton-edit

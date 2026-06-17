@@ -1,0 +1,40 @@
+resource: geo_location_set
+workspace: dns-management
+route: /manage/dns_lb_management/geo_location_set
+namespace_scoped: false
+add_action: tab "Add Geo-Location Set"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Geo-Location Set
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: geolocation-label-selector
+    label: Geolocation Label Selector
+    fields:
+      - name: Geolocation Label Selector
+        widget: listbox
+        required: true
+        default: "Global Geolocation"
+        note: "Options: Global Geolocation, Custom Geo-Location Set (with country/region selections)"
+
+summary:
+  section_count: 2
+  field_count: 4
+  listbox_count: 1

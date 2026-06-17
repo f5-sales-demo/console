@@ -1,0 +1,49 @@
+resource: cloud_elastic_ip
+workspace: multi-cloud-network-connect
+route: /manage/networking/network_configuration/cloud_elastic_ip
+namespace_scoped: false
+add_action: tab "Add Cloud Elastic IP"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Cloud elastic IP
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: site-reference
+    label: Site Reference
+    fields:
+      - name: Site Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "Select the cloud site where elastic IPs will be provisioned"
+
+  - id: elastic-ip-count
+    label: Elastic IP Count Per Node
+    fields:
+      - name: Elastic IP Count Per Node
+        widget: spinbutton
+        default: 0
+
+summary:
+  section_count: 3
+  field_count: 5
+  listbox_count: 1
+  spinbutton_count: 1
+  note: "Simple form for provisioning elastic IPs on cloud sites for NAT policy use."

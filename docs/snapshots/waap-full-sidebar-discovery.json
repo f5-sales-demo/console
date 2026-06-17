@@ -1,63 +1,168 @@
 {
-  "workspace": "web-app-and-api-protection",
-  "discovered_at": "2026-06-16",
-  "method": "a11y-tree submenu expansion",
-  "top_level": [
-    {"label": "BIG-IP Virtual Servers", "path": "/namespaces/{namespace}/manage/bigip_virtual_server"},
-    {"label": "Third-Party Applications", "path": "/namespaces/{namespace}/manage/third_party_application"},
-    {"label": "App Firewall", "path": "/namespaces/{namespace}/manage/app_firewall"},
-    {"label": "Rate Limiter Policies", "path": "/namespaces/{namespace}/manage/rate_limiter_policies"},
-    {"label": "Public IP Addresses", "path": "/namespaces/{namespace}/manage/public_ip"},
-    {"label": "Saved Filters", "path": "/namespaces/{namespace}/manage/saved_filters"}
-  ],
-  "submenus": {
-    "Load Balancers": [
-      {"label": "HTTP Load Balancers", "path": "/namespaces/{namespace}/manage/load_balancers/http_loadbalancers"},
-      {"label": "Origin Pools", "path": "/namespaces/{namespace}/manage/load_balancers/origin_pools"},
-      {"label": "Health Checks", "path": "/namespaces/{namespace}/manage/load_balancers/health_checks"}
-    ],
-    "CDN": [
-      {"label": "CDN Distributions", "path": "/namespaces/{namespace}/manage/cdn/distributions"},
-      {"label": "CDN Cache Rules", "path": "/namespaces/{namespace}/manage/cdn/cdn_cache_rule"}
-    ],
-    "Service Policies": [
-      {"label": "Active Service Policies", "path": "/namespaces/{namespace}/manage/service_policies/active_service_policies"},
-      {"label": "Service Policies", "path": "/namespaces/{namespace}/manage/service_policies/service_policies"},
-      {"label": "Service Policy Rules", "path": "/namespaces/{namespace}/manage/service_policies/service_policy_rules"}
-    ],
-    "Shared Objects": [
-      {"label": "IP Prefix Sets", "path": "/namespaces/{namespace}/manage/shared_objects/ip_prefix_sets"},
-      {"label": "BGP ASN Sets", "path": "/namespaces/{namespace}/manage/shared_objects/bgp_asn_sets"},
-      {"label": "Rate Limiters", "path": "/namespaces/{namespace}/manage/shared_objects/rate_limiters"},
-      {"label": "User Identifications", "path": "/namespaces/{namespace}/manage/shared_objects/user_identification"},
-      {"label": "Waf Exclusion Policy", "path": "/namespaces/{namespace}/manage/shared_objects/waf_exclusion_policy"},
-      {"label": "Malicious User Mitigation", "path": "/namespaces/{namespace}/manage/shared_objects/malicious_user_mitigation"},
-      {"label": "Authorization Server", "path": "/namespaces/{namespace}/manage/shared_objects/authorization_server"}
-    ],
-    "AI & ML": [
-      {"label": "App Settings", "path": "/namespaces/{namespace}/manage/ai_ml/app_settings"}
-    ],
-    "Alerts Management": [
-      {"label": "Active Alert Policies", "path": "/namespaces/{namespace}/manage/alert_config/active_alert_policies"},
-      {"label": "Alert Policies", "path": "/namespaces/{namespace}/manage/alert_config/alert_policies"},
-      {"label": "Alert Receivers", "path": "/namespaces/{namespace}/manage/alert_config/alert_receivers"}
-    ],
-    "Files": [
-      {"label": "OpenAPI Files", "path": "/namespaces/{namespace}/manage/files/openapi"}
-    ],
-    "API Security": [
-      {"label": "API Definition", "path": "/namespaces/{namespace}/manage/api_security/api_definition"},
-      {"label": "API Discovery Policies", "path": "/namespaces/{namespace}/manage/api_security/api_discovery"},
-      {"label": "Code Base Integration", "path": "/namespaces/{namespace}/manage/api_security/code_base_integration"},
-      {"label": "Sensitive Data Discovery", "path": "/namespaces/{namespace}/manage/api_security/sensitive_data_policy"},
-      {"label": "Data Types", "path": "/namespaces/{namespace}/manage/api_security/data_type"},
-      {"label": "API Groups", "path": "/namespaces/{namespace}/manage/api_security/api_groups"}
-    ],
-    "Certificate Management": [
-      {"label": "TLS Certificates", "path": "/namespaces/{namespace}/manage/certificate_management/tls_certificate"},
-      {"label": "Root CA Certificates", "path": "/namespaces/{namespace}/manage/certificate_management/root_ca_certificate"},
-      {"label": "Intermediate Certificate Chains", "path": "/namespaces/{namespace}/manage/certificate_management/intermediate_certificate_chains"}
-    ]
-  },
-  "total_unique_routes": 33
+	"workspace": "web-app-and-api-protection",
+	"discovered_at": "2026-06-16",
+	"method": "a11y-tree submenu expansion",
+	"top_level": [
+		{
+			"label": "BIG-IP Virtual Servers",
+			"path": "/namespaces/{namespace}/manage/bigip_virtual_server"
+		},
+		{
+			"label": "Third-Party Applications",
+			"path": "/namespaces/{namespace}/manage/third_party_application"
+		},
+		{
+			"label": "App Firewall",
+			"path": "/namespaces/{namespace}/manage/app_firewall"
+		},
+		{
+			"label": "Rate Limiter Policies",
+			"path": "/namespaces/{namespace}/manage/rate_limiter_policies"
+		},
+		{
+			"label": "Public IP Addresses",
+			"path": "/namespaces/{namespace}/manage/public_ip"
+		},
+		{
+			"label": "Saved Filters",
+			"path": "/namespaces/{namespace}/manage/saved_filters"
+		}
+	],
+	"submenus": {
+		"Load Balancers": [
+			{
+				"label": "HTTP Load Balancers",
+				"path": "/namespaces/{namespace}/manage/load_balancers/http_loadbalancers"
+			},
+			{
+				"label": "Origin Pools",
+				"path": "/namespaces/{namespace}/manage/load_balancers/origin_pools"
+			},
+			{
+				"label": "Health Checks",
+				"path": "/namespaces/{namespace}/manage/load_balancers/health_checks"
+			}
+		],
+		"CDN": [
+			{
+				"label": "CDN Distributions",
+				"path": "/namespaces/{namespace}/manage/cdn/distributions"
+			},
+			{
+				"label": "CDN Cache Rules",
+				"path": "/namespaces/{namespace}/manage/cdn/cdn_cache_rule"
+			}
+		],
+		"Service Policies": [
+			{
+				"label": "Active Service Policies",
+				"path": "/namespaces/{namespace}/manage/service_policies/active_service_policies"
+			},
+			{
+				"label": "Service Policies",
+				"path": "/namespaces/{namespace}/manage/service_policies/service_policies"
+			},
+			{
+				"label": "Service Policy Rules",
+				"path": "/namespaces/{namespace}/manage/service_policies/service_policy_rules"
+			}
+		],
+		"Shared Objects": [
+			{
+				"label": "IP Prefix Sets",
+				"path": "/namespaces/{namespace}/manage/shared_objects/ip_prefix_sets"
+			},
+			{
+				"label": "BGP ASN Sets",
+				"path": "/namespaces/{namespace}/manage/shared_objects/bgp_asn_sets"
+			},
+			{
+				"label": "Rate Limiters",
+				"path": "/namespaces/{namespace}/manage/shared_objects/rate_limiters"
+			},
+			{
+				"label": "User Identifications",
+				"path": "/namespaces/{namespace}/manage/shared_objects/user_identification"
+			},
+			{
+				"label": "Waf Exclusion Policy",
+				"path": "/namespaces/{namespace}/manage/shared_objects/waf_exclusion_policy"
+			},
+			{
+				"label": "Malicious User Mitigation",
+				"path": "/namespaces/{namespace}/manage/shared_objects/malicious_user_mitigation"
+			},
+			{
+				"label": "Authorization Server",
+				"path": "/namespaces/{namespace}/manage/shared_objects/authorization_server"
+			}
+		],
+		"AI & ML": [
+			{
+				"label": "App Settings",
+				"path": "/namespaces/{namespace}/manage/ai_ml/app_settings"
+			}
+		],
+		"Alerts Management": [
+			{
+				"label": "Active Alert Policies",
+				"path": "/namespaces/{namespace}/manage/alert_config/active_alert_policies"
+			},
+			{
+				"label": "Alert Policies",
+				"path": "/namespaces/{namespace}/manage/alert_config/alert_policies"
+			},
+			{
+				"label": "Alert Receivers",
+				"path": "/namespaces/{namespace}/manage/alert_config/alert_receivers"
+			}
+		],
+		"Files": [
+			{
+				"label": "OpenAPI Files",
+				"path": "/namespaces/{namespace}/manage/files/openapi"
+			}
+		],
+		"API Security": [
+			{
+				"label": "API Definition",
+				"path": "/namespaces/{namespace}/manage/api_security/api_definition"
+			},
+			{
+				"label": "API Discovery Policies",
+				"path": "/namespaces/{namespace}/manage/api_security/api_discovery"
+			},
+			{
+				"label": "Code Base Integration",
+				"path": "/namespaces/{namespace}/manage/api_security/code_base_integration"
+			},
+			{
+				"label": "Sensitive Data Discovery",
+				"path": "/namespaces/{namespace}/manage/api_security/sensitive_data_policy"
+			},
+			{
+				"label": "Data Types",
+				"path": "/namespaces/{namespace}/manage/api_security/data_type"
+			},
+			{
+				"label": "API Groups",
+				"path": "/namespaces/{namespace}/manage/api_security/api_groups"
+			}
+		],
+		"Certificate Management": [
+			{
+				"label": "TLS Certificates",
+				"path": "/namespaces/{namespace}/manage/certificate_management/tls_certificate"
+			},
+			{
+				"label": "Root CA Certificates",
+				"path": "/namespaces/{namespace}/manage/certificate_management/root_ca_certificate"
+			},
+			{
+				"label": "Intermediate Certificate Chains",
+				"path": "/namespaces/{namespace}/manage/certificate_management/intermediate_certificate_chains"
+			}
+		]
+	},
+	"total_unique_routes": 33
 }

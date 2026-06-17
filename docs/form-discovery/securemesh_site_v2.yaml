@@ -1,0 +1,85 @@
+resource: securemesh_site_v2
+workspace: multi-cloud-network-connect
+route: /manage/site_management/cloud_sites/securemesh_site_v2
+namespace_scoped: false
+add_action: tab "Add Secure Mesh Site"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Secure Mesh Site
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: provider
+    label: Provider
+    fields:
+      - name: Provider Name
+        widget: listbox
+        required: true
+        default: "VMWare"
+        note: "Options: VMWare, KVM, Nutanix, Baremetal (Hardware), plus others. Form behavior changes based on selection."
+      - name: Orchestration Mode
+        widget: listbox
+        default: "Not Managed By F5XC"
+        note: "Options: Not Managed By F5XC, Managed By F5XC. When managed, additional orchestration fields appear."
+      - name: Nodes
+        widget: info-text
+        note: "Nodes are added via external provider consoles and auto-discovered. Not a user-editable field."
+      - name: High Availability
+        widget: listbox
+        default: "Disable"
+        note: "Options: Disable, Enable (requires 3 nodes)"
+
+  - id: regional-edge
+    label: Regional Edge
+    optional: true
+    note: "Empty by default — shows fields when Provider/Orchestration settings require regional edge connectivity"
+
+  - id: site-networking
+    label: Site Networking
+    optional: true
+    note: "Empty by default — network configuration appears when orchestration is managed or specific provider features are selected"
+
+  - id: site-to-site-connectivity
+    label: Site To Site Connectivity
+    optional: true
+    note: "Empty by default — site-to-site connectivity options appear based on provider/networking selections"
+
+  - id: network-security
+    label: Network Security
+    optional: true
+    note: "Empty by default — firewall and security policy options"
+
+  - id: services-and-resources
+    label: Services & Resources
+    optional: true
+    note: "Empty by default — service configuration and resource allocation"
+
+  - id: site-management
+    label: Site Management
+    optional: true
+    note: "Empty by default — upgrade, maintenance, and lifecycle management"
+
+summary:
+  section_count: 8
+  field_count: 7
+  listbox_count: 3
+  textbox_count: 2
+  label_adder_count: 1
+  optional_empty_sections: 6
+  note: "Secure Mesh Site v2 has 8 sections but 6 are empty by default with 'Optional' note. Sections populate dynamically based on Provider Name and Orchestration Mode. Default VMWare + Not Managed By F5XC shows minimal form — nodes auto-discovered externally."

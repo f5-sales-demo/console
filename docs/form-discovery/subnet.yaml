@@ -1,0 +1,50 @@
+resource: subnet
+workspace: multi-cloud-network-connect
+route: /manage/networking/legacy_network_configuration/subnets
+namespace_scoped: false
+add_action: tab "Add Subnet"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Subnet
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: site-subnet-parameters
+    label: Site Subnet Parameters
+    fields:
+      - name: Site Subnet Parameters
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form for subnet CIDR, site selection, and interface assignment"
+
+  - id: network-connection-type
+    label: Network Connection Type
+    fields:
+      - name: Network Connection Type
+        widget: listbox
+        default: "Not Connected to Other Network"
+        note: "Options: Not Connected, Connected to Virtual Network"
+
+summary:
+  section_count: 3
+  field_count: 5
+  listbox_count: 1
+  configure_link_count: 1

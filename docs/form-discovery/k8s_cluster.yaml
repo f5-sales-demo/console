@@ -1,0 +1,15 @@
+resource: k8s_cluster
+workspace: distributed-apps
+route: /namespaces/{namespace}/manage/virtual_k8s/k8s_clusters
+namespace_scoped: true
+add_action: none
+discovered_at: "2026-06-17"
+form_pattern: no-console-page
+note: >
+  K8s Clusters route returns 404 in Distributed Apps workspace. No "K8s Clusters"
+  link appears in any sidebar submenu. The resource may be accessed through MCN
+  workspace site management or may be API-only in the current console version.
+
+summary:
+  form_pattern: no-console-page
+  note: "Route not found in Distributed Apps. May be MCN-only or API-only."

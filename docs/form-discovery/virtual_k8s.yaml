@@ -1,0 +1,58 @@
+resource: virtual_k8s
+workspace: distributed-apps
+route: /namespaces/{namespace}/applications/virtual_k8s
+namespace_scoped: true
+add_action: tab "Add Virtual K8s"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Virtual K8s
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: virtual-sites
+    label: Virtual Sites
+    fields:
+      - name: Virtual Sites
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Select virtual sites where the vK8s cluster will run"
+
+  - id: service-isolation
+    label: Choose Service Isolation
+    fields:
+      - name: Choose Service Isolation
+        widget: listbox
+        default: "Disabled"
+        note: "Options: Disabled, Enabled (isolates services within vK8s)"
+
+  - id: default-workload-flavor
+    label: Default Workload Flavor
+    fields:
+      - name: Default Workload Flavor
+        widget: listbox
+        type: resource-selector
+        note: "Select a workload flavor for default resource limits"
+
+summary:
+  section_count: 4
+  field_count: 6
+  listbox_count: 2
+  table_count: 1
+  note: "Virtual Kubernetes cluster. Simple form — vSite selection, isolation, and workload flavor."

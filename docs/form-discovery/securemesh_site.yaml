@@ -1,0 +1,140 @@
+resource: securemesh_site
+workspace: multi-cloud-network-connect
+route: /manage/site_management/legacy_configs/securemesh_site
+namespace_scoped: false
+add_action: tab "Add Secure Mesh Site"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Secure Mesh Site
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Namespace
+        widget: textbox
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Annotations
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: Description
+        widget: textbox
+      - name: Disable
+        widget: checkbox
+
+  - id: basic-configuration
+    label: Basic Configuration
+    fields:
+      - name: Generic Server Certified Hardware
+        widget: listbox
+        required: true
+        default: "isv-8000-series-voltmesh"
+        note: "Certified hardware model selection"
+      - name: Master Nodes
+        widget: table
+        required: true
+        items: 1
+        columns:
+          - Name (textbox)
+          - Public IP (textbox)
+        add_action: Add Item
+      - name: Worker Nodes
+        widget: table
+        items: 0
+        columns:
+          - Order
+          - Worker Nodes
+        add_action: Add Item
+      - name: Geographical Address
+        widget: textbox
+      - name: Latitude
+        widget: textbox
+        default: "0"
+      - name: Longitude
+        widget: textbox
+        default: "0"
+
+  - id: bond-configuration
+    label: Bond Configuration
+    fields:
+      - name: Bond Configuration
+        widget: listbox
+        required: true
+        default: "No Bond Devices"
+        note: "Options: No Bond Devices, Bond Device List"
+
+  - id: network-configuration
+    label: Network Configuration
+    fields:
+      - name: Configure Networking
+        widget: listbox
+        required: true
+        default: "Default Network Configuration"
+        note: "Options: Default Network Configuration, Custom Network Configuration (opens nested form)"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    fields:
+      - name: Logs Streaming
+        widget: listbox
+        required: true
+        default: "Disable Logs Streaming"
+      - name: F5XC Software Version
+        widget: listbox
+        required: true
+        default: "Latest SW Version"
+      - name: Operating System Version
+        widget: listbox
+        required: true
+        default: "Latest OS Version"
+      - name: Node by Node Upgrade
+        widget: listbox
+        required: true
+        default: "Enable"
+      - name: Upgrade Wait Time
+        widget: spinbutton
+        required: true
+        default: 300
+      - name: Node Batch Size
+        widget: listbox
+        required: true
+        default: "Node Batch Size Count"
+      - name: Node Batch Size Count
+        widget: spinbutton
+        required: true
+        default: 1
+      - name: Blocked Services
+        widget: listbox
+        required: true
+        default: "Default Blocked Service Configuration"
+      - name: Offline Survivability Mode
+        widget: listbox
+        required: true
+        default: "Disabled"
+      - name: Performance Mode
+        widget: listbox
+        required: true
+        default: "L7 Enhanced"
+
+summary:
+  section_count: 5
+  field_count: 22
+  listbox_count: 11
+  textbox_count: 6
+  spinbutton_count: 2
+  table_count: 2
+  checkbox_count: 1
+  configure_link_count: 1
+  label_adder_count: 1
+  note: "Legacy Secure Mesh Site form. Hardware-based site with Master/Worker node tables. Similar advanced section to other site types (software version, upgrade, blocked services)."

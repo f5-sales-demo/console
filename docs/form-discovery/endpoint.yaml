@@ -1,0 +1,69 @@
+resource: endpoint
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/virtual_host/endpoints
+namespace_scoped: true
+add_action: tab "Add Endpoint"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Endpoint
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: origin-server
+    label: Origin Server(Endpoint)
+    has_advanced_toggle: true
+    fields:
+      - name: Endpoint Specifier
+        widget: listbox
+        default: "Endpoint IP Address"
+        note: "Options: Endpoint IP Address, DNS Name, Service Name, Custom Endpoint"
+      - name: Endpoint IP Address
+        widget: textbox
+        note: "Conditional — shown when Endpoint Specifier is 'Endpoint IP Address'"
+      - name: Protocol
+        widget: listbox
+        default: "TCP"
+      - name: Port
+        widget: spinbutton
+        default: 0
+      - name: Virtual-Site or Site or Network
+        widget: listbox
+        required: true
+        default: "Virtual Site"
+      - name: Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+      - name: Network Type
+        widget: listbox
+
+  - id: snat-pool
+    label: SNAT Pool
+    fields:
+      - name: Select SNAT Pool Choice
+        widget: listbox
+
+summary:
+  section_count: 3
+  field_count: 11
+  listbox_count: 7
+  spinbutton_count: 1
+  textbox_count: 3
+  has_advanced_toggle: true
+  note: "Legacy endpoint (origin server equivalent). Defines an origin with IP/DNS, protocol, port, and site placement."

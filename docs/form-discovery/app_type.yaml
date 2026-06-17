@@ -1,0 +1,53 @@
+resource: app_type
+workspace: shared-configuration
+route: /security/ai_ml/app_types
+namespace_scoped: false
+add_action: tab "Add App Type"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add App Type
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: features
+    label: Features
+    fields:
+      - name: AI/ML Feature Type
+        widget: table
+        required: true
+        items: 0
+        add_action: Add Item
+        note: "Each item defines an AI/ML feature (e.g., API Discovery, Malicious User Detection)"
+
+  - id: api-discovery-settings
+    label: API Discovery Settings
+    fields:
+      - name: Learn from Traffic with Redirect Response
+        widget: listbox
+        default: "Disable"
+      - name: Purge Duration for Inactive Discovered APIs from Traffic (d)
+        widget: spinbutton
+        default: 2
+
+summary:
+  section_count: 3
+  field_count: 6
+  listbox_count: 1
+  spinbutton_count: 1
+  table_count: 1

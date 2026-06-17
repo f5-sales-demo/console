@@ -1,0 +1,101 @@
+resource: discovery
+workspace: shared-configuration
+route: /manage/discovery
+namespace_scoped: false
+console_label: "Service Discoveries"
+add_action: tab "Add K8s Service Discovery"
+discovered_at: "2026-06-17"
+note: >
+  Service Discoveries page has sub-tabs: K8s, Consul, BIG-IP, Third-Party (EA).
+  Each sub-tab has its own Add form. This documents the K8s form.
+
+page_sub_tabs:
+  - K8s
+  - Consul
+  - BIG-IP
+  - Third-Party (EA)
+
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add K8s Service Discovery
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: where
+    label: Where
+    has_advanced_toggle: true
+    fields:
+      - name: Virtual-Site or Site or Network
+        widget: listbox
+        required: true
+        default: "Virtual Site"
+      - name: Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+      - name: Network Type
+        widget: listbox
+
+  - id: discovery-configuration
+    label: Discovery Configuration
+    fields:
+      - name: Select Kubernetes Credentials
+        widget: listbox
+        required: true
+        default: "Kubeconfig"
+      - name: Kubeconfig
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+      - name: Kubernetes POD network reachability
+        widget: listbox
+        required: true
+        default: "Kubernetes POD is isolated"
+      - name: Select VIP Publishing or DNS Delegation
+        widget: listbox
+        required: true
+        default: "Disable VIP Publishing and DNS Delegation"
+      - name: Mapping Preference
+        widget: listbox
+        required: true
+        default: "Custom"
+      - name: Regex Matching
+        widget: table
+        required: true
+        items: 1
+        columns:
+          - K8S Namespaces (textbox)
+          - F5XC Application Namespaces (listbox)
+
+  - id: discovery-cluster-identifier
+    label: Discovery Cluster Identifier
+    fields:
+      - name: Select Discovery Cluster Identifier
+        widget: listbox
+        required: true
+        default: "No cluster identifier"
+
+summary:
+  section_count: 4
+  field_count: 13
+  listbox_count: 8
+  configure_link_count: 1
+  table_count: 1
+  has_advanced_toggle: true
+  note: "K8s Service Discovery form. Page has K8s/Consul/BIG-IP/Third-Party sub-tabs — each type has different form fields."

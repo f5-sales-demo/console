@@ -1,0 +1,92 @@
+resource: proxy
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/load_balancers/proxy
+namespace_scoped: true
+console_label: "HTTP Connect & DRPs"
+add_action: tab "Add HTTP Connect & DRP"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add HTTP Connect & DRP
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: proxy-type
+    label: Proxy Type
+    has_advanced_toggle: true
+    fields:
+      - name: HTTP Connect Proxy or Dynamic Reverse Proxy
+        widget: listbox
+        required: true
+        default: "HTTP Connect Proxy"
+        note: "Options: HTTP Connect Proxy, Dynamic Reverse Proxy"
+      - name: HTTP Connect
+        widget: listbox
+        required: true
+        default: "HTTP Connect"
+        note: "Options: HTTP Connect, HTTP Connect with TLS"
+
+  - id: sites-or-virtual-sites
+    label: Sites or Virtual Sites
+    has_advanced_toggle: true
+    fields:
+      - name: Select Sites for Proxy
+        widget: listbox
+        required: true
+        default: "Site or Virtual Site"
+      - name: Site or Virtual Site
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+
+  - id: upstream-network
+    label: Upstream Network
+    fields:
+      - name: Select Upstream Network
+        widget: listbox
+        required: true
+        default: "Site Local Network (Outside)"
+        note: "Options: Site Local Network (Outside), Site Local Network (Inside), Segment Network"
+
+  - id: proxy-policy
+    label: Proxy Policy
+    fields:
+      - name: TLS Interception choice
+        widget: listbox
+        required: true
+        default: "No TLS Interception"
+        note: "Options: No TLS Interception, TLS Interception"
+      - name: Manage Proxy Policy
+        widget: listbox
+        required: true
+        default: "Disable Proxy Policy"
+        note: "Options: Disable Proxy Policy, Enable Proxy Policy (with policy selector)"
+
+  - id: advanced-options
+    label: Advanced Options
+    has_advanced_toggle: true
+    note: "Advanced fields hidden by default"
+
+summary:
+  section_count: 6
+  field_count: 10
+  listbox_count: 6
+  configure_link_count: 1
+  has_advanced_toggle: true
+  note: "HTTP Connect Proxy / Dynamic Reverse Proxy. Deployed to sites for forward proxy use cases."
