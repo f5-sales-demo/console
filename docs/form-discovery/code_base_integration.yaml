@@ -1,0 +1,39 @@
+resource: code_base_integration
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/api_security/code_base_integration
+add_action: tab "Add Code Base Integration"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Code base integration
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: integration-data
+    label: Integration Data
+    fields:
+      - name: Code Base
+        widget: listbox
+        required: true
+        default: ""
+        note: "Select the code base source — likely GitHub, GitLab, or other SCM integration"
+
+summary:
+  section_count: 2
+  field_count: 4
+  listbox_count: 1
