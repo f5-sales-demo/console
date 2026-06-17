@@ -14,7 +14,7 @@ params:
   app_name:
     required: true
     description: "Base name used when creating resources"
-    example: "my-app"
+    example: "example-app"
 
 steps:
   - id: "navigate-dns-lb"

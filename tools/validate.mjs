@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-import { readFileSync, readdirSync, statSync } from "node:fs";
-import { join, relative, extname } from "node:path";
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { dirname, extname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import { load } from "js-yaml";
@@ -13,7 +12,7 @@ const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..");
 
 const SCHEMA_DIR = join(ROOT, "schemas");
-const CATALOG_DIR = join(ROOT, "catalog");
+const _CATALOG_DIR = join(ROOT, "catalog");
 
 const SCHEMA_MAP = {
   "catalog/navigation": "navigation.schema.json",
@@ -42,7 +41,7 @@ function walkYaml(dir) {
   return results;
 }
 
-function resolveSchemaFile(filePath) {
+function _resolveSchemaFile(filePath) {
   const rel = relative(ROOT, filePath);
   for (const [prefix, schema] of Object.entries(SCHEMA_MAP)) {
     if (rel.startsWith(prefix)) return schema;

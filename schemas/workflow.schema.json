@@ -17,10 +17,7 @@
       "type": "string"
     },
     "resource": {
-      "oneOf": [
-        { "type": "string" },
-        { "type": "array", "items": { "type": "string" } }
-      ],
+      "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }],
       "description": "Resource ID(s) this workflow operates on; array for composite workflows"
     },
     "operation": {
@@ -96,9 +93,20 @@
         "action": {
           "type": "string",
           "enum": [
-            "navigate", "click", "fill", "fill-list", "select",
-            "check", "uncheck", "hover", "scroll", "wait",
-            "assert", "screenshot", "key-press", "run-workflow"
+            "navigate",
+            "click",
+            "fill",
+            "fill-list",
+            "select",
+            "check",
+            "uncheck",
+            "hover",
+            "scroll",
+            "wait",
+            "assert",
+            "screenshot",
+            "key-press",
+            "run-workflow"
           ]
         },
         "description": {
@@ -117,10 +125,7 @@
           "description": "Value to input (for fill/select actions), supports {param} interpolation"
         },
         "values": {
-          "oneOf": [
-            { "type": "array" },
-            { "type": "string" }
-          ],
+          "oneOf": [{ "type": "array" }, { "type": "string" }],
           "description": "Multiple values or {param} reference (for fill-list action)"
         },
         "expected_text": {

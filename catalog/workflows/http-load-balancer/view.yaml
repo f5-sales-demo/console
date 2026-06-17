@@ -17,7 +17,7 @@ params:
   name:
     required: true
     description: "Name of the load balancer to view"
-    example: "my-http-lb"
+    example: "example-http-lb"
 
 steps:
   - id: "navigate-to-list"

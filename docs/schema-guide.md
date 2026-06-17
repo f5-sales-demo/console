@@ -21,11 +21,11 @@ catalog/
 Edit `catalog/navigation/console-tree.yaml` and add a node under the appropriate parent:
 
 ```yaml
-- id: "my-resource"
+- id: "example-resource"
   label: "My Resource"
   menu_path: ["Manage", "Section", "My Resource"]
-  route: "/web/section/my-resource"
-  route_file: "routes/section/my-resource.yaml"
+  route: "/web/section/example-resource"
+  route_file: "routes/section/example-resource.yaml"
 ```
 
 ### 2. Create the route definition
@@ -34,10 +34,10 @@ Create `catalog/routes/<area>/<resource>.yaml` with the route schema:
 
 ```yaml
 schema: "urn:f5xc:console:route:v1"
-id: "my-resource"
+id: "example-resource"
 label: "My Resource"
 route:
-  pattern: "/web/namespace/{namespace}/section/my-resource"
+  pattern: "/web/namespace/{namespace}/section/example-resource"
   params:
     namespace:
       required: true
@@ -49,7 +49,7 @@ context:
   requires_namespace: true
 screen:
   type: "list"
-  primary_resource: "my-resource"
+  primary_resource: "example-resource"
 metadata:
   confidence: "draft"
   discovered_at: "2026-06-15"

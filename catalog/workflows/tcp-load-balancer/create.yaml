@@ -17,7 +17,7 @@ params:
   name:
     required: true
     description: "TCP load balancer name (lowercase alphanumeric and hyphens)"
-    example: "my-tcp-lb"
+    example: "example-tcp-lb"
   listen_port:
     required: false
     type: "number"
@@ -26,7 +26,7 @@ params:
   origin_pool:
     required: false
     description: "Existing origin pool name to attach"
-    example: "my-origin-pool"
+    example: "example-origin-pool"
 
 steps:
   - id: "navigate-to-list"

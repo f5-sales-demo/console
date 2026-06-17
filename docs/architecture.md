@@ -58,7 +58,7 @@ The catalog is consumed by xcsh's browser automation runtime to power:
 └──────────────────┘                      └──────────────────┘
 ```
 
-1. User invokes `xcsh console create http-load-balancer --name my-lb --namespace demo`
+1. User invokes `xcsh console create http-load-balancer --name example-lb --namespace demo`
 2. xcsh loads the workflow YAML and resolves parameters
 3. xcsh connects to Chrome via CDP (user's existing browser session)
 4. xcsh executes each step: navigate → click → fill → assert

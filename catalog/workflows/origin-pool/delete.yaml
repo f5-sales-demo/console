@@ -18,7 +18,7 @@ params:
   name:
     required: true
     description: "Name of the origin pool to delete"
-    example: "my-origin-pool"
+    example: "example-origin-pool"
 
 steps:
   - id: "navigate-to-list"

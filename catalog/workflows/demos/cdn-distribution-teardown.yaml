@@ -19,7 +19,7 @@ params:
   app_name:
     required: true
     description: "Base name used when creating resources"
-    example: "my-cdn"
+    example: "example-cdn"
 
 steps:
   - id: "navigate-cdn"

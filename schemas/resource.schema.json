@@ -169,12 +169,30 @@
         "type": {
           "type": "string",
           "enum": [
-            "text", "textbox", "textarea", "number", "spinbutton",
-            "select", "listbox", "multi-select",
-            "checkbox", "toggle", "switch", "radio", "date", "json",
-            "string-list", "key-value-pairs", "table",
-            "resource-selector", "nested-resource-list",
-            "configurable", "expandable", "file-upload", "code-editor", "disabled"
+            "text",
+            "textbox",
+            "textarea",
+            "number",
+            "spinbutton",
+            "select",
+            "listbox",
+            "multi-select",
+            "checkbox",
+            "toggle",
+            "switch",
+            "radio",
+            "date",
+            "json",
+            "string-list",
+            "key-value-pairs",
+            "table",
+            "resource-selector",
+            "nested-resource-list",
+            "configurable",
+            "expandable",
+            "file-upload",
+            "code-editor",
+            "disabled"
           ]
         },
         "required": { "type": "boolean" },
@@ -226,17 +244,11 @@
             },
             "equals": {
               "description": "Value(s) that make this field visible",
-              "oneOf": [
-                { "type": "string" },
-                { "type": "array", "items": { "type": "string" } }
-              ]
+              "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
             },
             "not_equals": {
               "description": "Value(s) that hide this field",
-              "oneOf": [
-                { "type": "string" },
-                { "type": "array", "items": { "type": "string" } }
-              ]
+              "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }]
             }
           },
           "required": ["field"]

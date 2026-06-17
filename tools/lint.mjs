@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
-import { join, relative, extname } from "node:path";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { dirname, extname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
 import { load } from "js-yaml";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -33,11 +32,11 @@ function main() {
   const warnings = [];
 
   const resourceFiles = walkYaml(join(CATALOG_DIR, "resources"));
-  const workflowFiles = walkYaml(join(CATALOG_DIR, "workflows"));
+  const _workflowFiles = walkYaml(join(CATALOG_DIR, "workflows"));
   const routeFiles = walkYaml(join(CATALOG_DIR, "routes"));
 
   const resourceIds = new Set();
-  const workflowPaths = new Set();
+  const _workflowPaths = new Set();
   const routePaths = new Set();
 
   for (const f of resourceFiles) {

@@ -17,7 +17,7 @@ params:
   name:
     required: true
     description: "Origin pool name (lowercase alphanumeric and hyphens)"
-    example: "my-origin-pool"
+    example: "example-origin-pool"
   origin_server:
     required: true
     description: "DNS hostname of the origin server (must be hostname format, not IP)"
@@ -30,7 +30,7 @@ params:
   health_check:
     required: false
     description: "Existing health check name to attach"
-    example: "my-health-check"
+    example: "example-health-check"
 
 steps:
   - id: "navigate-to-list"

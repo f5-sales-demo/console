@@ -17,7 +17,7 @@ params:
   name:
     required: true
     description: "App firewall name (lowercase alphanumeric and hyphens)"
-    example: "my-app-firewall"
+    example: "example-app-firewall"
   enforcement_mode:
     required: false
     description: "Enforcement mode: Monitoring or Blocking"

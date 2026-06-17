@@ -18,7 +18,7 @@ params:
   name:
     required: true
     description: "Name of the app firewall to delete"
-    example: "my-app-firewall"
+    example: "example-app-firewall"
 
 steps:
   - id: "navigate-to-list"

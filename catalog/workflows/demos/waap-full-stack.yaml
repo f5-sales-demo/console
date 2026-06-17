@@ -20,7 +20,7 @@ params:
   app_name:
     required: true
     description: "Base name for all resources (used as prefix)"
-    example: "my-app"
+    example: "example-app"
   domain:
     required: true
     description: "Domain for the HTTP Load Balancer"
@@ -194,6 +194,6 @@ metadata:
     the [role=option] element via JS. fill() alone doesn't fire Angular change
     events. (3) WAF Enable dropdown must be selected by clicking the actual
     [role=option] element, not fill(), to trigger the conditional App Firewall
-    selector sub-field. (4) Created resources: demo-waap-pool, demo-waap-waf,
-    demo-waap-lb with WAF attached. LB shows VIRTUAL_HOST_PENDING_A_RECORD
+    selector sub-field. (4) Created resources: example-app-pool, example-app-waf,
+    example-app-lb with WAF attached. LB shows VIRTUAL_HOST_PENDING_A_RECORD
     (expected for demo domains).

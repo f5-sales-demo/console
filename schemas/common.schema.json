@@ -52,8 +52,17 @@
     "operation_type": {
       "type": "string",
       "enum": [
-        "create", "read", "update", "delete", "list",
-        "clone", "enable", "disable", "attach", "detach", "deploy",
+        "create",
+        "read",
+        "update",
+        "delete",
+        "list",
+        "clone",
+        "enable",
+        "disable",
+        "attach",
+        "detach",
+        "deploy",
         "demo"
       ]
     },

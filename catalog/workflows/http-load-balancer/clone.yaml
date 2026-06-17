@@ -18,11 +18,11 @@ params:
   name:
     required: true
     description: "Name of the source load balancer to clone"
-    example: "my-http-lb"
+    example: "example-http-lb"
   new_name:
     required: true
     description: "Name for the cloned load balancer"
-    example: "my-http-lb-copy"
+    example: "example-http-lb-copy"
 
 steps:
   - id: "navigate-to-list"

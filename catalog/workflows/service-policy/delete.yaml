@@ -18,7 +18,7 @@ params:
   name:
     required: true
     description: "Name of the service policy to delete"
-    example: "my-service-policy"
+    example: "example-service-policy"
 
 steps:
   - id: "navigate-to-list"

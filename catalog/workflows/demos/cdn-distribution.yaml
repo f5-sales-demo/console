@@ -19,7 +19,7 @@ params:
   app_name:
     required: true
     description: "Base name for all resources"
-    example: "my-cdn"
+    example: "example-cdn"
   domain:
     required: true
     description: "Domain for the CDN distribution"

@@ -17,7 +17,7 @@ params:
   name:
     required: true
     description: "Service policy name (lowercase alphanumeric and hyphens)"
-    example: "my-service-policy"
+    example: "example-service-policy"
 
 steps:
   - id: "navigate-to-list"

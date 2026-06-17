@@ -18,7 +18,7 @@ params:
   name:
     required: true
     description: "Name of the route to delete"
-    example: "my-route"
+    example: "example-route"
 
 steps:
   - id: "navigate-to-list"

@@ -17,7 +17,7 @@ params:
   name:
     required: true
     description: "Health check name (lowercase alphanumeric and hyphens)"
-    example: "my-health-check"
+    example: "example-health-check"
   health_check_type:
     required: false
     description: "Health check protocol type"

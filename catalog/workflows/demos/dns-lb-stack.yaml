@@ -15,7 +15,7 @@ params:
   app_name:
     required: true
     description: "Base name for all resources"
-    example: "my-app"
+    example: "example-app"
   domain:
     required: true
     description: "DNS zone domain name"

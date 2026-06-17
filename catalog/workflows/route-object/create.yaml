@@ -17,7 +17,7 @@ params:
   name:
     required: true
     description: "Route name (lowercase alphanumeric and hyphens)"
-    example: "my-route"
+    example: "example-route"
 
 steps:
   - id: "navigate-to-list"

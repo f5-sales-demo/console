@@ -18,7 +18,7 @@ params:
   name:
     required: true
     description: "Name of the load balancer to edit"
-    example: "my-http-lb"
+    example: "example-http-lb"
   description:
     required: false
     description: "Updated description for the load balancer"
