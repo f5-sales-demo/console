@@ -1,0 +1,64 @@
+resource: alert_policy
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/alert_config/alert_policies
+add_action: tab "Add Alert Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Alert policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: alert-receiver-configuration
+    label: Alert Receiver Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Alert Receivers
+        widget: table
+        required: true
+        items: 1
+        columns:
+          - Order
+          - "*Alert Receivers"
+          - Actions
+        row_fields:
+          - name: Alert Receiver
+            widget: listbox
+            type: resource-selector
+            required: true
+            note: "References an alert_receiver object"
+        add_action: Add Item
+        note: "Pre-populated with 1 empty row. Each row selects an existing Alert Receiver."
+
+  - id: policy-rules
+    label: Policy Rules
+    required: true
+    fields:
+      - name: Policy Rules
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define alert conditions — metric thresholds, patterns, etc."
+
+summary:
+  section_count: 3
+  field_count: 6
+  table_count: 1
+  listbox_count: 1
+  nested_form_count: 1
+  has_advanced_toggle: true

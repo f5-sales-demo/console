@@ -1,0 +1,58 @@
+resource: certificate
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/certificate_management/tls_certificate
+add_action: tab "Add TLS Certificate"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add TLS Certificate
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: certificate
+    label: Certificate
+    required: true
+    fields:
+      - name: Certificate
+        widget: file-import-button
+        action: "Import from File"
+        info_text: "Import your certificate and key from a file"
+        note: "Opens a file upload dialog. Accepts PEM-encoded certificate and private key."
+
+  - id: ocsp-stapling
+    label: OCSP Stapling
+    fields:
+      - name: OCSP Stapling
+        widget: listbox
+        default: "Disable"
+        note: "Options: Disable, Enable"
+
+  - id: intermediate-certificate-chain
+    label: Intermediate Certificate Chain
+    fields:
+      - name: Intermediate Certificate Chain
+        widget: listbox
+        type: resource-selector
+        default: ""
+        note: "References an intermediate certificate chain object. Optional."
+
+summary:
+  section_count: 4
+  field_count: 6
+  listbox_count: 2
+  file_import_count: 1
