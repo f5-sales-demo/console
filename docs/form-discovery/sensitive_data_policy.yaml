@@ -1,0 +1,64 @@
+resource: sensitive_data_policy
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/api_security/sensitive_data_policy
+add_action: tab "Add Sensitive Data Discovery"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Sensitive Data Discovery
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: compliance-frameworks
+    label: Compliance Frameworks
+    fields:
+      - name: Compliance Frameworks
+        widget: combobox
+        type: multi-select
+        default_selected:
+          - "PCI-DSS"
+        note: "Multi-select combobox. Pre-selects PCI-DSS. Options include PCI-DSS, HIPAA, GDPR, etc."
+
+  - id: disabled-built-in-sensitive-data-types
+    label: Disabled Built-In Sensitive Data Types
+    fields:
+      - name: Disabled Built-In Sensitive Data Types
+        widget: table
+        items: 0
+        columns:
+          - Order
+          - "Disabled Built-In Sensitive Data Types"
+          - Actions
+        add_action: Add Item
+        note: "Select built-in data types to disable from detection"
+
+  - id: defined-custom-sensitive-data-types
+    label: Defined Custom Sensitive Data Types
+    fields:
+      - name: Custom Sensitive Data Types
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define custom regex patterns for sensitive data detection"
+
+summary:
+  section_count: 4
+  field_count: 6
+  combobox_count: 1
+  table_count: 1
+  nested_form_count: 1

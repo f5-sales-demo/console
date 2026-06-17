@@ -1,0 +1,67 @@
+resource: data_type
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/api_security/data_type
+add_action: tab "Add Data Type"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Data type
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: data-type-rules
+    label: Data Type Rules
+    required: true
+    fields:
+      - name: Data Type Rules
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define regex patterns, keywords, or built-in detectors for this data type"
+
+  - id: mark-as-sensitive-data
+    label: Mark as Sensitive Data
+    fields:
+      - name: Mark as Sensitive Data
+        widget: checkbox
+        default: true
+        note: "Checked by default — marks this data type as sensitive"
+
+  - id: mark-as-pii
+    label: Mark as PII
+    fields:
+      - name: Mark as PII
+        widget: checkbox
+        default: false
+        note: "Unchecked by default — marks this data type as personally identifiable information"
+
+  - id: relevant-compliances
+    label: Relevant Compliances
+    fields:
+      - name: Relevant Compliances
+        widget: combobox
+        type: multi-select
+        default: []
+        note: "Select compliance frameworks (PCI-DSS, HIPAA, GDPR, etc.) this data type is relevant to"
+
+summary:
+  section_count: 5
+  field_count: 7
+  checkbox_count: 2
+  combobox_count: 1
+  nested_form_count: 1
