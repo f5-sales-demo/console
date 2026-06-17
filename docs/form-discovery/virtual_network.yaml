@@ -1,0 +1,61 @@
+resource: virtual_network
+workspace: multi-cloud-network-connect
+route: /manage/networking/legacy_network_configuration/virtual_networks
+namespace_scoped: false
+add_action: tab "Add Virtual Network"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Virtual network
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: virtual-network-type
+    label: Virtual Network Type
+    has_advanced_toggle: true
+    fields:
+      - name: Select Type of Network
+        widget: listbox
+        required: true
+        default: "Global Network"
+        note: "Options: Global Network, Site Local Network Inside, Site Local Network Outside, Private Network, etc."
+
+  - id: static-routes
+    label: Static Routes
+    fields:
+      - name: Static Routes
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "IPv4 static route entries with prefix, next hop, interface"
+
+  - id: static-ipv6-routes
+    label: Static IPv6 Routes
+    fields:
+      - name: Static IPv6 Routes
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "IPv6 static route entries. May require Upgrade for some features."
+
+summary:
+  section_count: 4
+  field_count: 5
+  listbox_count: 1
+  table_count: 2
+  has_advanced_toggle: true
