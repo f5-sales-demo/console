@@ -1,0 +1,97 @@
+resource: gcp_vpc_site
+workspace: multi-cloud-network-connect
+route: /manage/site_management/legacy_configs/gcp_vpc_site
+namespace_scoped: false
+add_action: tab "Add GCP VPC Site"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add GCP VPC Site
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: site-type-selection
+    label: Site Type Selection
+    fields:
+      - name: GCP Region
+        widget: listbox
+        required: true
+        note: "GCP region — us-central1, europe-west1, asia-east1, etc."
+      - name: Select Ingress Gateway or Ingress/Egress Gateway
+        widget: listbox
+        required: true
+        default: "Ingress Gateway (One Interface)"
+      - name: Ingress Gateway Configuration
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Nested form for VPC network, subnet, network policies"
+      - name: Cloud Credentials
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References a cloud_credentials object with GCP credentials file"
+
+  - id: site-node-parameters
+    label: Site Node Parameters
+    has_advanced_toggle: true
+    fields:
+      - name: GCP Instance Type for Node
+        widget: listbox
+        required: true
+        note: "GCP machine type — n1-standard-4, e2-standard-8, etc."
+      - name: Encryption Choice
+        widget: listbox
+        default: "Disable Encryption"
+      - name: Public SSH key
+        widget: textarea
+        multiline: true
+        required: true
+      - name: Admin Password
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Secret reference"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Logs Streaming
+        widget: listbox
+        required: true
+        default: "Disable Logs Streaming"
+      - name: Private Connectivity To Site
+        widget: listbox
+        required: true
+        default: "Disable Private Connectivity"
+        note: "GCP-specific field — not present in AWS or Azure site forms. Options: Disable, Enable Private Connectivity"
+      - name: Services to be blocked on site
+        widget: listbox
+        required: true
+        default: "Block DNS, SSH & WebUI services on Site"
+
+summary:
+  section_count: 4
+  field_count: 14
+  listbox_count: 8
+  textarea_count: 1
+  nested_form_count: 2
+  has_advanced_toggle: true
+  note: "Mirrors AWS/Azure site structure. GCP-specific: no Resource Group, no VPC/VNET name fields, has Private Connectivity To Site option. Simpler Site Type section (no VPC creation — VPC is in the Ingress Gateway configure nested form)."
