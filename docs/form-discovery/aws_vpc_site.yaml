@@ -1,0 +1,125 @@
+resource: aws_vpc_site
+workspace: multi-cloud-network-connect
+route: /manage/site_management/legacy_configs/aws_vpc_site
+namespace_scoped: false
+add_action: tab "Add AWS VPC Site"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add AWS VPC Site
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: site-type-selection
+    label: Site Type Selection
+    fields:
+      - name: Cloud Credentials
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References a cloud_credentials object with AWS programmatic access keys"
+      - name: AWS Region
+        widget: listbox
+        required: true
+        note: "AWS region dropdown — all regions available (us-east-1, eu-west-2, etc.)"
+      - name: VPC
+        widget: listbox
+        required: true
+        default: "New VPC Parameters"
+        note: "Options: New VPC Parameters, Existing VPC ID"
+      - name: AWS VPC Name
+        widget: listbox
+        required: true
+        default: "Autogenerate VPC Name"
+        note: "Options: Autogenerate VPC Name, Choose VPC Name"
+      - name: Primary IPv4 CIDR block
+        widget: textbox
+        required: true
+        note: "VPC CIDR block (e.g., 10.0.0.0/16)"
+      - name: Select Ingress Gateway or Ingress/Egress Gateway
+        widget: listbox
+        required: true
+        default: "Ingress Gateway (One Interface)"
+        note: "Options: Ingress Gateway (One Interface), Ingress/Egress Gateway (Two Interface), App Stack Cluster (One Interface)"
+      - name: Ingress Gateway (One Interface)
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form to configure AZ, subnet, network policies for the ingress interface"
+      - name: Cloud Egress Gateway Selection
+        widget: listbox
+        required: true
+        default: "Select this option to route site traffic through a Internet Gateway"
+      - name: Security Group
+        widget: listbox
+        required: true
+        default: "Select this option to create and attach F5XC default security group"
+      - name: Advertise VIPs to Internet on Site
+        widget: listbox
+        required: true
+        default: "Disable VIP Advertisement to Internet on Site"
+      - name: Orchestrate VPC/VNET Routing
+        widget: listbox
+        required: true
+        default: "F5 Orchestrated Routing"
+
+  - id: site-node-parameters
+    label: Site Node Parameters
+    has_advanced_toggle: true
+    fields:
+      - name: AWS Instance Type for Node
+        widget: listbox
+        required: true
+        note: "EC2 instance type — t3.xlarge, m5.xlarge, etc."
+      - name: Public SSH key
+        widget: textarea
+        multiline: true
+        required: true
+        note: "SSH public key for node access"
+      - name: Admin Password
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Secret reference for admin password"
+      - name: Encryption Choice
+        widget: listbox
+        default: "Disable Encryption"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Logs Streaming
+        widget: listbox
+        required: true
+        default: "Disable Logs Streaming"
+      - name: Services to be blocked on site
+        widget: listbox
+        required: true
+        default: "Block DNS, SSH & WebUI services on Site"
+
+summary:
+  section_count: 4
+  field_count: 17
+  listbox_count: 12
+  textbox_count: 2
+  textarea_count: 1
+  nested_form_count: 2
+  has_advanced_toggle: true
+  note: "One of the most complex forms in the console — 17 fields across 4 sections with 12 listboxes. Form structure changes based on VPC type (new/existing) and gateway selection (ingress/ingress-egress/appstack)."

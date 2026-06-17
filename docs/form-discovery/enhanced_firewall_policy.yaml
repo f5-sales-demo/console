@@ -1,0 +1,52 @@
+resource: enhanced_firewall_policy
+workspace: multi-cloud-network-connect
+route: /manage/firewall/enhanced_firewall_policy
+namespace_scoped: false
+add_action: tab "Add Enhanced Firewall Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Enhanced firewall policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: rule
+    label: Rule
+    fields:
+      - name: Select Enhanced Firewall Policy Rule Type
+        widget: listbox
+        required: true
+        default: "Allow all connections"
+        note: "Options: Allow all connections, Deny all connections, Custom Enhanced Firewall Policy Rule Selection, Insert Firewall Rules"
+
+  - id: segment-selector
+    label: Segment Selector
+    fields:
+      - name: Source Segments
+        widget: listbox
+        default: "Any"
+        note: "Select source segments to match. 'Any' matches all segments."
+      - name: Destination Segments
+        widget: listbox
+        default: "Any"
+        note: "Select destination segments to match. 'Any' matches all segments."
+
+summary:
+  section_count: 3
+  field_count: 6
+  listbox_count: 3
