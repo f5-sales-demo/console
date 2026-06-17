@@ -1,0 +1,23 @@
+{
+  "workspace": "observability",
+  "discovered_at": "2026-06-17",
+  "namespace_scoped": true,
+  "route_count": 5,
+  "submenus": {
+    "Synthetic Monitors (overview)": [
+      {"label": "HTTP Monitors", "path": "/synthetic-monitors/http-monitors"},
+      {"label": "DNS Monitors", "path": "/synthetic-monitors/dns-monitors"}
+    ],
+    "Manage": {
+      "Synthetic Monitors": [
+        {"label": "HTTP Monitors", "path": "/manage/synthetic-monitors/http-monitors"},
+        {"label": "DNS Monitors", "path": "/manage/synthetic-monitors/dns-monitors"}
+      ],
+      "Alerts Management": [
+        {"label": "Active Alert Policies", "path": "/manage/alert-config/active-alert-policies"},
+        {"label": "Alert Policies", "path": "/manage/alert-config/alert-policies"},
+        {"label": "Alert Receivers", "path": "/manage/alert-config/alert-receivers"}
+      ]
+    }
+  }
+}
