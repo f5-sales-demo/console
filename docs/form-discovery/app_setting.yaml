@@ -1,0 +1,40 @@
+resource: app_setting
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/ai_ml/app_settings
+add_action: tab "Add App Setting"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add App setting
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: customize-apptype
+    label: Customize AppType For This Namespace
+    required: true
+    fields:
+      - name: AppType Customizations
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Each item customizes an AppType for this namespace — configures which API discovery, sensitive data, and business logic features are enabled."
+
+summary:
+  section_count: 2
+  field_count: 4
+  table_count: 1
