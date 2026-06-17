@@ -1,0 +1,111 @@
+resource: external_connector
+workspace: multi-cloud-network-connect
+route: /manage/networking/external_connectivity/external_connector
+namespace_scoped: false
+add_action: tab "Add External Connector"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add External connector
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: ce-site-reference
+    label: CE Site Reference
+    fields:
+      - name: CE Site Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References the Customer Edge site where this IPSec tunnel terminates"
+
+  - id: connection-details
+    label: Connection Details
+    fields:
+      - name: Connection Type
+        widget: listbox
+        required: true
+        default: "IPSec"
+        note: "Options: IPSec"
+    subsections:
+      - label: "IKE Parameters"
+        fields:
+          - name: IKE Phase 1 Profile
+            widget: listbox
+            type: resource-selector
+            required: true
+            note: "References an ike_phase1_profile (IKE Profile Phase 1 tab)"
+          - name: IKE Phase 2 Profile
+            widget: listbox
+            type: resource-selector
+            required: true
+            note: "References an ike_phase2_profile (IKE Profile Phase 2 tab)"
+          - name: Mode
+            widget: listbox
+            required: true
+            default: "Initiator"
+            note: "Options: Initiator, Responder"
+          - name: "Dead Peer Detection(DPD)"
+            widget: listbox
+            default: "Enabled"
+          - name: Keepalive Timer
+            widget: spinbutton
+            default: 0
+            unit: seconds
+            note: "Range: 1-5 seconds"
+          - name: Local IKE ID
+            widget: listbox
+            default: "Use Default Local IKE ID (IP Address)"
+          - name: Remote IKE ID
+            widget: listbox
+            default: "Use Default Remote IKE ID (IP address)"
+      - label: "Tunnel Parameters"
+        fields:
+          - name: Remote Gateway IP Address
+            widget: textbox
+            note: "IPv4 address of the remote IPSec peer"
+          - name: Tunnel Endpoint
+            widget: table
+            required: true
+            items: 0
+            add_action: Add Item
+            note: "Define tunnel endpoint IP addresses and subnets"
+          - name: Pre-Shared Key
+            widget: textbox
+            required: true
+            note: "IPSec pre-shared key for authentication"
+          - name: MTU
+            widget: spinbutton
+            required: true
+            default: 0
+            unit: bytes
+            note: "Range: 512-1370 bytes"
+          - name: "Segment/Network"
+            widget: listbox
+            required: true
+            default: "Site Local Network Inside"
+            note: "Options: Site Local Network Inside, Site Local Network Outside, Segment (resource selector)"
+
+summary:
+  section_count: 3
+  field_count: 16
+  listbox_count: 8
+  textbox_count: 4
+  spinbutton_count: 2
+  table_count: 1
+  note: "Complex IPSec VPN form — references IKE Phase 1/Phase 2 profiles, requires pre-shared key, remote gateway IP, tunnel endpoints. Has sub-sections within Connection Details (IKE Parameters + Tunnel Parameters)."
