@@ -1,0 +1,48 @@
+schema: urn:f5xc:console:resource:v1
+id: securemesh-site-v2-cloud
+label: Secure Mesh Sites v2
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: securemesh_site_v2_cloud
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/site_management/cloud_sites/securemesh_site_v2
+  menu_path:
+    - Manage
+    - Site Management
+    - Customer Edges
+    - Secure Mesh Sites v2
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Site Management
+    - Customer Edges
+    - Secure Mesh Sites v2
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Secure Mesh Site
+save_action:
+  label: Add Secure Mesh Site
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'
+  notes: This is the v2 cloud sites path — differs from securemesh_site_v2 which may have a different route

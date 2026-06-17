@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: openapi-file
+label: OpenAPI Files
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: openapi_file
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/files/openapi
+  menu_path:
+    - Manage
+    - Files
+    - OpenAPI Files
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Files
+    - OpenAPI Files
+add_action:
+  type: tab
+  label: Add OpenAPI File
+save_action:
+  label: Add OpenAPI File
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'
