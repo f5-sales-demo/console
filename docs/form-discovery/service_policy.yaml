@@ -1,0 +1,54 @@
+resource: service_policy
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/service_policies/service_policies
+add_action: tab "Add Service Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Service policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: servers
+    label: Servers
+    fields:
+      - name: Server Selection
+        widget: listbox
+        required: true
+        default: "Any Server"
+        note: "Selects which servers this policy applies to (Any Server, Server by Name, Server by Selector, etc.)"
+
+  - id: rules
+    label: Rules
+    fields:
+      - name: Select Policy Rules
+        widget: listbox
+        required: true
+        default: "Custom Rule List"
+        note: "Choose between Custom Rule List or Legacy Rule List"
+      - name: Rules
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form to define allow/deny rules with match conditions"
+
+summary:
+  section_count: 3
+  field_count: 6
+  listbox_count: 2
+  nested_form_count: 1

@@ -1,0 +1,68 @@
+resource: healthcheck
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/load_balancers/health_checks
+add_action: tab "Add Health Check"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - "Add Health Сheck"
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: health-check-parameters
+    label: Health Check Parameters
+    has_advanced_toggle: true
+    fields:
+      - name: Health Check
+        widget: listbox
+        required: true
+        default: "HTTP HealthCheck"
+        note: "Options include HTTP HealthCheck, TCP HealthCheck"
+      - name: HTTP HealthCheck
+        widget: configure-link
+        required: true
+        state: "Configured"
+        action: "Edit Configuration"
+        has_reset: true
+        note: "Pre-configured with defaults. Opens nested form for path, host header, expected codes."
+      - name: Timeout
+        widget: spinbutton
+        required: true
+        default: 3
+        unit: seconds
+      - name: Interval
+        widget: spinbutton
+        required: true
+        default: 15
+        unit: seconds
+      - name: Unhealthy Threshold
+        widget: spinbutton
+        required: true
+        default: 1
+      - name: Healthy Threshold
+        widget: spinbutton
+        required: true
+        default: 3
+
+summary:
+  section_count: 2
+  field_count: 9
+  listbox_count: 1
+  spinbutton_count: 4
+  nested_form_count: 1
+  has_advanced_toggle: true
