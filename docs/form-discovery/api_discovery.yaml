@@ -1,0 +1,55 @@
+resource: api_discovery
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/api_security/api_discovery
+add_action: tab "Add API Discovery Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add API Discovery Policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: rules-properties
+    label: Rules Properties
+    info_text: "Rules are evaluated sequentially, top to bottom. If no rules are added, all traffic will be discovered or ignored based on the selection in the 'Default Behaviour of the Rule Set' field."
+    fields:
+      - name: Discovery Rules
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define rules to include/exclude specific paths, methods, or domains from API discovery"
+      - name: Default Behaviour of the Rule Set
+        widget: listbox
+        required: true
+        default: "Inclusive"
+        note: "Inclusive = discover all traffic not explicitly excluded; Exclusive = only discover traffic matching rules"
+
+  - id: custom-authentication-types
+    label: Custom Authentication Types
+    fields:
+      - name: Custom Authentication Types
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define custom headers or patterns that identify authenticated requests"
+
+summary:
+  section_count: 3
+  field_count: 6
+  listbox_count: 1
+  nested_form_count: 2
