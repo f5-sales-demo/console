@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: log-receiver
+label: Log Receivers
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: log_receiver
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/log_management/log_receivers
+  menu_path:
+    - Manage
+    - Log Management
+    - Log Receivers
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Log Management
+    - Log Receivers
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Log Receiver
+save_action:
+  label: Add Log Receiver
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'

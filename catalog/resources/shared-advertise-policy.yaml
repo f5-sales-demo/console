@@ -1,0 +1,43 @@
+schema: urn:f5xc:console:resource:v1
+id: shared-advertise-policy
+label: Advertise Policies
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: shared_advertise_policy
+console:
+  workspace: shared-configuration
+  workspace_label: Shared Configuration
+  route_prefix: /web/workspaces/shared-configuration
+  route_pattern: /manage/advertise_policies
+  menu_path:
+    - Manage
+    - Advertise Policies
+  breadcrumbs:
+    - Home
+    - Shared Configuration
+    - Manage
+    - Advertise Policies
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Advertise Policy
+save_action:
+  label: Add Advertise Policy
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'

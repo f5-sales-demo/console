@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: protocol-policer
+label: Protocol Policers
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: protocol_policer
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/firewall/protocol_policers
+  menu_path:
+    - Manage
+    - Firewall
+    - Protocol Policers
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Firewall
+    - Protocol Policers
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Protocol Policer
+save_action:
+  label: Add Protocol Policer
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'

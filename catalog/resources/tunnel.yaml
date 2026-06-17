@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: tunnel
+label: Tunnels
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: tunnel
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/networking/legacy_network_configuration/tunnels
+  menu_path:
+    - Manage
+    - Networking
+    - Legacy Network Configuration
+    - Tunnels
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Networking
+    - Legacy Network Configuration
+    - Tunnels
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Tunnel
+save_action:
+  label: Add Tunnel
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-17'
+  console_version: '2025.06'
