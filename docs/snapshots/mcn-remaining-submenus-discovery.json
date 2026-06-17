@@ -1,0 +1,30 @@
+{
+  "workspace": "multi-cloud-network-connect",
+  "discovered_at": "2026-06-17",
+  "note": "Additional submenus not in initial discovery",
+  "new_routes": {
+    "Secrets": [
+      {"label": "Secret Policies", "path": "/manage/secrets/secret_policies"},
+      {"label": "Secret Policy Rules", "path": "/manage/secrets/secret_policy_rules"},
+      {"label": "Secrets Management", "path": "/manage/secrets/secrets_management"}
+    ],
+    "Alerts Management": [
+      {"label": "Active Alert Policies", "path": "/manage/alert_config/active_alert_policies"},
+      {"label": "Alert Policies", "path": "/manage/alert_config/alert_policies"},
+      {"label": "Alert Receivers", "path": "/manage/alert_config/alert_receivers"}
+    ],
+    "Log Management": [
+      {"label": "Log Receivers", "path": "/manage/log_management/log_receivers"},
+      {"label": "Global Log Receiver", "path": "/manage/log_management/global_log_receiver"}
+    ],
+    "Notifications": [
+      {"label": "Alerts", "path": "/notifications/alerts"},
+      {"label": "Audit Logs", "path": "/notifications/audit_logs"},
+      {"label": "Events", "path": "/notifications/events"}
+    ],
+    "Infrastructure": [
+      {"label": "Sites", "path": "/overview/infrastructure/sites"},
+      {"label": "Cloud Connects", "path": "/overview/infrastructure/cloud_connects"}
+    ]
+  }
+}

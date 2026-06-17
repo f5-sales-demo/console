@@ -1,0 +1,78 @@
+{
+  "workspace": "shared-configuration",
+  "discovered_at": "2026-06-17",
+  "namespace_scoped": false,
+  "note": "Tenant-scoped. Uses /security/ and /manage/ path prefixes.",
+  "route_count": 38,
+  "submenus": {
+    "Security": {
+      "top_level": [
+        {"label": "App Firewall", "path": "/security/app_firewall"},
+        {"label": "Forward Proxy Policies", "path": "/security/forward_proxy_policies"},
+        {"label": "Rate Limiter Policies", "path": "/security/rate_limiter_policies"}
+      ],
+      "Service Policies": [
+        {"label": "Service Policies", "path": "/security/service_policies/service_policies"},
+        {"label": "Service Policy Rules", "path": "/security/service_policies/service_policy_rules"}
+      ],
+      "vK8s Network Policies": [
+        {"label": "Network Policies", "path": "/security/network_policies/network_policies"},
+        {"label": "Network Policy Rules", "path": "/security/network_policies/network_policy_rules"}
+      ],
+      "Shared Objects": [
+        {"label": "IP Prefix Sets", "path": "/security/shared_objects/ip_prefix_sets"},
+        {"label": "BGP ASN Sets", "path": "/security/shared_objects/bgp_asn_sets"},
+        {"label": "Rate Limiters", "path": "/security/shared_objects/rate_limiters"},
+        {"label": "User Identifications", "path": "/security/shared_objects/user_identification"},
+        {"label": "Malicious User Mitigation", "path": "/security/shared_objects/malicious_user_mitigation"},
+        {"label": "Waf Exclusion Policy", "path": "/security/shared_objects/waf_exclusion_policy"},
+        {"label": "Authorization Server", "path": "/security/shared_objects/authorization_server"}
+      ],
+      "AI & ML": [
+        {"label": "App Types", "path": "/security/ai_ml/app_types"}
+      ],
+      "Secrets": [
+        {"label": "Secret Policies", "path": "/security/secrets/secret_policies"},
+        {"label": "Secret Policy Rules", "path": "/security/secrets/secret_policy_rules"}
+      ]
+    },
+    "Manage": {
+      "top_level": [
+        {"label": "Virtual Sites", "path": "/manage/virtual_sites"},
+        {"label": "Container Registries", "path": "/manage/container_registries"},
+        {"label": "Workload Flavors", "path": "/manage/workload_flavors"},
+        {"label": "Routes", "path": "/manage/routes"},
+        {"label": "Health Checks", "path": "/manage/health_checks"},
+        {"label": "Advertise Policies", "path": "/manage/advertise_policies"},
+        {"label": "Public IP Addresses", "path": "/manage/public_ip"},
+        {"label": "Global Log Receiver", "path": "/manage/global_log_receiver"},
+        {"label": "Service Discoveries", "path": "/manage/discovery"},
+        {"label": "Ticket Tracking System", "path": "/manage/ticket_tracking_system"},
+        {"label": "CDN Cache Rules", "path": "/manage/cdn_cache_rule"}
+      ],
+      "Labels": [
+        {"label": "Known Keys", "path": "/manage/labels/known_keys"},
+        {"label": "Known Labels", "path": "/manage/labels/known_labels"}
+      ],
+      "Alerts Management": [
+        {"label": "Alert Policies", "path": "/manage/alert_config/alert_policies"},
+        {"label": "Alert Receivers", "path": "/manage/alert_config/alert_receivers"}
+      ],
+      "Reports": [
+        {"label": "Reports Management", "path": "/manage/reports/report_management"},
+        {"label": "Reports History", "path": "/manage/reports/report_history"}
+      ],
+      "Files": [
+        {"label": "OpenAPI Files", "path": "/manage/files/openapi"}
+      ],
+      "Certificate Management": [
+        {"label": "TLS Certificates", "path": "/manage/certificate_management/tls_certificate"},
+        {"label": "Root CA Certificates", "path": "/manage/certificate_management/root_ca_certificate"},
+        {"label": "Intermediate Certificate Chains", "path": "/manage/certificate_management/intermediate_certificate_chains"}
+      ],
+      "API Security": [
+        {"label": "API Definition", "path": "/manage/api_security/api_definition"}
+      ]
+    }
+  }
+}
