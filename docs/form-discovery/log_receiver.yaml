@@ -1,0 +1,59 @@
+resource: log_receiver
+workspace: multi-cloud-network-connect
+route: /manage/log_management/log_receivers
+namespace_scoped: false
+add_action: tab "Add Log Receiver"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Log receiver
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: log-receiver
+    label: Log Receiver
+    has_advanced_toggle: true
+    fields:
+      - name: Log Receiver
+        widget: listbox
+        required: true
+        default: "Syslog Server"
+        note: "Options: Syslog Server, Datadog, Splunk, Sumo Logic, etc. Form fields change based on selection."
+      - name: Syslog Transport Mode
+        widget: listbox
+        required: true
+        default: "Mode UDP"
+        note: "Options: Mode UDP, Mode TCP. Conditional — only shown when Syslog Server selected."
+      - name: Server name
+        widget: textbox
+        required: true
+        note: "Hostname or IP of the log receiver server"
+      - name: Port Number
+        widget: spinbutton
+        required: true
+        default: 514
+        note: "Default syslog port 514. Changes based on transport mode."
+
+summary:
+  section_count: 2
+  field_count: 7
+  listbox_count: 2
+  spinbutton_count: 1
+  has_advanced_toggle: true
+  dynamic_form: true
+  note: "Form fields change based on Log Receiver type selection. Syslog shows transport mode, server name, port. Other types show API keys, URLs, etc."
