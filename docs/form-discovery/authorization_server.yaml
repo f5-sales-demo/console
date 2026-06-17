@@ -1,0 +1,39 @@
+resource: authorization_server
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/shared_objects/authorization_server
+add_action: tab "Add Authorization Server"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Authorization Server
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: jwks
+    label: JSON Web Key Set (JWKS)
+    info_text: "Automatic fetching of JWKS will happen once daily. You can also do it manually from the list of Authorization Servers at any time."
+    fields:
+      - name: JWKS URI
+        widget: textbox
+        required: true
+        note: "URL to the OIDC provider's JWKS endpoint (e.g., https://auth.example.com/.well-known/jwks.json)"
+
+summary:
+  section_count: 2
+  field_count: 4
+  textbox_count: 3
