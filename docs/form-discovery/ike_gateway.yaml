@@ -1,0 +1,104 @@
+resource: ike_gateway
+workspace: multi-cloud-network-connect
+route: /manage/networking/external_connectivity/ike_profiles
+namespace_scoped: false
+add_action: tab "Add Phase 1 Profile"
+discovered_at: "2026-06-17"
+note: >
+  IKE Profiles page has TWO sub-tabs: Phase 1 and Phase 2.
+  Each has its own Add tab and list. This documents Phase 1.
+  Phase 2 (ike_phase2_profile) is a separate resource.
+
+page_sub_tabs:
+  - Phase 1
+  - Phase 2
+
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Phase 1 Profile
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: encryption-algorithms
+    label: Configure Encryption Algorithms
+    fields:
+      - name: Encryption Algorithms
+        widget: combobox
+        type: multi-select
+        required: true
+        default_selected:
+          - "AES256_GCM"
+        note: "Options: AES256_GCM, AES192_GCM, AES128_GCM, AES256_CBC, AES192_CBC, AES128_CBC, TRIPLE_DES_CBC"
+
+  - id: authentication-algorithms
+    label: Authentication Algorithms
+    fields:
+      - name: Authentication Algorithms
+        widget: combobox
+        type: multi-select
+        required: true
+        default_selected:
+          - "No Authentication"
+        note: "Options: No Authentication, SHA256_HMAC, SHA384_HMAC, SHA512_HMAC, MD5_96"
+
+  - id: pseudo-random-function
+    label: PseudoRandomFunction
+    fields:
+      - name: PseudoRandomFunction
+        widget: combobox
+        type: multi-select
+        required: true
+        default_selected:
+          - "PRFSHA512"
+        note: "Options: PRFSHA512, PRFSHA384, PRFSHA256"
+
+  - id: diffie-hellman-groups
+    label: Diffie Hellman Groups
+    fields:
+      - name: Diffie Hellman Groups
+        widget: combobox
+        type: multi-select
+        required: true
+        default_selected:
+          - "DH_GROUP_19"
+        note: "Options: DH_GROUP_19, DH_GROUP_20, DH_GROUP_21, DH_GROUP_14, DH_GROUP_15, DH_GROUP_16, etc."
+
+  - id: key-lifetime
+    label: Key LifeTime
+    fields:
+      - name: Key LifeTime
+        widget: listbox
+        required: true
+        default: "Default (4 Hours)"
+        note: "Options: Default (4 Hours), Custom Lifetime"
+
+  - id: ike-reauthentication
+    label: IKE Reauthentication
+    fields:
+      - name: IKE Reauthentication
+        widget: listbox
+        required: true
+        default: "Disabled"
+        note: "Options: Disabled, Enabled"
+
+summary:
+  section_count: 7
+  field_count: 9
+  combobox_count: 4
+  listbox_count: 2
+  note: "Crypto-heavy form — 4 combobox multi-selects for algorithm selection. Page has Phase 1 / Phase 2 sub-tabs with separate resource types."
