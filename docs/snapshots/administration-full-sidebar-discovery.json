@@ -1,0 +1,33 @@
+{
+  "workspace": "administration",
+  "discovered_at": "2026-06-17",
+  "namespace_scoped": false,
+  "note": "Tenant-scoped. Uses /tenant-settings/, /personal-management/, /iam/, /support/ path prefixes.",
+  "route_count": 16,
+  "submenus": {
+    "Tenant Settings": [
+      {"label": "Tenant Overview", "path": "/tenant-settings/tenant-overview"},
+      {"label": "Login Options", "path": "/tenant-settings/login-options"},
+      {"label": "Public IP Addresses", "path": "/tenant-settings/public_ip"},
+      {"label": "Quotas", "path": "/tenant-settings/quotas"},
+      {"label": "Incident Procedures", "path": "/tenant-settings/rtips"}
+    ],
+    "Personal Management": [
+      {"label": "My Account", "path": "/personal-management/account-settings"},
+      {"label": "My Namespaces", "path": "/personal-management/namespaces"},
+      {"label": "Credentials", "path": "/personal-management/api_credentials"}
+    ],
+    "IAM": [
+      {"label": "Users", "path": "/iam/users"},
+      {"label": "Groups", "path": "/iam/groups"},
+      {"label": "Roles", "path": "/iam/roles"},
+      {"label": "Tenant Access", "path": "/iam/tenant_access"},
+      {"label": "API Groups", "path": "/iam/api_groups"},
+      {"label": "Service Credentials", "path": "/iam/service_credentials"}
+    ],
+    "Support": [
+      {"label": "Get Help", "path": "/support/get_help"},
+      {"label": "Requests", "path": "/support/requests"}
+    ]
+  }
+}
