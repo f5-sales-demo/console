@@ -1,0 +1,81 @@
+resource: bgp
+workspace: multi-cloud-network-connect
+route: /manage/networking/external_connectivity/bgp
+namespace_scoped: false
+add_action: tab "Add BGP Peers"
+discovered_at: "2026-06-17"
+note: >
+  BGP Peers & Policies page has TWO sub-tabs: BGP Peers and BGP Routing
+  Policies. Each has its own Add tab and list. This documents BGP Peers.
+  BGP Routing Policies (bgp_routing_policy) is a separate resource.
+
+page_sub_tabs:
+  - BGP Peers
+  - BGP Routing Policies
+
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add BGP Peers
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: where
+    label: Where
+    fields:
+      - name: Where
+        widget: listbox
+        required: true
+        default: "Site"
+        note: "Options: Site, Virtual Site"
+      - name: Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "Select the site or virtual site where BGP peering will be configured"
+
+  - id: parameters
+    label: Parameters
+    fields:
+      - name: ASN
+        widget: spinbutton
+        required: true
+        default: 0
+        note: "Local BGP Autonomous System Number"
+      - name: Router ID
+        widget: listbox
+        required: true
+        default: "From Interface Address"
+        note: "Options: From Interface Address, Custom Router ID"
+
+  - id: peers
+    label: Peers
+    required: true
+    fields:
+      - name: Peers
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "Each peer defines a remote BGP neighbor with ASN, IP address, authentication, and route policies"
+
+summary:
+  section_count: 4
+  field_count: 7
+  listbox_count: 3
+  spinbutton_count: 1
+  table_count: 1
+  note: "Page has BGP Peers / BGP Routing Policies sub-tabs — same pattern as IKE Profiles."
