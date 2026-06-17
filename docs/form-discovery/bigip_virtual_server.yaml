@@ -1,0 +1,26 @@
+resource: bigip_virtual_server
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/bigip_virtual_server
+discovered_at: "2026-06-17"
+list_only: true
+add_action: none
+note: >
+  This resource has NO Add tab or button. BIG-IP Virtual Servers are
+  auto-populated from Service Discovery using "Classical BIG-IP
+  Configuration". The page instructs users to create Service Discoveries
+  at Multi-Cloud App Connect → Service Discoveries → CBIP.
+
+info_text: >
+  This page will list BIG-IP Virtual Servers once a Service Discovery
+  is created using the 'Classical BIG-IP Configuration'. Create Service
+  Discoveries at Service Discoveries in Multi-Cloud App Connect Workspace.
+
+form_tabs: null
+footer_buttons: null
+sections: null
+
+summary:
+  has_create_form: false
+  created_via: service_discovery
+  source_workspace: multi-cloud-app-connect
+  source_path: /manage/discovery/cbip

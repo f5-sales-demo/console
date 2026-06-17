@@ -1,0 +1,38 @@
+resource: openapi_file
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/files/openapi
+add_action: tab "Add OpenAPI File"
+discovered_at: "2026-06-17"
+form_tabs: null
+note: "No Form/Documentation/JSON tabs — simpler form layout"
+footer_buttons:
+  - Cancel All
+  - Add OpenAPI File
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Description
+        widget: textarea
+        multiline: true
+        note: "Multiline textarea — different from the single-line Description textbox on most resources. No Labels field."
+
+  - id: openapi-upload
+    label: OpenAPI Upload
+    fields:
+      - name: Upload File
+        widget: file-upload-button
+        action: "Upload File"
+        accepted_formats: "JSON, YAML or TXT only"
+        max_size: "5MB"
+        note: "Uploads an OpenAPI/Swagger specification file. Accepted: JSON, YAML, TXT. Max 5MB."
+
+summary:
+  section_count: 2
+  field_count: 3
+  file_upload_count: 1
+  note: "Simplified form — no Labels, no Form/Documentation/JSON tabs, multiline textarea for Description"
