@@ -1,0 +1,41 @@
+resource: app_api_group
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/api_security/api_groups
+add_action: tab "Add API Group"
+discovered_at: "2026-06-17"
+form_tabs: null
+note: "No Form/Documentation/JSON tabs visible — simpler form layout"
+footer_buttons:
+  - Cancel All
+  - Add API Group
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Description
+        widget: textbox
+        note: "No Labels field on this resource — only Name and Description"
+
+  - id: api-endpoints
+    label: API Endpoints
+    fields:
+      - name: Scope
+        widget: listbox
+        required: true
+        default: "HTTP Load Balancer"
+        note: "Scopes the API group to a specific resource type"
+      - name: HTTP Load Balancer
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "Select the HTTP Load Balancer this API group applies to. Field changes based on Scope selection."
+
+summary:
+  section_count: 2
+  field_count: 4
+  listbox_count: 2
+  note: "Simplified form — no Labels, no Form/Documentation/JSON tabs"
