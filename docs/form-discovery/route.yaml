@@ -1,0 +1,42 @@
+resource: route
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/virtual_host/routes
+namespace_scoped: true
+add_action: tab "Add Route"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Route
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: list-of-routes
+    label: List of routes
+    fields:
+      - name: Routes
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form to define route match conditions, destinations, and actions"
+
+summary:
+  section_count: 2
+  field_count: 4
+  configure_link_count: 1
+  note: "Simple wrapper — route details are defined in the nested Configure form."

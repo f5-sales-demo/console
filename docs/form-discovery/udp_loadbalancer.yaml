@@ -1,0 +1,16 @@
+resource: udp_loadbalancer
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/load_balancers/udp_loadbalancers
+namespace_scoped: true
+add_action: none
+discovered_at: "2026-06-17"
+form_pattern: no-console-page
+note: >
+  No UDP Load Balancers link in the MCAC workspace sidebar. The Load Balancers
+  submenu only has: HTTP Load Balancers, TCP Load Balancers, HTTP Connect & DRPs,
+  Origin Pools, Health Checks, Certificate Revocation List. The API resource
+  exists but has no standalone console page in the current console version.
+
+summary:
+  form_pattern: no-console-page
+  note: "UDP Load Balancer has no dedicated page in MCAC — may be API-only."

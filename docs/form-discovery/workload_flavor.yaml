@@ -1,0 +1,53 @@
+resource: workload_flavor
+workspace: shared-configuration
+route: /manage/workload_flavors
+namespace_scoped: false
+add_action: tab "Add Workload Flavor"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Workload Flavor
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: memory
+    label: Memory (MiB)
+    fields:
+      - name: Memory (MiB)
+        widget: textbox
+        default: "0"
+
+  - id: vcpus
+    label: vCPUs
+    fields:
+      - name: vCPUs
+        widget: textbox
+        default: "0"
+
+  - id: ephemeral-storage
+    label: Ephemeral Storage (MiB)
+    fields:
+      - name: Ephemeral Storage (MiB)
+        widget: textbox
+        default: "0"
+
+summary:
+  section_count: 4
+  field_count: 6
+  textbox_count: 5
+  note: "Simple resource limits definition — memory, CPU, ephemeral storage for vK8s workloads."

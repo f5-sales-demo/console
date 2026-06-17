@@ -1,0 +1,69 @@
+resource: cdn_loadbalancer
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/cdn/distributions
+namespace_scoped: true
+console_label: "CDN Distributions"
+add_action: tab "Add CDN Distribution"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add CDN Distribution
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: basic-configuration
+    label: Basic Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Domains
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Automatically Manage DNS Records
+        widget: checkbox
+      - name: Origin Pools
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Where to Advertise the VIP
+        widget: listbox
+        required: true
+        default: "Advertise On Public"
+
+  - id: cdn-configuration
+    label: CDN Configuration
+    fields:
+      - name: CDN Config
+        widget: listbox
+        required: true
+        default: "CDN Distribution"
+        note: "Options: CDN Distribution, CDN Distribution with Custom Cache Rules"
+
+  - id: security-configuration
+    label: Security Configuration
+    has_advanced_toggle: true
+    note: "WAF, Bot Protection, service policy options"
+
+summary:
+  section_count: 4
+  field_count: 8
+  listbox_count: 2
+  table_count: 2
+  checkbox_count: 1
+  has_advanced_toggle: true
+  note: "CDN Distribution. Route is /cdn/distributions not /cdn/cdn_loadbalancers. Similar to HTTP LB but with CDN-specific config."

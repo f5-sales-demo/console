@@ -1,0 +1,69 @@
+resource: crl
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/load_balancers/crl
+namespace_scoped: true
+add_action: tab "Add Certificate Revocation List"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Certificate Revocation List
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: crl-server-address
+    label: CRL Server Address
+    fields:
+      - name: CRL Server address
+        widget: textbox
+        required: true
+      - name: CRL Server Port
+        widget: spinbutton
+        default: 80
+
+  - id: refresh-interval
+    label: Refresh Interval
+    fields:
+      - name: CRL Refresh interval (h)
+        widget: spinbutton
+        default: 24
+
+  - id: crl-download-timeout
+    label: CRL Download Timeout
+    fields:
+      - name: CRL download timeout (s)
+        widget: spinbutton
+        default: 10
+
+  - id: crl-access-information
+    label: CRL Access information
+    fields:
+      - name: CRL Access information
+        widget: listbox
+        default: "Use HTTP to download the CRL"
+        note: "Options: Use HTTP to download the CRL, Use HTTPS to download the CRL"
+      - name: CRL File path
+        widget: textbox
+        note: "HTTP path to the CRL file on the server"
+
+summary:
+  section_count: 5
+  field_count: 9
+  spinbutton_count: 3
+  textbox_count: 4
+  listbox_count: 1
+  note: "Certificate Revocation List for TLS mutual auth. Simple form with server address, refresh, timeout, and access method."

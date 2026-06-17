@@ -1,0 +1,136 @@
+resource: fleet
+workspace: multi-cloud-network-connect
+route: /manage/site_management/legacy_configs/fleets
+namespace_scoped: false
+add_action: tab "Add Fleet"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Fleet
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: fleet-configuration
+    label: Fleet Configuration
+    fields:
+      - name: Fleet Label Value
+        widget: textbox
+        required: true
+        note: "Unique label value identifying this fleet"
+      - name: Outside (Site Local) Virtual Network
+        widget: listbox
+        type: resource-selector
+        note: "Select virtual network for outside interface"
+      - name: Site Local Inside Virtual Network
+        widget: listbox
+        type: resource-selector
+        note: "Select virtual network for inside interface"
+      - name: Software Version
+        widget: textbox
+      - name: Operating System Version
+        widget: textbox
+
+  - id: network-interfaces
+    label: Network Interfaces
+    fields:
+      - name: Select Bond Configuration
+        widget: listbox
+        required: true
+        default: "No Bond Devices"
+        note: "Options: No Bond Devices, Bond Device List"
+      - name: Select Interface Config
+        widget: listbox
+        required: true
+        default: "Default Interface Config"
+        note: "Options: Default Interface Config, List of Interfaces"
+
+  - id: network-connectors
+    label: Network Connectors
+    fields:
+      - name: Network Connectors
+        widget: table
+        items: 0
+        add_action: Add Item
+
+  - id: network-firewall
+    label: Network Firewall
+    fields:
+      - name: Network Firewall
+        widget: listbox
+        type: resource-selector
+        note: "Select a network firewall resource"
+
+  - id: storage-configuration
+    label: Storage Configuration
+    fields:
+      - name: Select Storage Interface Configuration
+        widget: listbox
+        required: true
+        default: "No Storage Interfaces"
+      - name: Select Storage Device Configuration
+        widget: listbox
+        required: true
+        default: "No Storage Devices"
+      - name: Select Configuration for Storage Classes
+        widget: listbox
+        required: true
+        default: "Default Storage Class"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Select Storage Static Routes
+        widget: listbox
+        required: true
+        default: "No Storage Static Routes"
+      - name: Node by Node Upgrade
+        widget: listbox
+        required: true
+        default: "Enable"
+      - name: Upgrade Wait Time
+        widget: spinbutton
+        required: true
+        default: 300
+      - name: Node Batch Size
+        widget: listbox
+        required: true
+        default: "Node Batch Size Count"
+      - name: Node Batch Size Count
+        widget: spinbutton
+        required: true
+        default: 1
+      - name: Disable Node Local Services
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: SR-IOV interfaces
+        widget: listbox
+        required: true
+        default: "Disable SR-IOV interfaces"
+
+summary:
+  section_count: 7
+  field_count: 21
+  listbox_count: 13
+  textbox_count: 4
+  spinbutton_count: 2
+  table_count: 2
+  label_adder_count: 1
+  has_advanced_toggle: true
+  note: "Fleet is a site grouping mechanism. Configures networking, storage, and upgrade policies for a set of sites identified by fleet label."

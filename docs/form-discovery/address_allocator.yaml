@@ -1,0 +1,60 @@
+resource: address_allocator
+workspace: multi-cloud-network-connect
+route: /manage/networking/legacy_network_configuration/address_allocators
+namespace_scoped: false
+add_action: tab "Add Address Allocator"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Address Allocator
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: address-allocation-scheme
+    label: Address Allocation Scheme
+    fields:
+      - name: Address Allocator Mode
+        widget: listbox
+        required: true
+      - name: Allocation Unit
+        widget: spinbutton
+        required: true
+        default: 0
+      - name: Local Interface Address Type
+        widget: listbox
+      - name: Local Interface Address Offset
+        widget: spinbutton
+        default: 0
+
+  - id: address-pool
+    label: Address Pool
+    fields:
+      - name: Address Pool
+        widget: table
+        required: true
+        items: 1
+        columns:
+          - Address Pool (textbox)
+        add_action: Add Item
+
+summary:
+  section_count: 3
+  field_count: 8
+  listbox_count: 2
+  spinbutton_count: 2
+  table_count: 1

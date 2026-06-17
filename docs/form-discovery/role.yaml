@@ -1,0 +1,42 @@
+resource: role
+workspace: administration
+route: /iam/roles
+namespace_scoped: false
+add_action: tab "Add Role"
+discovered_at: "2026-06-17"
+form_pattern: modal-dialog
+note: >
+  Opens as a modal dialog with Cancel/Save buttons.
+  Simple form — role name and API group assignment table.
+
+footer_buttons:
+  - Cancel
+  - Save
+
+sections:
+  - id: role-form
+    label: Add Role
+    fields:
+      - name: Role Name
+        widget: textbox
+        required: true
+
+  - id: allowed-api-groups
+    label: Allowed API Groups
+    fields:
+      - name: API Groups
+        widget: table
+        items: 0
+        columns:
+          - Name
+          - Elements
+        add_action: "Allowed API Groups"
+        note: "Each item assigns an API group to the role"
+
+summary:
+  section_count: 2
+  field_count: 2
+  textbox_count: 1
+  table_count: 1
+  form_pattern: modal-dialog
+  note: "Modal dialog for role creation. Role name + API group permissions table."

@@ -1,0 +1,65 @@
+resource: dns_lb_health_check
+workspace: dns-management
+route: /manage/dns_lb_management/dns_lb_health_check
+namespace_scoped: false
+add_action: tab "Add DNS Load Balancer Health Check"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add DNS Load Balancer Health Check
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+      - name: Disable
+        widget: checkbox
+
+  - id: health-check-type
+    label: Health Check Type
+    fields:
+      - name: Health Check Type
+        widget: listbox
+        required: true
+        default: "HTTP Health Check"
+        note: "Options: HTTP Health Check, HTTPS Health Check, TCP Health Check, ICMP Health Check"
+      - name: Send String
+        widget: textbox
+        default: "HEAD / HTTP/1.0\\r\\n\\r\\n"
+        note: "Conditional — shown for HTTP/TCP types"
+      - name: Receive String
+        widget: textbox
+        default: "HTTP/1."
+        note: "Conditional — shown for HTTP/TCP types"
+      - name: Health Check Port
+        widget: listbox
+        required: true
+        default: "0"
+      - name: Health Check Secondary Port
+        widget: listbox
+        default: "0"
+      - name: Virtual Host
+        widget: listbox
+        required: true
+        default: "Disable Virtual Host"
+
+summary:
+  section_count: 2
+  field_count: 10
+  listbox_count: 4
+  textbox_count: 4
+  checkbox_count: 1
+  dynamic_form: true
+  note: "Form fields change based on Health Check Type. HTTP shows Send/Receive strings, ICMP shows simpler config."

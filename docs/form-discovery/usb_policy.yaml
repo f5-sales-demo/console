@@ -1,0 +1,41 @@
+resource: usb_policy
+workspace: multi-cloud-network-connect
+route: /manage/site_management/other_configs/usb_policies
+namespace_scoped: false
+add_action: tab "Add USB Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add USB Policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: allowed-usb-devices
+    label: Allowed USB devices
+    fields:
+      - name: Allowed USB devices
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form to define allowed USB device types by vendor/product ID"
+
+summary:
+  section_count: 2
+  field_count: 4
+  configure_link_count: 1

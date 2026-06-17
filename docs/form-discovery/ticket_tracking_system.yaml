@@ -1,0 +1,54 @@
+resource: ticket_tracking_system
+workspace: shared-configuration
+route: /manage/ticket_tracking_system
+namespace_scoped: false
+add_action: tab "Add Ticket Tracking System"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Ticket tracking system
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: ticket-tracking-system
+    label: Ticket Tracking System
+    fields:
+      - name: Provider
+        widget: listbox
+        required: true
+        default: "Jira"
+        note: "Options: Jira, ServiceNow. Form fields change based on provider."
+      - name: API Token
+        widget: textbox
+        required: true
+        note: "Jira API token for authentication"
+      - name: Account Email
+        widget: textbox
+        required: true
+      - name: Organization Domain
+        widget: textbox
+        required: true
+        note: "e.g., your-org.atlassian.net"
+
+summary:
+  section_count: 2
+  field_count: 7
+  listbox_count: 1
+  textbox_count: 5
+  dynamic_form: true
+  note: "Ticket system integration. Fields change based on Provider (Jira vs ServiceNow)."

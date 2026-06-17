@@ -1,0 +1,50 @@
+resource: third_party_application
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/third_party_application
+namespace_scoped: true
+console_label: "Third-Party Applications (EA)"
+add_action: tab "Add Third-Party Application"
+discovered_at: "2026-06-17"
+note: "Early Access feature — marked with EA badge in sidebar"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Third-Party Application
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: application-configuration
+    label: Application Configuration
+    fields:
+      - name: Application Type
+        widget: listbox
+        required: true
+        note: "Select the third-party application type (e.g., Azure Front Door, CloudFront, Akamai)"
+      - name: Application Configuration
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form specific to the selected application type"
+
+summary:
+  section_count: 2
+  field_count: 5
+  listbox_count: 1
+  configure_link_count: 1
+  dynamic_form: true
+  note: "Third-party application integration (EA). Form fields change based on Application Type."

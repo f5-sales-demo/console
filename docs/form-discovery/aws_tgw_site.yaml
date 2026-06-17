@@ -1,0 +1,140 @@
+resource: aws_tgw_site
+workspace: multi-cloud-network-connect
+route: /manage/site_management/legacy_configs/aws_tgw_site
+namespace_scoped: false
+add_action: tab "Add AWS TGW Site"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add AWS TGW Site
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: aws-resources
+    label: AWS Resources
+    fields:
+      - name: AWS Credentials and Resources
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form for AWS credential selection, region, VPC CIDR, AZ configuration, TGW settings"
+
+  - id: vpc-attachments
+    label: VPC Attachments
+    fields:
+      - name: Spoke VPCs
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form to attach existing VPCs to the TGW site"
+
+  - id: site-network-and-security
+    label: Site Network and Security
+    fields:
+      - name: Site Networking
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form for network connector, interface, and routing config"
+      - name: Site Security
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form for firewall policies and security settings"
+
+  - id: private-connectivity
+    label: Private Connectivity
+    fields:
+      - name: Private Connectivity To Site
+        widget: listbox
+        required: true
+        default: "Disable Private Connectivity"
+        note: "Options: Disable Private Connectivity, Enable Private Connectivity (with CloudLink selector)"
+
+  - id: software-version
+    label: Software Version
+    fields:
+      - name: F5XC Software Version
+        widget: listbox
+        required: true
+        default: "Latest SW Version"
+      - name: Operating System Version
+        widget: listbox
+        required: true
+        default: "Latest OS Version"
+
+  - id: advanced
+    label: Advanced
+    has_advanced_toggle: true
+    fields:
+      - name: AWS Tags
+        widget: label-adder
+        action: Add Label
+      - name: Logs Streaming
+        widget: listbox
+        required: true
+        default: "Disable Logs Streaming"
+        note: "Options: Disable Logs Streaming, Enable Logs Streaming (with log receiver selector)"
+      - name: Node by Node Upgrade
+        widget: listbox
+        required: true
+        default: "Enable"
+      - name: Upgrade Wait Time
+        widget: spinbutton
+        required: true
+        default: 300
+      - name: Node Batch Size
+        widget: listbox
+        required: true
+        default: "Node Batch Size Count"
+        note: "Options: Node Batch Size Count, Node Batch Size Percentage"
+      - name: Node Batch Size Count
+        widget: spinbutton
+        required: true
+        default: 1
+        note: "Conditional — shown when Node Batch Size is 'Node Batch Size Count'"
+      - name: Latitude
+        widget: textbox
+        default: "0"
+      - name: Longitude
+        widget: textbox
+        default: "0"
+      - name: Services to be blocked on site
+        widget: listbox
+        required: true
+        default: "Block DNS, SSH & WebUI services on Site"
+      - name: Offline Survivability Mode
+        widget: listbox
+        required: true
+        default: "Disabled"
+      - name: Performance Mode
+        widget: listbox
+        required: true
+        default: "L7 Enhanced"
+
+summary:
+  section_count: 7
+  field_count: 19
+  listbox_count: 9
+  spinbutton_count: 2
+  textbox_count: 5
+  configure_link_count: 4
+  label_adder_count: 2
+  has_advanced_toggle: true
+  note: "Similar to AWS VPC Site but with TGW-specific sections (VPC Attachments). 4 nested configure-link forms for AWS resources, Spoke VPCs, Site Networking, and Site Security."

@@ -1,0 +1,79 @@
+resource: cluster
+workspace: multi-cloud-app-connect
+route: /namespaces/{namespace}/manage/virtual_host/clusters
+namespace_scoped: true
+add_action: tab "Add Cluster"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Cluster
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: origin-servers
+    label: Origin Servers(Endpoints)
+    fields:
+      - name: Endpoints
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "References to endpoint resources"
+
+  - id: origin-pool-parameters
+    label: Origin Pool(cluster) Parameters
+    has_advanced_toggle: true
+    fields:
+      - name: LoadBalancer Algorithm
+        widget: listbox
+        default: "Load Balancer Override"
+      - name: Health Checks
+        widget: table
+        items: 0
+        add_action: Add Item
+      - name: Select upstream connection pool reuse state
+        widget: listbox
+        required: true
+        default: "Enable Connection Pool Reuse"
+      - name: Endpoint Selection
+        widget: listbox
+        default: "Local Endpoints Preferred"
+      - name: TLS Parameters
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+      - name: Maximum Requests Per Connection
+        widget: listbox
+
+  - id: circuit-breakers
+    label: Circuit Breakers
+    has_advanced_toggle: true
+    note: "Advanced fields hidden by default — circuit breaker thresholds"
+
+  - id: endpoint-subsets
+    label: Endpoint Subsets
+    has_advanced_toggle: true
+    note: "Advanced fields hidden by default — endpoint subset routing"
+
+summary:
+  section_count: 5
+  field_count: 11
+  listbox_count: 5
+  table_count: 2
+  configure_link_count: 1
+  has_advanced_toggle: true
+  note: "Legacy cluster (origin pool equivalent). Defines upstream endpoint groups with LB algorithm, health checks, TLS, and circuit breakers."

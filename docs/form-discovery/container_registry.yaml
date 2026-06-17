@@ -1,0 +1,63 @@
+resource: container_registry
+workspace: distributed-apps
+route: /namespaces/{namespace}/applications/container_registries
+namespace_scoped: true
+add_action: tab "Add Container Registry"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Container Registry
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: server-fqdn
+    label: Server FQDN
+    fields:
+      - name: Server FQDN
+        widget: textbox
+        required: true
+
+  - id: user-name
+    label: User Name
+    fields:
+      - name: User Name
+        widget: textbox
+        required: true
+
+  - id: password
+    label: Password
+    fields:
+      - name: Password
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form for secret/blindfold password entry"
+
+  - id: email
+    label: Email
+    fields:
+      - name: Email
+        widget: textbox
+
+summary:
+  section_count: 5
+  field_count: 6
+  textbox_count: 4
+  configure_link_count: 1
+  note: "Simple container registry credentials form for pulling images from private registries."

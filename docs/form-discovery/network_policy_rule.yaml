@@ -1,0 +1,15 @@
+resource: network_policy_rule
+workspace: distributed-apps
+route: /namespaces/{namespace}/manage/network_policies/network_policy_rules
+namespace_scoped: true
+add_action: none
+discovered_at: "2026-06-17"
+form_pattern: list-only
+note: >
+  List-only page — no "Add" tab or create form. Network policy rules are
+  created inline within Network Policy objects. Same pattern as
+  service_policy_rule and mcn_secret_policy_rule.
+
+summary:
+  form_pattern: list-only
+  note: "No standalone create form. Rules created within parent Network Policy resource."

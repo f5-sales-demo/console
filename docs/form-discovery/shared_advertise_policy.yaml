@@ -1,0 +1,65 @@
+resource: shared_advertise_policy
+workspace: shared-configuration
+route: /manage/advertise_policies
+namespace_scoped: false
+add_action: tab "Add Advertise Policy"
+discovered_at: "2026-06-17"
+note: >
+  Same form as advertise_policy in MCAC workspace, but accessible from
+  Shared Configuration. Verified page exists at sidebar link.
+
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Advertise policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: advertise-policy
+    label: Advertise Policy
+    has_advanced_toggle: true
+    fields:
+      - name: Virtual-Site or Site or Network
+        widget: listbox
+        required: true
+        default: "Virtual Site"
+      - name: Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+      - name: Network Type
+        widget: listbox
+      - name: Internet VIP Choice
+        widget: listbox
+        required: true
+        default: "Disable advertise on internet vip"
+      - name: TCP/UDP Port
+        widget: listbox
+        required: true
+        default: "TCP/UDP Port"
+      - name: TCP/UDP Port (value)
+        widget: spinbutton
+        required: true
+        default: 80
+
+summary:
+  section_count: 2
+  field_count: 9
+  listbox_count: 5
+  spinbutton_count: 1
+  has_advanced_toggle: true
+  note: "Same form structure as MCAC advertise_policy, accessed from Shared Configuration workspace."

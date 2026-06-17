@@ -1,0 +1,51 @@
+resource: network_interface
+workspace: multi-cloud-network-connect
+route: /manage/networking/legacy_network_configuration/network_interfaces
+namespace_scoped: false
+add_action: tab "Add Network Interface"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Network interface
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: interface-type
+    label: Interface Type
+    has_advanced_toggle: true
+    fields:
+      - name: Interface Config Type
+        widget: listbox
+        required: true
+        default: "Ethernet Interface"
+        note: "Options: Ethernet Interface, VLAN Interface, Bond Interface, Tunnel Interface, Loopback Interface"
+      - name: Ethernet Interface
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Opens nested form for Ethernet config (device, DHCP/static IP, MTU, etc.). Changes based on Interface Config Type selection."
+
+summary:
+  section_count: 2
+  field_count: 5
+  listbox_count: 1
+  configure_link_count: 1
+  has_advanced_toggle: true
+  dynamic_form: true
+  note: "Form fields change based on Interface Config Type selection. Each type opens a different nested configure-link form."
