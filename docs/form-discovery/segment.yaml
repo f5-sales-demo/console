@@ -1,0 +1,39 @@
+resource: segment
+workspace: multi-cloud-network-connect
+route: /manage/networking/network_configuration/segment
+namespace_scoped: false
+add_action: tab "Add Segment"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Segment
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: connect-to-internet
+    label: Connect to Internet
+    fields:
+      - name: Connect to Internet
+        widget: listbox
+        default: "Deny traffic from this segment to Internet"
+        note: "Controls whether traffic from this segment can reach the internet. Options: Deny, Allow via RE."
+
+summary:
+  section_count: 2
+  field_count: 4
+  listbox_count: 1
