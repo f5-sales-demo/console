@@ -1,0 +1,59 @@
+resource: network_firewall
+workspace: multi-cloud-network-connect
+route: /manage/firewall/network_firewall
+namespace_scoped: false
+add_action: tab "Add Network Firewall"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Network firewall
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: forward-proxy-policy
+    label: Forward Proxy Policy
+    fields:
+      - name: Select Forward Policy Configuration
+        widget: listbox
+        required: true
+        default: "Disable Forward Proxy Policy"
+        note: "Options: Disable, Active Forward Proxy Policies, Forward Proxy Policy (resource selector)"
+
+  - id: firewall-policy
+    label: Firewall Policy
+    fields:
+      - name: Select Firewall Policy Configuration
+        widget: listbox
+        required: true
+        default: "Disable Firewall Policy"
+        note: "Options: Disable, Active Enhanced Firewall Policies, Active Network Policies"
+
+  - id: fast-acl
+    label: Fast Acl
+    fields:
+      - name: Select Fast ACL Configuration
+        widget: listbox
+        required: true
+        default: "Disable Fast ACL"
+        note: "Options: Disable, Active Fast ACLs (resource selector)"
+
+summary:
+  section_count: 4
+  field_count: 6
+  listbox_count: 3
+  note: "Aggregator resource — combines forward proxy, firewall, and fast ACL policies into one network firewall object. Each section has a listbox to enable/disable and select the specific policy."
