@@ -1,0 +1,61 @@
+resource: forward_proxy_policy
+workspace: multi-cloud-network-connect
+route: /manage/firewall/forward_proxy_policy
+namespace_scoped: false
+add_action: tab "Add Forward Proxy Policy"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Forward proxy policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: proxy
+    label: Proxy
+    fields:
+      - name: Select Forward Proxy
+        widget: listbox
+        required: true
+        default: "All Forward Proxies on Site"
+        note: "Options: All Forward Proxies on Site, Specific Forward Proxies"
+
+  - id: rules
+    label: Rules
+    has_advanced_toggle: true
+    fields:
+      - name: Select Policy Rules
+        widget: listbox
+        required: true
+        default: "Allow all connections"
+        note: "Options: Allow all connections, Deny all connections, Allowed/Denied Sources, Custom Rule List"
+
+  - id: segment-selector
+    label: Segment Selector
+    fields:
+      - name: Source Segments
+        widget: listbox
+        default: "Any"
+      - name: Destination Segments
+        widget: listbox
+        default: "Any"
+
+summary:
+  section_count: 4
+  field_count: 7
+  listbox_count: 4
+  has_advanced_toggle: true
