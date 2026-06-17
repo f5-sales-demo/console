@@ -1,0 +1,55 @@
+resource: api_definition
+workspace: web-app-and-api-protection
+route: /namespaces/{namespace}/manage/api_security/api_definition
+add_action: tab "Add API Definition"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add API Definition
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: openapi-specification-files
+    label: OpenAPI Specification Files
+    fields:
+      - name: Swagger Specs
+        widget: table
+        items: 0
+        columns:
+          - Order
+          - File Path
+          - Actions
+        add_action: Add Item
+        note: "Each row references an OpenAPI/Swagger spec file uploaded via Files > OpenAPI Files"
+
+  - id: api-endpoints-management
+    label: API Endpoints Management
+    has_advanced_toggle: true
+    fields:
+      - name: API Inventory Inclusion List
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define which API endpoints to include/exclude from the definition"
+
+summary:
+  section_count: 3
+  field_count: 5
+  table_count: 1
+  nested_form_count: 1
+  has_advanced_toggle: true
