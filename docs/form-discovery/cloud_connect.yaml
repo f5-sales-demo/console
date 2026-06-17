@@ -1,0 +1,66 @@
+resource: cloud_connect
+workspace: multi-cloud-network-connect
+route: /manage/connectors/cloud_connect
+namespace_scoped: false
+add_action: tab "Add Cloud Connect"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Cloud Connect
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: provider
+    label: Provider
+    fields:
+      - name: Provider
+        widget: listbox
+        required: true
+        default: "AWS"
+        note: "Options: AWS, Azure, GCP. Form fields may change based on provider."
+      - name: Site Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References a cloud site (aws_vpc_site, azure_vnet_site, or gcp_vpc_site)"
+      - name: Credential Reference
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References a cloud_credentials object"
+      - name: Spoke VPCs
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Define spoke VPCs/VNETs to connect through this cloud connector"
+
+  - id: segment
+    label: Segment
+    fields:
+      - name: Segment
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References a segment object — assigns this connector to a network segment"
+
+summary:
+  section_count: 3
+  field_count: 7
+  listbox_count: 4
+  nested_form_count: 1
