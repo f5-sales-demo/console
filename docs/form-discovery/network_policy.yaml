@@ -1,0 +1,71 @@
+resource: network_policy
+workspace: multi-cloud-network-connect
+route: /manage/firewall/network_policies
+namespace_scoped: false
+add_action: tab "Add Firewall Policy"
+discovered_at: "2026-06-17"
+note: "Console labels this as 'Firewall Policies' but the API resource is network_policy"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Firewall policy
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: policy-for-endpoints
+    label: Policy For Endpoints
+    fields:
+      - name: "Endpoint(s)"
+        widget: listbox
+        required: true
+        default: "IPv4/IPv6 Prefix List"
+        note: "Options: IPv4/IPv6 Prefix List, Label Selector, Any Endpoint"
+      - name: IPv4 Prefix List
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "IPv4 CIDR prefixes that define which endpoints this policy applies to"
+      - name: IPv6 Prefix List
+        widget: table
+        items: 0
+        add_action: Add Item
+        note: "IPv6 CIDR prefixes. May require Upgrade for some features."
+
+  - id: connections-to-policy-endpoints
+    label: Connections To Policy Endpoints
+    fields:
+      - name: Ingress Rules
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define rules for inbound connections to the policy endpoints"
+
+  - id: connections-from-policy-endpoints
+    label: Connections From Policy Endpoints
+    fields:
+      - name: Egress Rules
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Define rules for outbound connections from the policy endpoints"
+
+summary:
+  section_count: 4
+  field_count: 7
+  listbox_count: 1
+  table_count: 2
+  nested_form_count: 2
