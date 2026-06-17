@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: fast-acl
+label: Fast ACLs
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: fast_acl
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/firewall/fast_acls
+  menu_path:
+    - Manage
+    - Firewall
+    - Fast ACLs
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Firewall
+    - Fast ACLs
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Fast ACL
+save_action:
+  label: Add Fast ACL
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'

@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: nat-policy
+label: NAT Policies
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: nat_policy
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/networking/network_configuration/nat_policy
+  menu_path:
+    - Manage
+    - Networking
+    - Network Configuration
+    - NAT Policies
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Networking
+    - Network Configuration
+    - NAT Policies
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add NAT Policy
+save_action:
+  label: Add NAT Policy
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'

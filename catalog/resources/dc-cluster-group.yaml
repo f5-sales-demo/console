@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:resource:v1
+id: dc-cluster-group
+label: DC Cluster Groups
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: dc_cluster_group
+console:
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/networking/site_to_site_connectivity/dc_cluster_groups
+  menu_path:
+    - Manage
+    - Networking
+    - Site-to-Site Connectivity
+    - DC Cluster Groups
+  breadcrumbs:
+    - Home
+    - Multi-Cloud Network Connect
+    - Manage
+    - Networking
+    - Site-to-Site Connectivity
+    - DC Cluster Groups
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add DC Cluster Group
+save_action:
+  label: Add DC Cluster Group
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'

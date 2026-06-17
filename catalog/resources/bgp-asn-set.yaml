@@ -1,0 +1,45 @@
+schema: urn:f5xc:console:resource:v1
+id: bgp-asn-set
+label: BGP ASN Sets
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: bgp_asn_set
+console:
+  workspace: web-app-and-api-protection
+  workspace_label: Web App & API Protection
+  route_prefix: /web/workspaces/web-app-and-api-protection
+  route_pattern: /namespaces/{namespace}/manage/shared_objects/bgp_asn_sets
+  menu_path:
+    - Manage
+    - Shared Objects
+    - BGP ASN Sets
+  breadcrumbs:
+    - Home
+    - Web App & API Protection
+    - '{namespace}'
+    - Manage
+    - Shared Objects
+    - BGP ASN Sets
+add_action:
+  type: tab
+  label: Add BGP ASN Set
+save_action:
+  label: Add BGP ASN Set
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'

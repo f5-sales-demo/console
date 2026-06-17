@@ -1,0 +1,43 @@
+schema: urn:f5xc:console:resource:v1
+id: dns-domain
+label: Delegated Domain Management
+_source: Generated from api-specs-enriched/config/console_ui.yaml
+api:
+  kind: dns_domain
+console:
+  workspace: dns-management
+  workspace_label: DNS Management
+  route_prefix: /web/workspaces/dns-management
+  route_pattern: /manage/dns_domain
+  menu_path:
+    - Manage
+    - Delegated Domain Management
+  breadcrumbs:
+    - Home
+    - DNS Management
+    - Manage
+    - Delegated Domain Management
+  namespace_scoped: false
+add_action:
+  type: tab
+  label: Add Domain
+save_action:
+  label: Add Domain
+cancel_action:
+  label: Cancel All
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+form:
+  sections:
+    - id: metadata
+      label: Metadata
+      api_fields:
+        - metadata.name
+        - metadata.labels
+        - metadata.description
+metadata:
+  confidence: validated
+  discovered_at: '2026-06-16'
+  console_version: '2025.06'
