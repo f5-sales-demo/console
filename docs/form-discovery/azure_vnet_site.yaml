@@ -1,0 +1,115 @@
+resource: azure_vnet_site
+workspace: multi-cloud-network-connect
+route: /manage/site_management/legacy_configs/azure_site
+namespace_scoped: false
+add_action: tab "Add Azure VNET Site"
+discovered_at: "2026-06-17"
+form_tabs:
+  - Form
+  - Documentation
+  - JSON
+footer_buttons:
+  - Cancel All
+  - Add Azure VNET Site
+
+sections:
+  - id: metadata
+    label: Metadata
+    fields:
+      - name: Name
+        widget: textbox
+        required: true
+      - name: Labels
+        widget: label-adder
+        action: Add Label
+      - name: Description
+        widget: textbox
+
+  - id: site-type-selection
+    label: Site Type Selection
+    fields:
+      - name: Cloud Credentials
+        widget: listbox
+        type: resource-selector
+        required: true
+        note: "References a cloud_credentials object with Azure Client Secret"
+      - name: Resource Group
+        widget: textbox
+        required: true
+        note: "Azure Resource Group name — Azure-specific field not in AWS/GCP"
+      - name: Select Azure Region Type
+        widget: listbox
+        required: true
+        default: "Recommended Azure Region Name"
+        note: "Options: Recommended Azure Region Name, Azure Region Name (string)"
+      - name: Recommended Azure Region Name
+        widget: listbox
+        required: true
+        note: "Azure region dropdown — eastus, westus2, westeurope, etc."
+      - name: Vnet
+        widget: listbox
+        required: true
+        default: "New Vnet Parameters"
+        note: "Options: New Vnet Parameters, Existing Vnet"
+      - name: Azure Vnet Name
+        widget: listbox
+        required: true
+        default: "Autogenerate Vnet Name"
+      - name: IPv4 CIDR block
+        widget: textbox
+        required: true
+        note: "VNET CIDR block (e.g., 10.0.0.0/16)"
+      - name: Select Ingress Gateway or Ingress/Egress Gateway
+        widget: listbox
+        required: true
+        default: "Ingress Gateway (One Interface) on Recommended Region"
+      - name: Ingress Gateway Configuration
+        widget: configure-link
+        required: true
+        state: "Not configured"
+        action: "Configure"
+        note: "Nested form for AZ, subnet, network policies"
+
+  - id: site-node-parameters
+    label: Site Node Parameters
+    has_advanced_toggle: true
+    fields:
+      - name: Azure Machine Type for Node
+        widget: listbox
+        required: true
+        note: "Azure VM size — Standard_D3_v2, Standard_D4_v2, etc."
+      - name: Encryption Choice
+        widget: listbox
+        default: "Disable Encryption"
+      - name: Public SSH key
+        widget: textarea
+        multiline: true
+        required: true
+      - name: Admin Password
+        widget: configure-link
+        state: "Not configured"
+        action: "Configure"
+        note: "Secret reference"
+
+  - id: advanced-configuration
+    label: Advanced Configuration
+    has_advanced_toggle: true
+    fields:
+      - name: Logs Streaming
+        widget: listbox
+        required: true
+        default: "Disable Logs Streaming"
+      - name: Services to be blocked on site
+        widget: listbox
+        required: true
+        default: "Block DNS, SSH & WebUI services on Site"
+
+summary:
+  section_count: 4
+  field_count: 17
+  listbox_count: 10
+  textbox_count: 3
+  textarea_count: 1
+  nested_form_count: 2
+  has_advanced_toggle: true
+  note: "Mirrors AWS VPC Site structure with Azure-specific fields: Resource Group (textbox), Azure Region, Vnet, Azure Machine Type. Same section layout (Metadata, Site Type, Node Params, Advanced Config)."
