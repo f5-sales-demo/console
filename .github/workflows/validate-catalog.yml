@@ -1,11 +1,13 @@
+---
 name: Validate Catalog
 
 on:
+  # Runs on every PR (no paths filter) so the "Validate Catalog Schemas"
+  # status check always reports. It is a required check in branch
+  # protection, and a path-filtered required check never reports on PRs
+  # that don't touch catalog/schemas/tools (e.g. governance/config syncs),
+  # which leaves those PRs permanently unmergeable.
   pull_request:
-    paths:
-      - "catalog/**"
-      - "schemas/**"
-      - "tools/**"
   push:
     branches: [main]
     paths:
