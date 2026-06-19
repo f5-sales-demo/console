@@ -107,15 +107,9 @@ steps:
   - id: "save"
     action: "click"
     selector: "button:text('Add Health Check')"
-    context: "footer"
     wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Click the Add Health Check button in the form footer to save"
-
-  - id: "verify-created"
-    action: "assert"
-    selector: "text('{name}')"
-    description: "Verify the resource was created by checking the name appears in the list"
+    description: "Click the Add Health Check button to save. The 'button' role disambiguates the footer save button from the same-named tab, so no section context is needed. The wait_for confirms the new resource's name appears in the list, which is the creation verification."
 
 postconditions:
   - "resource_list_page_visible"
@@ -124,7 +118,7 @@ postconditions:
 metadata:
   confidence: "validated"
   discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
+  validated_at: "2026-06-18"
   console_version: "2025.06"
   estimated_duration_seconds: 25
   notes: "Selectors use aria/text-based patterns validated against live console. No data-testid attributes exist. Has Show Advanced Fields toggle for additional parameters."
