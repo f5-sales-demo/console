@@ -48,18 +48,13 @@ steps:
     value: "{name}"
     description: "Enter the load balancer name in the Name textbox"
 
-  - id: "add-domains"
-    action: "click"
-    selector: "button:text('Add Item')"
+  - id: "fill-domain"
+    action: "fill"
+    selector: "textbox"
     context: "Domains table"
-    description: "Click Add Item to add a domain entry to the Domains table"
-    then:
-      - id: "fill-domain-value"
-        action: "fill"
-        selector: "textbox"
-        context: "Domains table row"
-        values: "{domains}"
-        description: "Enter domain value(s) in the table row input"
+    value: "{domains}"
+    description: "Enter the domain in the Domains table's default row. The table ships one empty row, so no Add Item click is needed; clicking Add Item would create a second empty row that fails the 'Domains is required' validation."
+    note: "Single-domain create. Multiple domains (Add Item per additional row) is a follow-up."
 
   - id: "attach-origin-pool"
     condition: "params.origin_pool is set"
@@ -84,15 +79,9 @@ steps:
   - id: "save"
     action: "click"
     selector: "button:text('Add HTTP Load Balancer')"
-    context: "footer"
     wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Click the Add HTTP Load Balancer button in the form footer to save"
-
-  - id: "verify-created"
-    action: "assert"
-    selector: "text('{name}')"
-    description: "Verify the resource was created by checking the name appears in the list"
+    description: "Click the Add HTTP Load Balancer button to save. The 'button' role disambiguates the footer save button from the tab of the same name, so no section context is needed. The wait_for confirms the new resource's name appears in the list, which is the creation verification."
 
 postconditions:
   - "resource_list_page_visible"
@@ -101,7 +90,7 @@ postconditions:
 metadata:
   confidence: "validated"
   discovered_at: "2026-06-15"
-  validated_at: "2026-06-15"
+  validated_at: "2026-06-18"
   console_version: "2025.06"
   estimated_duration_seconds: 30
-  notes: "Selectors use aria/text-based patterns validated against live console. No data-testid attributes exist."
+  notes: "Selectors use aria/text-based patterns validated against the live console (single-domain create persisted, API parity confirmed). No data-testid attributes exist. The Domains field is a vsui-input over ngx-datatable whose patched value descriptor requires the automation engine to commit via the native value setter + blur (see xcsh browser core)."
