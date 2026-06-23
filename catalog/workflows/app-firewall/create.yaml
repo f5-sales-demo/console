@@ -54,7 +54,7 @@ steps:
 
   - id: "save"
     action: "click"
-    selector: "button:text('Add App Firewall')"
+    selector: "[class*='save-bt']"
     context: "footer"
     wait_for: "text('{name}')"
     wait_timeout_ms: 30000

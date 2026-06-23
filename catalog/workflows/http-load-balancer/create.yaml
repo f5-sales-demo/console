@@ -78,7 +78,7 @@ steps:
 
   - id: "save"
     action: "click"
-    selector: "button:text('Add HTTP Load Balancer')"
+    selector: "[class*='save-bt']"
     wait_for: "text('{name}')"
     wait_timeout_ms: 30000
     description: "Click the Add HTTP Load Balancer button to save. The 'button' role disambiguates the footer save button from the tab of the same name, so no section context is needed. The wait_for confirms the new resource's name appears in the list, which is the creation verification."
