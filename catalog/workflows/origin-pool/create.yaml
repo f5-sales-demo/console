@@ -56,20 +56,26 @@ steps:
     action: "click"
     selector: "button:text('Add Item')"
     context: "Origin Servers section"
-    wait_for: "textbox"
-    description: "Click Add Item to add an origin server entry"
+    wait_for: "text('DNS Name')"
+    description: "Click Add Item to open the Origin Server sub-form (Type defaults to 'Public DNS Name of Origin Server')"
     then:
       - id: "fill-origin-server"
         action: "fill"
-        selector: "textbox"
-        context: "Origin server entry"
+        selector: "textbox[name='DNS Name']"
+        context: "Origin Server sub-form"
         value: "{origin_server}"
-        description: "Enter the origin server address"
+        description: "Enter the origin server DNS hostname in the *DNS Name field. Bare 'textbox' is ambiguous (the sub-form has 18 inputs incl. search boxes) — target the DNS Name field by label."
 
       - id: "apply-origin-server"
         action: "click"
         selector: "button:text('Apply')"
-        description: "Confirm origin server entry"
+        description: "Confirm origin server entry (closes the sub-form, returns to the pool form)"
+
+  - id: "fill-port"
+    action: "fill"
+    selector: "textbox[name='Port']"
+    value: "{port}"
+    description: "Enter the origin pool *Port (required, pool-level field on the main form — distinct from the origin-server sub-form). Without this, save fails validation."
 
   - id: "attach-health-check"
     condition: "params.health_check is set"
@@ -93,11 +99,11 @@ steps:
 
   - id: "save"
     action: "click"
-    selector: "button:text('Add Origin Pool')"
+    selector: "[class*='save-bt']"
     context: "footer"
     wait_for: "text('{name}')"
     wait_timeout_ms: 30000
-    description: "Click the Add Origin Pool button in the form footer to save"
+    description: "Click the footer save button. NOTE: 'Add Origin Pool' text matches TWO buttons (the header tab + the footer save) — target the footer save button by its 'save-bt'/'save-btn' class to avoid clicking the tab."
 
   - id: "verify-created"
     action: "assert"
