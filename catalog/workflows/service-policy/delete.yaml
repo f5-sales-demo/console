@@ -33,14 +33,14 @@ steps:
 
   - id: "scroll-actions-into-view"
     action: "scroll"
-    selector: "[ves-e2e-test='row-action-dropdown']"
+    selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']"
     context: "row containing {name}"
     description: "The data table is wider than the viewport and the Actions column sits off-screen-right; scroll the row's actions button into view before clicking. Avoids enlarging the window."
     note: "For a multi-row list, scope to the datatable-body-row whose cells contain {name}; for a single-row list the first row-action-dropdown is the target."
 
   - id: "open-row-actions"
     action: "click"
-    selector: "[ves-e2e-test='row-action-dropdown']"
+    selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']"
     context: "row containing {name}"
     wait_for: "option:text('Delete')"
     description: "Click the row kebab to open the actions listbox. Requires a trusted (CDP) click — synthetic JS clicks fire outside Angular's zone and never render the overlay."
