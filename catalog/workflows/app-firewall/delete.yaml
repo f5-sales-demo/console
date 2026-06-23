@@ -20,42 +20,49 @@ params:
     description: "Name of the app firewall to delete"
     example: "example-app-firewall"
 
+# Selectors discovered against the live console 2026-06-22. The console has NO
+# data-testid attributes; it uses ves-e2e-test. The per-row actions menu is a
+# shared CrudComponent: a kebab button opens a listbox whose options include
+# Delete, which opens a confirmation dialog with Cancel / Delete buttons.
 steps:
   - id: "navigate-to-list"
     action: "navigate"
-    url: "/web/namespace/{namespace}/security/app-firewalls"
-    wait_for: "[data-testid='resource-table']"
-    description: "Navigate to App Firewalls list page"
+    url: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall"
+    wait_for: "text('App Firewalls')"
+    description: "Navigate to the App Firewall list page (Web App & API Protection workspace)"
 
-  - id: "find-row"
-    action: "assert"
-    selector: "[data-testid='resource-row-{name}']"
-    expected_text: "{name}"
-    description: "Locate the target resource row in the table"
+  - id: "scroll-actions-into-view"
+    action: "scroll"
+    selector: "[ves-e2e-test='row-action-dropdown']"
+    context: "row containing {name}"
+    description: "The data table is wider than the viewport and the Actions column sits off-screen-right; scroll the row's actions button into view before clicking. Avoids enlarging the window."
+    note: "For a multi-row list, scope to the datatable-body-row whose cells contain {name}; for a single-row list the first row-action-dropdown is the target."
 
-  - id: "open-actions"
+  - id: "open-row-actions"
     action: "click"
-    selector: "[data-testid='resource-row-{name}'] [data-testid='row-actions']"
-    wait_for: "[data-testid='action-delete']"
-    description: "Open the row actions menu"
+    selector: "[ves-e2e-test='row-action-dropdown']"
+    context: "row containing {name}"
+    wait_for: "option:text('Delete')"
+    description: "Click the row kebab to open the actions listbox. Requires a trusted (CDP) click — synthetic JS clicks fire outside Angular's zone and never render the overlay."
 
   - id: "click-delete"
     action: "click"
-    selector: "[data-testid='action-delete']"
-    wait_for: "[data-testid='confirm-delete-modal']"
-    description: "Click Delete to open the confirmation modal"
+    selector: "option:text('Delete')"
+    wait_for: "button:text('Delete')"
+    description: "Click the Delete option (ves-e2e-test='row-action-item-delete') to open the confirmation dialog."
 
   - id: "confirm-delete"
     action: "click"
-    selector: "[data-testid='confirm-delete-btn']"
-    wait_for: "[data-testid='resource-table']"
+    selector: "button:text('Delete')"
+    context: "confirmation dialog"
+    wait_for: "text('App Firewalls')"
     wait_timeout_ms: 15000
-    description: "Confirm deletion and wait for the table to refresh"
+    description: "Click the dialog's Delete button to confirm. Cancel via button:text('Cancel') aborts without deleting."
 
-  - id: "verify-deleted"
+  - id: "verify-on-list"
     action: "assert"
-    selector: "[data-testid='resource-table']"
-    description: "Verify the resource no longer appears in the table"
+    selector: "text('App Firewalls')"
+    description: "Confirm the list page is shown after deletion. (Run-time read-back verifies {name} is absent; assert checks presence, so it targets the list heading, not the removed row.)"
 
 postconditions:
   - "resource_removed_from_list"
@@ -63,6 +70,8 @@ postconditions:
 
 metadata:
   confidence: "draft"
-  discovered_at: "2026-06-15"
+  discovered_at: "2026-06-22"
   console_version: "2025.06"
   estimated_duration_seconds: 15
+  selector_scheme: "ves-e2e-test + aria (no data-testid exists)"
+  notes: "Shared CrudComponent delete flow (identical to validated health-check); pending per-resource live confirmation."
