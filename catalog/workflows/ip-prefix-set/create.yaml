@@ -43,10 +43,9 @@ steps:
     then:
       - id: fill-prefix-value
         action: fill
-        selector: textbox
+        selector: textbox[name='IPv4 Prefix']
         value: "{prefix}"
-        description: Fill the first required field in the Prefix sub-form (the agent should provide a value via the 'prefix'
-          parameter)
+        description: Enter IPv4 Prefix for the Prefix entry
       - id: apply-prefix
         action: click
         selector: button:text('Apply')
