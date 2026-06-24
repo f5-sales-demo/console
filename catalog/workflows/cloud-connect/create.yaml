@@ -1,0 +1,89 @@
+schema: urn:f5xc:console:workflow:v1
+id: cloud-connect-create
+label: Create Cloud Connects
+resource: cloud-connect
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: Cloud Connects name (lowercase alphanumeric and hyphens)
+    example: example-cloud-connect
+  provider:
+    required: false
+    description: Provider
+    default: AWS
+  site_reference:
+    required: true
+    description: Site Reference
+  credential_reference:
+    required: true
+    description: Credential Reference
+  spoke_vpcs:
+    required: true
+    description: Spoke VPCs
+  segment:
+    required: true
+    description: Segment
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/connectors/cloud_connect
+    wait_for: text('Cloud Connects')
+    description: Navigate to Cloud Connects list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add Cloud Connect')
+    wait_for: textbox[name='Name']
+    description: Click the Add Cloud Connect tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: select-provider
+    action: select
+    selector: listbox
+    context: Provider section
+    value: "{provider}"
+    description: Select Provider
+    condition: params.provider is set
+  - id: select-site_reference
+    action: select
+    selector: listbox
+    context: Site Reference section
+    value: "{site_reference}"
+    description: Select Site Reference
+  - id: select-credential_reference
+    action: select
+    selector: listbox
+    context: Credential Reference section
+    value: "{credential_reference}"
+    description: Select Credential Reference
+  - id: select-segment
+    action: select
+    selector: listbox
+    context: Segment section
+    value: "{segment}"
+    description: Select Segment
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

@@ -1,0 +1,27 @@
+schema: urn:f5xc:console:workflow:v1
+id: data-type-read
+label: Read Data Types
+resource: data-type
+operation: read
+params:
+  namespace:
+    required: true
+    example: demo
+  name:
+    required: true
+    example: example-data-type
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/api_security/data_types
+    wait_for: text('Data Types')
+    description: Navigate to Data Types list page
+  - id: click-resource
+    action: click
+    selector: row:has-text('{name}') >> link
+    description: Click the resource name to open the detail/edit view
+    note: The agent reads the page content via get_page_text/javascript_tool after navigation
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

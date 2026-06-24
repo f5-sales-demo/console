@@ -1,0 +1,88 @@
+schema: urn:f5xc:console:workflow:v1
+id: log-receiver-create
+label: Create Log Receivers
+resource: log-receiver
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: Log Receivers name (lowercase alphanumeric and hyphens)
+    example: example-log-receiver
+  log_receiver:
+    required: false
+    description: Log Receiver
+    default: Syslog Server
+  syslog_transport_mode:
+    required: false
+    description: Syslog Transport Mode
+    default: Mode UDP
+  server_name:
+    required: true
+    description: Server name
+  port_number:
+    required: false
+    description: Port Number
+    default: 514
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/log_management/log_receivers
+    wait_for: text('Log Receivers')
+    description: Navigate to Log Receivers list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add Log Receiver')
+    wait_for: textbox[name='Name']
+    description: Click the Add Log Receiver tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: select-log_receiver
+    action: select
+    selector: listbox
+    context: Log Receiver section
+    value: "{log_receiver}"
+    description: Select Log Receiver
+    condition: params.log_receiver is set
+  - id: select-syslog_transport_mode
+    action: select
+    selector: listbox
+    context: Syslog Transport Mode section
+    value: "{syslog_transport_mode}"
+    description: Select Syslog Transport Mode
+    condition: params.syslog_transport_mode is set
+  - id: fill-server_name
+    action: fill
+    selector: textbox[name='Server name']
+    value: "{server_name}"
+    description: Enter Server name
+  - id: fill-port_number
+    action: fill
+    selector: spinbutton[name='Port Number']
+    value: "{port_number}"
+    description: "Set Port Number (default: 514)"
+    condition: params.port_number is set
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

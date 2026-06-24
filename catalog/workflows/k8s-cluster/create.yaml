@@ -1,0 +1,48 @@
+schema: urn:f5xc:console:workflow:v1
+id: k8s-cluster-create
+label: Create K8s Clusters
+resource: k8s-cluster
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: K8s Clusters name (lowercase alphanumeric and hyphens)
+    example: example-k8s-cluster
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/distributed-apps/namespaces/{namespace}/manage/virtual_k8s/k8s_clusters
+    wait_for: text('K8s Clusters')
+    description: Navigate to K8s Clusters list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add K8s Cluster')
+    wait_for: textbox[name='Name']
+    description: Click the Add K8s Cluster tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

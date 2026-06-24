@@ -1,0 +1,77 @@
+schema: urn:f5xc:console:workflow:v1
+id: aws-vpc-site-create
+label: Create AWS VPC Sites
+resource: aws-vpc-site
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: AWS VPC Sites name (lowercase alphanumeric and hyphens)
+    example: example-aws-vpc-site
+  aws_region:
+    required: true
+    description: AWS Region
+  aws_credentials:
+    required: true
+    description: AWS Credentials
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/site_management/legacy_configs/aws_vpc_site
+    wait_for: text('AWS VPC Sites')
+    description: Navigate to AWS VPC Sites list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add AWS VPC Site')
+    wait_for: textbox[name='Name']
+    description: Click the Add AWS VPC Site tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: select-aws_region
+    action: select
+    selector: listbox
+    context: AWS Region section
+    value: "{aws_region}"
+    description: Select AWS Region
+  - id: attach-aws_credentials
+    action: click
+    selector: button:text('Add Item')
+    context: AWS Credentials section
+    condition: params.aws_credentials is set
+    description: Attach AWS Credentials (references a resource)
+    then:
+      - id: select-aws_credentials
+        action: select
+        selector: listbox
+        context: AWS Credentials selector
+        value: "{aws_credentials}"
+        description: Select the AWS Credentials
+      - id: apply-aws_credentials
+        action: click
+        selector: button:text('Apply')
+        description: Confirm AWS Credentials selection
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

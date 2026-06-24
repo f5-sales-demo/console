@@ -1,0 +1,50 @@
+schema: urn:f5xc:console:workflow:v1
+id: dns-domain-delete
+label: Delete Delegated Domain Management
+resource: dns-domain
+operation: delete
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+  - "resource_exists: {name}"
+params:
+  namespace:
+    required: true
+    example: demo
+  name:
+    required: true
+    example: example-dns-domain
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/dns-management/manage/dns_domain
+    wait_for: text('Delegated Domain Management')
+    description: Navigate to Delegated Domain Management list page
+  - id: scroll-actions-into-view
+    action: scroll
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    description: Scroll the Actions column into view for the target row
+  - id: open-row-actions
+    action: click
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    wait_for: option:text('Delete')
+    description: Open the row kebab menu
+  - id: click-delete
+    action: click
+    selector: option:text('Delete')
+    wait_for: button:text('Delete')
+    description: Click Delete option
+  - id: confirm-delete
+    action: click
+    selector: button:text('Delete')
+    wait_for: text('Delegated Domain Management')
+    wait_timeout_ms: 15000
+    description: Confirm deletion
+postconditions:
+  - resource_removed_from_list
+  - list_page_visible
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

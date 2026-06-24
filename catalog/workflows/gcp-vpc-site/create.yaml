@@ -1,0 +1,68 @@
+schema: urn:f5xc:console:workflow:v1
+id: gcp-vpc-site-create
+label: Create GCP VPC Sites
+resource: gcp-vpc-site
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: GCP VPC Sites name (lowercase alphanumeric and hyphens)
+    example: example-gcp-vpc-site
+  gcp_credentials:
+    required: true
+    description: GCP Credentials
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/site_management/legacy_configs/gcp_vpc_site
+    wait_for: text('GCP VPC Sites')
+    description: Navigate to GCP VPC Sites list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add GCP VPC Site')
+    wait_for: textbox[name='Name']
+    description: Click the Add GCP VPC Site tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: attach-gcp_credentials
+    action: click
+    selector: button:text('Add Item')
+    context: GCP Credentials section
+    condition: params.gcp_credentials is set
+    description: Attach GCP Credentials (references a resource)
+    then:
+      - id: select-gcp_credentials
+        action: select
+        selector: listbox
+        context: GCP Credentials selector
+        value: "{gcp_credentials}"
+        description: Select the GCP Credentials
+      - id: apply-gcp_credentials
+        action: click
+        selector: button:text('Apply')
+        description: Confirm GCP Credentials selection
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

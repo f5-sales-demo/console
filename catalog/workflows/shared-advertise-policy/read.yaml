@@ -1,0 +1,27 @@
+schema: urn:f5xc:console:workflow:v1
+id: shared-advertise-policy-read
+label: Read Advertise Policies
+resource: shared-advertise-policy
+operation: read
+params:
+  namespace:
+    required: true
+    example: demo
+  name:
+    required: true
+    example: example-shared-advertise-policy
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/shared-configuration/manage/advertise_policies
+    wait_for: text('Advertise Policies')
+    description: Navigate to Advertise Policies list page
+  - id: click-resource
+    action: click
+    selector: row:has-text('{name}') >> link
+    description: Click the resource name to open the detail/edit view
+    note: The agent reads the page content via get_page_text/javascript_tool after navigation
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

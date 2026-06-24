@@ -1,77 +1,50 @@
-schema: "urn:f5xc:console:workflow:v1"
-id: "service-policy-delete"
-label: "Delete Service Policy"
-resource: "service-policy"
-operation: "delete"
-
+schema: urn:f5xc:console:workflow:v1
+id: service-policy-delete
+label: Delete Service Policies
+resource: service-policy
+operation: delete
 preconditions:
-  - "user_logged_in"
-  - "namespace_selected"
+  - user_logged_in
+  - namespace_selected
   - "role_minimum: admin"
   - "resource_exists: {name}"
-
 params:
   namespace:
     required: true
-    description: "Namespace containing the service policy"
-    example: "demo"
+    example: demo
   name:
     required: true
-    description: "Name of the service policy to delete"
-    example: "example-service-policy"
-
-# Selectors discovered against the live console 2026-06-22. The console has NO
-# data-testid attributes; it uses ves-e2e-test. The per-row actions menu is a
-# shared CrudComponent: a kebab button opens a listbox whose options include
-# Delete, which opens a confirmation dialog with Cancel / Delete buttons.
+    example: example-service-policy
 steps:
-  - id: "navigate-to-list"
-    action: "navigate"
-    url: "/web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/service_policies/service_policies"
-    wait_for: "text('Service Policies')"
-    description: "Navigate to the Service Policy list page (Web App & API Protection workspace)"
-
-  - id: "scroll-actions-into-view"
-    action: "scroll"
-    selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']"
-    context: "row containing {name}"
-    description: "The data table is wider than the viewport and the Actions column sits off-screen-right; scroll the row's actions button into view before clicking. Avoids enlarging the window."
-    note: "For a multi-row list, scope to the datatable-body-row whose cells contain {name}; for a single-row list the first row-action-dropdown is the target."
-
-  - id: "open-row-actions"
-    action: "click"
-    selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']"
-    context: "row containing {name}"
-    wait_for: "option:text('Delete')"
-    description: "Click the row kebab to open the actions listbox. Requires a trusted (CDP) click — synthetic JS clicks fire outside Angular's zone and never render the overlay."
-
-  - id: "click-delete"
-    action: "click"
-    selector: "option:text('Delete')"
-    wait_for: "button:text('Delete')"
-    description: "Click the Delete option (ves-e2e-test='row-action-item-delete') to open the confirmation dialog."
-
-  - id: "confirm-delete"
-    action: "click"
-    selector: "button:text('Delete')"
-    context: "confirmation dialog"
-    wait_for: "text('Service Policies')"
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/service_policies/service_policies
+    wait_for: text('Service Policies')
+    description: Navigate to Service Policies list page
+  - id: scroll-actions-into-view
+    action: scroll
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    description: Scroll the Actions column into view for the target row
+  - id: open-row-actions
+    action: click
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    wait_for: option:text('Delete')
+    description: Open the row kebab menu
+  - id: click-delete
+    action: click
+    selector: option:text('Delete')
+    wait_for: button:text('Delete')
+    description: Click Delete option
+  - id: confirm-delete
+    action: click
+    selector: button:text('Delete')
+    wait_for: text('Service Policies')
     wait_timeout_ms: 15000
-    description: "Click the dialog's Delete button to confirm. Cancel via button:text('Cancel') aborts without deleting."
-
-  - id: "verify-on-list"
-    action: "assert"
-    selector: "text('Service Policies')"
-    description: "Confirm the list page is shown after deletion. (Run-time read-back verifies {name} is absent; assert checks presence, so it targets the list heading, not the removed row.)"
-
+    description: Confirm deletion
 postconditions:
-  - "resource_removed_from_list"
-  - "list_page_visible"
-
+  - resource_removed_from_list
+  - list_page_visible
 metadata:
-  confidence: "draft"
-  discovered_at: "2026-06-22"
+  confidence: generated
   console_version: "2025.06"
-  estimated_duration_seconds: 15
-  selector_scheme: "ves-e2e-test + aria (no data-testid exists)"
-  notes: "Shared CrudComponent delete flow (identical to validated health-check); pending per-resource live confirmation."
+  generated_by: scripts/generate-workflows.ts

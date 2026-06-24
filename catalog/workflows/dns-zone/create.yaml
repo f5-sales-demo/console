@@ -1,0 +1,56 @@
+schema: urn:f5xc:console:workflow:v1
+id: dns-zone-create
+label: Create DNS Zones
+resource: dns-zone
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: DNS Zones name (lowercase alphanumeric and hyphens)
+    example: example-dns-zone
+  domain:
+    required: true
+    description: Domain
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/dns-management/manage/zone_management
+    wait_for: text('DNS Zones')
+    description: Navigate to DNS Zones list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add DNS Zone')
+    wait_for: textbox[name='Name']
+    description: Click the Add DNS Zone tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: fill-domain
+    action: fill
+    selector: textbox[name='Domain']
+    value: "{domain}"
+    description: Enter Domain
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

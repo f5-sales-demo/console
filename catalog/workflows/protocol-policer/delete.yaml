@@ -1,0 +1,50 @@
+schema: urn:f5xc:console:workflow:v1
+id: protocol-policer-delete
+label: Delete Protocol Policers
+resource: protocol-policer
+operation: delete
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+  - "resource_exists: {name}"
+params:
+  namespace:
+    required: true
+    example: demo
+  name:
+    required: true
+    example: example-protocol-policer
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/firewall/protocol_policers
+    wait_for: text('Protocol Policers')
+    description: Navigate to Protocol Policers list page
+  - id: scroll-actions-into-view
+    action: scroll
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    description: Scroll the Actions column into view for the target row
+  - id: open-row-actions
+    action: click
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    wait_for: option:text('Delete')
+    description: Open the row kebab menu
+  - id: click-delete
+    action: click
+    selector: option:text('Delete')
+    wait_for: button:text('Delete')
+    description: Click Delete option
+  - id: confirm-delete
+    action: click
+    selector: button:text('Delete')
+    wait_for: text('Protocol Policers')
+    wait_timeout_ms: 15000
+    description: Confirm deletion
+postconditions:
+  - resource_removed_from_list
+  - list_page_visible
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

@@ -1,63 +1,50 @@
-schema: "urn:f5xc:console:workflow:v1"
-id: "namespace-delete"
-label: "Delete Namespace"
-resource: "namespace"
-operation: "delete"
-
+schema: urn:f5xc:console:workflow:v1
+id: namespace-delete
+label: Delete My Namespaces
+resource: namespace
+operation: delete
 preconditions:
-  - "user_logged_in"
+  - user_logged_in
+  - namespace_selected
   - "role_minimum: admin"
   - "resource_exists: {name}"
-
 params:
+  namespace:
+    required: true
+    example: demo
   name:
     required: true
-    description: "Name of the namespace to delete"
-    example: "example-namespace"
-
+    example: example-namespace
 steps:
-  - id: "navigate-to-list"
-    action: "navigate"
-    url: "/web/namespaces"
-    wait_for: "[data-testid='resource-table']"
-    description: "Navigate to Namespaces list page"
-
-  - id: "find-row"
-    action: "assert"
-    selector: "[data-testid='resource-row-{name}']"
-    expected_text: "{name}"
-    description: "Locate the target resource row in the table"
-
-  - id: "open-actions"
-    action: "click"
-    selector: "[data-testid='resource-row-{name}'] [data-testid='row-actions']"
-    wait_for: "[data-testid='action-delete']"
-    description: "Open the row actions menu"
-
-  - id: "click-delete"
-    action: "click"
-    selector: "[data-testid='action-delete']"
-    wait_for: "[data-testid='confirm-delete-modal']"
-    description: "Click Delete to open the confirmation modal"
-
-  - id: "confirm-delete"
-    action: "click"
-    selector: "[data-testid='confirm-delete-btn']"
-    wait_for: "[data-testid='resource-table']"
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/administration/personal-management/namespaces
+    wait_for: text('My Namespaces')
+    description: Navigate to My Namespaces list page
+  - id: scroll-actions-into-view
+    action: scroll
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    description: Scroll the Actions column into view for the target row
+  - id: open-row-actions
+    action: click
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    wait_for: option:text('Delete')
+    description: Open the row kebab menu
+  - id: click-delete
+    action: click
+    selector: option:text('Delete')
+    wait_for: button:text('Delete')
+    description: Click Delete option
+  - id: confirm-delete
+    action: click
+    selector: button:text('Delete')
+    wait_for: text('My Namespaces')
     wait_timeout_ms: 15000
-    description: "Confirm deletion and wait for the table to refresh"
-
-  - id: "verify-deleted"
-    action: "assert"
-    selector: "[data-testid='resource-table']"
-    description: "Verify the resource no longer appears in the table"
-
+    description: Confirm deletion
 postconditions:
-  - "resource_removed_from_list"
-  - "list_page_visible"
-
+  - resource_removed_from_list
+  - list_page_visible
 metadata:
-  confidence: "draft"
-  discovered_at: "2026-06-15"
+  confidence: generated
   console_version: "2025.06"
-  estimated_duration_seconds: 15
+  generated_by: scripts/generate-workflows.ts

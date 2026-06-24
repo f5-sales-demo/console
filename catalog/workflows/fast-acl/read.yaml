@@ -1,0 +1,27 @@
+schema: urn:f5xc:console:workflow:v1
+id: fast-acl-read
+label: Read Fast ACLs
+resource: fast-acl
+operation: read
+params:
+  namespace:
+    required: true
+    example: demo
+  name:
+    required: true
+    example: example-fast-acl
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/firewall/fast_acls
+    wait_for: text('Fast ACLs')
+    description: Navigate to Fast ACLs list page
+  - id: click-resource
+    action: click
+    selector: row:has-text('{name}') >> link
+    description: Click the resource name to open the detail/edit view
+    note: The agent reads the page content via get_page_text/javascript_tool after navigation
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

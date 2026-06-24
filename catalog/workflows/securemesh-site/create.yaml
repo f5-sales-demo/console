@@ -1,0 +1,198 @@
+schema: urn:f5xc:console:workflow:v1
+id: securemesh-site-create
+label: Create Secure Mesh Sites
+resource: securemesh-site
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: Secure Mesh Sites name (lowercase alphanumeric and hyphens)
+    example: example-securemesh-site
+  generic_server_certified_hardware:
+    required: false
+    description: Generic Server Certified Hardware
+    default: isv-8000-series-voltmesh
+  master_nodes:
+    required: true
+    description: Master Nodes
+  bond_configuration:
+    required: false
+    description: Bond Configuration
+    default: No Bond Devices
+  configure_networking:
+    required: false
+    description: Configure Networking
+    default: Default Network Configuration
+  logs_streaming:
+    required: false
+    description: Logs Streaming
+    default: Disable Logs Streaming
+  f5xc_software_version:
+    required: false
+    description: F5XC Software Version
+    default: Latest SW Version
+  operating_system_version:
+    required: false
+    description: Operating System Version
+    default: Latest OS Version
+  node_by_node_upgrade:
+    required: false
+    description: Node by Node Upgrade
+    default: Enable
+  upgrade_wait_time:
+    required: false
+    description: Upgrade Wait Time
+    default: 300
+  node_batch_size:
+    required: false
+    description: Node Batch Size
+    default: Node Batch Size Count
+  node_batch_size_count:
+    required: false
+    description: Node Batch Size Count
+    default: 1
+  blocked_services:
+    required: false
+    description: Blocked Services
+    default: Default Blocked Service Configuration
+  offline_survivability_mode:
+    required: false
+    description: Offline Survivability Mode
+    default: Disabled
+  performance_mode:
+    required: false
+    description: Performance Mode
+    default: L7 Enhanced
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/site_management/legacy_configs/securemesh_site
+    wait_for: text('Secure Mesh Sites')
+    description: Navigate to Secure Mesh Sites list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add Secure Mesh Site')
+    wait_for: textbox[name='Name']
+    description: Click the Add Secure Mesh Site tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: select-generic_server_certified_hardware
+    action: select
+    selector: listbox
+    context: Generic Server Certified Hardware section
+    value: "{generic_server_certified_hardware}"
+    description: Select Generic Server Certified Hardware
+    condition: params.generic_server_certified_hardware is set
+  - id: fill-master_nodes
+    action: fill
+    selector: ngx-datatable input.form-control-md
+    context: Master Nodes table
+    value: "{master_nodes}"
+    description: Enter Master Nodes in the existing table row (no Add Item needed — the table ships one empty row)
+  - id: select-bond_configuration
+    action: select
+    selector: listbox
+    context: Bond Configuration section
+    value: "{bond_configuration}"
+    description: Select Bond Configuration
+    condition: params.bond_configuration is set
+  - id: select-configure_networking
+    action: select
+    selector: listbox
+    context: Configure Networking section
+    value: "{configure_networking}"
+    description: Select Configure Networking
+    condition: params.configure_networking is set
+  - id: select-logs_streaming
+    action: select
+    selector: listbox
+    context: Logs Streaming section
+    value: "{logs_streaming}"
+    description: Select Logs Streaming
+    condition: params.logs_streaming is set
+  - id: select-f5xc_software_version
+    action: select
+    selector: listbox
+    context: F5XC Software Version section
+    value: "{f5xc_software_version}"
+    description: Select F5XC Software Version
+    condition: params.f5xc_software_version is set
+  - id: select-operating_system_version
+    action: select
+    selector: listbox
+    context: Operating System Version section
+    value: "{operating_system_version}"
+    description: Select Operating System Version
+    condition: params.operating_system_version is set
+  - id: select-node_by_node_upgrade
+    action: select
+    selector: listbox
+    context: Node by Node Upgrade section
+    value: "{node_by_node_upgrade}"
+    description: Select Node by Node Upgrade
+    condition: params.node_by_node_upgrade is set
+  - id: fill-upgrade_wait_time
+    action: fill
+    selector: spinbutton[name='Upgrade Wait Time']
+    value: "{upgrade_wait_time}"
+    description: "Set Upgrade Wait Time (default: 300)"
+    condition: params.upgrade_wait_time is set
+  - id: select-node_batch_size
+    action: select
+    selector: listbox
+    context: Node Batch Size section
+    value: "{node_batch_size}"
+    description: Select Node Batch Size
+    condition: params.node_batch_size is set
+  - id: fill-node_batch_size_count
+    action: fill
+    selector: spinbutton[name='Node Batch Size Count']
+    value: "{node_batch_size_count}"
+    description: "Set Node Batch Size Count (default: 1)"
+    condition: params.node_batch_size_count is set
+  - id: select-blocked_services
+    action: select
+    selector: listbox
+    context: Blocked Services section
+    value: "{blocked_services}"
+    description: Select Blocked Services
+    condition: params.blocked_services is set
+  - id: select-offline_survivability_mode
+    action: select
+    selector: listbox
+    context: Offline Survivability Mode section
+    value: "{offline_survivability_mode}"
+    description: Select Offline Survivability Mode
+    condition: params.offline_survivability_mode is set
+  - id: select-performance_mode
+    action: select
+    selector: listbox
+    context: Performance Mode section
+    value: "{performance_mode}"
+    description: Select Performance Mode
+    condition: params.performance_mode is set
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

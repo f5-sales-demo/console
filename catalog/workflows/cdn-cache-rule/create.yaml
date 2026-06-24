@@ -1,0 +1,76 @@
+schema: urn:f5xc:console:workflow:v1
+id: cdn-cache-rule-create
+label: Create CDN Cache Rules
+resource: cdn-cache-rule
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: CDN Cache Rules name (lowercase alphanumeric and hyphens)
+    example: example-cdn-cache-rule
+  rule_name:
+    required: true
+    description: Rule Name
+  expressions:
+    required: true
+    description: Expressions
+  cache_actions:
+    required: false
+    description: Cache Actions
+    default: Bypass Cache
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/cdn/cdn_cache_rule
+    wait_for: text('CDN Cache Rules')
+    description: Navigate to CDN Cache Rules list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add CDN Cache Rule')
+    wait_for: textbox[name='Name']
+    description: Click the Add CDN Cache Rule tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: fill-rule_name
+    action: fill
+    selector: textbox[name='Rule Name']
+    value: "{rule_name}"
+    description: Enter Rule Name
+  - id: fill-expressions
+    action: fill
+    selector: ngx-datatable input.form-control-md
+    context: Expressions table
+    value: "{expressions}"
+    description: Enter Expressions in the existing table row (no Add Item needed — the table ships one empty row)
+  - id: select-cache_actions
+    action: select
+    selector: listbox
+    context: Cache Actions section
+    value: "{cache_actions}"
+    description: Select Cache Actions
+    condition: params.cache_actions is set
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

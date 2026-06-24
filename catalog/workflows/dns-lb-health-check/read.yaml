@@ -1,0 +1,27 @@
+schema: urn:f5xc:console:workflow:v1
+id: dns-lb-health-check-read
+label: Read DNS Load Balancer Health Checks
+resource: dns-lb-health-check
+operation: read
+params:
+  namespace:
+    required: true
+    example: demo
+  name:
+    required: true
+    example: example-dns-lb-health-check
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/dns-management/manage/dns_lb_management/dns_lb_health_check
+    wait_for: text('DNS Load Balancer Health Checks')
+    description: Navigate to DNS Load Balancer Health Checks list page
+  - id: click-resource
+    action: click
+    selector: row:has-text('{name}') >> link
+    description: Click the resource name to open the detail/edit view
+    note: The agent reads the page content via get_page_text/javascript_tool after navigation
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

@@ -1,0 +1,392 @@
+#!/usr/bin/env bun
+/**
+ * generate-workflows.ts — Generates deterministic browser-automation workflows
+ * (create, delete, read, update) for all F5 XC console resources from the
+ * authoritative field metadata in api-specs-enriched.
+ *
+ * Inputs:
+ *   api-specs-enriched/config/console_field_metadata.yaml  (per-field: widget, required, validation)
+ *   api-specs-enriched/config/console_ui.yaml              (per-resource: workspace, route, form sections)
+ *
+ * Output:
+ *   catalog/workflows/<resource-id>/create.yaml, delete.yaml, read.yaml, update.yaml
+ *
+ * Usage:
+ *   bun scripts/generate-workflows.ts                      # generate all
+ *   bun scripts/generate-workflows.ts --dry-run             # list resources + step counts
+ *   bun scripts/generate-workflows.ts --resource app-firewall  # generate one
+ */
+import * as fs from "node:fs";
+import * as path from "node:path";
+import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
+
+const SCRIPT_DIR = path.resolve(import.meta.dir);
+const CONSOLE_ROOT = path.resolve(SCRIPT_DIR, "..");
+const WORKFLOWS_DIR = path.join(CONSOLE_ROOT, "catalog/workflows");
+
+// Resolve api-specs-enriched
+function resolveApiSpecs(): string | null {
+	const env = process.env.API_SPECS_ENRICHED_DIR;
+	if (env && fs.existsSync(path.join(env, "config/console_field_metadata.yaml"))) return env;
+	const sibling = path.resolve(CONSOLE_ROOT, "../api-specs-enriched");
+	if (fs.existsSync(path.join(sibling, "config/console_field_metadata.yaml"))) return sibling;
+	return null;
+}
+
+// --- Types ---
+interface FieldMeta {
+	widget_type?: string;
+	label?: string;
+	required?: boolean;
+	default?: unknown;
+	options?: string[];
+	validation?: { pattern?: string; max_length?: number };
+	mutually_exclusive_with?: string[];
+	add_action?: string;
+	nested_resource?: string;
+	resource_type?: string;
+	disabled?: boolean;
+	form_section?: string;
+	description?: string;
+	item_types?: Record<string, { label: string; fields: string[] }>;
+}
+interface UiResource {
+	workspace?: string;
+	route_pattern?: string;
+	menu_path?: string[];
+	add_action?: { type: string; label: string };
+	save_action?: { label: string };
+	form_sections?: Array<{ id: string; label: string; api_fields?: string[] }>;
+}
+interface Step {
+	id: string;
+	action: string;
+	[key: string]: unknown;
+}
+
+// --- Helpers ---
+function toHyphenated(snakeCase: string): string {
+	return snakeCase.replace(/_/g, "-");
+}
+function toParamName(label: string): string {
+	return label.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+}
+function workspacePrefix(ws: string): string {
+	return `/web/workspaces/${ws}`;
+}
+
+// --- Widget → Step mapper (T2) ---
+function fieldToSteps(fieldPath: string, meta: FieldMeta, resourceLabel: string): Step[] {
+	if (meta.disabled) return [];
+	const label = meta.label ?? fieldPath.split(".").pop()!;
+	const param = toParamName(label);
+	const isName = fieldPath === "metadata.name";
+	const hasDefault = meta.default !== undefined && meta.default !== "" && meta.default !== 0;
+
+	switch (meta.widget_type) {
+		case "textbox":
+		case "textarea": {
+			const step: Step = {
+				id: isName ? "fill-name" : `fill-${param}`,
+				action: "fill",
+				selector: `textbox[name='${label}']`,
+				value: `{${isName ? "name" : param}}`,
+				description: `Enter ${label}${meta.validation?.pattern ? ` (pattern: ${meta.validation.pattern})` : ""}${meta.validation?.max_length ? `, max ${meta.validation.max_length} chars` : ""}`,
+			};
+			if (!isName && hasDefault) step.condition = `params.${param} is set`;
+			return [step];
+		}
+		case "spinbutton": {
+			const step: Step = {
+				id: `fill-${param}`,
+				action: "fill",
+				selector: `spinbutton[name='${label}']`,
+				value: `{${param}}`,
+				description: `Set ${label}${hasDefault ? ` (default: ${meta.default})` : ""}`,
+			};
+			if (hasDefault) step.condition = `params.${param} is set`;
+			return [step];
+		}
+		case "listbox": {
+			const step: Step = {
+				id: `select-${param}`,
+				action: "select",
+				selector: "listbox",
+				context: `${label} section`,
+				value: `{${param}}`,
+				description: `Select ${label}${meta.options ? ` (${meta.options.join(" | ")})` : ""}`,
+			};
+			if (hasDefault) step.condition = `params.${param} is set`;
+			return [step];
+		}
+		case "checkbox": {
+			return [{
+				id: `check-${param}`,
+				action: "check",
+				selector: `checkbox[name='${label}']`,
+				condition: `params.${param} is set`,
+				description: `Toggle ${label}`,
+			}];
+		}
+		case "table": {
+			// Tables ship with one empty row — fill it directly via ngx-datatable
+			return [{
+				id: `fill-${param}`,
+				action: "fill",
+				selector: "ngx-datatable input.form-control-md",
+				context: `${label} table`,
+				value: `{${param}}`,
+				description: `Enter ${label} in the existing table row (no Add Item needed — the table ships one empty row)`,
+			}];
+		}
+		case "resource-selector": {
+			return [{
+				id: `attach-${param}`,
+				action: "click",
+				selector: "button:text('Add Item')",
+				context: `${label} section`,
+				condition: `params.${param} is set`,
+				description: `Attach ${label} (references a ${meta.resource_type ?? "resource"})`,
+				then: [
+					{ id: `select-${param}`, action: "select", selector: "listbox", context: `${label} selector`, value: `{${param}}`, description: `Select the ${label}` },
+					{ id: `apply-${param}`, action: "click", selector: "button:text('Apply')", description: `Confirm ${label} selection` },
+				],
+			}];
+		}
+		case "nested-resource-list": {
+			// Use the first item type as default
+			const types = meta.item_types ? Object.entries(meta.item_types) : [];
+			const defaultType = types[0];
+			const steps: Step[] = [{
+				id: `add-${param}`,
+				action: "click",
+				selector: "button:text('Add Item')",
+				context: `${label} section`,
+				description: `Add ${label} entry${defaultType ? ` (default type: ${defaultType[1].label})` : ""}`,
+				then: [
+					...(defaultType?.[1].fields ?? []).slice(0, 1).map(f => ({
+						id: `fill-${param}-${f}`,
+						action: "fill" as const,
+						selector: `textbox[name='${f.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}']`,
+						value: `{${toParamName(label)}}`,
+						description: `Enter ${f} for the ${label} entry`,
+					})),
+					{ id: `apply-${param}`, action: "click" as const, selector: "button:text('Apply')", description: `Confirm ${label} entry` },
+				],
+			}];
+			return steps;
+		}
+		// Skip these — optional/expansion, not required for minimal create
+		case "key-value-pairs":
+		case "configurable":
+		case "expandable":
+		case "info-text":
+		case "file-upload-button":
+		case "file-import-button":
+			return [];
+		default:
+			return [];
+	}
+}
+
+// --- Templates (T3-T5) ---
+function generateCreate(resourceId: string, kind: string, ui: UiResource, fields: Record<string, FieldMeta>, label: string): object {
+	const prefix = ui.workspace ? workspacePrefix(ui.workspace) : "";
+	const route = `${prefix}${ui.route_pattern ?? ""}`;
+	const addLabel = ui.add_action?.label ?? `Add ${label}`;
+
+	// Collect required fields, ordered by form_section
+	const sections = ui.form_sections ?? [];
+	const sectionOrder = sections.map(s => s.id);
+	const requiredFields = Object.entries(fields)
+		.filter(([, m]) => m.required === true && !m.disabled)
+		.sort((a, b) => {
+			const sa = sectionOrder.indexOf(a[1].form_section ?? "");
+			const sb = sectionOrder.indexOf(b[1].form_section ?? "");
+			return (sa === -1 ? 999 : sa) - (sb === -1 ? 999 : sb);
+		});
+
+	// Build params from required + optional defaults
+	const params: Record<string, object> = {
+		namespace: { required: true, description: "Target namespace", example: "demo" },
+		name: { required: true, description: `${label} name (lowercase alphanumeric and hyphens)`, example: `example-${resourceId}` },
+	};
+	for (const [fp, m] of requiredFields) {
+		if (fp === "metadata.name") continue;
+		const p = toParamName(m.label ?? fp);
+		if (p === "name" || p === "namespace") continue;
+		const def: Record<string, unknown> = { required: m.default === undefined, description: m.description ?? m.label ?? fp };
+		if (m.default !== undefined) def.default = m.default;
+		if (m.options) def.example = m.options[0];
+		params[p] = def;
+	}
+
+	// Build steps
+	const steps: Step[] = [
+		{ id: "navigate-to-list", action: "navigate", url: `${route}`.replace(/\{namespace\}/, "{namespace}"), wait_for: `text('${label}')`, description: `Navigate to ${label} list page` },
+		{ id: "click-add-tab", action: "click", selector: `tab:text('${addLabel}')`, wait_for: "textbox[name='Name']", description: `Click the ${addLabel} tab to open the create form` },
+	];
+
+	for (const [fp, m] of requiredFields) {
+		steps.push(...fieldToSteps(fp, m, label));
+	}
+
+	steps.push({
+		id: "save",
+		action: "click",
+		selector: "[class*='save-bt']",
+		context: "footer",
+		wait_for: "text('{name}')",
+		wait_timeout_ms: 30000,
+		description: `Save via the footer button (never use button:text — it collides with the header tab)`,
+	});
+
+	return {
+		schema: "urn:f5xc:console:workflow:v1",
+		id: `${resourceId}-create`,
+		label: `Create ${label}`,
+		resource: resourceId,
+		operation: "create",
+		preconditions: ["user_logged_in", "namespace_selected", "role_minimum: admin"],
+		params,
+		steps,
+		postconditions: ["resource_list_page_visible", "resource_name_in_list: {name}"],
+		metadata: { confidence: "generated", console_version: "2025.06", generated_by: "scripts/generate-workflows.ts" },
+	};
+}
+
+function generateDelete(resourceId: string, ui: UiResource, label: string): object {
+	const prefix = ui.workspace ? workspacePrefix(ui.workspace) : "";
+	const route = `${prefix}${ui.route_pattern ?? ""}`;
+	return {
+		schema: "urn:f5xc:console:workflow:v1",
+		id: `${resourceId}-delete`,
+		label: `Delete ${label}`,
+		resource: resourceId,
+		operation: "delete",
+		preconditions: ["user_logged_in", "namespace_selected", "role_minimum: admin", "resource_exists: {name}"],
+		params: {
+			namespace: { required: true, example: "demo" },
+			name: { required: true, example: `example-${resourceId}` },
+		},
+		steps: [
+			{ id: "navigate-to-list", action: "navigate", url: route.replace(/\{namespace\}/, "{namespace}"), wait_for: `text('${label}')`, description: `Navigate to ${label} list page` },
+			{ id: "scroll-actions-into-view", action: "scroll", selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']", description: "Scroll the Actions column into view for the target row" },
+			{ id: "open-row-actions", action: "click", selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']", wait_for: "option:text('Delete')", description: "Open the row kebab menu" },
+			{ id: "click-delete", action: "click", selector: "option:text('Delete')", wait_for: "button:text('Delete')", description: "Click Delete option" },
+			{ id: "confirm-delete", action: "click", selector: "button:text('Delete')", wait_for: `text('${label}')`, wait_timeout_ms: 15000, description: "Confirm deletion" },
+		],
+		postconditions: ["resource_removed_from_list", "list_page_visible"],
+		metadata: { confidence: "generated", console_version: "2025.06", generated_by: "scripts/generate-workflows.ts" },
+	};
+}
+
+function generateRead(resourceId: string, ui: UiResource, label: string): object {
+	const prefix = ui.workspace ? workspacePrefix(ui.workspace) : "";
+	const route = `${prefix}${ui.route_pattern ?? ""}`;
+	return {
+		schema: "urn:f5xc:console:workflow:v1",
+		id: `${resourceId}-read`,
+		label: `Read ${label}`,
+		resource: resourceId,
+		operation: "read",
+		params: {
+			namespace: { required: true, example: "demo" },
+			name: { required: true, example: `example-${resourceId}` },
+		},
+		steps: [
+			{ id: "navigate-to-list", action: "navigate", url: route.replace(/\{namespace\}/, "{namespace}"), wait_for: `text('${label}')`, description: `Navigate to ${label} list page` },
+			{ id: "click-resource", action: "click", selector: "row:has-text('{name}') >> link", description: "Click the resource name to open the detail/edit view", note: "The agent reads the page content via get_page_text/javascript_tool after navigation" },
+		],
+		metadata: { confidence: "generated", console_version: "2025.06", generated_by: "scripts/generate-workflows.ts" },
+	};
+}
+
+function generateUpdate(resourceId: string, ui: UiResource, label: string): object {
+	const prefix = ui.workspace ? workspacePrefix(ui.workspace) : "";
+	const route = `${prefix}${ui.route_pattern ?? ""}`;
+	return {
+		schema: "urn:f5xc:console:workflow:v1",
+		id: `${resourceId}-update`,
+		label: `Update ${label}`,
+		resource: resourceId,
+		operation: "update",
+		params: {
+			namespace: { required: true, example: "demo" },
+			name: { required: true, example: `example-${resourceId}` },
+		},
+		steps: [
+			{ id: "navigate-to-list", action: "navigate", url: route.replace(/\{namespace\}/, "{namespace}"), wait_for: `text('${label}')`, description: `Navigate to ${label} list page` },
+			{ id: "scroll-actions-into-view", action: "scroll", selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']", description: "Scroll the Actions column into view" },
+			{ id: "open-row-actions", action: "click", selector: "row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']", wait_for: "option:text('Manage Configuration')", description: "Open the row kebab menu" },
+			{ id: "click-edit", action: "click", selector: "option:text('Manage Configuration')", wait_for: "textbox[name='Name']", description: "Open the edit form" },
+			{ id: "modify-fields", action: "wait", selector: "textbox[name='Name']", description: "The agent fills the specific fields the user asked to modify (dynamic, not pre-generated)" },
+			{ id: "save", action: "click", selector: "[class*='save-bt']", context: "footer", wait_for: `text('${label}')`, wait_timeout_ms: 30000, description: "Save changes via the footer button" },
+		],
+		metadata: { confidence: "generated", console_version: "2025.06", generated_by: "scripts/generate-workflows.ts" },
+	};
+}
+
+// --- Main ---
+const specsDir = resolveApiSpecs();
+if (!specsDir) { console.error("api-specs-enriched not found"); process.exit(1); }
+
+const fieldMetadata = (parseYaml(fs.readFileSync(path.join(specsDir, "config/console_field_metadata.yaml"), "utf8")) as any).resources as Record<string, Record<string, FieldMeta>>;
+const uiRaw = parseYaml(fs.readFileSync(path.join(specsDir, "config/console_ui.yaml"), "utf8")) as any;
+const uiConfig = (uiRaw.resources ?? uiRaw) as Record<string, UiResource>;
+
+// Read existing resource catalog for label + api.kind mapping
+const resourcesDir = path.join(CONSOLE_ROOT, "catalog/resources");
+const catalogResources = new Map<string, { kind: string; label: string }>();
+for (const f of fs.readdirSync(resourcesDir).filter(f => f.endsWith(".yaml"))) {
+	const id = f.replace(".yaml", "");
+	const doc = parseYaml(fs.readFileSync(path.join(resourcesDir, f), "utf8")) as any;
+	catalogResources.set(id, { kind: doc?.api?.kind ?? "", label: doc?.label ?? id });
+}
+
+const dryRun = process.argv.includes("--dry-run");
+const filterResource = process.argv.includes("--resource") ? process.argv[process.argv.indexOf("--resource") + 1] : null;
+const preserveHandcrafted = !process.argv.includes("--overwrite");
+
+let generated = 0;
+let skipped = 0;
+let preserved = 0;
+
+for (const [resourceId, { kind, label }] of [...catalogResources.entries()].sort()) {
+	if (filterResource && resourceId !== filterResource) continue;
+	const ui = uiConfig[kind] ?? {};
+	const fields = fieldMetadata[kind] ?? {};
+	if (!ui.route_pattern) { skipped++; continue; } // no console route = not navigable
+
+	const dir = path.join(WORKFLOWS_DIR, resourceId);
+
+	if (dryRun) {
+		const reqCount = Object.values(fields).filter(m => m.required).length;
+		console.log(`${resourceId.padEnd(30)} kind=${kind.padEnd(25)} fields=${Object.keys(fields).length.toString().padEnd(3)} required=${reqCount} route=${ui.route_pattern}`);
+		generated++;
+		continue;
+	}
+
+	fs.mkdirSync(dir, { recursive: true });
+
+	for (const [op, gen] of [
+		["create", () => generateCreate(resourceId, kind, ui, fields, label)],
+		["delete", () => generateDelete(resourceId, ui, label)],
+		["read", () => generateRead(resourceId, ui, label)],
+		["update", () => generateUpdate(resourceId, ui, label)],
+	] as const) {
+		const file = path.join(dir, `${op}.yaml`);
+		// Preserve hand-crafted workflows (confidence: validated) unless --overwrite
+		if (preserveHandcrafted && fs.existsSync(file)) {
+			try {
+				const existing = parseYaml(fs.readFileSync(file, "utf8")) as any;
+				if (existing?.metadata?.confidence === "validated") { preserved++; continue; }
+			} catch { /* corrupt YAML — overwrite */ }
+		}
+		const workflow = (gen as () => object)();
+		fs.writeFileSync(file, stringifyYaml(workflow, { lineWidth: 120 }));
+	}
+	generated++;
+}
+
+console.log(`\n${dryRun ? "Dry run" : "Generated"}: ${generated} resources, ${skipped} skipped (no route), ${preserved} hand-crafted preserved`);

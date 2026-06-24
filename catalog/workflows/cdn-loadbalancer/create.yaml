@@ -1,0 +1,68 @@
+schema: urn:f5xc:console:workflow:v1
+id: cdn-loadbalancer-create
+label: Create CDN Distributions
+resource: cdn-loadbalancer
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: CDN Distributions name (lowercase alphanumeric and hyphens)
+    example: example-cdn-loadbalancer
+  domains:
+    required: true
+    description: Domains
+  load_balancer_type:
+    required: false
+    description: Load Balancer Type
+    default: HTTPS with Automatic Certificate
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/cdn/distributions
+    wait_for: text('CDN Distributions')
+    description: Navigate to CDN Distributions list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add CDN Distribution')
+    wait_for: textbox[name='Name']
+    description: Click the Add CDN Distribution tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: fill-domains
+    action: fill
+    selector: ngx-datatable input.form-control-md
+    context: Domains table
+    value: "{domains}"
+    description: Enter Domains in the existing table row (no Add Item needed — the table ships one empty row)
+  - id: select-load_balancer_type
+    action: select
+    selector: listbox
+    context: Load Balancer Type section
+    value: "{load_balancer_type}"
+    description: Select Load Balancer Type
+    condition: params.load_balancer_type is set
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts

@@ -1,0 +1,47 @@
+schema: urn:f5xc:console:workflow:v1
+id: securemesh-site-v2-update
+label: Update Secure Mesh Sites v2
+resource: securemesh-site-v2
+operation: update
+params:
+  namespace:
+    required: true
+    example: demo
+  name:
+    required: true
+    example: example-securemesh-site-v2
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/site_management/cloud_sites/securemesh_site_v2
+    wait_for: text('Secure Mesh Sites v2')
+    description: Navigate to Secure Mesh Sites v2 list page
+  - id: scroll-actions-into-view
+    action: scroll
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    description: Scroll the Actions column into view
+  - id: open-row-actions
+    action: click
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    wait_for: option:text('Manage Configuration')
+    description: Open the row kebab menu
+  - id: click-edit
+    action: click
+    selector: option:text('Manage Configuration')
+    wait_for: textbox[name='Name']
+    description: Open the edit form
+  - id: modify-fields
+    action: wait
+    selector: textbox[name='Name']
+    description: The agent fills the specific fields the user asked to modify (dynamic, not pre-generated)
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('Secure Mesh Sites v2')
+    wait_timeout_ms: 30000
+    description: Save changes via the footer button
+metadata:
+  confidence: generated
+  console_version: "2025.06"
+  generated_by: scripts/generate-workflows.ts
