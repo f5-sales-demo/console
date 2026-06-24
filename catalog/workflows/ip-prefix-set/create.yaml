@@ -18,7 +18,7 @@ params:
     example: example-ip-prefix-set
   prefix:
     required: true
-    description: "Server-required: At least one IP prefix required"
+    description: IP prefixes — at least one required (e.g. 10.0.0.0/24). Add Item → fill CIDR.
 steps:
   - id: navigate-to-list
     action: navigate
@@ -35,16 +35,22 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-prefix
+  - id: add-prefix
     action: click
-    selector: button:text('Configure')
+    selector: button:text('Add Item')
     context: Prefix section
-    description: Open the Prefix configuration (required)
-  - id: fill-prefix-value
-    action: fill
-    selector: textbox
-    value: "{prefix}"
-    description: Fill the required field inside the Prefix configuration. The agent provides this via the 'prefix' parameter.
+    description: Add Prefix entry
+    then:
+      - id: fill-prefix-value
+        action: fill
+        selector: textbox
+        value: "{prefix}"
+        description: Fill the first required field in the Prefix sub-form (the agent should provide a value via the 'prefix'
+          parameter)
+      - id: apply-prefix
+        action: click
+        selector: button:text('Apply')
+        description: Confirm Prefix entry
   - id: save
     action: click
     selector: "[class*='save-bt']"
