@@ -22,7 +22,7 @@ params:
     default: Virtual Site
   reference:
     required: true
-    description: Reference
+    description: "'Field Reference is required'"
   internet_vip_choice:
     required: false
     description: Internet VIP Choice
@@ -58,12 +58,11 @@ steps:
     value: "{virtual_site_or_site_or_network}"
     description: Select Virtual-Site or Site or Network
     condition: params.virtual_site_or_site_or_network is set
-  - id: select-reference
-    action: select
-    selector: listbox
+  - id: configure-reference
+    action: click
+    selector: button:text('Configure')
     context: Reference section
-    value: "{reference}"
-    description: Select Reference
+    description: Open the Reference configuration (required field). The sub-form must be filled for save to succeed.
   - id: select-internet_vip_choice
     action: select
     selector: listbox

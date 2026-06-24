@@ -18,7 +18,7 @@ params:
     example: example-code-base-integration
   code_base:
     required: false
-    description: Code Base
+    description: "'Field Code Base in Integration Data is required'"
     default: ""
 steps:
   - id: navigate-to-list
@@ -36,12 +36,11 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: select-code_base
-    action: select
-    selector: listbox
+  - id: configure-code_base
+    action: click
+    selector: button:text('Configure')
     context: Code Base section
-    value: "{code_base}"
-    description: Select Code Base
+    description: Open the Code Base configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

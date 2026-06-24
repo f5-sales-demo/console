@@ -24,6 +24,9 @@ params:
     required: false
     description: Burst Size
     default: 0
+  policer_rules:
+    required: true
+    description: "'We found 2 errors' — needs policer rules + burst_size"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -50,6 +53,16 @@ steps:
     selector: spinbutton[name='Burst Size']
     value: "{burst_size}"
     description: Set Burst Size
+  - id: add-policer_rules
+    action: click
+    selector: button:text('Add Item')
+    context: Policer Rules section
+    description: Add Policer Rules entry
+    then:
+      - id: apply-policer_rules
+        action: click
+        selector: button:text('Apply')
+        description: Confirm Policer Rules entry
   - id: save
     action: click
     selector: "[class*='save-bt']"

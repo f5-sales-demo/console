@@ -18,7 +18,7 @@ params:
     example: example-app-type
   ai_ml_feature_type:
     required: true
-    description: AI/ML Feature Type
+    description: "'Field AI/ML Feature Type is required' — nested inside app_type_settings"
   app_type_settings:
     required: true
     description: "Feedback loop: table widget → nested-resource-list (uses Add Item sub-form)"
@@ -54,6 +54,12 @@ steps:
         action: click
         selector: button:text('Apply')
         description: Confirm App Type Settings entry
+  - id: select-ai_ml_feature_type
+    action: select
+    selector: listbox
+    context: AI/ML Feature Type section
+    value: "{ai_ml_feature_type}"
+    description: Select AI/ML Feature Type
   - id: save
     action: click
     selector: "[class*='save-bt']"
