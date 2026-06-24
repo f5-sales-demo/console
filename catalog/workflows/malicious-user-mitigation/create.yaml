@@ -16,6 +16,9 @@ params:
     required: true
     description: Malicious User Mitigation name (lowercase alphanumeric and hyphens)
     example: example-malicious-user-mitigation
+  rules:
+    required: true
+    description: "At least one mitigation rule is required. Server error: 'Field Rules in Mitigation Rules is required.'"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,16 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: add-rules
+    action: click
+    selector: button:text('Add Item')
+    context: Rules section
+    description: Add Rules entry
+    then:
+      - id: apply-rules
+        action: click
+        selector: button:text('Apply')
+        description: Confirm Rules entry
   - id: save
     action: click
     selector: "[class*='save-bt']"
