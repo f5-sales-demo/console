@@ -16,6 +16,9 @@ params:
     required: true
     description: IP Prefix Sets name (lowercase alphanumeric and hyphens)
     example: example-ip-prefix-set
+  prefix:
+    required: true
+    description: "Server-required: At least one IP prefix required"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,11 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: configure-prefix
+    action: click
+    selector: button:text('Configure')
+    context: Prefix section
+    description: Open the Prefix configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

@@ -19,6 +19,9 @@ params:
   site_reference:
     required: true
     description: Site Reference
+  count:
+    required: true
+    description: "Server-required: Must be >= 1"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -41,6 +44,11 @@ steps:
     context: Site Reference section
     value: "{site_reference}"
     description: Select Site Reference
+  - id: configure-count
+    action: click
+    selector: button:text('Configure')
+    context: Count section
+    description: Open the Count configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

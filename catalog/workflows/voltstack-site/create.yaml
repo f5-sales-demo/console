@@ -16,6 +16,9 @@ params:
     required: true
     description: App Stack Sites name (lowercase alphanumeric and hyphens)
     example: example-voltstack-site
+  volterra_certified_hw:
+    required: true
+    description: "Server-required: Minimum length of 1"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,11 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: configure-volterra_certified_hw
+    action: click
+    selector: button:text('Configure')
+    context: Volterra Certified Hw section
+    description: Open the Volterra Certified Hw configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

@@ -71,6 +71,9 @@ params:
     required: false
     description: Performance Mode
     default: L7 Enhanced
+  master_node_configuration:
+    required: true
+    description: "Server-required: Must be 1 or 3"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -182,6 +185,11 @@ steps:
     value: "{performance_mode}"
     description: Select Performance Mode
     condition: params.performance_mode is set
+  - id: configure-master_node_configuration
+    action: click
+    selector: button:text('Configure')
+    context: Master Node Configuration section
+    description: Open the Master Node Configuration configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

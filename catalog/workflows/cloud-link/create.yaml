@@ -38,6 +38,9 @@ params:
     required: false
     description: Private Connectivity via Regional Edge (RE)
     default: Disable
+  cloud_provider:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -92,6 +95,11 @@ steps:
     value: "{private_connectivity_via_regional_edge_re}"
     description: Select Private Connectivity via Regional Edge (RE)
     condition: params.private_connectivity_via_regional_edge_re is set
+  - id: configure-cloud_provider
+    action: click
+    selector: button:text('Configure')
+    context: Cloud Provider section
+    description: Open the Cloud Provider configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

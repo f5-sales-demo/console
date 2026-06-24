@@ -26,6 +26,9 @@ params:
   secret_access_key:
     required: true
     description: Secret Access Key
+  cloud:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -59,6 +62,11 @@ steps:
     selector: button:text('Configure')
     context: Secret Access Key section
     description: Open the Secret Access Key configuration (required field). The sub-form must be filled for save to succeed.
+  - id: configure-cloud
+    action: click
+    selector: button:text('Configure')
+    context: Cloud section
+    description: Open the Cloud configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

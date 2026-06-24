@@ -16,6 +16,9 @@ params:
     required: true
     description: Site Mesh Groups name (lowercase alphanumeric and hyphens)
     example: example-site-mesh-group
+  bfd_choice:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,11 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: configure-bfd_choice
+    action: click
+    selector: button:text('Configure')
+    context: Bfd Choice section
+    description: Open the Bfd Choice configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

@@ -19,6 +19,9 @@ params:
   tunnel_type:
     required: true
     description: Tunnel Type
+  local_ip:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -41,6 +44,11 @@ steps:
     context: Tunnel Type section
     value: "{tunnel_type}"
     description: Select Tunnel Type
+  - id: configure-local_ip
+    action: click
+    selector: button:text('Configure')
+    context: Local Ip section
+    description: Open the Local Ip configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

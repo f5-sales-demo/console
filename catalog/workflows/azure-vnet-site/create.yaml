@@ -22,6 +22,9 @@ params:
   azure_credentials:
     required: true
     description: Azure Credentials
+  deployment:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -61,6 +64,11 @@ steps:
         action: click
         selector: button:text('Apply')
         description: Confirm Azure Credentials selection
+  - id: configure-deployment
+    action: click
+    selector: button:text('Configure')
+    context: Deployment section
+    description: Open the Deployment configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

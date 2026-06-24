@@ -16,6 +16,9 @@ params:
     required: true
     description: Network Policy Rules name (lowercase alphanumeric and hyphens)
     example: example-network-policy-rule
+  protocol:
+    required: true
+    description: "Server-required: Must be ALL/TCP/UDP/ICMP"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -27,6 +30,11 @@ steps:
     selector: tab:text('Add Network Policy Rule')
     wait_for: textbox[name='Name']
     description: Click the Add Network Policy Rule tab to open the create form
+  - id: configure-protocol
+    action: click
+    selector: button:text('Configure')
+    context: Protocol section
+    description: Open the Protocol configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

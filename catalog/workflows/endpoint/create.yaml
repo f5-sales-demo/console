@@ -16,6 +16,10 @@ params:
     required: true
     description: Endpoints name (lowercase alphanumeric and hyphens)
     example: example-endpoint
+  protocol:
+    required: false
+    description: "Server-required: Must be TCP or UDP"
+    default: TCP
   virtual_site_or_site_or_network:
     required: false
     description: Virtual-Site or Site or Network
@@ -39,6 +43,13 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: select-protocol
+    action: select
+    selector: listbox
+    context: Protocol section
+    value: "{protocol}"
+    description: Select Protocol
+    condition: params.protocol is set
   - id: select-virtual_site_or_site_or_network
     action: select
     selector: listbox

@@ -16,6 +16,9 @@ params:
     required: true
     description: Virtual Sites name (lowercase alphanumeric and hyphens)
     example: example-virtual-site
+  site_selector:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,11 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: configure-site_selector
+    action: click
+    selector: button:text('Configure')
+    context: Site Selector section
+    description: Open the Site Selector configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

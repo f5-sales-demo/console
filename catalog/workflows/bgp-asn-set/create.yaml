@@ -16,6 +16,9 @@ params:
     required: true
     description: BGP ASN Sets name (lowercase alphanumeric and hyphens)
     example: example-bgp-asn-set
+  as_numbers:
+    required: true
+    description: "Server-required: Minimum items of 1"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,12 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: fill-as_numbers
+    action: fill
+    selector: ngx-datatable input.form-control-md
+    context: AS Numbers table
+    value: "{as_numbers}"
+    description: Enter AS Numbers in the existing table row (no Add Item needed — the table ships one empty row)
   - id: save
     action: click
     selector: "[class*='save-bt']"

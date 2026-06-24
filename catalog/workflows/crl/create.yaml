@@ -19,6 +19,9 @@ params:
   crl_server_address:
     required: true
     description: CRL Server address
+  refresh_interval:
+    required: true
+    description: "Server-required: Must be >= 6"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -40,6 +43,11 @@ steps:
     selector: textbox[name='CRL Server address']
     value: "{crl_server_address}"
     description: Enter CRL Server address
+  - id: configure-refresh_interval
+    action: click
+    selector: button:text('Configure')
+    context: Refresh Interval section
+    description: Open the Refresh Interval configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

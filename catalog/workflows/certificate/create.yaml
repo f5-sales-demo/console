@@ -16,6 +16,9 @@ params:
     required: true
     description: TLS Certificates name (lowercase alphanumeric and hyphens)
     example: example-certificate
+  certificate_url:
+    required: true
+    description: "Server-required: Minimum bytes of 1"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,11 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: configure-certificate_url
+    action: click
+    selector: button:text('Configure')
+    context: Certificate Url section
+    description: Open the Certificate Url configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

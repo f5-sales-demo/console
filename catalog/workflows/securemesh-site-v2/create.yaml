@@ -20,6 +20,9 @@ params:
     required: false
     description: Provider Name
     default: VMWare
+  provider_choice:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -43,6 +46,11 @@ steps:
     value: "{provider_name}"
     description: Select Provider Name
     condition: params.provider_name is set
+  - id: configure-provider_choice
+    action: click
+    selector: button:text('Configure')
+    context: Provider Choice section
+    description: Open the Provider Choice configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"

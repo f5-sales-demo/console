@@ -23,6 +23,9 @@ params:
   ethernet_interface:
     required: true
     description: Ethernet Interface
+  interface_choice:
+    required: true
+    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -51,6 +54,11 @@ steps:
     selector: button:text('Configure')
     context: Ethernet Interface section
     description: Open the Ethernet Interface configuration (required field). The sub-form must be filled for save to succeed.
+  - id: configure-interface_choice
+    action: click
+    selector: button:text('Configure')
+    context: Interface Choice section
+    description: Open the Interface Choice configuration (required field). The sub-form must be filled for save to succeed.
   - id: save
     action: click
     selector: "[class*='save-bt']"
