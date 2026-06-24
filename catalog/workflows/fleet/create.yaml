@@ -1,0 +1,176 @@
+schema: urn:f5xc:console:workflow:v1
+id: fleet-create
+label: Create Fleets
+resource: fleet
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: Fleets name (lowercase alphanumeric and hyphens)
+    example: example-fleet
+  fleet_label_value:
+    required: true
+    description: Fleet Label Value
+  select_bond_configuration:
+    required: false
+    description: Select Bond Configuration
+    default: No Bond Devices
+  select_interface_config:
+    required: false
+    description: Select Interface Config
+    default: Default Interface Config
+  select_storage_interface_configuration:
+    required: false
+    description: Select Storage Interface Configuration
+    default: No Storage Interfaces
+  select_storage_device_configuration:
+    required: false
+    description: Select Storage Device Configuration
+    default: No Storage Devices
+  select_configuration_for_storage_classes:
+    required: false
+    description: Select Configuration for Storage Classes
+    default: Default Storage Class
+  select_storage_static_routes:
+    required: false
+    description: Select Storage Static Routes
+    default: No Storage Static Routes
+  node_by_node_upgrade:
+    required: false
+    description: Node by Node Upgrade
+    default: Enable
+  upgrade_wait_time:
+    required: false
+    description: Upgrade Wait Time
+    default: 300
+  node_batch_size:
+    required: false
+    description: Node Batch Size
+    default: Node Batch Size Count
+  node_batch_size_count:
+    required: false
+    description: Node Batch Size Count
+    default: 1
+  sr_iov_interfaces:
+    required: false
+    description: SR-IOV interfaces
+    default: Disable SR-IOV interfaces
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/multi-cloud-network-connect/manage/site_management/legacy_configs/fleets
+    wait_for: text('Fleets')
+    description: Navigate to Fleets list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add Fleet')
+    wait_for: textbox[name='Name']
+    description: Click the Add Fleet tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: fill-fleet_label_value
+    action: fill
+    selector: textbox[name='Fleet Label Value']
+    value: "{fleet_label_value}"
+    description: Enter Fleet Label Value
+  - id: select-select_bond_configuration
+    action: select
+    selector: listbox
+    context: Select Bond Configuration section
+    value: "{select_bond_configuration}"
+    description: Select Select Bond Configuration
+    condition: params.select_bond_configuration is set
+  - id: select-select_interface_config
+    action: select
+    selector: listbox
+    context: Select Interface Config section
+    value: "{select_interface_config}"
+    description: Select Select Interface Config
+    condition: params.select_interface_config is set
+  - id: select-select_storage_interface_configuration
+    action: select
+    selector: listbox
+    context: Select Storage Interface Configuration section
+    value: "{select_storage_interface_configuration}"
+    description: Select Select Storage Interface Configuration
+    condition: params.select_storage_interface_configuration is set
+  - id: select-select_storage_device_configuration
+    action: select
+    selector: listbox
+    context: Select Storage Device Configuration section
+    value: "{select_storage_device_configuration}"
+    description: Select Select Storage Device Configuration
+    condition: params.select_storage_device_configuration is set
+  - id: select-select_configuration_for_storage_classes
+    action: select
+    selector: listbox
+    context: Select Configuration for Storage Classes section
+    value: "{select_configuration_for_storage_classes}"
+    description: Select Select Configuration for Storage Classes
+    condition: params.select_configuration_for_storage_classes is set
+  - id: select-select_storage_static_routes
+    action: select
+    selector: listbox
+    context: Select Storage Static Routes section
+    value: "{select_storage_static_routes}"
+    description: Select Select Storage Static Routes
+    condition: params.select_storage_static_routes is set
+  - id: select-node_by_node_upgrade
+    action: select
+    selector: listbox
+    context: Node by Node Upgrade section
+    value: "{node_by_node_upgrade}"
+    description: Select Node by Node Upgrade
+    condition: params.node_by_node_upgrade is set
+  - id: fill-upgrade_wait_time
+    action: fill
+    selector: spinbutton[name='Upgrade Wait Time']
+    value: "{upgrade_wait_time}"
+    description: "Set Upgrade Wait Time (default: 300)"
+    condition: params.upgrade_wait_time is set
+  - id: select-node_batch_size
+    action: select
+    selector: listbox
+    context: Node Batch Size section
+    value: "{node_batch_size}"
+    description: Select Node Batch Size
+    condition: params.node_batch_size is set
+  - id: fill-node_batch_size_count
+    action: fill
+    selector: spinbutton[name='Node Batch Size Count']
+    value: "{node_batch_size_count}"
+    description: "Set Node Batch Size Count (default: 1)"
+    condition: params.node_batch_size_count is set
+  - id: select-sr_iov_interfaces
+    action: select
+    selector: listbox
+    context: SR-IOV interfaces section
+    value: "{sr_iov_interfaces}"
+    description: Select SR-IOV interfaces
+    condition: params.sr_iov_interfaces is set
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: inferred
+  discovered_at: 2026-06-24
+  console_version: "2025.06"
+  notes: Auto-generated by scripts/generate-workflows.ts from api-specs-enriched field metadata.
