@@ -50,7 +50,7 @@ steps:
 
   - id: "fill-domain"
     action: "fill"
-    selector: "textbox"
+    selector: "ngx-datatable input.form-control-md"
     context: "Domains table"
     value: "{domains}"
     description: "Enter the domain in the Domains table's default row. The table ships one empty row, so no Add Item click is needed; clicking Add Item would create a second empty row that fails the 'Domains is required' validation."

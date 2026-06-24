@@ -1,0 +1,161 @@
+schema: urn:f5xc:console:workflow:v1
+id: discovery-create
+label: Create Service Discoveries
+resource: discovery
+operation: create
+preconditions:
+  - user_logged_in
+  - namespace_selected
+  - "role_minimum: admin"
+params:
+  namespace:
+    required: true
+    description: Target namespace
+    example: demo
+  name:
+    required: true
+    description: Service Discoveries name (lowercase alphanumeric and hyphens)
+    example: example-discovery
+  virtual_site_or_site_or_network:
+    required: false
+    description: Virtual-Site or Site or Network
+    default: Virtual Site
+  reference:
+    required: true
+    description: Reference
+  select_kubernetes_credentials:
+    required: false
+    description: Select Kubernetes Credentials
+    default: Kubeconfig
+  kubeconfig:
+    required: true
+    description: Kubeconfig
+  kubernetes_pod_network_reachability:
+    required: false
+    description: Kubernetes POD network reachability
+    default: Kubernetes POD is isolated
+  select_vip_publishing_or_dns_delegation:
+    required: false
+    description: Select VIP Publishing or DNS Delegation
+    default: Disable VIP Publishing and DNS Delegation
+  mapping_preference:
+    required: false
+    description: Mapping Preference
+    default: Custom
+  regex_matching:
+    required: true
+    description: Regex Matching
+  select_discovery_cluster_identifier:
+    required: false
+    description: Select Discovery Cluster Identifier
+    default: No cluster identifier
+  discovery_choice:
+    required: true
+    description: "Server-required: Field should be not nil"
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/shared-configuration/manage/discovery
+    wait_for: text('Service Discoveries')
+    description: Navigate to Service Discoveries list page
+  - id: click-add-tab
+    action: click
+    selector: tab:text('Add Service Discovery')
+    wait_for: textbox[name='Name']
+    description: Click the Add Service Discovery tab to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Name']
+    value: "{name}"
+    description: Enter Name
+  - id: select-virtual_site_or_site_or_network
+    action: select
+    selector: listbox
+    context: Virtual-Site or Site or Network section
+    value: "{virtual_site_or_site_or_network}"
+    description: Select Virtual-Site or Site or Network
+    condition: params.virtual_site_or_site_or_network is set
+  - id: select-reference
+    action: select
+    selector: listbox
+    context: Reference section
+    value: "{reference}"
+    description: Select Reference
+  - id: select-select_kubernetes_credentials
+    action: select
+    selector: listbox
+    context: Select Kubernetes Credentials section
+    value: "{select_kubernetes_credentials}"
+    description: Select Select Kubernetes Credentials
+    condition: params.select_kubernetes_credentials is set
+  - id: configure-kubeconfig
+    action: click
+    selector: button:text('Configure')
+    context: Kubeconfig section
+    description: Open the Kubeconfig configuration (required)
+  - id: fill-kubeconfig-value
+    action: fill
+    selector: textbox
+    value: "{kubeconfig}"
+    description: Fill the required field inside the Kubeconfig configuration. The agent provides this via the 'kubeconfig'
+      parameter.
+  - id: select-kubernetes_pod_network_reachability
+    action: select
+    selector: listbox
+    context: Kubernetes POD network reachability section
+    value: "{kubernetes_pod_network_reachability}"
+    description: Select Kubernetes POD network reachability
+    condition: params.kubernetes_pod_network_reachability is set
+  - id: select-select_vip_publishing_or_dns_delegation
+    action: select
+    selector: listbox
+    context: Select VIP Publishing or DNS Delegation section
+    value: "{select_vip_publishing_or_dns_delegation}"
+    description: Select Select VIP Publishing or DNS Delegation
+    condition: params.select_vip_publishing_or_dns_delegation is set
+  - id: select-mapping_preference
+    action: select
+    selector: listbox
+    context: Mapping Preference section
+    value: "{mapping_preference}"
+    description: Select Mapping Preference
+    condition: params.mapping_preference is set
+  - id: fill-regex_matching
+    action: fill
+    selector: ngx-datatable input.form-control
+    context: Regex Matching table
+    value: "{regex_matching}"
+    description: Enter Regex Matching in the existing table row (no Add Item needed — the table ships one empty row)
+  - id: select-select_discovery_cluster_identifier
+    action: select
+    selector: listbox
+    context: Select Discovery Cluster Identifier section
+    value: "{select_discovery_cluster_identifier}"
+    description: Select Select Discovery Cluster Identifier
+    condition: params.select_discovery_cluster_identifier is set
+  - id: configure-discovery_choice
+    action: click
+    selector: button:text('Configure')
+    context: Discovery Choice section
+    description: Open the Discovery Choice configuration (required)
+  - id: fill-discovery_choice-value
+    action: fill
+    selector: textbox
+    value: "{discovery_choice}"
+    description: Fill the required field inside the Discovery Choice configuration. The agent provides this via the
+      'discovery_choice' parameter.
+  - id: save
+    action: click
+    selector: "[class*='save-bt']"
+    context: footer
+    wait_for: text('{name}')
+    wait_timeout_ms: 30000
+    description: Save via the footer button (never use button:text — it collides with the header tab)
+postconditions:
+  - resource_list_page_visible
+  - "resource_name_in_list: {name}"
+metadata:
+  confidence: inferred
+  discovered_at: 2026-06-24
+  console_version: "2025.06"
+  notes: Auto-generated by scripts/generate-workflows.ts from api-specs-enriched field metadata.
