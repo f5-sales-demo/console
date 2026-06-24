@@ -62,7 +62,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Reference section
-    description: Open the Reference configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Reference configuration (required)
+  - id: fill-reference-value
+    action: fill
+    selector: textbox
+    value: "{reference}"
+    description: Fill the required field inside the Reference configuration. The agent provides this via the 'reference' parameter.
   - id: select-internet_vip_choice
     action: select
     selector: listbox

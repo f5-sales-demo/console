@@ -59,6 +59,12 @@ steps:
     context: Policer Rules section
     description: Add Policer Rules entry
     then:
+      - id: fill-policer_rules-value
+        action: fill
+        selector: textbox
+        value: "{policer_rules}"
+        description: Fill the first required field in the Policer Rules sub-form (the agent should provide a value via the
+          'policer_rules' parameter)
       - id: apply-policer_rules
         action: click
         selector: button:text('Apply')

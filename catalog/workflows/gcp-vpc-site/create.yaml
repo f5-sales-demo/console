@@ -59,7 +59,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Deployment section
-    description: Open the Deployment configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Deployment configuration (required)
+  - id: fill-deployment-value
+    action: fill
+    selector: textbox
+    value: "{deployment}"
+    description: Fill the required field inside the Deployment configuration. The agent provides this via the 'deployment'
+      parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

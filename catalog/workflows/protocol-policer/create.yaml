@@ -41,6 +41,12 @@ steps:
     context: Protocol Policer section
     description: Add Protocol Policer entry
     then:
+      - id: fill-protocol_policer-value
+        action: fill
+        selector: textbox
+        value: "{protocol_policer}"
+        description: Fill the first required field in the Protocol Policer sub-form (the agent should provide a value via the
+          'protocol_policer' parameter)
       - id: apply-protocol_policer
         action: click
         selector: button:text('Apply')

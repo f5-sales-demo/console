@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Receiver Configuration section
-    description: Open the Receiver Configuration configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Receiver Configuration configuration (required)
+  - id: fill-receiver_configuration-value
+    action: fill
+    selector: textbox
+    value: "{receiver_configuration}"
+    description: Fill the required field inside the Receiver Configuration configuration. The agent provides this via the
+      'receiver_configuration' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

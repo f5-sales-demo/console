@@ -53,12 +53,24 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Ethernet Interface section
-    description: Open the Ethernet Interface configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Ethernet Interface configuration (required)
+  - id: fill-ethernet_interface-value
+    action: fill
+    selector: textbox
+    value: "{ethernet_interface}"
+    description: Fill the required field inside the Ethernet Interface configuration. The agent provides this via the
+      'ethernet_interface' parameter.
   - id: configure-interface_choice
     action: click
     selector: button:text('Configure')
     context: Interface Choice section
-    description: Open the Interface Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Interface Choice configuration (required)
+  - id: fill-interface_choice-value
+    action: fill
+    selector: textbox
+    value: "{interface_choice}"
+    description: Fill the required field inside the Interface Choice configuration. The agent provides this via the
+      'interface_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

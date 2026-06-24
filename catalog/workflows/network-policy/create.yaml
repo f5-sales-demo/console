@@ -39,7 +39,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Endpoint section
-    description: Open the Endpoint configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Endpoint configuration (required)
+  - id: fill-endpoint-value
+    action: fill
+    selector: textbox
+    value: "{endpoint}"
+    description: Fill the required field inside the Endpoint configuration. The agent provides this via the 'endpoint' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

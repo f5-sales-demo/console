@@ -48,7 +48,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Application Configuration section
-    description: Open the Application Configuration configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Application Configuration configuration (required)
+  - id: fill-application_configuration-value
+    action: fill
+    selector: textbox
+    value: "{application_configuration}"
+    description: Fill the required field inside the Application Configuration configuration. The agent provides this via the
+      'application_configuration' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

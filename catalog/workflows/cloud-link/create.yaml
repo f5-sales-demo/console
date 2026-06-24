@@ -99,7 +99,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Cloud Provider section
-    description: Open the Cloud Provider configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Cloud Provider configuration (required)
+  - id: fill-cloud_provider-value
+    action: fill
+    selector: textbox
+    value: "{cloud_provider}"
+    description: Fill the required field inside the Cloud Provider configuration. The agent provides this via the
+      'cloud_provider' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

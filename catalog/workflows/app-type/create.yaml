@@ -50,6 +50,12 @@ steps:
     context: App Type Settings section
     description: Add App Type Settings entry
     then:
+      - id: fill-app_type_settings-value
+        action: fill
+        selector: textbox
+        value: "{app_type_settings}"
+        description: Fill the first required field in the App Type Settings sub-form (the agent should provide a value via the
+          'app_type_settings' parameter)
       - id: apply-app_type_settings
         action: click
         selector: button:text('Apply')

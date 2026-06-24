@@ -40,7 +40,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Code Base section
-    description: Open the Code Base configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Code Base configuration (required)
+  - id: fill-code_base-value
+    action: fill
+    selector: textbox
+    value: "{code_base}"
+    description: Fill the required field inside the Code Base configuration. The agent provides this via the 'code_base' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

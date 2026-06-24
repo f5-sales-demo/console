@@ -39,7 +39,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Rules section
-    description: Open the Rules configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Rules configuration (required)
+  - id: fill-rules-value
+    action: fill
+    selector: textbox
+    value: "{rules}"
+    description: Fill the required field inside the Rules configuration. The agent provides this via the 'rules' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

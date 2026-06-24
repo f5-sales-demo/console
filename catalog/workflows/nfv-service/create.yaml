@@ -61,7 +61,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Provider Configuration section
-    description: Open the Provider Configuration configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Provider Configuration configuration (required)
+  - id: fill-provider_configuration-value
+    action: fill
+    selector: textbox
+    value: "{provider_configuration}"
+    description: Fill the required field inside the Provider Configuration configuration. The agent provides this via the
+      'provider_configuration' parameter.
   - id: select-https_based_management_of_nodes
     action: select
     selector: listbox
@@ -80,7 +86,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Service Provider Choice section
-    description: Open the Service Provider Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Service Provider Choice configuration (required)
+  - id: fill-service_provider_choice-value
+    action: fill
+    selector: textbox
+    value: "{service_provider_choice}"
+    description: Fill the required field inside the Service Provider Choice configuration. The agent provides this via the
+      'service_provider_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

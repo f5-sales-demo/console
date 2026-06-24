@@ -87,7 +87,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Site or Virtual Site section
-    description: Open the Site or Virtual Site configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Site or Virtual Site configuration (required)
+  - id: fill-site_or_virtual_site-value
+    action: fill
+    selector: textbox
+    value: "{site_or_virtual_site}"
+    description: Fill the required field inside the Site or Virtual Site configuration. The agent provides this via the
+      'site_or_virtual_site' parameter.
   - id: select-select_upstream_network
     action: select
     selector: listbox
@@ -113,7 +119,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Proxy Choice section
-    description: Open the Proxy Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Proxy Choice configuration (required)
+  - id: fill-proxy_choice-value
+    action: fill
+    selector: textbox
+    value: "{proxy_choice}"
+    description: Fill the required field inside the Proxy Choice configuration. The agent provides this via the
+      'proxy_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

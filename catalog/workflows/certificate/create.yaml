@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Certificate Url section
-    description: Open the Certificate Url configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Certificate Url configuration (required)
+  - id: fill-certificate_url-value
+    action: fill
+    selector: textbox
+    value: "{certificate_url}"
+    description: Fill the required field inside the Certificate Url configuration. The agent provides this via the
+      'certificate_url' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

@@ -91,7 +91,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Port Choice section
-    description: Open the Port Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Port Choice configuration (required)
+  - id: fill-port_choice-value
+    action: fill
+    selector: textbox
+    value: "{port_choice}"
+    description: Fill the required field inside the Port Choice configuration. The agent provides this via the 'port_choice'
+      parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

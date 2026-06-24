@@ -79,7 +79,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Log Receiver Choice section
-    description: Open the Log Receiver Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Log Receiver Choice configuration (required)
+  - id: fill-log_receiver_choice-value
+    action: fill
+    selector: textbox
+    value: "{log_receiver_choice}"
+    description: Fill the required field inside the Log Receiver Choice configuration. The agent provides this via the
+      'log_receiver_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

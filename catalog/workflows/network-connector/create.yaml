@@ -83,7 +83,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Connector Choice section
-    description: Open the Connector Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Connector Choice configuration (required)
+  - id: fill-connector_choice-value
+    action: fill
+    selector: textbox
+    value: "{connector_choice}"
+    description: Fill the required field inside the Connector Choice configuration. The agent provides this via the
+      'connector_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

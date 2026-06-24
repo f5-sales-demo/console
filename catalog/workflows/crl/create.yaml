@@ -47,7 +47,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Refresh Interval section
-    description: Open the Refresh Interval configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Refresh Interval configuration (required)
+  - id: fill-refresh_interval-value
+    action: fill
+    selector: textbox
+    value: "{refresh_interval}"
+    description: Fill the required field inside the Refresh Interval configuration. The agent provides this via the
+      'refresh_interval' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

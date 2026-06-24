@@ -92,7 +92,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Kubeconfig section
-    description: Open the Kubeconfig configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Kubeconfig configuration (required)
+  - id: fill-kubeconfig-value
+    action: fill
+    selector: textbox
+    value: "{kubeconfig}"
+    description: Fill the required field inside the Kubeconfig configuration. The agent provides this via the 'kubeconfig'
+      parameter.
   - id: select-kubernetes_pod_network_reachability
     action: select
     selector: listbox
@@ -131,7 +137,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Discovery Choice section
-    description: Open the Discovery Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Discovery Choice configuration (required)
+  - id: fill-discovery_choice-value
+    action: fill
+    selector: textbox
+    value: "{discovery_choice}"
+    description: Fill the required field inside the Discovery Choice configuration. The agent provides this via the
+      'discovery_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

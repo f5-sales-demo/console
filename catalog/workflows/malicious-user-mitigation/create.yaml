@@ -41,6 +41,12 @@ steps:
     context: Rules section
     description: Add Rules entry
     then:
+      - id: fill-rules-value
+        action: fill
+        selector: textbox
+        value: "{rules}"
+        description: Fill the first required field in the Rules sub-form (the agent should provide a value via the 'rules'
+          parameter)
       - id: apply-rules
         action: click
         selector: button:text('Apply')

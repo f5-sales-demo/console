@@ -189,7 +189,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Master Node Configuration section
-    description: Open the Master Node Configuration configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Master Node Configuration configuration (required)
+  - id: fill-master_node_configuration-value
+    action: fill
+    selector: textbox
+    value: "{master_node_configuration}"
+    description: Fill the required field inside the Master Node Configuration configuration. The agent provides this via the
+      'master_node_configuration' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

@@ -50,7 +50,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Applies To Choice section
-    description: Open the Applies To Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Applies To Choice configuration (required)
+  - id: fill-applies_to_choice-value
+    action: fill
+    selector: textbox
+    value: "{applies_to_choice}"
+    description: Fill the required field inside the Applies To Choice configuration. The agent provides this via the
+      'applies_to_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

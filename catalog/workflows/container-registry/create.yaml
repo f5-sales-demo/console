@@ -55,7 +55,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Password section
-    description: Open the Password configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Password configuration (required)
+  - id: fill-password-value
+    action: fill
+    selector: textbox
+    value: "{password}"
+    description: Fill the required field inside the Password configuration. The agent provides this via the 'password' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

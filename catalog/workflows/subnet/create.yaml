@@ -42,12 +42,24 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Site Subnet Parameters section
-    description: Open the Site Subnet Parameters configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Site Subnet Parameters configuration (required)
+  - id: fill-site_subnet_parameters-value
+    action: fill
+    selector: textbox
+    value: "{site_subnet_parameters}"
+    description: Fill the required field inside the Site Subnet Parameters configuration. The agent provides this via the
+      'site_subnet_parameters' parameter.
   - id: configure-site_subnet_params
     action: click
     selector: button:text('Configure')
     context: Site Subnet Params section
-    description: Open the Site Subnet Params configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Site Subnet Params configuration (required)
+  - id: fill-site_subnet_params-value
+    action: fill
+    selector: textbox
+    value: "{site_subnet_params}"
+    description: Fill the required field inside the Site Subnet Params configuration. The agent provides this via the
+      'site_subnet_params' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

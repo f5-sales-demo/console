@@ -74,7 +74,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Spoke VPCs section
-    description: Open the Spoke VPCs configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Spoke VPCs configuration (required)
+  - id: fill-spoke_vpcs-value
+    action: fill
+    selector: textbox
+    value: "{spoke_vpcs}"
+    description: Fill the required field inside the Spoke VPCs configuration. The agent provides this via the 'spoke_vpcs'
+      parameter.
   - id: select-segment
     action: select
     selector: listbox
@@ -85,7 +91,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Cloud section
-    description: Open the Cloud configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Cloud configuration (required)
+  - id: fill-cloud-value
+    action: fill
+    selector: textbox
+    value: "{cloud}"
+    description: Fill the required field inside the Cloud configuration. The agent provides this via the 'cloud' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

@@ -48,7 +48,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Local Ip section
-    description: Open the Local Ip configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Local Ip configuration (required)
+  - id: fill-local_ip-value
+    action: fill
+    selector: textbox
+    value: "{local_ip}"
+    description: Fill the required field inside the Local Ip configuration. The agent provides this via the 'local_ip' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

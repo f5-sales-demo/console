@@ -66,7 +66,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Address Allocation Scheme section
-    description: Open the Address Allocation Scheme configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Address Allocation Scheme configuration (required)
+  - id: fill-address_allocation_scheme-value
+    action: fill
+    selector: textbox
+    value: "{address_allocation_scheme}"
+    description: Fill the required field inside the Address Allocation Scheme configuration. The agent provides this via the
+      'address_allocation_scheme' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

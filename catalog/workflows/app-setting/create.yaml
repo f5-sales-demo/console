@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: App Type Settings section
-    description: Open the App Type Settings configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the App Type Settings configuration (required)
+  - id: fill-app_type_settings-value
+    action: fill
+    selector: textbox
+    value: "{app_type_settings}"
+    description: Fill the required field inside the App Type Settings configuration. The agent provides this via the
+      'app_type_settings' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

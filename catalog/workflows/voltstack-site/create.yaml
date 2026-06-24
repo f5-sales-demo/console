@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Volterra Certified Hw section
-    description: Open the Volterra Certified Hw configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Volterra Certified Hw configuration (required)
+  - id: fill-volterra_certified_hw-value
+    action: fill
+    selector: textbox
+    value: "{volterra_certified_hw}"
+    description: Fill the required field inside the Volterra Certified Hw configuration. The agent provides this via the
+      'volterra_certified_hw' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

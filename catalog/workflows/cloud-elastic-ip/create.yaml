@@ -48,7 +48,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Count section
-    description: Open the Count configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Count configuration (required)
+  - id: fill-count-value
+    action: fill
+    selector: textbox
+    value: "{count}"
+    description: Fill the required field inside the Count configuration. The agent provides this via the 'count' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

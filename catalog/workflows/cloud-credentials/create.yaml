@@ -61,12 +61,23 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Secret Access Key section
-    description: Open the Secret Access Key configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Secret Access Key configuration (required)
+  - id: fill-secret_access_key-value
+    action: fill
+    selector: textbox
+    value: "{secret_access_key}"
+    description: Fill the required field inside the Secret Access Key configuration. The agent provides this via the
+      'secret_access_key' parameter.
   - id: configure-cloud
     action: click
     selector: button:text('Configure')
     context: Cloud section
-    description: Open the Cloud configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Cloud configuration (required)
+  - id: fill-cloud-value
+    action: fill
+    selector: textbox
+    value: "{cloud}"
+    description: Fill the required field inside the Cloud configuration. The agent provides this via the 'cloud' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

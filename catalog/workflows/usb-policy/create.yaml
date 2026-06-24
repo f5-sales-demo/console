@@ -42,12 +42,24 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Allowed USB devices section
-    description: Open the Allowed USB devices configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Allowed USB devices configuration (required)
+  - id: fill-allowed_usb_devices-value
+    action: fill
+    selector: textbox
+    value: "{allowed_usb_devices}"
+    description: Fill the required field inside the Allowed USB devices configuration. The agent provides this via the
+      'allowed_usb_devices' parameter.
   - id: configure-allowed_devices
     action: click
     selector: button:text('Configure')
     context: Allowed Devices section
-    description: Open the Allowed Devices configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Allowed Devices configuration (required)
+  - id: fill-allowed_devices-value
+    action: fill
+    selector: textbox
+    value: "{allowed_devices}"
+    description: Fill the required field inside the Allowed Devices configuration. The agent provides this via the
+      'allowed_devices' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

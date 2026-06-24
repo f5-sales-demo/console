@@ -50,7 +50,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Provider Choice section
-    description: Open the Provider Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Provider Choice configuration (required)
+  - id: fill-provider_choice-value
+    action: fill
+    selector: textbox
+    value: "{provider_choice}"
+    description: Fill the required field inside the Provider Choice configuration. The agent provides this via the
+      'provider_choice' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

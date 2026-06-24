@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: AWS Parameters section
-    description: Open the AWS Parameters configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the AWS Parameters configuration (required)
+  - id: fill-aws_parameters-value
+    action: fill
+    selector: textbox
+    value: "{aws_parameters}"
+    description: Fill the required field inside the AWS Parameters configuration. The agent provides this via the
+      'aws_parameters' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

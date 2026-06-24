@@ -34,7 +34,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Waf Action section
-    description: Open the Waf Action configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Waf Action configuration (required)
+  - id: fill-waf_action-value
+    action: fill
+    selector: textbox
+    value: "{waf_action}"
+    description: Fill the required field inside the Waf Action configuration. The agent provides this via the 'waf_action'
+      parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

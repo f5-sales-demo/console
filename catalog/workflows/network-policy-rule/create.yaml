@@ -34,7 +34,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Protocol section
-    description: Open the Protocol configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Protocol configuration (required)
+  - id: fill-protocol-value
+    action: fill
+    selector: textbox
+    value: "{protocol}"
+    description: Fill the required field inside the Protocol configuration. The agent provides this via the 'protocol' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

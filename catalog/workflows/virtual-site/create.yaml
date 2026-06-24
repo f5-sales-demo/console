@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Site Selector section
-    description: Open the Site Selector configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Site Selector configuration (required)
+  - id: fill-site_selector-value
+    action: fill
+    selector: textbox
+    value: "{site_selector}"
+    description: Fill the required field inside the Site Selector configuration. The agent provides this via the
+      'site_selector' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

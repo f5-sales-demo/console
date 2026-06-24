@@ -39,7 +39,12 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Prefix section
-    description: Open the Prefix configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Prefix configuration (required)
+  - id: fill-prefix-value
+    action: fill
+    selector: textbox
+    value: "{prefix}"
+    description: Fill the required field inside the Prefix configuration. The agent provides this via the 'prefix' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

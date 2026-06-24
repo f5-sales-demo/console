@@ -53,12 +53,24 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Site Type Regional Edge section
-    description: Open the Site Type Regional Edge configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Site Type Regional Edge configuration (required)
+  - id: fill-site_type_regional_edge-value
+    action: fill
+    selector: textbox
+    value: "{site_type_regional_edge}"
+    description: Fill the required field inside the Site Type Regional Edge configuration. The agent provides this via the
+      'site_type_regional_edge' parameter.
   - id: configure-site_choice
     action: click
     selector: button:text('Configure')
     context: Site Choice section
-    description: Open the Site Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Site Choice configuration (required)
+  - id: fill-site_choice-value
+    action: fill
+    selector: textbox
+    value: "{site_choice}"
+    description: Fill the required field inside the Site Choice configuration. The agent provides this via the 'site_choice'
+      parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

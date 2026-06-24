@@ -154,40 +154,62 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, resourceLabel: string)
 			}];
 		}
 		case "nested-resource-list": {
-			// Use the first item type as default
+			// nested-resource-list: click Add Item → fill the minimum sub-form field → Apply.
+			// If item_types defines the sub-form structure, use the first field.
+			// Otherwise, fill the first visible textbox inside the sub-form as a fallback
+			// (the most common minimum is one text input — a name, value, or reference).
 			const types = meta.item_types ? Object.entries(meta.item_types) : [];
 			const defaultType = types[0];
-			const steps: Step[] = [{
+			const innerField = defaultType?.[1].fields?.[0];
+			const fillStep = innerField
+				? {
+						id: `fill-${param}-${innerField}`,
+						action: "fill" as const,
+						selector: `textbox[name='${innerField.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}']`,
+						value: `{${toParamName(label)}}`,
+						description: `Enter ${innerField} for the ${label} entry`,
+					}
+				: {
+						id: `fill-${param}-value`,
+						action: "fill" as const,
+						selector: "textbox",
+						value: `{${toParamName(label)}}`,
+						description: `Fill the first required field in the ${label} sub-form (the agent should provide a value via the '${param}' parameter)`,
+					};
+			return [{
 				id: `add-${param}`,
 				action: "click",
 				selector: "button:text('Add Item')",
 				context: `${label} section`,
 				description: `Add ${label} entry${defaultType ? ` (default type: ${defaultType[1].label})` : ""}`,
 				then: [
-					...(defaultType?.[1].fields ?? []).slice(0, 1).map(f => ({
-						id: `fill-${param}-${f}`,
-						action: "fill" as const,
-						selector: `textbox[name='${f.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}']`,
-						value: `{${toParamName(label)}}`,
-						description: `Enter ${f} for the ${label} entry`,
-					})),
+					fillStep,
 					{ id: `apply-${param}`, action: "click" as const, selector: "button:text('Apply')", description: `Confirm ${label} entry` },
 				],
 			}];
-			return steps;
 		}
 		case "configurable": {
 			// Configurable widgets have a "Configure" button that expands a sub-form.
-			// For REQUIRED configurable fields, click Configure to open the sub-form.
-			// The agent fills the sub-fields based on the user's request.
+			// For REQUIRED configurable fields, click Configure to open + fill minimum.
+			// The agent provides the value via the parameter; the workflow fills the
+			// first visible input in the expanded sub-form.
 			if (!meta.required) return [];
-			return [{
-				id: `configure-${param}`,
-				action: "click",
-				selector: `button:text('${meta.configure_action ?? "Configure"}')`,
-				context: `${label} section`,
-				description: `Open the ${label} configuration (required field). The sub-form must be filled for save to succeed.`,
-			}];
+			return [
+				{
+					id: `configure-${param}`,
+					action: "click",
+					selector: `button:text('${meta.configure_action ?? "Configure"}')`,
+					context: `${label} section`,
+					description: `Open the ${label} configuration (required)`,
+				},
+				{
+					id: `fill-${param}-value`,
+					action: "fill",
+					selector: "textbox",
+					value: `{${param}}`,
+					description: `Fill the required field inside the ${label} configuration. The agent provides this via the '${param}' parameter.`,
+				},
+			];
 		}
 		// Skip these — optional, not required for minimal create
 		case "key-value-pairs":

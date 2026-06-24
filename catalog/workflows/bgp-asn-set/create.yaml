@@ -41,6 +41,12 @@ steps:
     context: AS Numbers section
     description: Add AS Numbers entry
     then:
+      - id: fill-as_numbers-value
+        action: fill
+        selector: textbox
+        value: "{as_numbers}"
+        description: Fill the first required field in the AS Numbers sub-form (the agent should provide a value via the
+          'as_numbers' parameter)
       - id: apply-as_numbers
         action: click
         selector: button:text('Apply')

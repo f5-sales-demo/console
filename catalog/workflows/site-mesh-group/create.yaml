@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Bfd Choice section
-    description: Open the Bfd Choice configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Bfd Choice configuration (required)
+  - id: fill-bfd_choice-value
+    action: fill
+    selector: textbox
+    value: "{bfd_choice}"
+    description: Fill the required field inside the Bfd Choice configuration. The agent provides this via the 'bfd_choice'
+      parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

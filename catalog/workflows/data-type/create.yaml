@@ -39,7 +39,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Data Type Rules section
-    description: Open the Data Type Rules configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Data Type Rules configuration (required)
+  - id: fill-data_type_rules-value
+    action: fill
+    selector: textbox
+    value: "{data_type_rules}"
+    description: Fill the required field inside the Data Type Rules configuration. The agent provides this via the
+      'data_type_rules' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"

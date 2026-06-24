@@ -79,7 +79,13 @@ steps:
     action: click
     selector: button:text('Configure')
     context: Bgp Parameters section
-    description: Open the Bgp Parameters configuration (required field). The sub-form must be filled for save to succeed.
+    description: Open the Bgp Parameters configuration (required)
+  - id: fill-bgp_parameters-value
+    action: fill
+    selector: textbox
+    value: "{bgp_parameters}"
+    description: Fill the required field inside the Bgp Parameters configuration. The agent provides this via the
+      'bgp_parameters' parameter.
   - id: save
     action: click
     selector: "[class*='save-bt']"
