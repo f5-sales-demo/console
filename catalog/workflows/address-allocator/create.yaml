@@ -58,7 +58,7 @@ steps:
     description: Set Allocation Unit
   - id: fill-address_pool
     action: fill
-    selector: ngx-datatable input.form-control-md
+    selector: ngx-datatable input.form-control
     context: Address Pool table
     value: "{address_pool}"
     description: Enter Address Pool in the existing table row (no Add Item needed — the table ships one empty row)

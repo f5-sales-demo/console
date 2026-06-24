@@ -122,7 +122,7 @@ steps:
     condition: params.mapping_preference is set
   - id: fill-regex_matching
     action: fill
-    selector: ngx-datatable input.form-control-md
+    selector: ngx-datatable input.form-control
     context: Regex Matching table
     value: "{regex_matching}"
     description: Enter Regex Matching in the existing table row (no Add Item needed — the table ships one empty row)

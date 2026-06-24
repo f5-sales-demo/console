@@ -40,7 +40,7 @@ steps:
     description: Enter Name
   - id: fill-ai_ml_feature_type
     action: fill
-    selector: ngx-datatable input.form-control-md
+    selector: ngx-datatable input.form-control
     context: AI/ML Feature Type table
     value: "{ai_ml_feature_type}"
     description: Enter AI/ML Feature Type in the existing table row (no Add Item needed — the table ships one empty row)

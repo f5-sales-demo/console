@@ -49,7 +49,7 @@ steps:
     description: Enter Rule Name
   - id: fill-expressions
     action: fill
-    selector: ngx-datatable input.form-control-md
+    selector: ngx-datatable input.form-control
     context: Expressions table
     value: "{expressions}"
     description: Enter Expressions in the existing table row (no Add Item needed — the table ships one empty row)

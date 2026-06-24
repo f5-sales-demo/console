@@ -41,7 +41,7 @@ steps:
     description: Enter Name
   - id: fill-domains
     action: fill
-    selector: ngx-datatable input.form-control-md
+    selector: ngx-datatable input.form-control
     context: Domains table
     value: "{domains}"
     description: Enter Domains in the existing table row (no Add Item needed — the table ships one empty row)

@@ -39,7 +39,7 @@ steps:
     description: Enter Name
   - id: fill-as_numbers
     action: fill
-    selector: ngx-datatable input.form-control-md
+    selector: ngx-datatable input.form-control
     context: AS Numbers table
     value: "{as_numbers}"
     description: Enter AS Numbers in the existing table row (no Add Item needed — the table ships one empty row)

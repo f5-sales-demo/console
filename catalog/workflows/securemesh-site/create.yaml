@@ -99,7 +99,7 @@ steps:
     condition: params.generic_server_certified_hardware is set
   - id: fill-master_nodes
     action: fill
-    selector: ngx-datatable input.form-control-md
+    selector: ngx-datatable input.form-control
     context: Master Nodes table
     value: "{master_nodes}"
     description: Enter Master Nodes in the existing table row (no Add Item needed — the table ships one empty row)

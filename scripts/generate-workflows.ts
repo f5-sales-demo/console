@@ -129,11 +129,13 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, resourceLabel: string)
 			}];
 		}
 		case "table": {
-			// Tables ship with one empty row — fill it directly via ngx-datatable
+			// Tables ship with one empty row — fill it directly via ngx-datatable.
+			// Use size-agnostic input.form-control (matches -sm and -md variants;
+			// http-lb Domains is -md, bgp-asn-set AS Numbers is -sm).
 			return [{
 				id: `fill-${param}`,
 				action: "fill",
-				selector: "ngx-datatable input.form-control-md",
+				selector: "ngx-datatable input.form-control",
 				context: `${label} table`,
 				value: `{${param}}`,
 				description: `Enter ${label} in the existing table row (no Add Item needed — the table ships one empty row)`,
