@@ -162,22 +162,34 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, resourceLabel: string)
 			// (the most common minimum is one text input — a name, value, or reference).
 			const types = meta.item_types ? Object.entries(meta.item_types) : [];
 			const defaultType = types[0];
+			// Prefer an explicit sub_field_label from the metadata (discovered via the
+			// feedback loop, e.g. ip_prefix_set's inner field is "IPv4 Prefix"), then
+			// item_types, then a bare textbox fallback.
+			const subLabel = (meta as { sub_field_label?: string }).sub_field_label;
 			const innerField = defaultType?.[1].fields?.[0];
-			const fillStep = innerField
+			const fillStep = subLabel
 				? {
-						id: `fill-${param}-${innerField}`,
-						action: "fill" as const,
-						selector: `textbox[name='${innerField.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}']`,
-						value: `{${toParamName(label)}}`,
-						description: `Enter ${innerField} for the ${label} entry`,
-					}
-				: {
 						id: `fill-${param}-value`,
 						action: "fill" as const,
-						selector: "textbox",
+						selector: `textbox[name='${subLabel}']`,
 						value: `{${toParamName(label)}}`,
-						description: `Fill the first required field in the ${label} sub-form (the agent should provide a value via the '${param}' parameter)`,
-					};
+						description: `Enter ${subLabel} for the ${label} entry`,
+					}
+				: innerField
+					? {
+							id: `fill-${param}-${innerField}`,
+							action: "fill" as const,
+							selector: `textbox[name='${innerField.replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}']`,
+							value: `{${toParamName(label)}}`,
+							description: `Enter ${innerField} for the ${label} entry`,
+						}
+					: {
+							id: `fill-${param}-value`,
+							action: "fill" as const,
+							selector: "textbox",
+							value: `{${toParamName(label)}}`,
+							description: `Fill the first required field in the ${label} sub-form (the agent should provide a value via the '${param}' parameter)`,
+						};
 			return [{
 				id: `add-${param}`,
 				action: "click",
