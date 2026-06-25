@@ -19,7 +19,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/app_firewall/waf_exclusion_rules
+    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/shared_objects/waf_exclusion_policy
     wait_for: text('WAF Exclusion Rules')
     description: Navigate to WAF Exclusion Rules list page
   - id: click-add-tab
