@@ -13,7 +13,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/multi-cloud-app-connect/namespaces/{namespace}/manage/security/forward_proxy_policies
+    url: /web/workspaces/multi-cloud-network-connect/manage/firewall/forward_proxy_policy
     wait_for: text('Forward Proxy Policies')
     description: Navigate to Forward Proxy Policies list page
   - id: click-resource

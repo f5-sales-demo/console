@@ -18,7 +18,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/shared-configuration/namespaces/shared/manage/alert_policies
+    url: /web/workspaces/multi-cloud-network-connect/manage/alert_config/alert_policies
     wait_for: text('Alert Policies')
     description: Navigate to Alert Policies list page
   - id: scroll-actions-into-view
