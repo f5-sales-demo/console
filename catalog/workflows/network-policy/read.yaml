@@ -13,7 +13,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/distributed-apps/namespaces/{namespace}/manage/networking/network_policies
+    url: /web/workspaces/distributed-apps/namespaces/{namespace}/manage/network_policies/network_policies
     wait_for: text('Network Policies')
     description: Navigate to Network Policies list page
   - id: scroll-actions-into-view
