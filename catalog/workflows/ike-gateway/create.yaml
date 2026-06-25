@@ -24,9 +24,9 @@ steps:
     description: Navigate to IKE Profiles list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add IKE Profile')
+    selector: text('Add IKE Profile')
     wait_for: textbox[name='Name']
-    description: Click the Add IKE Profile tab to open the create form
+    description: Click Add IKE Profile to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

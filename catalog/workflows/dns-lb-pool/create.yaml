@@ -27,9 +27,9 @@ steps:
     description: Navigate to DNS Load Balancer Pools list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add DNS Load Balancer Pool')
+    selector: text('Add DNS Load Balancer Pool')
     wait_for: textbox[name='Name']
-    description: Click the Add DNS Load Balancer Pool tab to open the create form
+    description: Click Add DNS Load Balancer Pool to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

@@ -28,9 +28,9 @@ steps:
     description: Navigate to Enhanced Firewall Policies list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Enhanced Firewall Policy')
+    selector: text('Add Enhanced Firewall Policy')
     wait_for: textbox[name='Name']
-    description: Click the Add Enhanced Firewall Policy tab to open the create form
+    description: Click Add Enhanced Firewall Policy to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

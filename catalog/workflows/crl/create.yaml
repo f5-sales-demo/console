@@ -30,9 +30,9 @@ steps:
     description: Navigate to Certificate Revocation List list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add CRL')
+    selector: text('Add CRL')
     wait_for: textbox[name='Name']
-    description: Click the Add CRL tab to open the create form
+    description: Click Add CRL to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

@@ -27,9 +27,9 @@ steps:
     description: Navigate to Network Policies list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Network Policy')
+    selector: text('Add Network Policy')
     wait_for: textbox[name='Name']
-    description: Click the Add Network Policy tab to open the create form
+    description: Click Add Network Policy to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

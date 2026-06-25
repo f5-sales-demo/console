@@ -24,9 +24,9 @@ steps:
     description: Navigate to My Namespaces list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Namespace')
+    selector: text('Add Namespace')
     wait_for: textbox[name='Name']
-    description: Click the Add Namespace tab to open the create form
+    description: Click Add Namespace to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

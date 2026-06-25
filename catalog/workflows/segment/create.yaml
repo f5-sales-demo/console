@@ -24,9 +24,9 @@ steps:
     description: Navigate to Segments list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Segment')
+    selector: text('Add Segment')
     wait_for: textbox[name='Name']
-    description: Click the Add Segment tab to open the create form
+    description: Click Add Segment to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

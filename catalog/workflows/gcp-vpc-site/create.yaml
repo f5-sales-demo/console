@@ -30,9 +30,9 @@ steps:
     description: Navigate to GCP VPC Sites list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add GCP VPC Site')
+    selector: text('Add GCP VPC Site')
     wait_for: textbox[name='Name']
-    description: Click the Add GCP VPC Site tab to open the create form
+    description: Click Add GCP VPC Site to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

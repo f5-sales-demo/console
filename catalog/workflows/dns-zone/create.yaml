@@ -27,9 +27,9 @@ steps:
     description: Navigate to DNS Zones list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add DNS Zone')
+    selector: text('Add DNS Zone')
     wait_for: textbox[name='Name']
-    description: Click the Add DNS Zone tab to open the create form
+    description: Click Add DNS Zone to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

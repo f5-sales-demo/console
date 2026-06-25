@@ -34,9 +34,9 @@ steps:
     description: Navigate to Container Registries list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Container Registry')
+    selector: text('Add Container Registry')
     wait_for: textbox[name='Name']
-    description: Click the Add Container Registry tab to open the create form
+    description: Click Add Container Registry to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

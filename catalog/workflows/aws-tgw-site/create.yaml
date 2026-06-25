@@ -27,9 +27,9 @@ steps:
     description: Navigate to AWS TGW Sites list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add AWS TGW Site')
+    selector: text('Add AWS TGW Site')
     wait_for: textbox[name='Name']
-    description: Click the Add AWS TGW Site tab to open the create form
+    description: Click Add AWS TGW Site to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

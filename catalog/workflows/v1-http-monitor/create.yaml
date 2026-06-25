@@ -27,9 +27,9 @@ steps:
     description: Navigate to HTTP Monitors list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add HTTP Monitor')
+    selector: text('Add HTTP Monitor')
     wait_for: textbox[name='Name']
-    description: Click the Add HTTP Monitor tab to open the create form
+    description: Click Add HTTP Monitor to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

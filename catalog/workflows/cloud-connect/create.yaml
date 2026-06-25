@@ -43,9 +43,9 @@ steps:
     description: Navigate to Cloud Connects list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Cloud Connect')
+    selector: text('Add Cloud Connect')
     wait_for: textbox[name='Name']
-    description: Click the Add Cloud Connect tab to open the create form
+    description: Click Add Cloud Connect to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

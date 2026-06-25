@@ -32,9 +32,9 @@ steps:
     description: Navigate to Protocol Policers list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Protocol Policer')
+    selector: text('Add Protocol Policer')
     wait_for: textbox[name='Name']
-    description: Click the Add Protocol Policer tab to open the create form
+    description: Click Add Protocol Policer to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

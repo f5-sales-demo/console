@@ -34,9 +34,9 @@ steps:
     description: Navigate to Network Interfaces list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Network Interface')
+    selector: text('Add Network Interface')
     wait_for: textbox[name='Name']
-    description: Click the Add Network Interface tab to open the create form
+    description: Click Add Network Interface to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

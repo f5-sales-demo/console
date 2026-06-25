@@ -380,6 +380,9 @@ function generateCreate(
     }
   }
 
+  // The Name field may use a non-standard label (e.g. "Role Name", "Credential Name")
+  const nameField = fields['metadata.name'];
+
   // Build steps
   const steps: Step[] = [
     {
@@ -392,9 +395,11 @@ function generateCreate(
     {
       id: 'click-add-tab',
       action: 'click',
-      selector: `tab:text('${addLabel}')`,
-      wait_for: "textbox[name='Name']",
-      description: `Click the ${addLabel} tab to open the create form`,
+      // text() matches both [role=tab] (standard workspaces) and <a>/<button>
+      // (administration/IAM forms that don't use role=tab).
+      selector: `text('${addLabel}')`,
+      wait_for: nameField ? `textbox[name='${nameField.label ?? 'Name'}']` : "textbox[name='Name']",
+      description: `Click ${addLabel} to open the create form`,
     },
   ];
 

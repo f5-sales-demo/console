@@ -24,9 +24,9 @@ steps:
     description: Navigate to Rate Limiters list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Rate Limiter')
+    selector: text('Add Rate Limiter')
     wait_for: textbox[name='Name']
-    description: Click the Add Rate Limiter tab to open the create form
+    description: Click Add Rate Limiter to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

@@ -71,9 +71,9 @@ steps:
     description: Navigate to Fleets list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Fleet')
+    selector: text('Add Fleet')
     wait_for: textbox[name='Name']
-    description: Click the Add Fleet tab to open the create form
+    description: Click Add Fleet to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

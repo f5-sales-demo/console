@@ -35,9 +35,9 @@ steps:
     description: Navigate to Endpoints list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Endpoint')
+    selector: text('Add Endpoint')
     wait_for: textbox[name='Name']
-    description: Click the Add Endpoint tab to open the create form
+    description: Click Add Endpoint to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

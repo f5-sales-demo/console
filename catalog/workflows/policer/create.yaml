@@ -35,9 +35,9 @@ steps:
     description: Navigate to Policers list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Policer')
+    selector: text('Add Policer')
     wait_for: textbox[name='Name']
-    description: Click the Add Policer tab to open the create form
+    description: Click Add Policer to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

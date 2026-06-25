@@ -24,9 +24,9 @@ steps:
     description: Navigate to Forward Proxy Policies list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Forward Proxy Policy')
+    selector: text('Add Forward Proxy Policy')
     wait_for: textbox[name='Name']
-    description: Click the Add Forward Proxy Policy tab to open the create form
+    description: Click Add Forward Proxy Policy to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

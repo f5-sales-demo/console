@@ -33,9 +33,9 @@ steps:
     description: Navigate to AWS VPC Sites list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add AWS VPC Site')
+    selector: text('Add AWS VPC Site')
     wait_for: textbox[name='Name']
-    description: Click the Add AWS VPC Site tab to open the create form
+    description: Click Add AWS VPC Site to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']
