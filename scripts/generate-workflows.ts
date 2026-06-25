@@ -131,13 +131,18 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, _resourceLabel: string
       return [step];
     }
     case 'listbox': {
+      // A listbox that references another object (resource_type set) must be
+      // SCOPED by label — a form can have several listboxes and a bare `listbox`
+      // resolves the first one. Verified: app_api_group's "HTTP Load Balancer"
+      // listbox selects an existing http-lb only via listbox[name='HTTP Load Balancer'].
+      // Enum listboxes (no resource_type, e.g. enforcement_mode) keep bare `listbox`.
       const step: Step = {
         id: `select-${param}`,
         action: 'select',
-        selector: 'listbox',
+        selector: meta.resource_type ? `listbox[name='${label}']` : 'listbox',
         context: `${label} section`,
         value: `{${param}}`,
-        description: `Select ${label}${meta.options ? ` (${meta.options.join(' | ')})` : ''}`,
+        description: `Select ${label}${meta.resource_type ? ` (references an existing ${meta.resource_type} — dependency)` : meta.options ? ` (${meta.options.join(' | ')})` : ''}`,
       };
       if (hasDefault) step.condition = `params.${param} is set`;
       return [step];
