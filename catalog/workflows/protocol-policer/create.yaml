@@ -18,7 +18,12 @@ params:
     example: example-protocol-policer
   protocol_policer:
     required: true
-    description: At least one protocol policer entry required. Uses Add Item sub-form, not a datatable input.
+    description: 'At least one protocol policer entry required. The nested Add Item sub-form requires selecting an existing
+      Policer (feedback loop: "Field Policer is required") — a policer object must exist first.'
+  policer:
+    required: true
+    description: Name of an existing policer to reference (dependency — create it first)
+    example: example-policer
 steps:
   - id: navigate-to-list
     action: navigate
@@ -41,12 +46,12 @@ steps:
     context: Protocol Policer section
     description: Add Protocol Policer entry
     then:
-      - id: fill-protocol_policer-value
-        action: fill
-        selector: textbox
-        value: "{protocol_policer}"
-        description: Fill the first required field in the Protocol Policer sub-form (the agent should provide a value via the
-          'protocol_policer' parameter)
+      - id: select-protocol_policer-ref
+        action: select
+        selector: listbox[name='Policer']
+        context: Policer selector
+        value: "{policer}"
+        description: Select the Policer for the Protocol Policer entry (references an existing policer — create one first)
       - id: apply-protocol_policer
         action: click
         selector: button:text('Apply')

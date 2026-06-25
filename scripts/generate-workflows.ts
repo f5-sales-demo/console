@@ -57,6 +57,10 @@ interface FieldMeta {
   validation?: { pattern?: string; max_length?: number };
   mutually_exclusive_with?: string[];
   console_preselected?: boolean;
+  sub_field_label?: string;
+  sub_select_label?: string;
+  sub_resource_type?: string;
+  no_apply?: boolean;
   add_action?: string;
   nested_resource?: string;
   resource_type?: string;
@@ -203,32 +207,50 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, _resourceLabel: string
       // Prefer an explicit sub_field_label from the metadata (discovered via the
       // feedback loop, e.g. ip_prefix_set's inner field is "IPv4 Prefix"), then
       // item_types, then a bare textbox fallback.
-      const subLabel = (meta as { sub_field_label?: string }).sub_field_label;
+      const subLabel = meta.sub_field_label;
+      // sub_select_label: the nested item's required field is a RESOURCE-SELECTOR
+      // (a listbox referencing an existing object), not a free-text input — e.g.
+      // protocol_policer's nested item requires selecting an existing Policer.
+      // Discovered via the create-form feedback loop ("Field Policer is required").
+      const subSelectLabel = meta.sub_select_label;
+      const subResourceType = meta.sub_resource_type;
       const innerField = defaultType?.[1].fields?.[0];
-      const fillStep = subLabel
+      const fillStep = subSelectLabel
         ? {
-            id: `fill-${param}-value`,
-            action: 'fill' as const,
-            selector: `textbox[name='${subLabel}']`,
-            value: `{${toParamName(label)}}`,
-            description: `Enter ${subLabel} for the ${label} entry`,
+            id: `select-${param}-ref`,
+            action: 'select' as const,
+            // Scope to the named listbox — nested sub-forms often have several
+            // listboxes (e.g. protocol_policer's drawer has TCP Packet Type + Policer);
+            // a bare `listbox` resolves the first one and misses the target.
+            selector: `listbox[name='${subSelectLabel}']`,
+            context: `${subSelectLabel} selector`,
+            value: `{${toParamName(subSelectLabel)}}`,
+            description: `Select the ${subSelectLabel} for the ${label} entry (references an existing ${subResourceType ?? 'resource'} — create one first)`,
           }
-        : innerField
+        : subLabel
           ? {
-              id: `fill-${param}-${innerField}`,
-              action: 'fill' as const,
-              selector: `textbox[name='${innerField.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}']`,
-              value: `{${toParamName(label)}}`,
-              description: `Enter ${innerField} for the ${label} entry`,
-            }
-          : {
               id: `fill-${param}-value`,
               action: 'fill' as const,
-              selector: 'textbox',
+              selector: `textbox[name='${subLabel}']`,
               value: `{${toParamName(label)}}`,
-              description: `Fill the first required field in the ${label} sub-form (the agent should provide a value via the '${param}' parameter)`,
-            };
-      const noApply = (meta as { no_apply?: boolean }).no_apply === true;
+              description: `Enter ${subLabel} for the ${label} entry`,
+            }
+          : innerField
+            ? {
+                id: `fill-${param}-${innerField}`,
+                action: 'fill' as const,
+                selector: `textbox[name='${innerField.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}']`,
+                value: `{${toParamName(label)}}`,
+                description: `Enter ${innerField} for the ${label} entry`,
+              }
+            : {
+                id: `fill-${param}-value`,
+                action: 'fill' as const,
+                selector: 'textbox',
+                value: `{${toParamName(label)}}`,
+                description: `Fill the first required field in the ${label} sub-form (the agent should provide a value via the '${param}' parameter)`,
+              };
+      const noApply = meta.no_apply === true;
       const thenSteps: Step[] = [fillStep];
       if (!noApply) {
         thenSteps.push({
@@ -328,6 +350,16 @@ function generateCreate(
     if (m.default !== undefined) def.default = m.default;
     if (m.options) def.example = m.options[0];
     params[p] = def;
+    // A nested-resource-list whose inner field references another object needs a
+    // param naming that object (e.g. protocol_policer → a `policer` to select).
+    if (m.sub_select_label) {
+      const sp = toParamName(m.sub_select_label);
+      params[sp] = {
+        required: true,
+        description: `Name of an existing ${m.sub_resource_type ?? m.sub_select_label} to reference (dependency — create it first)`,
+        example: `example-${m.sub_resource_type ?? sp}`,
+      };
+    }
   }
 
   // Build steps
