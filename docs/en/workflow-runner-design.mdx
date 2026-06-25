@@ -61,7 +61,7 @@ interface WorkflowRunResult {
 |---|---|---|
 | `navigate` | `goto` + `wait_for_selector` | Prepend baseUrl to relative URL |
 | `click` | `click` | Direct selector mapping |
-| `fill` | `fill` | Resolve {param} in value |
+| `fill` | `fill` | Resolve `{param}` in value |
 | `fill-list` | Loop: `fill` + `press Enter` per item | Resolve array param |
 | `select` | `click` (open) + `click` (option) | Custom console dropdowns |
 | `assert` | `get_text` + string comparison | Fail-fast if mismatch |
@@ -72,8 +72,8 @@ interface WorkflowRunResult {
 ## Parameter Resolution
 
 1. Explicit params from RunnerOptions (highest priority)
-2. F5XC environment variables (`{namespace}` → `F5XC_NAMESPACE`)
-3. Unresolved required params → `WorkflowParamError`
+2. F5XC environment variables (`{namespace}` maps to `F5XC_NAMESPACE`)
+3. Unresolved required params produce a `WorkflowParamError`
 
 ## Error Handling
 
@@ -86,7 +86,7 @@ interface WorkflowRunResult {
 
 When `observable: true`:
 - 1500ms delay between steps (configurable)
-- Screenshot after every step (`{workflowId}-{stepIndex:02d}-{stepId}.png`)
+- Screenshot after every step (named `workflowId-stepIndex-stepId.png`)
 - `onStepStart`/`onStepComplete` callbacks for live logging
 - Browser actions themselves run at full speed (delays are inter-step only)
 
