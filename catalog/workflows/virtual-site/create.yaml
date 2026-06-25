@@ -22,7 +22,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/shared-configuration/namespaces/shared/manage/virtual_sites
+    url: /web/workspaces/shared-configuration/manage/virtual_sites
     wait_for: text('Virtual Sites')
     description: Navigate to Virtual Sites list page
   - id: click-add-tab

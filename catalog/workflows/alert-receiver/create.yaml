@@ -22,7 +22,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/audit-logs-and-alerts/namespaces/system/manage/alert_receivers
+    url: /web/workspaces/multi-cloud-network-connect/manage/alert_config/alert_receivers
     wait_for: text('Alert Receivers')
     description: Navigate to Alert Receivers list page
   - id: click-add-tab

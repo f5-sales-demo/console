@@ -18,7 +18,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/distributed-apps/namespaces/{namespace}/manage/container_registries
+    url: /web/workspaces/distributed-apps/namespaces/{namespace}/applications/container_registries
     wait_for: text('Container Registries')
     description: Navigate to Container Registries list page
   - id: scroll-actions-into-view
