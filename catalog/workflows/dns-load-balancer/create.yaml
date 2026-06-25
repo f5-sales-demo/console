@@ -19,6 +19,9 @@ params:
   record_type:
     required: true
     description: Record Type
+  load_balancing_rules:
+    required: true
+    description: "Server-required: at least one Load Balancing Rule."
 steps:
   - id: navigate-to-list
     action: navigate
@@ -41,6 +44,22 @@ steps:
     context: Record Type section
     value: "{record_type}"
     description: Select Record Type
+  - id: add-load_balancing_rules
+    action: click
+    selector: button:text('Add Item')
+    context: Load Balancing Rules section
+    description: Add Load Balancing Rules entry
+    then:
+      - id: fill-load_balancing_rules-value
+        action: fill
+        selector: textbox
+        value: "{load_balancing_rules}"
+        description: Fill the first required field in the Load Balancing Rules sub-form (the agent should provide a value via
+          the 'load_balancing_rules' parameter)
+      - id: apply-load_balancing_rules
+        action: click
+        selector: button:text('Apply')
+        description: Confirm Load Balancing Rules entry
   - id: save
     action: click
     selector: "[class*='save-bt']"
