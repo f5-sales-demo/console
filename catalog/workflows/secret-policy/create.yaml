@@ -19,7 +19,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/shared-configuration/namespaces/shared/manage/secret_policies
+    url: /web/workspaces/multi-cloud-network-connect/manage/secrets/secret_policies
     wait_for: text('Secret Policies')
     description: Navigate to Secret Policies list page
   - id: click-add-tab

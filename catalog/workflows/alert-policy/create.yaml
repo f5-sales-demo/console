@@ -16,10 +16,17 @@ params:
     required: true
     description: Alert Policies name (lowercase alphanumeric and hyphens)
     example: example-alert-policy
+  alert_receivers:
+    required: true
+    description: "Server-required: at least one Alert Receiver reference. Depends on an existing alert_receiver object
+      (create one first)."
+  policy_rules:
+    required: true
+    description: "Server-required: at least one alert policy rule (Field Policy Rules in Spec is required)."
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/shared-configuration/namespaces/shared/manage/alert_policies
+    url: /web/workspaces/multi-cloud-network-connect/manage/alert_config/alert_policies
     wait_for: text('Alert Policies')
     description: Navigate to Alert Policies list page
   - id: click-add-tab
@@ -32,6 +39,39 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: attach-alert_receivers
+    action: click
+    selector: button:text('Add Item')
+    context: Alert Receivers section
+    condition: params.alert_receivers is set
+    description: Attach Alert Receivers (references a alert_receiver)
+    then:
+      - id: select-alert_receivers
+        action: select
+        selector: listbox
+        context: Alert Receivers selector
+        value: "{alert_receivers}"
+        description: Select the Alert Receivers
+      - id: apply-alert_receivers
+        action: click
+        selector: button:text('Apply')
+        description: Confirm Alert Receivers selection
+  - id: add-policy_rules
+    action: click
+    selector: button:text('Add Item')
+    context: Policy Rules section
+    description: Add Policy Rules entry
+    then:
+      - id: fill-policy_rules-value
+        action: fill
+        selector: textbox
+        value: "{policy_rules}"
+        description: Fill the first required field in the Policy Rules sub-form (the agent should provide a value via the
+          'policy_rules' parameter)
+      - id: apply-policy_rules
+        action: click
+        selector: button:text('Apply')
+        description: Confirm Policy Rules entry
   - id: save
     action: click
     selector: "[class*='save-bt']"
