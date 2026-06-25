@@ -402,14 +402,20 @@ function generateCreate(
     steps.push(...fieldToSteps(fp, m, label));
   }
 
+  // Administration (IAM / Personal Management) forms have no footer save-bt; they
+  // submit via a primary [class*='submit-button'] ("Add Namespace", "Add Service
+  // Credentials", …). Verified live: namespace create 200 only via submit-button.
+  const isAdmin = ui.workspace === 'administration';
   steps.push({
     id: 'save',
     action: 'click',
-    selector: "[class*='save-bt']",
+    selector: isAdmin ? "[class*='submit-button']" : "[class*='save-bt']",
     context: 'footer',
     wait_for: "text('{name}')",
     wait_timeout_ms: 30000,
-    description: `Save via the footer button (never use button:text — it collides with the header tab)`,
+    description: isAdmin
+      ? `Submit via the primary submit button (Administration forms have no save-bt)`
+      : `Save via the footer button (never use button:text — it collides with the header tab)`,
   });
 
   return {

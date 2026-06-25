@@ -37,11 +37,11 @@ steps:
     description: Enter Role Name
   - id: save
     action: click
-    selector: "[class*='save-bt']"
+    selector: "[class*='submit-button']"
     context: footer
     wait_for: text('{name}')
     wait_timeout_ms: 30000
-    description: Save via the footer button (never use button:text — it collides with the header tab)
+    description: Submit via the primary submit button (Administration forms have no save-bt)
 postconditions:
   - resource_list_page_visible
   - "resource_name_in_list: {name}"
