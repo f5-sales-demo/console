@@ -37,15 +37,14 @@ steps:
     description: Enter Name
   - id: configure-site_selector
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Site Selector section
-    description: Open the Site Selector configuration (required)
+    description: Open the Site Selector configuration ('Configure' is a link, not a button)
   - id: fill-site_selector-value
     action: fill
     selector: textbox
     value: "{site_selector}"
-    description: Fill the required field inside the Site Selector configuration. The agent provides this via the
-      'site_selector' parameter.
+    description: Enter the Site Selector value via the 'site_selector' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

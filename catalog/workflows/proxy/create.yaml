@@ -85,15 +85,14 @@ steps:
     condition: params.select_sites_for_proxy is set
   - id: configure-site_or_virtual_site
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Site or Virtual Site section
-    description: Open the Site or Virtual Site configuration (required)
+    description: Open the Site or Virtual Site configuration ('Configure' is a link, not a button)
   - id: fill-site_or_virtual_site-value
     action: fill
     selector: textbox
     value: "{site_or_virtual_site}"
-    description: Fill the required field inside the Site or Virtual Site configuration. The agent provides this via the
-      'site_or_virtual_site' parameter.
+    description: Enter the Site or Virtual Site value via the 'site_or_virtual_site' parameter
   - id: select-select_upstream_network
     action: select
     selector: listbox
@@ -117,15 +116,14 @@ steps:
     condition: params.manage_proxy_policy is set
   - id: configure-proxy_choice
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Proxy Choice section
-    description: Open the Proxy Choice configuration (required)
+    description: Open the Proxy Choice configuration ('Configure' is a link, not a button)
   - id: fill-proxy_choice-value
     action: fill
     selector: textbox
     value: "{proxy_choice}"
-    description: Fill the required field inside the Proxy Choice configuration. The agent provides this via the
-      'proxy_choice' parameter.
+    description: Enter the Proxy Choice value via the 'proxy_choice' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

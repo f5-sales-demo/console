@@ -66,15 +66,14 @@ steps:
         description: Confirm AWS Credentials selection
   - id: configure-deployment
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Deployment section
-    description: Open the Deployment configuration (required)
+    description: Open the Deployment configuration ('Configure' is a link, not a button)
   - id: fill-deployment-value
     action: fill
     selector: textbox
     value: "{deployment}"
-    description: Fill the required field inside the Deployment configuration. The agent provides this via the 'deployment'
-      parameter.
+    description: Enter the Deployment value via the 'deployment' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

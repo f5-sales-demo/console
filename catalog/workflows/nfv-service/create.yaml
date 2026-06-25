@@ -59,15 +59,14 @@ steps:
     condition: params.external_service_provider is set
   - id: configure-provider_configuration
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Provider Configuration section
-    description: Open the Provider Configuration configuration (required)
+    description: Open the Provider Configuration configuration ('Configure' is a link, not a button)
   - id: fill-provider_configuration-value
     action: fill
     selector: textbox
     value: "{provider_configuration}"
-    description: Fill the required field inside the Provider Configuration configuration. The agent provides this via the
-      'provider_configuration' parameter.
+    description: Enter the Provider Configuration value via the 'provider_configuration' parameter
   - id: select-https_based_management_of_nodes
     action: select
     selector: listbox
@@ -84,15 +83,14 @@ steps:
     condition: params.ssh_based_management_of_nodes is set
   - id: configure-service_provider_choice
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Service Provider Choice section
-    description: Open the Service Provider Choice configuration (required)
+    description: Open the Service Provider Choice configuration ('Configure' is a link, not a button)
   - id: fill-service_provider_choice-value
     action: fill
     selector: textbox
     value: "{service_provider_choice}"
-    description: Fill the required field inside the Service Provider Choice configuration. The agent provides this via the
-      'service_provider_choice' parameter.
+    description: Enter the Service Provider Choice value via the 'service_provider_choice' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

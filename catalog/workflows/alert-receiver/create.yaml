@@ -37,15 +37,14 @@ steps:
     description: Enter Name
   - id: configure-receiver_configuration
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Receiver Configuration section
-    description: Open the Receiver Configuration configuration (required)
+    description: Open the Receiver Configuration configuration ('Configure' is a link, not a button)
   - id: fill-receiver_configuration-value
     action: fill
     selector: textbox
     value: "{receiver_configuration}"
-    description: Fill the required field inside the Receiver Configuration configuration. The agent provides this via the
-      'receiver_configuration' parameter.
+    description: Enter the Receiver Configuration value via the 'receiver_configuration' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

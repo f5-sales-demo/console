@@ -90,15 +90,14 @@ steps:
     condition: params.select_kubernetes_credentials is set
   - id: configure-kubeconfig
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Kubeconfig section
-    description: Open the Kubeconfig configuration (required)
+    description: Open the Kubeconfig configuration ('Configure' is a link, not a button)
   - id: fill-kubeconfig-value
     action: fill
     selector: textbox
     value: "{kubeconfig}"
-    description: Fill the required field inside the Kubeconfig configuration. The agent provides this via the 'kubeconfig'
-      parameter.
+    description: Enter the Kubeconfig value via the 'kubeconfig' parameter
   - id: select-kubernetes_pod_network_reachability
     action: select
     selector: listbox
@@ -135,15 +134,14 @@ steps:
     condition: params.select_discovery_cluster_identifier is set
   - id: configure-discovery_choice
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Discovery Choice section
-    description: Open the Discovery Choice configuration (required)
+    description: Open the Discovery Choice configuration ('Configure' is a link, not a button)
   - id: fill-discovery_choice-value
     action: fill
     selector: textbox
     value: "{discovery_choice}"
-    description: Fill the required field inside the Discovery Choice configuration. The agent provides this via the
-      'discovery_choice' parameter.
+    description: Enter the Discovery Choice value via the 'discovery_choice' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

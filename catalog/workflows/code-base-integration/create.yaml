@@ -38,14 +38,14 @@ steps:
     description: Enter Name
   - id: configure-code_base
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Code Base section
-    description: Open the Code Base configuration (required)
+    description: Open the Code Base configuration ('Configure' is a link, not a button)
   - id: fill-code_base-value
     action: fill
     selector: textbox
     value: "{code_base}"
-    description: Fill the required field inside the Code Base configuration. The agent provides this via the 'code_base' parameter.
+    description: Enter the Code Base value via the 'code_base' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

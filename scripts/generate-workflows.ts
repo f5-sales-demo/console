@@ -57,6 +57,8 @@ interface FieldMeta {
   validation?: { pattern?: string; max_length?: number };
   mutually_exclusive_with?: string[];
   console_preselected?: boolean;
+  secret?: boolean;
+  configure_action?: string;
   sub_field_label?: string;
   sub_select_label?: string;
   sub_resource_type?: string;
@@ -278,27 +280,38 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, _resourceLabel: string
       ];
     }
     case 'configurable': {
-      // Configurable widgets have a "Configure" button that expands a sub-form.
-      // For REQUIRED configurable fields, click Configure to open + fill minimum.
-      // The agent provides the value via the parameter; the workflow fills the
-      // first visible input in the expanded sub-form.
+      // Configurable fields expand a sub-form via a "Configure" control. Verified
+      // live: that control is a LINK, not a button — so use text('Configure'),
+      // never button:text (which silently no-ops). SECRET fields (meta.secret,
+      // e.g. container_registry password) open a sub-form with a Secret Type
+      // listbox (defaulted — leave it), a TEXTAREA for the value, and an Apply
+      // button. Non-secret configurables fill the first textbox.
       if (!meta.required) return [];
-      return [
+      const steps: Step[] = [
         {
           id: `configure-${param}`,
           action: 'click',
-          selector: `button:text('${meta.configure_action ?? 'Configure'}')`,
+          selector: `text('${meta.configure_action ?? 'Configure'}')`,
           context: `${label} section`,
-          description: `Open the ${label} configuration (required)`,
+          description: `Open the ${label} configuration ('Configure' is a link, not a button)`,
         },
         {
           id: `fill-${param}-value`,
           action: 'fill',
-          selector: 'textbox',
+          selector: meta.secret ? 'textarea' : 'textbox',
           value: `{${param}}`,
-          description: `Fill the required field inside the ${label} configuration. The agent provides this via the '${param}' parameter.`,
+          description: `Enter the ${label} value${meta.secret ? ' (secret textarea)' : ''} via the '${param}' parameter`,
         },
       ];
+      if (meta.secret) {
+        steps.push({
+          id: `apply-${param}`,
+          action: 'click',
+          selector: "button:text('Apply')",
+          description: `Apply the ${label} secret to commit it`,
+        });
+      }
+      return steps;
     }
     // Skip these — optional, not required for minimal create
     case 'key-value-pairs':

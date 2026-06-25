@@ -48,15 +48,14 @@ steps:
     condition: params.applies_to is set
   - id: configure-applies_to_choice
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Applies To Choice section
-    description: Open the Applies To Choice configuration (required)
+    description: Open the Applies To Choice configuration ('Configure' is a link, not a button)
   - id: fill-applies_to_choice-value
     action: fill
     selector: textbox
     value: "{applies_to_choice}"
-    description: Fill the required field inside the Applies To Choice configuration. The agent provides this via the
-      'applies_to_choice' parameter.
+    description: Enter the Applies To Choice value via the 'applies_to_choice' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

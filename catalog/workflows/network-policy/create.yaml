@@ -37,14 +37,14 @@ steps:
     description: Enter Name
   - id: configure-endpoint
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Endpoint section
-    description: Open the Endpoint configuration (required)
+    description: Open the Endpoint configuration ('Configure' is a link, not a button)
   - id: fill-endpoint-value
     action: fill
     selector: textbox
     value: "{endpoint}"
-    description: Fill the required field inside the Endpoint configuration. The agent provides this via the 'endpoint' parameter.
+    description: Enter the Endpoint value via the 'endpoint' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

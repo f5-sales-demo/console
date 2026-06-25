@@ -37,15 +37,14 @@ steps:
     description: Enter Name
   - id: configure-data_type_rules
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Data Type Rules section
-    description: Open the Data Type Rules configuration (required)
+    description: Open the Data Type Rules configuration ('Configure' is a link, not a button)
   - id: fill-data_type_rules-value
     action: fill
     selector: textbox
     value: "{data_type_rules}"
-    description: Fill the required field inside the Data Type Rules configuration. The agent provides this via the
-      'data_type_rules' parameter.
+    description: Enter the Data Type Rules value via the 'data_type_rules' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

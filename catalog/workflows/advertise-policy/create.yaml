@@ -89,15 +89,14 @@ steps:
     condition: params.tcp_udp_port_value is set
   - id: configure-port_choice
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Port Choice section
-    description: Open the Port Choice configuration (required)
+    description: Open the Port Choice configuration ('Configure' is a link, not a button)
   - id: fill-port_choice-value
     action: fill
     selector: textbox
     value: "{port_choice}"
-    description: Fill the required field inside the Port Choice configuration. The agent provides this via the 'port_choice'
-      parameter.
+    description: Enter the Port Choice value via the 'port_choice' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

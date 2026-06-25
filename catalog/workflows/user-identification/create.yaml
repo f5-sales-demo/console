@@ -37,14 +37,14 @@ steps:
     description: Enter Name
   - id: configure-rules
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Rules section
-    description: Open the Rules configuration (required)
+    description: Open the Rules configuration ('Configure' is a link, not a button)
   - id: fill-rules-value
     action: fill
     selector: textbox
     value: "{rules}"
-    description: Fill the required field inside the Rules configuration. The agent provides this via the 'rules' parameter.
+    description: Enter the Rules value via the 'rules' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

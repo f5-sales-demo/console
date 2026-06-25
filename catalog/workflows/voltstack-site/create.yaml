@@ -37,15 +37,14 @@ steps:
     description: Enter Name
   - id: configure-volterra_certified_hw
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Volterra Certified Hw section
-    description: Open the Volterra Certified Hw configuration (required)
+    description: Open the Volterra Certified Hw configuration ('Configure' is a link, not a button)
   - id: fill-volterra_certified_hw-value
     action: fill
     selector: textbox
     value: "{volterra_certified_hw}"
-    description: Fill the required field inside the Volterra Certified Hw configuration. The agent provides this via the
-      'volterra_certified_hw' parameter.
+    description: Enter the Volterra Certified Hw value via the 'volterra_certified_hw' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

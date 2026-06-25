@@ -97,15 +97,14 @@ steps:
     condition: params.private_connectivity_via_regional_edge_re is set
   - id: configure-cloud_provider
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Cloud Provider section
-    description: Open the Cloud Provider configuration (required)
+    description: Open the Cloud Provider configuration ('Configure' is a link, not a button)
   - id: fill-cloud_provider-value
     action: fill
     selector: textbox
     value: "{cloud_provider}"
-    description: Fill the required field inside the Cloud Provider configuration. The agent provides this via the
-      'cloud_provider' parameter.
+    description: Enter the Cloud Provider value via the 'cloud_provider' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

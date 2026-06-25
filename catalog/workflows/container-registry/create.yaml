@@ -24,7 +24,8 @@ params:
     description: User Name
   password:
     required: true
-    description: Password
+    description: "Secret field: click Configure (a link), enter the value in the secret TEXTAREA (Secret Type defaults are
+      fine), then Apply. Verified live: create 200."
 steps:
   - id: navigate-to-list
     action: navigate
@@ -53,14 +54,18 @@ steps:
     description: Enter User Name
   - id: configure-password
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Password section
-    description: Open the Password configuration (required)
+    description: Open the Password configuration ('Configure' is a link, not a button)
   - id: fill-password-value
     action: fill
-    selector: textbox
+    selector: textarea
     value: "{password}"
-    description: Fill the required field inside the Password configuration. The agent provides this via the 'password' parameter.
+    description: Enter the Password value (secret textarea) via the 'password' parameter
+  - id: apply-password
+    action: click
+    selector: button:text('Apply')
+    description: Apply the Password secret to commit it
   - id: save
     action: click
     selector: "[class*='save-bt']"

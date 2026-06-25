@@ -46,14 +46,14 @@ steps:
     description: Select Site Reference
   - id: configure-count
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Count section
-    description: Open the Count configuration (required)
+    description: Open the Count configuration ('Configure' is a link, not a button)
   - id: fill-count-value
     action: fill
     selector: textbox
     value: "{count}"
-    description: Fill the required field inside the Count configuration. The agent provides this via the 'count' parameter.
+    description: Enter the Count value via the 'count' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

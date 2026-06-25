@@ -59,14 +59,14 @@ steps:
     condition: params.virtual_site_or_site_or_network is set
   - id: configure-reference
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Reference section
-    description: Open the Reference configuration (required)
+    description: Open the Reference configuration ('Configure' is a link, not a button)
   - id: fill-reference-value
     action: fill
     selector: textbox
     value: "{reference}"
-    description: Fill the required field inside the Reference configuration. The agent provides this via the 'reference' parameter.
+    description: Enter the Reference value via the 'reference' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

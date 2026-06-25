@@ -64,15 +64,14 @@ steps:
     description: Enter Address Pool in the existing table row (no Add Item needed — the table ships one empty row)
   - id: configure-address_allocation_scheme
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Address Allocation Scheme section
-    description: Open the Address Allocation Scheme configuration (required)
+    description: Open the Address Allocation Scheme configuration ('Configure' is a link, not a button)
   - id: fill-address_allocation_scheme-value
     action: fill
     selector: textbox
     value: "{address_allocation_scheme}"
-    description: Fill the required field inside the Address Allocation Scheme configuration. The agent provides this via the
-      'address_allocation_scheme' parameter.
+    description: Enter the Address Allocation Scheme value via the 'address_allocation_scheme' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

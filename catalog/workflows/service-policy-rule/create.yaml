@@ -32,15 +32,14 @@ steps:
     description: Click the Add Service Policy Rule tab to open the create form
   - id: configure-waf_action
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Waf Action section
-    description: Open the Waf Action configuration (required)
+    description: Open the Waf Action configuration ('Configure' is a link, not a button)
   - id: fill-waf_action-value
     action: fill
     selector: textbox
     value: "{waf_action}"
-    description: Fill the required field inside the Waf Action configuration. The agent provides this via the 'waf_action'
-      parameter.
+    description: Enter the Waf Action value via the 'waf_action' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"

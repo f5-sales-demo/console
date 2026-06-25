@@ -51,26 +51,24 @@ steps:
     condition: params.interface_config_type is set
   - id: configure-ethernet_interface
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Ethernet Interface section
-    description: Open the Ethernet Interface configuration (required)
+    description: Open the Ethernet Interface configuration ('Configure' is a link, not a button)
   - id: fill-ethernet_interface-value
     action: fill
     selector: textbox
     value: "{ethernet_interface}"
-    description: Fill the required field inside the Ethernet Interface configuration. The agent provides this via the
-      'ethernet_interface' parameter.
+    description: Enter the Ethernet Interface value via the 'ethernet_interface' parameter
   - id: configure-interface_choice
     action: click
-    selector: button:text('Configure')
+    selector: text('Configure')
     context: Interface Choice section
-    description: Open the Interface Choice configuration (required)
+    description: Open the Interface Choice configuration ('Configure' is a link, not a button)
   - id: fill-interface_choice-value
     action: fill
     selector: textbox
     value: "{interface_choice}"
-    description: Fill the required field inside the Interface Choice configuration. The agent provides this via the
-      'interface_choice' parameter.
+    description: Enter the Interface Choice value via the 'interface_choice' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"
