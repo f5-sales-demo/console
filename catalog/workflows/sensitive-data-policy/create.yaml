@@ -19,7 +19,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/api_security/sensitive_data_policies
+    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/api_security/sensitive_data_policy
     wait_for: text('Sensitive Data Policies')
     description: Navigate to Sensitive Data Policies list page
   - id: click-add-tab
