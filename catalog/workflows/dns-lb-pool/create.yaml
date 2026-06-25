@@ -16,6 +16,9 @@ params:
     required: true
     description: DNS Load Balancer Pools name (lowercase alphanumeric and hyphens)
     example: example-dns-lb-pool
+  pool_members:
+    required: true
+    description: "Server-required: Pool Members in A record type. Click Configure (link) to add members."
 steps:
   - id: navigate-to-list
     action: navigate
@@ -32,6 +35,16 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
+  - id: configure-pool_members
+    action: click
+    selector: text('Configure')
+    context: Pool Members section
+    description: Open the Pool Members configuration ('Configure' is a link, not a button)
+  - id: fill-pool_members-value
+    action: fill
+    selector: textbox
+    value: "{pool_members}"
+    description: Enter the Pool Members value via the 'pool_members' parameter
   - id: save
     action: click
     selector: "[class*='save-bt']"
