@@ -31,9 +31,9 @@ steps:
     description: Navigate to CDN Distributions list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add CDN Distribution')
+    selector: text('Add CDN Distribution')
     wait_for: textbox[name='Name']
-    description: Click the Add CDN Distribution tab to open the create form
+    description: Click Add CDN Distribution to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

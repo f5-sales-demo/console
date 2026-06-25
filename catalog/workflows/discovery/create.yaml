@@ -60,9 +60,9 @@ steps:
     description: Navigate to Service Discoveries list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Service Discovery')
+    selector: text('Add Service Discovery')
     wait_for: textbox[name='Name']
-    description: Click the Add Service Discovery tab to open the create form
+    description: Click Add Service Discovery to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

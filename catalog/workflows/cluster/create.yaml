@@ -28,9 +28,9 @@ steps:
     description: Navigate to Clusters list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Cluster')
+    selector: text('Add Cluster')
     wait_for: textbox[name='Name']
-    description: Click the Add Cluster tab to open the create form
+    description: Click Add Cluster to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

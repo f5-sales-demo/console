@@ -24,9 +24,9 @@ steps:
     description: Navigate to Secret Policy Rules list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Secret Policy Rule')
+    selector: text('Add Secret Policy Rule')
     wait_for: textbox[name='Name']
-    description: Click the Add Secret Policy Rule tab to open the create form
+    description: Click Add Secret Policy Rule to open the create form
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

@@ -24,9 +24,9 @@ steps:
     description: Navigate to UDP Load Balancers list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add UDP Load Balancer')
+    selector: text('Add UDP Load Balancer')
     wait_for: textbox[name='Name']
-    description: Click the Add UDP Load Balancer tab to open the create form
+    description: Click Add UDP Load Balancer to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

@@ -30,9 +30,9 @@ steps:
     description: Navigate to Third-Party Applications list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Third-Party Application')
+    selector: text('Add Third-Party Application')
     wait_for: textbox[name='Name']
-    description: Click the Add Third-Party Application tab to open the create form
+    description: Click Add Third-Party Application to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

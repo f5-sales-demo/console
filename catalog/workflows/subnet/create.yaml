@@ -30,9 +30,9 @@ steps:
     description: Navigate to Subnets list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Subnet')
+    selector: text('Add Subnet')
     wait_for: textbox[name='Name']
-    description: Click the Add Subnet tab to open the create form
+    description: Click Add Subnet to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

@@ -27,9 +27,9 @@ steps:
     description: Navigate to DNS Monitors list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add DNS Monitor')
+    selector: text('Add DNS Monitor')
     wait_for: textbox[name='Name']
-    description: Click the Add DNS Monitor tab to open the create form
+    description: Click Add DNS Monitor to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

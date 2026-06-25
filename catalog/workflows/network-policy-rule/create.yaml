@@ -27,9 +27,9 @@ steps:
     description: Navigate to Network Policy Rules list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Network Policy Rule')
+    selector: text('Add Network Policy Rule')
     wait_for: textbox[name='Name']
-    description: Click the Add Network Policy Rule tab to open the create form
+    description: Click Add Network Policy Rule to open the create form
   - id: configure-protocol
     action: click
     selector: text('Configure')

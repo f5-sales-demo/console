@@ -33,9 +33,9 @@ steps:
     description: Navigate to Azure VNET Sites list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Azure VNET Site')
+    selector: text('Add Azure VNET Site')
     wait_for: textbox[name='Name']
-    description: Click the Add Azure VNET Site tab to open the create form
+    description: Click Add Azure VNET Site to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

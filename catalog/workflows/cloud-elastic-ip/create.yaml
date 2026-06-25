@@ -30,9 +30,9 @@ steps:
     description: Navigate to Cloud Elastic IPs list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Cloud Elastic IP')
+    selector: text('Add Cloud Elastic IP')
     wait_for: textbox[name='Name']
-    description: Click the Add Cloud Elastic IP tab to open the create form
+    description: Click Add Cloud Elastic IP to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

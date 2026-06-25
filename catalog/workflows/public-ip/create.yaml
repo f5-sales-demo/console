@@ -24,9 +24,9 @@ steps:
     description: Navigate to Public IP Addresses list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Public IP')
+    selector: text('Add Public IP')
     wait_for: textbox[name='Name']
-    description: Click the Add Public IP tab to open the create form
+    description: Click Add Public IP to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

@@ -40,9 +40,14 @@ steps:
     description: Navigate to Credentials list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Credentials')
-    wait_for: textbox[name='Name']
-    description: Click the Add Credentials tab to open the create form
+    selector: text('Add Credentials')
+    wait_for: textbox[name='Credential Name']
+    description: Click Add Credentials to open the create form
+  - id: fill-name
+    action: fill
+    selector: textbox[name='Credential Name']
+    value: "{name}"
+    description: Enter Credential Name
   - id: fill-credential_name
     action: fill
     selector: textbox[name='Credential Name']

@@ -27,9 +27,9 @@ steps:
     description: Navigate to App Settings list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add App Setting')
+    selector: text('Add App Setting')
     wait_for: textbox[name='Name']
-    description: Click the Add App Setting tab to open the create form
+    description: Click Add App Setting to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

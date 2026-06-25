@@ -24,9 +24,9 @@ steps:
     description: Navigate to API Discovery list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add API Discovery Policy')
+    selector: text('Add API Discovery Policy')
     wait_for: textbox[name='Name']
-    description: Click the Add API Discovery Policy tab to open the create form
+    description: Click Add API Discovery Policy to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

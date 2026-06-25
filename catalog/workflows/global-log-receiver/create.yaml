@@ -30,9 +30,9 @@ steps:
     description: Navigate to Global Log Receivers list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Global Log Receiver')
+    selector: text('Add Global Log Receiver')
     wait_for: textbox[name='Name']
-    description: Click the Add Global Log Receiver tab to open the create form
+    description: Click Add Global Log Receiver to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

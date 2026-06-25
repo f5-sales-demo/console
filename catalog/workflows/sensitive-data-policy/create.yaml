@@ -24,9 +24,9 @@ steps:
     description: Navigate to Sensitive Data Policies list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Sensitive Data Policy')
+    selector: text('Add Sensitive Data Policy')
     wait_for: textbox[name='Name']
-    description: Click the Add Sensitive Data Policy tab to open the create form
+    description: Click Add Sensitive Data Policy to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

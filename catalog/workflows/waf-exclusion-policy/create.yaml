@@ -24,9 +24,9 @@ steps:
     description: Navigate to WAF Exclusion Rules list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add WAF Exclusion Rule')
+    selector: text('Add WAF Exclusion Rule')
     wait_for: textbox[name='Name']
-    description: Click the Add WAF Exclusion Rule tab to open the create form
+    description: Click Add WAF Exclusion Rule to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

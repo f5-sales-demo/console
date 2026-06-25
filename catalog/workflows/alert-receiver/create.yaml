@@ -27,9 +27,9 @@ steps:
     description: Navigate to Alert Receivers list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Alert Receiver')
+    selector: text('Add Alert Receiver')
     wait_for: textbox[name='Name']
-    description: Click the Add Alert Receiver tab to open the create form
+    description: Click Add Alert Receiver to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

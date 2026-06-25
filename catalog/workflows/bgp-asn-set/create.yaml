@@ -29,9 +29,9 @@ steps:
     description: Navigate to BGP ASN Sets list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add BGP ASN Set')
+    selector: text('Add BGP ASN Set')
     wait_for: textbox[name='Name']
-    description: Click the Add BGP ASN Set tab to open the create form
+    description: Click Add BGP ASN Set to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

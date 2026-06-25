@@ -24,9 +24,9 @@ steps:
     description: Navigate to Secret Policies list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Secret Policy')
+    selector: text('Add Secret Policy')
     wait_for: textbox[name='Name']
-    description: Click the Add Secret Policy tab to open the create form
+    description: Click Add Secret Policy to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

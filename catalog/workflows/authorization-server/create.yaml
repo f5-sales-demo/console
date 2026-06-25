@@ -27,9 +27,9 @@ steps:
     description: Navigate to Authorization Server list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Authorization Server')
+    selector: text('Add Authorization Server')
     wait_for: textbox[name='Name']
-    description: Click the Add Authorization Server tab to open the create form
+    description: Click Add Authorization Server to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

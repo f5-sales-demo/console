@@ -37,9 +37,9 @@ steps:
     description: Navigate to IP Address Allocators list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add IP Address Allocator')
+    selector: text('Add IP Address Allocator')
     wait_for: textbox[name='Name']
-    description: Click the Add IP Address Allocator tab to open the create form
+    description: Click Add IP Address Allocator to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

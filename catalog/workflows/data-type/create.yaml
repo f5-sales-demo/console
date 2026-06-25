@@ -27,9 +27,9 @@ steps:
     description: Navigate to Data Types list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Data Type')
+    selector: text('Add Data Type')
     wait_for: textbox[name='Name']
-    description: Click the Add Data Type tab to open the create form
+    description: Click Add Data Type to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

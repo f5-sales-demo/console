@@ -28,9 +28,9 @@ steps:
     description: Navigate to Code Base Integration list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Code Base Integration')
+    selector: text('Add Code Base Integration')
     wait_for: textbox[name='Name']
-    description: Click the Add Code Base Integration tab to open the create form
+    description: Click Add Code Base Integration to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']

@@ -31,9 +31,9 @@ steps:
     description: Navigate to Delegated Domain Management list page
   - id: click-add-tab
     action: click
-    selector: tab:text('Add Domain')
+    selector: text('Add Domain')
     wait_for: textbox[name='Name']
-    description: Click the Add Domain tab to open the create form
+    description: Click Add Domain to open the create form
   - id: fill-domain_name
     action: fill
     selector: textbox[name='Domain Name']
