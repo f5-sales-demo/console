@@ -402,20 +402,19 @@ function generateCreate(
     steps.push(...fieldToSteps(fp, m, label));
   }
 
-  // Administration (IAM / Personal Management) forms have no footer save-bt; they
-  // submit via a primary [class*='submit-button'] ("Add Namespace", "Add Service
-  // Credentials", …). Verified live: namespace create 200 only via submit-button.
-  const isAdmin = ui.workspace === 'administration';
+  // Some workspaces (administration, dns-management, shared-configuration) submit
+  // via [class*='submit-button'] ("Add Namespace", "Add DNS Load Balancer", …)
+  // instead of the standard [class*='save-bt']. A union CSS selector matches
+  // EITHER — the resolver picks the first visible match, which is the right one
+  // on each form type. Verified: namespace (submit-button) + 50+ resources (save-bt).
   steps.push({
     id: 'save',
     action: 'click',
-    selector: isAdmin ? "[class*='submit-button']" : "[class*='save-bt']",
+    selector: "[class*='save-bt'],[class*='submit-button']",
     context: 'footer',
     wait_for: "text('{name}')",
     wait_timeout_ms: 30000,
-    description: isAdmin
-      ? `Submit via the primary submit button (Administration forms have no save-bt)`
-      : `Save via the footer button (never use button:text — it collides with the header tab)`,
+    description: `Save/submit the form (union selector matches save-bt OR submit-button)`,
   });
 
   return {
@@ -585,24 +584,24 @@ function generateUpdate(resourceId: string, ui: UiResource, label: string): obje
         // MUST be button-scoped: a bare text('Edit Configuration') resolves the
         // wrapper element and the click is a no-op (verified live).
         selector: "button:text('Edit Configuration')",
-        wait_for: "[class*='save-bt']",
+        wait_for: "[class*='save-bt'],[class*='submit-button']",
         wait_timeout_ms: 20000,
         description: "Click 'Edit Configuration' to switch from read-only view into the editable form",
       },
       {
         id: 'modify-fields',
         action: 'wait',
-        selector: "[class*='save-bt']",
+        selector: "[class*='save-bt'],[class*='submit-button']",
         description: 'The agent fills the specific fields the user asked to modify (dynamic, not pre-generated)',
       },
       {
         id: 'save',
         action: 'click',
-        selector: "[class*='save-bt']",
+        selector: "[class*='save-bt'],[class*='submit-button']",
         context: 'footer',
         wait_for: `text('${label}')`,
         wait_timeout_ms: 30000,
-        description: 'Save changes via the footer button',
+        description: 'Save/submit changes (union selector matches save-bt OR submit-button)',
       },
     ],
     metadata: { ...GENERATED_METADATA },
