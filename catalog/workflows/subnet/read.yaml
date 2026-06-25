@@ -16,11 +16,24 @@ steps:
     url: /web/workspaces/multi-cloud-network-connect/manage/networking/legacy_network_configuration/subnets
     wait_for: text('Subnets')
     description: Navigate to Subnets list page
-  - id: click-resource
+  - id: scroll-actions-into-view
+    action: scroll
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    description: Scroll the Actions column into view for the target row
+  - id: open-row-actions
     action: click
-    selector: row:has-text('{name}') >> link
-    description: Click the resource name to open the detail/edit view
-    note: The agent reads the page content via get_page_text/javascript_tool after navigation
+    selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
+    wait_for: option:text('Manage Configuration')
+    description: Open the row kebab menu
+    note: F5 XC rows have no clickable name → detail page; Read opens the config via the kebab
+  - id: open-configuration
+    action: click
+    selector: option:text('Manage Configuration')
+    wait_for: button:text('Edit Configuration')
+    wait_timeout_ms: 15000
+    description: Open the read-only Manage Configuration view
+    note: The config opens read-only (Form/JSON tabs); the agent reads field values via get_page_text/javascript_tool. The
+      'Edit Configuration' button confirms the view loaded.
 metadata:
   confidence: inferred
   discovered_at: 2026-06-24
