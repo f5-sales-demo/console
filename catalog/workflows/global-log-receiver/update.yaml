@@ -13,7 +13,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/audit-logs-and-alerts/namespaces/system/manage/global_log_receivers
+    url: /web/workspaces/multi-cloud-network-connect/manage/log_management/log_receivers
     wait_for: text('Global Log Receivers')
     description: Navigate to Global Log Receivers list page
   - id: scroll-actions-into-view
