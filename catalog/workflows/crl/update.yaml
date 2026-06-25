@@ -25,14 +25,21 @@ steps:
     selector: row:has-text('{name}') >> [ves-e2e-test='row-action-dropdown']
     wait_for: option:text('Manage Configuration')
     description: Open the row kebab menu
-  - id: click-edit
+  - id: open-configuration
     action: click
     selector: option:text('Manage Configuration')
-    wait_for: textbox[name='Name']
-    description: Open the edit form
+    wait_for: button:text('Edit Configuration')
+    wait_timeout_ms: 15000
+    description: Open the read-only Manage Configuration view
+  - id: enter-edit-mode
+    action: click
+    selector: button:text('Edit Configuration')
+    wait_for: "[class*='save-bt']"
+    wait_timeout_ms: 20000
+    description: Click 'Edit Configuration' to switch from read-only view into the editable form
   - id: modify-fields
     action: wait
-    selector: textbox[name='Name']
+    selector: "[class*='save-bt']"
     description: The agent fills the specific fields the user asked to modify (dynamic, not pre-generated)
   - id: save
     action: click
