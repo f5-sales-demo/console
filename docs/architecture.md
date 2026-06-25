@@ -66,7 +66,7 @@ The catalog is consumed by xcsh's browser automation runtime to power:
 
 ## Session Sharing
 
-Chrome is launched with `--remote-debugging-port=9222 --user-data-dir=~/.config/xcsh/browser-profiles/f5xc`. The user logs into the F5 XC console manually once. Cookies persist in the user-data-dir across sessions. xcsh connects to the running browser — no credential handling needed.
+Chrome is launched with `--remote-debugging-port=9222 --user-data-dir=~/.config/xcsh/browser-profiles/xcsh`. The user logs into the F5 XC console manually once. Cookies persist in the user-data-dir across sessions. xcsh connects to the running browser — no credential handling needed.
 
 ## Integration Points
 

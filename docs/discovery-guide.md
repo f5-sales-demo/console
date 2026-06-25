@@ -20,7 +20,7 @@ Launch Chrome with remote debugging enabled:
 ```bash
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
   --remote-debugging-port=9222 \
-  --user-data-dir="$HOME/.config/xcsh/browser-profiles/f5xc"
+  --user-data-dir="$HOME/.config/xcsh/browser-profiles/xcsh"
 ```
 
 Log into the F5 XC console manually. Cookies persist in the user-data-dir.
