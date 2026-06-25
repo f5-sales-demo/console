@@ -1,0 +1,30 @@
+---
+title: Schema-Leitfaden
+description: Wie man Katalogeinträge erstellt und pflegt
+---
+
+Wie man Katalogeinträge erstellt und pflegt.
+
+## Dateiorganisation
+
+```
+catalog/
+├── navigation/console-tree.yaml    # Eine Datei — der vollständige Menübaum
+├── routes/<area>/<screen>.yaml      # Eine Datei pro Konsolenbildschirm
+├── resources/<resource>.yaml        # Eine Datei pro API-Ressource
+└── workflows/<resource>/<op>.yaml   # Eine Datei pro Operation pro Ressource
+```
+
+**Namenskonvention**: kebab-case für alle Datei- und Verzeichnisnamen.
+
+## Konfidenzniveaus
+
+| Niveau | Bedeutung | Verwendung |
+|-------|---------|-------------|
+| `draft` | Nicht verifiziert | Erstautoring, auto-entdeckte Einträge |
+| `validated` | Bestätigt | Gegen Live-Konsole bei angegebener Version verifiziert |
+| `stale` | Veraltet | Konsole hat sich seit letzter Validierung geändert |
+
+## Validierung
+
+Führen Sie `npm run validate` aus, um alle Katalogeinträge gegen ihre Schemas zu prüfen.

@@ -1,0 +1,31 @@
+---
+title: Architektur
+description: Vier-Schichten-Katalogdesign und xcsh-Integration für Browser-Automatisierung
+---
+
+## Zweck
+
+Dieses Repository ist ein **maschinenlesbares, schemagetriebenes Inventar** der F5 Distributed Cloud (F5 XC)-Administrationskonsolen-Benutzeroberfläche. Es ordnet API-Ressourcen ihren Konsolenpositionen, Navigationspfaden, Formularstrukturen und schrittweisen Browser-Automatisierungsworkflows zu.
+
+Der Katalog wird vom Browser-Automatisierungsmodul von xcsh genutzt für:
+
+- **Verkaufsdemos** — KI-unterstützte Walkthroughs von Konsolen-CRUD-Operationen
+- **Schulungsvideos** — reproduzierbare Browser-Aufnahmen für YouTube und Präsentationen
+- **UAT/QA-Automatisierung** — automatisierte Konsoleninteraktionstests
+- **KI-unterstützte Navigation** — ein KI-Assistent kann nachschlagen, wo eine Ressource erstellt werden soll
+
+## Designprinzipien
+
+1. **Nur Daten** — dieses Repository enthält Manifeste, Schemas und Dokumentation. Kein Laufzeitcode.
+2. **Schemagetrieben** — jeder Katalogeintrag wird gegen JSON Schema validiert.
+3. **Browser-first Discovery** — Katalogeinträge werden zunächst durch xcsh-Crawling der Konsole generiert.
+4. **Geschichtetes Modell** — vier getrennte Belange, die durch Zeichenkettenschlüssel querverwiesen werden.
+
+## Integrationspunkte
+
+| System | Integration |
+|--------|-------------|
+| api-specs-enriched | Ressource `api.kind`-Werte stimmen überein; querverwiesen durch Zeichenkettenschlüssel |
+| xcsh browser.ts | Laufzeitkonsument — liest YAML, führt über CDP aus |
+| docs-control | Governance — verwaltete Dateien, CI-Workflows, Branch-Schutz |
+| docs-theme | Dokumentationsgenerierung aus dem Katalog |

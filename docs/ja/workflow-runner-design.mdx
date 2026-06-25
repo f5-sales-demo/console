@@ -1,0 +1,21 @@
+---
+title: ワークフローランナーの設計
+description: Chrome DevTools Protocolを介してカタログワークフローを実行するxcshコンポーネントの設計
+---
+
+このカタログからワークフローYAMLを読み込み、Chrome DevTools Protocol経由でステップを実行するxcshコンポーネントの設計。
+
+## アクションマッピング
+
+| ワークフローアクション | Browser Toolアクション | 注意 |
+|---|---|---|
+| `navigate` | `goto` + `wait_for_selector` | baseURLを相対URLの前に付加 |
+| `click` | `click` | 直接セレクターマッピング |
+| `fill` | `fill` | 値の{param}を解決 |
+| `assert` | `get_text` + 文字列比較 | 不一致の場合は即時失敗 |
+
+## エラー処理
+
+- フェイルファスト：最初の失敗ステップで実行が停止
+- 失敗スクリーンショット（ベストエフォート）
+- リトライロジックなし

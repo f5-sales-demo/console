@@ -1,0 +1,17 @@
+---
+title: 架構
+description: 用於瀏覽器自動化的四層目錄設計和xcsh整合
+---
+
+## 目的
+
+此存放庫是F5 Distributed Cloud（F5 XC）管理控制台UI的**模式驅動、機器可讀清單**。它將API資源對應至其控制台位置、導覽路徑、表單結構和逐步瀏覽器自動化工作流程。
+
+## 整合點
+
+| 系統 | 整合 |
+|--------|-------------|
+| api-specs-enriched | 資源 `api.kind` 值相符；透過字串鍵交叉參照 |
+| xcsh browser.ts | 執行階段使用者 — 讀取YAML，透過CDP執行 |
+| docs-control | 治理 — 受管理的檔案、CI工作流程、分支保護 |
+| docs-theme | 從目錄產生文件 |

@@ -1,0 +1,25 @@
+---
+title: Workflow-Runner-Design
+description: Design der xcsh-Komponente, die Katalog-Workflows über Chrome DevTools Protocol ausführt
+---
+
+Design der xcsh-Komponente, die Workflow-YAML aus diesem Katalog liest und Schritte über Chrome DevTools Protocol ausführt.
+
+## Speicherort
+
+`packages/coding-agent/src/tools/catalog-workflow-runner.ts` im xcsh-Repository.
+
+## Aktionszuordnung
+
+| Workflow-Aktion | Browser-Tool-Aktion | Hinweise |
+|---|---|---|
+| `navigate` | `goto` + `wait_for_selector` | baseUrl vor relative URL voranstellen |
+| `click` | `click` | Direkte Selector-Zuordnung |
+| `fill` | `fill` | {param} im Wert auflösen |
+| `assert` | `get_text` + Zeichenkettenvergleich | Sofortiger Abbruch bei Nichtübereinstimmung |
+
+## Fehlerbehandlung
+
+- Sofortiger Abbruch: Erster fehlgeschlagener Schritt stoppt die Ausführung
+- Fehlschlag-Screenshot (nach bestem Bemühen)
+- Keine Wiederholungslogik

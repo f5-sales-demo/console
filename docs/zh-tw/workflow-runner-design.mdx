@@ -1,0 +1,15 @@
+---
+title: 工作流程執行器設計
+description: xcsh元件的設計，透過Chrome DevTools協定執行目錄工作流程
+---
+
+讀取此目錄中的工作流程YAML並透過Chrome DevTools協定執行步驤的xcsh元件設計。
+
+## 操作對應
+
+| 工作流程操作 | 瀏覽器工具操作 | 說明 |
+|---|---|---|
+| `navigate` | `goto` + `wait_for_selector` | 在相對URL前加上baseUrl |
+| `click` | `click` | 直接選取器對應 |
+| `fill` | `fill` | 解析值中的{param} |
+| `assert` | `get_text` + 字串比較 | 不符時立即失敗 |

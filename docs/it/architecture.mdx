@@ -1,0 +1,24 @@
+---
+title: Architettura
+description: Design del catalogo a quattro livelli e integrazione xcsh per l'automazione del browser
+---
+
+## Scopo
+
+Questo repository è un **inventario leggibile dalle macchine basato su schema** dell'interfaccia utente della console di amministrazione F5 Distributed Cloud (F5 XC). Mappa le risorse API alle loro posizioni nella console, percorsi di navigazione, strutture di moduli e flussi di lavoro di automazione del browser passo dopo passo.
+
+Il catalogo è consumato dal motore di automazione del browser di xcsh per alimentare:
+
+- **Demo di vendita** — walkthroughs assistiti da IA delle operazioni CRUD della console
+- **Video di formazione** — registrazioni riproducibili del browser per YouTube e presentazioni
+- **Automazione UAT/QA** — test automatizzati di interazione con la console
+- **Navigazione assistita da IA** — un assistente IA può cercare dove creare una risorsa e portare un browser lì
+
+## Punti di integrazione
+
+| Sistema | Integrazione |
+|--------|-------------|
+| api-specs-enriched | I valori `api.kind` delle risorse corrispondono; riferimenti incrociati per chiave stringa |
+| xcsh browser.ts | Consumatore di runtime — legge YAML, esegue via CDP |
+| docs-control | Governance — file gestiti, workflow CI, protezione del ramo |
+| docs-theme | Generazione della documentazione dal catalogo |

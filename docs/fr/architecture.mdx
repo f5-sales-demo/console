@@ -1,0 +1,57 @@
+---
+title: Architecture
+description: Conception du catalogue en quatre couches et intégration xcsh pour l'automatisation du navigateur
+---
+
+## Objectif
+
+Ce référentiel est un **inventaire machine-readable piloté par schéma** de l'interface utilisateur de la console d'administration F5 Distributed Cloud (F5 XC). Il mappe les ressources API vers leurs emplacements dans la console, les chemins de navigation, les structures de formulaires et les workflows d'automatisation du navigateur étape par étape.
+
+Le catalogue est consommé par le moteur d'automatisation du navigateur de xcsh pour alimenter :
+
+- **Démonstrations commerciales** — walkthroughs des opérations CRUD de la console assistés par IA
+- **Vidéos de formation** — enregistrements de navigateur reproductibles pour YouTube et présentations
+- **Automatisation UAT/QA** — tests automatisés d'interaction avec la console
+- **Navigation assistée par IA** — un assistant IA peut rechercher où créer une ressource et y amener un navigateur
+
+## Principes de conception
+
+1. **Données uniquement** — ce dépôt contient des manifestes, des schémas et de la documentation. Aucun code d'exécution. Le moteur d'automatisation du navigateur réside dans xcsh.
+2. **Piloté par schéma** — chaque entrée du catalogue est validée par JSON Schema. Le CI l'impose à chaque PR.
+3. **Découverte basée sur le navigateur** — les entrées du catalogue sont initialement générées par xcsh en explorant la console, puis affinées manuellement.
+4. **Modèle en couches** — quatre préoccupations séparées, référencées croisées par des clés de chaîne.
+
+## Modèle en quatre couches
+
+```
+┌─────────────────────────────────────────────────┐
+│  Couche 1 : Arbre de navigation                  │
+│  catalog/navigation/console-tree.yaml            │
+│  Quoi : Structure du menu de la console          │
+│  Mappe vers : Chemins de menu, hiérarchie        │
+├─────────────────────────────────────────────────┤
+│  Couche 2 : Définitions de routes                │
+│  catalog/routes/**/*.yaml                        │
+│  Quoi : Écran sur une URL                        │
+│  Mappe vers : URLs de la console, fils d'Ariane  │
+├─────────────────────────────────────────────────┤
+│  Couche 3 : Mappages de ressources               │
+│  catalog/resources/*.yaml                        │
+│  Quoi : Traçabilité ressource API → console      │
+│  Mappe vers : Type API, points de terminaison    │
+├─────────────────────────────────────────────────┤
+│  Couche 4 : Workflows d'automatisation           │
+│  catalog/workflows/**/*.yaml                     │
+│  Quoi : Automatisation du navigateur étape par étape │
+│  Mappe vers : navigate, click, fill, assert      │
+└─────────────────────────────────────────────────┘
+```
+
+## Points d'intégration
+
+| Système | Intégration |
+|--------|-------------|
+| api-specs-enriched | Les valeurs `api.kind` des ressources correspondent ; référencées croisées par clé de chaîne |
+| xcsh browser.ts | Consommateur d'exécution — lit le YAML, s'exécute via CDP |
+| docs-control | Gouvernance — fichiers gérés, workflows CI, protection de branche |
+| docs-theme | Génération de documentation à partir du catalogue |

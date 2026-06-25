@@ -1,0 +1,24 @@
+---
+title: Guida alla scoperta
+description: Come xcsh popola il catalogo esplorando la console F5 XC
+---
+
+Come lo strumento di automazione del browser xcsh popola il catalogo esplorando la console F5 XC.
+
+## Panoramica
+
+Le voci del catalogo vengono create utilizzando un approccio di **scoperta basata sul browser**:
+
+1. xcsh si connette al browser Chrome dell'utente (via CDP sulla porta 9222)
+2. xcsh naviga nella console ed estrae informazioni strutturali
+3. xcsh produce file YAML che corrispondono agli schemi del catalogo
+4. Un umano rivede, affina e committa le voci
+
+## Validazione dopo la scoperta
+
+Dopo ogni esecuzione di scoperta:
+
+1. Eseguire `npm run validate` per verificare la conformità allo schema
+2. Rivedere le voci generate per verificarne l'accuratezza
+3. Regolare i livelli di confidenza
+4. Committare e inviare tramite il workflow PR standard

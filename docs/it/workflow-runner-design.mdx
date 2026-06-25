@@ -1,0 +1,21 @@
+---
+title: Design del runner di workflow
+description: Design del componente xcsh che esegue i workflow del catalogo tramite Chrome DevTools Protocol
+---
+
+Design del componente xcsh che legge il YAML del workflow da questo catalogo ed esegue i passaggi tramite Chrome DevTools Protocol.
+
+## Mappatura delle azioni
+
+| Azione workflow | Azione Browser Tool | Note |
+|---|---|---|
+| `navigate` | `goto` + `wait_for_selector` | Anteporre baseUrl all'URL relativo |
+| `click` | `click` | Mappatura diretta del selettore |
+| `fill` | `fill` | Risolvere {param} nel valore |
+| `assert` | `get_text` + confronto stringa | Fallimento immediato se non corrispondente |
+
+## Gestione degli errori
+
+- Fallimento immediato: il primo passaggio fallito interrompe l'esecuzione
+- Screenshot di errore (best effort)
+- Nessuna logica di nuovo tentativo

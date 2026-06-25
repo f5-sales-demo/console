@@ -1,0 +1,32 @@
+---
+title: Guide des schémas
+description: Comment créer et maintenir des entrées de catalogue
+---
+
+Comment créer et maintenir des entrées de catalogue.
+
+## Organisation des fichiers
+
+```
+catalog/
+├── navigation/console-tree.yaml    # Un fichier — l'arbre de menu complet
+├── routes/<area>/<screen>.yaml      # Un fichier par écran de console
+├── resources/<resource>.yaml        # Un fichier par ressource API
+└── workflows/<resource>/<op>.yaml   # Un fichier par opération par ressource
+```
+
+**Convention de nommage** : kebab-case pour tous les noms de fichiers et de répertoires. Les fichiers de ressources correspondent au champ `id` de la ressource. Les fichiers de workflow correspondent au nom de l'opération.
+
+## Niveaux de confiance
+
+Marquez les entrées avec un niveau de confiance précis :
+
+| Niveau | Signification | Quand utiliser |
+|-------|---------|-------------|
+| `draft` | Non vérifié | Création initiale, entrées auto-découvertes |
+| `validated` | Confirmé | Vérifié contre la console active à la version indiquée |
+| `stale` | Obsolète | La console a changé depuis la dernière validation |
+
+## Validation
+
+Exécutez `npm run validate` pour vérifier toutes les entrées du catalogue par rapport à leurs schémas.

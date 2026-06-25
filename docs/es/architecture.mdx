@@ -1,0 +1,31 @@
+---
+title: Arquitectura
+description: Diseño del catálogo en cuatro capas e integración con xcsh para la automatización del navegador
+---
+
+## Propósito
+
+Este repositorio es un **inventario legible por máquina basado en esquemas** de la interfaz de usuario de la consola de administración de F5 Distributed Cloud (F5 XC). Mapea los recursos de API a sus ubicaciones en la consola, rutas de navegación, estructuras de formularios y flujos de trabajo de automatización del navegador paso a paso.
+
+El catálogo es consumido por el motor de automatización del navegador de xcsh para potenciar:
+
+- **Demostraciones de ventas** — recorridos asistidos por IA de las operaciones CRUD de la consola
+- **Videos de capacitación** — grabaciones reproducibles del navegador para YouTube y presentaciones
+- **Automatización UAT/QA** — pruebas automatizadas de interacción con la consola
+- **Navegación asistida por IA** — un asistente de IA puede buscar dónde crear un recurso y dirigir un navegador allí
+
+## Principios de diseño
+
+1. **Solo datos** — este repositorio contiene manifiestos, esquemas y documentación. Sin código en tiempo de ejecución.
+2. **Basado en esquemas** — cada entrada del catálogo se valida con JSON Schema. El CI lo impone en cada PR.
+3. **Descubrimiento basado en el navegador** — las entradas del catálogo son generadas inicialmente por xcsh al recorrer la consola.
+4. **Modelo por capas** — cuatro preocupaciones separadas, referenciadas cruzadamente por claves de cadena.
+
+## Puntos de integración
+
+| Sistema | Integración |
+|--------|-------------|
+| api-specs-enriched | Los valores `api.kind` de recursos coinciden; referenciados cruzadamente por clave de cadena |
+| xcsh browser.ts | Consumidor en tiempo de ejecución — lee YAML, se ejecuta vía CDP |
+| docs-control | Gobernanza — archivos gestionados, flujos de trabajo CI, protección de ramas |
+| docs-theme | Generación de documentación desde el catálogo |

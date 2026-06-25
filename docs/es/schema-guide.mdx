@@ -1,0 +1,30 @@
+---
+title: Guía de esquemas
+description: Cómo crear y mantener entradas del catálogo
+---
+
+Cómo crear y mantener entradas del catálogo.
+
+## Organización de archivos
+
+```
+catalog/
+├── navigation/console-tree.yaml    # Un archivo — el árbol de menú completo
+├── routes/<area>/<screen>.yaml      # Un archivo por pantalla de consola
+├── resources/<resource>.yaml        # Un archivo por recurso de API
+└── workflows/<resource>/<op>.yaml   # Un archivo por operación por recurso
+```
+
+**Convención de nomenclatura**: kebab-case para todos los nombres de archivos y directorios.
+
+## Niveles de confianza
+
+| Nivel | Significado | Cuándo usar |
+|-------|---------|-------------|
+| `draft` | No verificado | Autoría inicial, entradas auto-descubiertas |
+| `validated` | Confirmado | Verificado contra la consola activa en la versión indicada |
+| `stale` | Desactualizado | La consola ha cambiado desde la última validación |
+
+## Validación
+
+Ejecute `npm run validate` para verificar todas las entradas del catálogo contra sus esquemas.

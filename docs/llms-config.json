@@ -1,0 +1,16 @@
+{
+  "customSets": [
+    {
+      "label": "Schema Reference",
+      "description": "JSON Schema definitions for catalog entries — route, resource, navigation, and workflow schemas",
+      "paths": ["schema-guide*"]
+    },
+    {
+      "label": "Catalog Architecture",
+      "description": "Four-layer catalog design, xcsh integration, and domain ontology",
+      "paths": ["architecture*", "ontology*"]
+    }
+  ],
+  "promote": ["index*", "architecture*", "schema-guide*"],
+  "demote": ["workflow-runner-design*", "discovery-guide*"]
+}

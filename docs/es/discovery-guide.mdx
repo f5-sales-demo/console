@@ -1,0 +1,24 @@
+---
+title: Guía de descubrimiento
+description: Cómo xcsh llena el catálogo al explorar la consola F5 XC
+---
+
+Cómo la herramienta de automatización del navegador xcsh llena el catálogo al explorar la consola F5 XC.
+
+## Descripción general
+
+Las entradas del catálogo se crean utilizando un enfoque de **descubrimiento basado en el navegador**:
+
+1. xcsh se conecta al navegador Chrome del usuario (vía CDP en el puerto 9222)
+2. xcsh navega por la consola y extrae información estructural
+3. xcsh genera archivos YAML que coinciden con los esquemas del catálogo
+4. Un humano revisa, refina y confirma las entradas
+
+## Validación después del descubrimiento
+
+Después de cada ejecución de descubrimiento:
+
+1. Ejecute `npm run validate` para verificar el cumplimiento del esquema
+2. Revise las entradas generadas para verificar su precisión
+3. Ajuste los niveles de confianza
+4. Confirme y envíe mediante el flujo de trabajo PR estándar

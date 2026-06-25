@@ -1,0 +1,25 @@
+---
+title: Conception du moteur de workflow
+description: Conception du composant xcsh qui exécute les workflows du catalogue via le protocole Chrome DevTools
+---
+
+Conception du composant xcsh qui lit le YAML de workflow de ce catalogue et exécute les étapes via le protocole Chrome DevTools.
+
+## Emplacement
+
+`packages/coding-agent/src/tools/catalog-workflow-runner.ts` dans le dépôt xcsh.
+
+## Mappage des actions
+
+| Action de workflow | Action Browser Tool | Notes |
+|---|---|---|
+| `navigate` | `goto` + `wait_for_selector` | Ajouter baseUrl à l'URL relative |
+| `click` | `click` | Mappage direct du sélecteur |
+| `fill` | `fill` | Résoudre {param} dans la valeur |
+| `assert` | `get_text` + comparaison de chaînes | Arrêt immédiat en cas de non-correspondance |
+
+## Gestion des erreurs
+
+- Arrêt immédiat : la première étape échouée arrête l'exécution
+- Capture d'écran d'échec (au mieux)
+- Aucune logique de nouvelle tentative

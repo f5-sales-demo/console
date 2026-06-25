@@ -1,0 +1,28 @@
+---
+title: Ontologie
+description: Définitions des termes utilisés dans le catalogue de la console
+---
+
+Définitions des termes utilisés dans le catalogue de la console.
+
+## Termes principaux
+
+### Route
+Un chemin d'URL de la console ou un modèle (par ex., `/web/namespace/{namespace}/load-balancers/http`) qui identifie un écran distinct.
+
+### Ressource
+Un type d'objet défini par API (par ex., `HTTPLoadBalancer`) qui possède un schéma connu, des points de terminaison CRUD et un ou plusieurs emplacements dans la console.
+
+### Workflow
+Une séquence ordonnée d'étapes d'automatisation qui accomplit exactement une opération sur une ressource.
+
+### Étape
+Une seule action d'automatisation dans un workflow. Les actions comprennent : navigate, click, fill, select, assert, screenshot.
+
+## Termes de métadonnées
+
+### Confiance
+Statut de validation d'une entrée du catalogue :
+- **draft** — créée ou auto-découverte mais pas encore validée
+- **validated** — confirmée exacte pour une version spécifique de la console
+- **stale** — précédemment validée mais la console a changé depuis

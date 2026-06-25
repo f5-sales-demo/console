@@ -1,0 +1,24 @@
+---
+title: Entdeckungsleitfaden
+description: Wie xcsh den Katalog durch Durchsuchen der F5 XC-Konsole befüllt
+---
+
+Wie das xcsh-Browser-Automatisierungswerkzeug den Katalog durch Durchsuchen der F5 XC-Konsole befüllt.
+
+## Überblick
+
+Katalogeinträge werden mit einem **Browser-first-Discovery**-Ansatz erstellt:
+
+1. xcsh verbindet sich mit dem Chrome-Browser des Benutzers (über CDP auf Port 9222)
+2. xcsh navigiert durch die Konsole und extrahiert Strukturinformationen
+3. xcsh gibt YAML-Dateien aus, die den Katalogschemas entsprechen
+4. Ein Mensch überprüft, verfeinert und committet die Einträge
+
+## Validierung nach der Entdeckung
+
+Nach jedem Discovery-Lauf:
+
+1. `npm run validate` ausführen, um Schema-Konformität zu prüfen
+2. Generierte Einträge auf Genauigkeit überprüfen
+3. Konfidenzniveaus anpassen
+4. Über den Standard-PR-Workflow committen und pushen

@@ -1,0 +1,38 @@
+---
+title: Guide de découverte
+description: Comment xcsh remplit le catalogue en explorant la console F5 XC
+---
+
+Comment l'outil d'automatisation du navigateur xcsh remplit le catalogue en explorant la console F5 XC.
+
+## Vue d'ensemble
+
+Les entrées du catalogue sont créées selon une approche **découverte basée sur le navigateur** :
+
+1. xcsh se connecte au navigateur Chrome de l'utilisateur (via CDP sur le port 9222)
+2. xcsh navigue dans la console et extrait les informations structurelles
+3. xcsh génère des fichiers YAML correspondant aux schémas du catalogue
+4. Un humain révise, affine et valide les entrées
+
+## Prérequis
+
+### Configuration de Chrome
+
+Lancez Chrome avec le débogage à distance activé :
+
+```bash
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+  --remote-debugging-port=9222 \
+  --user-data-dir="$HOME/.config/xcsh/browser-profiles/xcsh"
+```
+
+Connectez-vous manuellement à la console F5 XC. Les cookies persistent dans le user-data-dir.
+
+## Validation après la découverte
+
+Après chaque exécution de découverte :
+
+1. Exécutez `npm run validate` pour vérifier la conformité au schéma
+2. Révisez les entrées générées pour leur exactitude
+3. Ajustez les niveaux de confiance
+4. Validez et poussez via le workflow PR standard

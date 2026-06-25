@@ -1,0 +1,25 @@
+---
+title: Diseño del ejecutor de flujos de trabajo
+description: Diseño del componente xcsh que ejecuta los flujos de trabajo del catálogo vía Chrome DevTools Protocol
+---
+
+Diseño del componente xcsh que lee el YAML de flujo de trabajo de este catálogo y ejecuta pasos vía Chrome DevTools Protocol.
+
+## Ubicación
+
+`packages/coding-agent/src/tools/catalog-workflow-runner.ts` en el repositorio xcsh.
+
+## Mapeo de acciones
+
+| Acción de flujo de trabajo | Acción Browser Tool | Notas |
+|---|---|---|
+| `navigate` | `goto` + `wait_for_selector` | Anteponer baseUrl a URL relativa |
+| `click` | `click` | Mapeo directo del selector |
+| `fill` | `fill` | Resolver {param} en el valor |
+| `assert` | `get_text` + comparación de cadenas | Fallo inmediato si no coincide |
+
+## Manejo de errores
+
+- Fallo inmediato: el primer paso fallido detiene la ejecución
+- Captura de pantalla de fallo (mejor esfuerzo)
+- Sin lógica de reintento
