@@ -18,7 +18,7 @@ params:
 steps:
   - id: navigate-to-list
     action: navigate
-    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/api_security/data_types
+    url: /web/workspaces/web-app-and-api-protection/namespaces/{namespace}/manage/api_security/data_type
     wait_for: text('Data Types')
     description: Navigate to Data Types list page
   - id: scroll-actions-into-view
