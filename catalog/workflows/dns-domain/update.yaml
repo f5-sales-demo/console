@@ -34,20 +34,20 @@ steps:
   - id: enter-edit-mode
     action: click
     selector: button:text('Edit Configuration')
-    wait_for: "[class*='save-bt']"
+    wait_for: "[class*='save-bt'],[class*='submit-button']"
     wait_timeout_ms: 20000
     description: Click 'Edit Configuration' to switch from read-only view into the editable form
   - id: modify-fields
     action: wait
-    selector: "[class*='save-bt']"
+    selector: "[class*='save-bt'],[class*='submit-button']"
     description: The agent fills the specific fields the user asked to modify (dynamic, not pre-generated)
   - id: save
     action: click
-    selector: "[class*='save-bt']"
+    selector: "[class*='save-bt'],[class*='submit-button']"
     context: footer
     wait_for: text('Delegated Domain Management')
     wait_timeout_ms: 30000
-    description: Save changes via the footer button
+    description: Save/submit changes (union selector matches save-bt OR submit-button)
 metadata:
   confidence: inferred
   discovered_at: 2026-06-24
