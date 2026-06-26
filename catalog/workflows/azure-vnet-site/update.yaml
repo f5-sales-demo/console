@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: azure-vnet-site-update
 label: Update Azure VNET Sites
 resource: azure-vnet-site

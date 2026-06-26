@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: enhanced-firewall-policy-delete
 label: Delete Enhanced Firewall Policies
 resource: enhanced-firewall-policy

@@ -1,4 +1,4 @@
-schema: "urn:f5xc:console:workflow:v1"
+schema: "urn:xcsh:console:workflow:v1"
 id: "mcn-site-to-site-demo"
 label: "MCN Site-to-Site Demo — AWS VPC Site + Site Mesh Group"
 resource:

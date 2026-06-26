@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: cloud-link-update
 label: Update CloudLinks
 resource: cloud-link

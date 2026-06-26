@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: rate-limiter-policy-delete
 label: Delete Rate Limiter Policies
 resource: rate-limiter-policy

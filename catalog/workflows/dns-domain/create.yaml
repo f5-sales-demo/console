@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: dns-domain-create
 label: Create Delegated Domain Management
 resource: dns-domain

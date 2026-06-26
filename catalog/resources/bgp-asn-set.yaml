@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:resource:v1
+schema: urn:xcsh:console:resource:v1
 id: bgp-asn-set
 label: BGP ASN Sets
 _source: Generated from api-specs-enriched/config/console_ui.yaml

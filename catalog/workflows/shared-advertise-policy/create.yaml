@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: shared-advertise-policy-create
 label: Create Advertise Policies
 resource: shared-advertise-policy

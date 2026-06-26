@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: usb-policy-create
 label: Create USB Policies
 resource: usb-policy
@@ -17,9 +17,6 @@ params:
     description: USB Policies name (lowercase alphanumeric and hyphens)
     example: example-usb-policy
   allowed_usb_devices:
-    required: true
-    description: Allowed USB devices
-  allowed_devices:
     required: true
     description: "Server-required: Minimum items of 1"
 steps:
@@ -48,16 +45,16 @@ steps:
     selector: textbox
     value: "{allowed_usb_devices}"
     description: Enter the Allowed USB devices value via the 'allowed_usb_devices' parameter
-  - id: configure-allowed_devices
+  - id: configure-allowed_usb_devices
     action: click
     selector: text('Configure')
-    context: Allowed Devices section
-    description: Open the Allowed Devices configuration ('Configure' is a link, not a button)
-  - id: fill-allowed_devices-value
+    context: Allowed USB devices section
+    description: Open the Allowed USB devices configuration ('Configure' is a link, not a button)
+  - id: fill-allowed_usb_devices-value
     action: fill
     selector: textbox
-    value: "{allowed_devices}"
-    description: Enter the Allowed Devices value via the 'allowed_devices' parameter
+    value: "{allowed_usb_devices}"
+    description: Enter the Allowed USB devices value via the 'allowed_usb_devices' parameter
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

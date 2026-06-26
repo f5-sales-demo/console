@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: securemesh-site-v2-create
 label: Create Secure Mesh Sites v2
 resource: securemesh-site-v2

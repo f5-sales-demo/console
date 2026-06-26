@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: waf-exclusion-policy-delete
 label: Delete WAF Exclusion Rules
 resource: waf-exclusion-policy

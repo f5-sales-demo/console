@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:resource:v1
+schema: urn:xcsh:console:resource:v1
 id: securemesh-site-v2
 label: Secure Mesh Sites v2
 _source: Generated from api-specs-enriched/config/console_ui.yaml

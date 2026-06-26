@@ -1,4 +1,4 @@
-schema: "urn:f5xc:console:workflow:v1"
+schema: "urn:xcsh:console:workflow:v1"
 id: "waap-full-stack-demo"
 label: "WAAP Full Stack Demo — Origin Pool + App Firewall + HTTP Load Balancer"
 resource:

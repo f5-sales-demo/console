@@ -721,7 +721,7 @@ function generateCreate(
   });
 
   return {
-    schema: 'urn:f5xc:console:workflow:v1',
+    schema: 'urn:xcsh:console:workflow:v1',
     id: `${resourceId}-create`,
     label: `Create ${label}`,
     resource: resourceId,
@@ -738,7 +738,7 @@ function generateDelete(resourceId: string, ui: UiResource, label: string): obje
   const prefix = ui.workspace ? workspacePrefix(ui.workspace) : '';
   const route = `${prefix}${ui.route_pattern ?? ''}`;
   return {
-    schema: 'urn:f5xc:console:workflow:v1',
+    schema: 'urn:xcsh:console:workflow:v1',
     id: `${resourceId}-delete`,
     label: `Delete ${label}`,
     resource: resourceId,
@@ -794,7 +794,7 @@ function generateRead(resourceId: string, ui: UiResource, label: string): object
   const prefix = ui.workspace ? workspacePrefix(ui.workspace) : '';
   const route = `${prefix}${ui.route_pattern ?? ''}`;
   return {
-    schema: 'urn:f5xc:console:workflow:v1',
+    schema: 'urn:xcsh:console:workflow:v1',
     id: `${resourceId}-read`,
     label: `Read ${label}`,
     resource: resourceId,
@@ -843,7 +843,7 @@ function generateUpdate(resourceId: string, ui: UiResource, label: string): obje
   const prefix = ui.workspace ? workspacePrefix(ui.workspace) : '';
   const route = `${prefix}${ui.route_pattern ?? ''}`;
   return {
-    schema: 'urn:f5xc:console:workflow:v1',
+    schema: 'urn:xcsh:console:workflow:v1',
     id: `${resourceId}-update`,
     label: `Update ${label}`,
     resource: resourceId,

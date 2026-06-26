@@ -1,4 +1,4 @@
-schema: "urn:f5xc:console:navigation:v1"
+schema: "urn:xcsh:console:navigation:v1"
 console_version: "2025.06"
 discovered_at: "2026-06-15"
 

@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: network-interface-create
 label: Create Network Interfaces
 resource: network-interface
@@ -23,9 +23,6 @@ params:
   ethernet_interface:
     required: true
     description: Ethernet Interface
-  interface_choice:
-    required: true
-    description: "Server-required: Field should be not nil"
 steps:
   - id: navigate-to-list
     action: navigate
@@ -59,16 +56,6 @@ steps:
     selector: textbox
     value: "{ethernet_interface}"
     description: Enter the Ethernet Interface value via the 'ethernet_interface' parameter
-  - id: configure-interface_choice
-    action: click
-    selector: text('Configure')
-    context: Interface Choice section
-    description: Open the Interface Choice configuration ('Configure' is a link, not a button)
-  - id: fill-interface_choice-value
-    action: fill
-    selector: textbox
-    value: "{interface_choice}"
-    description: Enter the Interface Choice value via the 'interface_choice' parameter
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: fast-acl-delete
 label: Delete Fast ACLs
 resource: fast-acl

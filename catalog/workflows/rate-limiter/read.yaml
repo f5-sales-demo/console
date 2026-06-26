@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: rate-limiter-read
 label: Read Rate Limiters
 resource: rate-limiter
