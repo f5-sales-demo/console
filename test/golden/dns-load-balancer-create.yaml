@@ -21,7 +21,12 @@ params:
     description: Record Type
   load_balancing_rules:
     required: true
-    description: "Server-required: at least one Load Balancing Rule."
+    description: At least one Load Balancing Rule. Each rule selects a Pool (references an existing dns_lb_pool —
+      dependency; create one first).
+  pool:
+    required: true
+    description: Name of an existing dns_lb_pool to reference (dependency — create it first)
+    example: example-dns_lb_pool
 steps:
   - id: navigate-to-list
     action: navigate
@@ -50,12 +55,12 @@ steps:
     context: Load Balancing Rules section
     description: Add Load Balancing Rules entry
     then:
-      - id: fill-load_balancing_rules-value
-        action: fill
-        selector: textbox
-        value: "{load_balancing_rules}"
-        description: Fill the first required field in the Load Balancing Rules sub-form (the agent should provide a value via
-          the 'load_balancing_rules' parameter)
+      - id: select-load_balancing_rules-ref
+        action: select
+        selector: listbox[name='Pool']
+        context: Pool selector
+        value: "{pool}"
+        description: Select the Pool for the Load Balancing Rules entry (references an existing dns_lb_pool — create one first)
       - id: apply-load_balancing_rules
         action: click
         selector: button:text('Apply')
