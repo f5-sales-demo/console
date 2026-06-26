@@ -25,13 +25,13 @@ steps:
   - id: click-add-tab
     action: click
     selector: text('Add Namespace')
-    wait_for: textbox[name='Name']
+    wait_for: textbox[name='Namespace Name']
     description: Click Add Namespace to open the create form
   - id: fill-name
     action: fill
-    selector: textbox[name='Name']
+    selector: textbox[name='Namespace Name']
     value: "{name}"
-    description: Enter Name
+    description: Enter Namespace Name
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"
