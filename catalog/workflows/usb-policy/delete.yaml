@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: usb-policy-delete
 label: Delete USB Policies
 resource: usb-policy

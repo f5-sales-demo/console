@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: cdn-cache-rule-update
 label: Update CDN Cache Rules
 resource: cdn-cache-rule

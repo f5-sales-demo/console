@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: voltstack-site-delete
 label: Delete App Stack Sites
 resource: voltstack-site

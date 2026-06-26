@@ -1,4 +1,4 @@
-schema: "urn:f5xc:console:workflow:v1"
+schema: "urn:xcsh:console:workflow:v1"
 id: "dns-lb-stack-teardown"
 label: "DNS LB Stack Teardown — Delete DNS LB + DNS Zone"
 resource:

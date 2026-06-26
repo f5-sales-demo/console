@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: site-mesh-group-create
 label: Create Site Mesh Groups
 resource: site-mesh-group

@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: subnet-create
 label: Create Subnets
 resource: subnet
@@ -17,9 +17,6 @@ params:
     description: Subnets name (lowercase alphanumeric and hyphens)
     example: example-subnet
   site_subnet_parameters:
-    required: true
-    description: Site Subnet Parameters
-  site_subnet_params:
     required: true
     description: "Server-required: Minimum items of 1"
 steps:
@@ -48,16 +45,16 @@ steps:
     selector: textbox
     value: "{site_subnet_parameters}"
     description: Enter the Site Subnet Parameters value via the 'site_subnet_parameters' parameter
-  - id: configure-site_subnet_params
+  - id: configure-site_subnet_parameters
     action: click
     selector: text('Configure')
-    context: Site Subnet Params section
-    description: Open the Site Subnet Params configuration ('Configure' is a link, not a button)
-  - id: fill-site_subnet_params-value
+    context: Site Subnet Parameters section
+    description: Open the Site Subnet Parameters configuration ('Configure' is a link, not a button)
+  - id: fill-site_subnet_parameters-value
     action: fill
     selector: textbox
-    value: "{site_subnet_params}"
-    description: Enter the Site Subnet Params value via the 'site_subnet_params' parameter
+    value: "{site_subnet_parameters}"
+    description: Enter the Site Subnet Parameters value via the 'site_subnet_parameters' parameter
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

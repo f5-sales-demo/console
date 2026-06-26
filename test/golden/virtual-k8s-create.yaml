@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: virtual-k8s-create
 label: Create Virtual K8s
 resource: virtual-k8s

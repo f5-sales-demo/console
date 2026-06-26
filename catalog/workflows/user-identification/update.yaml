@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: user-identification-update
 label: Update User Identifications
 resource: user-identification

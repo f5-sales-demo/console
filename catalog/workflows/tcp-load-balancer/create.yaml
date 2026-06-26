@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: tcp-load-balancer-create
 label: Create TCP Load Balancers
 resource: tcp-load-balancer
@@ -20,9 +20,12 @@ params:
     required: true
     description: TCP LB Domains table starts EMPTY (0 items) — needs Add Item click before filling. Fills via ngx-datatable
       grid real-typing after row creation.
+  listen_port_value:
+    required: true
+    description: Listen Port (value)
   listen_port:
     required: false
-    description: vsui listbox dropdown. Verified from live form screenshot.
+    description: vsui listbox choice (Listen Port | Custom Port). Verified from docs/form-discovery/tcp_loadbalancer.yaml.
     default: Listen Port
     example: Listen Port
 steps:
@@ -52,17 +55,17 @@ steps:
     context: Domains table
     value: "{domains}"
     description: Enter Domains in the newly-added table row (Add Item clicked above)
-  - id: fill-listen_port
+  - id: fill-listen_port_value
     action: fill
-    selector: spinbutton[name='Listen Port']
-    value: "{listen_port}"
-    description: Set Listen Port
+    selector: spinbutton[name='Listen Port (value)']
+    value: "{listen_port_value}"
+    description: Set Listen Port (value)
   - id: select-listen_port
     action: select
     selector: listbox
     context: Listen Port section
     value: "{listen_port}"
-    description: Select Listen Port (Listen Port | Port Ranges)
+    description: Select Listen Port (Listen Port | Custom Port)
     condition: params.listen_port is set
   - id: save
     action: click

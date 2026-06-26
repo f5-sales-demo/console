@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:resource:v1
+schema: urn:xcsh:console:resource:v1
 id: container-registry
 label: Container Registries
 _source: Generated from api-specs-enriched/config/console_ui.yaml

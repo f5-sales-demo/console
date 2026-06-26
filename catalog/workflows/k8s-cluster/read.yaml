@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: k8s-cluster-read
 label: Read K8s Clusters
 resource: k8s-cluster

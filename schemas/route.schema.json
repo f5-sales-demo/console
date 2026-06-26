@@ -7,7 +7,7 @@
   "properties": {
     "schema": {
       "type": "string",
-      "const": "urn:f5xc:console:route:v1"
+      "const": "urn:xcsh:console:route:v1"
     },
     "id": {
       "type": "string",

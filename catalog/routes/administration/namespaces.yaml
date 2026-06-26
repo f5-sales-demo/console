@@ -1,4 +1,4 @@
-schema: "urn:f5xc:console:route:v1"
+schema: "urn:xcsh:console:route:v1"
 id: "namespaces"
 label: "Namespaces"
 

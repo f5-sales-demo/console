@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: dns-lb-health-check-create
 label: Create DNS Load Balancer Health Checks
 resource: dns-lb-health-check

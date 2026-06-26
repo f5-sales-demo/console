@@ -83,7 +83,7 @@ function main() {
 		const id = ID_OVERRIDES[kind] || kind.replace(/_/g, "-");
 
 		const doc = {
-			schema: "urn:f5xc:console:resource:v1",
+			schema: "urn:xcsh:console:resource:v1",
 			id,
 			label: config.menu_path?.[config.menu_path.length - 1] || id,
 			_source: "Generated from api-specs-enriched/config/console_ui.yaml",

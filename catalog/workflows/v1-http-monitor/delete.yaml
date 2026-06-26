@@ -1,4 +1,4 @@
-schema: urn:f5xc:console:workflow:v1
+schema: urn:xcsh:console:workflow:v1
 id: v1-http-monitor-delete
 label: Delete HTTP Monitors
 resource: v1-http-monitor
