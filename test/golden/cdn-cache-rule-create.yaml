@@ -21,7 +21,7 @@ params:
     description: Rule Name
   expressions:
     required: true
-    description: Expressions
+    description: Expressions table starts empty — needs Add Item before filling the inline cell.
   cache_actions:
     required: false
     description: Cache Actions
@@ -34,9 +34,9 @@ steps:
     description: Navigate to CDN Cache Rules list page
   - id: click-add-tab
     action: click
-    selector: text('Add CDN Cache Rule')
+    selector: text('Add CDN Cache Rules')
     wait_for: textbox[name='Name']
-    description: Click Add CDN Cache Rule to open the create form
+    description: Click Add CDN Cache Rules to open the create form
   - id: fill-name
     action: fill
     selector: textbox[name='Name']
@@ -47,12 +47,17 @@ steps:
     selector: textbox[name='Rule Name']
     value: "{rule_name}"
     description: Enter Rule Name
+  - id: add-item-expressions
+    action: click
+    selector: button:text('Add Item')
+    context: Expressions table
+    description: Add a row to the Expressions table (starts empty — unlike most tables)
   - id: fill-expressions
     action: fill
     selector: ngx-datatable input.form-control
     context: Expressions table
     value: "{expressions}"
-    description: Enter Expressions in the existing table row (no Add Item needed — the table ships one empty row)
+    description: Enter Expressions in the newly-added table row (Add Item clicked above)
   - id: select-cache_actions
     action: select
     selector: listbox
