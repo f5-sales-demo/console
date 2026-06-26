@@ -293,6 +293,16 @@ function catalogDrivenSteps(
 
   // --- SIMPLE 1-STEP WIDGETS (textbox/textarea/spinbutton/checkbox/table) ---
   const steps: Step[] = [];
+  // Some tables start empty (e.g. TCP LB Domains) and need Add Item first.
+  if (wt === 'table' && (meta as any).add_item_first) {
+    steps.push({
+      id: `add-item-${param}`,
+      action: 'click',
+      selector: "button:text('Add Item')",
+      context: `${label} table`,
+      description: `Add a row to the ${label} table (starts empty — unlike most tables)`,
+    });
+  }
   for (const tmpl of widget.steps) {
     let selector = tmpl.selector ?? '';
     selector = selector.replace(/\{label\}/g, label);
@@ -310,7 +320,9 @@ function catalogDrivenSteps(
             ? `Set ${label}${hasDefault ? ` (default: ${meta.default})` : ''}`
             : wt === 'checkbox'
               ? `Toggle ${label}`
-              : `Enter ${label} in the existing table row (no Add Item needed — the table ships one empty row)`,
+              : (meta as any).add_item_first
+                ? `Enter ${label} in the newly-added table row (Add Item clicked above)`
+                : `Enter ${label} in the existing table row (no Add Item needed — the table ships one empty row)`,
     };
     if (wt === 'checkbox') {
       step.condition = `params.${param} is set`;
