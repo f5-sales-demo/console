@@ -18,10 +18,7 @@ params:
     example: example-app-type
   ai_ml_feature_type:
     required: true
-    description: "'Field AI/ML Feature Type is required' — nested inside app_type_settings"
-  app_type_settings:
-    required: true
-    description: "Feedback loop: table widget → nested-resource-list (uses Add Item sub-form)"
+    description: Required Select-item listbox in the Features section (ships with one row). Verified from live form screenshot.
 steps:
   - id: navigate-to-list
     action: navigate
@@ -38,34 +35,12 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: fill-ai_ml_feature_type
-    action: fill
-    selector: ngx-datatable input.form-control
-    context: AI/ML Feature Type table
-    value: "{ai_ml_feature_type}"
-    description: Enter AI/ML Feature Type in the existing table row (no Add Item needed — the table ships one empty row)
-  - id: add-app_type_settings
-    action: click
-    selector: button:text('Add Item')
-    context: App Type Settings section
-    description: Add App Type Settings entry
-    then:
-      - id: fill-app_type_settings-value
-        action: fill
-        selector: textbox
-        value: "{app_type_settings}"
-        description: Fill the first required field in the App Type Settings sub-form (the agent should provide a value via the
-          'app_type_settings' parameter)
-      - id: apply-app_type_settings
-        action: click
-        selector: button:text('Apply')
-        description: Confirm App Type Settings entry
   - id: select-ai_ml_feature_type
     action: select
-    selector: listbox
+    selector: listbox[name='AI/ML Feature Type']
     context: AI/ML Feature Type section
     value: "{ai_ml_feature_type}"
-    description: Select AI/ML Feature Type
+    description: Select AI/ML Feature Type (references an existing ai_feature_type — dependency)
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"
