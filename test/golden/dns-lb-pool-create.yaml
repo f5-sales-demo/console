@@ -18,7 +18,8 @@ params:
     example: example-dns-lb-pool
   pool_members:
     required: true
-    description: "Server-required: Pool Members in A record type. Click Configure (link) to add members."
+    description: Pool Members is a nested-resource-list (Add Item, NOT Configure — verified from live form). Default A
+      record member needs a Public IP.
 steps:
   - id: navigate-to-list
     action: navigate
@@ -35,16 +36,21 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-pool_members
+  - id: add-pool_members
     action: click
-    selector: text('Configure')
+    selector: button:text('Add Item')
     context: Pool Members section
-    description: Open the Pool Members configuration ('Configure' is a link, not a button)
-  - id: fill-pool_members-value
-    action: fill
-    selector: textbox
-    value: "{pool_members}"
-    description: Enter the Pool Members value via the 'pool_members' parameter
+    description: Add Pool Members entry
+    then:
+      - id: fill-pool_members-value
+        action: fill
+        selector: textbox[name='Public IP']
+        value: "{pool_members}"
+        description: Enter Public IP for the Pool Members entry
+      - id: apply-pool_members
+        action: click
+        selector: button:text('Apply')
+        description: Confirm Pool Members entry
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"
