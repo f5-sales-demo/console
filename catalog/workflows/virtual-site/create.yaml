@@ -16,9 +16,10 @@ params:
     required: true
     description: Virtual Sites name (lowercase alphanumeric and hyphens)
     example: example-virtual-site
-  site_selector:
+  site_selector_expression:
     required: true
-    description: "Server-required: Field should be not nil"
+    description: 'CDK-portal label-selector: Add Label → type key prefix (e.g. "ves") → select from portal → operator →
+      value. Verified live via label_select tool.'
   site_type:
     required: false
     description: "Required: Site Type (RE = Regional Edge, CE = Customer Edge). Select from the listbox."
@@ -40,16 +41,16 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-site_selector
+  - id: add-label-site_selector_expression
     action: click
-    selector: text('Configure')
-    context: Site Selector section
-    description: Open the Site Selector configuration ('Configure' is a link, not a button)
-  - id: fill-site_selector-value
-    action: fill
-    selector: textbox
-    value: "{site_selector}"
-    description: Enter the Site Selector value via the 'site_selector' parameter
+    selector: text('Add Label')
+    context: Site Selector Expression section
+    description: Open the label-selector typeahead for Site Selector Expression
+  - id: select-label-key-site_selector_expression
+    action: selectLabel
+    selector: input[placeholder='Type to search']
+    value: "{site_selector_expression}"
+    description: Select label key for Site Selector Expression from the CDK portal (type prefix → pick option)
   - id: select-site_type
     action: select
     selector: listbox

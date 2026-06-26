@@ -122,6 +122,7 @@ function catalogDrivenSteps(
     'configurable',
     'resource-selector',
     'nested-resource-list',
+    'label-selector',
     // skip-flagged (no steps):
     'key-value-pairs',
     'expandable',
@@ -130,6 +131,27 @@ function catalogDrivenSteps(
     'file-import-button',
   ]);
   if (!catalogTypes.has(wt)) return null;
+
+  // --- LABEL-SELECTOR (CDK-portal typeahead: key → operator → value) ---
+  if (wt === 'label-selector') {
+    if (!meta.required) return [];
+    return [
+      {
+        id: `add-label-${param}`,
+        action: 'click',
+        selector: `text('${meta.add_action ?? 'Add Label'}')`,
+        context: `${label} section`,
+        description: `Open the label-selector typeahead for ${label}`,
+      },
+      {
+        id: `select-label-key-${param}`,
+        action: 'selectLabel',
+        selector: "input[placeholder='Type to search']",
+        value: `{${param}}`,
+        description: `Select label key for ${label} from the CDK portal (type prefix → pick option)`,
+      },
+    ];
+  }
 
   // --- LISTBOX (single step with scoping) ---
   if (wt === 'listbox') {

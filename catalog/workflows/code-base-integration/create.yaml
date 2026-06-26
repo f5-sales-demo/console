@@ -17,9 +17,9 @@ params:
     description: Code Base Integration name (lowercase alphanumeric and hyphens)
     example: example-code-base-integration
   code_base:
-    required: false
-    description: "'Field Code Base in Integration Data is required'"
-    default: ""
+    required: true
+    description: A vsui "Select item" listbox (not a configurable). Selects an existing code-base integration. Verified from
+      live form screenshot.
 steps:
   - id: navigate-to-list
     action: navigate
@@ -36,16 +36,12 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-code_base
-    action: click
-    selector: text('Configure')
+  - id: select-code_base
+    action: select
+    selector: listbox[name='Code Base']
     context: Code Base section
-    description: Open the Code Base configuration ('Configure' is a link, not a button)
-  - id: fill-code_base-value
-    action: fill
-    selector: textbox
     value: "{code_base}"
-    description: Enter the Code Base value via the 'code_base' parameter
+    description: Select Code Base (references an existing code_base — dependency)
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"
