@@ -47,6 +47,259 @@ function resolveApiSpecs(): string | null {
   return null;
 }
 
+// --- Widget Behavior Catalog (single source of truth) ---
+// Loaded once from api-specs-enriched/config/widget_behaviors.yaml. The catalog
+// declares per-widget-type step templates + timing + quirks. fieldToSteps
+// interprets these templates with per-field metadata. Complex widgets with
+// branching logic (nested-resource-list, resource-selector) fall through to
+// procedural code until their catalog templates encode the branching.
+interface CatalogStep {
+  action: string;
+  selector?: string;
+  value?: string;
+  when?: string;
+  note?: string;
+}
+interface CatalogWidget {
+  summary?: string;
+  steps?: CatalogStep[];
+  skip?: boolean;
+  extends?: string;
+  timing?: Record<string, number>;
+  quirks?: string[];
+}
+interface WidgetCatalog {
+  version: string;
+  widgets: Record<string, CatalogWidget>;
+  global: Record<string, unknown>;
+}
+let _widgetCatalog: WidgetCatalog | null = null;
+function loadWidgetCatalog(specsDir: string): WidgetCatalog {
+  if (_widgetCatalog) return _widgetCatalog;
+  const catalogPath = path.join(specsDir, 'config/widget_behaviors.yaml');
+  if (fs.existsSync(catalogPath)) {
+    _widgetCatalog = parseYaml(fs.readFileSync(catalogPath, 'utf-8')) as WidgetCatalog;
+  } else {
+    _widgetCatalog = { version: 'stub', widgets: {}, global: {} };
+  }
+  return _widgetCatalog;
+}
+
+/**
+ * Catalog-driven step generation for SIMPLE widgets (textbox, textarea,
+ * spinbutton, checkbox, table). These have a 1:1 template → step mapping
+ * with no branching. Returns null for widgets that need the procedural path.
+ */
+function catalogDrivenSteps(
+  fieldPath: string,
+  meta: FieldMeta,
+  catalog: WidgetCatalog,
+  label: string,
+  param: string,
+  isName: boolean,
+  hasDefault: boolean,
+): Step[] | null {
+  const wt = meta.widget_type;
+  if (!wt) return null;
+  const widget = catalog.widgets[wt];
+  if (!widget || widget.skip || !widget.steps?.length) {
+    // skip-flagged widgets → empty steps (same as the switch default)
+    if (widget?.skip) return [];
+    return null; // no catalog entry or no steps → fall through to procedural
+  }
+  // Phase 1: simple 1-step widgets (textbox/textarea/spinbutton/checkbox/table)
+  // Phase 2: listbox (scoping), configurable (secret sub-path)
+  // Complex branching widgets (resource-selector, nested-resource-list) fall through.
+  // All widget types handled by the catalog-driven path. The procedural switch
+  // below is now dead code for these — kept only as documentation until removed.
+  const catalogTypes = new Set([
+    'textbox',
+    'textarea',
+    'spinbutton',
+    'checkbox',
+    'table',
+    'listbox',
+    'configurable',
+    'resource-selector',
+    'nested-resource-list',
+    // skip-flagged (no steps):
+    'key-value-pairs',
+    'expandable',
+    'info-text',
+    'file-upload-button',
+    'file-import-button',
+  ]);
+  if (!catalogTypes.has(wt)) return null;
+
+  // --- LISTBOX (single step with scoping) ---
+  if (wt === 'listbox') {
+    const step: Step = {
+      id: `select-${param}`,
+      action: 'select',
+      selector: meta.resource_type ? `listbox[name='${label}']` : 'listbox',
+      context: `${label} section`,
+      value: `{${param}}`,
+      description: `Select ${label}${meta.resource_type ? ` (references an existing ${meta.resource_type} — dependency)` : meta.options ? ` (${meta.options.join(' | ')})` : ''}`,
+    };
+    if (hasDefault) step.condition = `params.${param} is set`;
+    return [step];
+  }
+
+  // --- CONFIGURABLE (2-3 steps: open → fill → optional Apply for secret) ---
+  if (wt === 'configurable') {
+    if (!meta.required) return [];
+    const steps: Step[] = [
+      {
+        id: `configure-${param}`,
+        action: 'click',
+        selector: `text('${meta.configure_action ?? 'Configure'}')`,
+        context: `${label} section`,
+        description: `Open the ${label} configuration ('Configure' is a link, not a button)`,
+      },
+      {
+        id: `fill-${param}-value`,
+        action: 'fill',
+        selector: meta.secret ? 'textarea' : 'textbox',
+        value: `{${param}}`,
+        description: `Enter the ${label} value${meta.secret ? ' (secret textarea)' : ''} via the '${param}' parameter`,
+      },
+    ];
+    if (meta.secret) {
+      steps.push({
+        id: `apply-${param}`,
+        action: 'click',
+        selector: "button:text('Apply')",
+        description: `Apply the ${label} secret to commit it`,
+      });
+    }
+    return steps;
+  }
+
+  // --- RESOURCE-SELECTOR (Add Item → select from modal → Apply) ---
+  if (wt === 'resource-selector') {
+    return [
+      {
+        id: `attach-${param}`,
+        action: 'click',
+        selector: "button:text('Add Item')",
+        context: `${label} section`,
+        condition: `params.${param} is set`,
+        description: `Attach ${label} (references a ${meta.resource_type ?? 'resource'})`,
+        // biome-ignore lint/suspicious/noThenProperty: 'then' is the workflow schema's nested-step key, not a thenable
+        then: [
+          {
+            id: `select-${param}`,
+            action: 'select',
+            selector: 'listbox',
+            context: `${label} selector`,
+            value: `{${param}}`,
+            description: `Select the ${label}`,
+          },
+          {
+            id: `apply-${param}`,
+            action: 'click',
+            selector: "button:text('Apply')",
+            description: `Confirm ${label} selection`,
+          },
+        ],
+      },
+    ];
+  }
+
+  // --- NESTED-RESOURCE-LIST (Add Item → fill sub-form → optional Apply) ---
+  if (wt === 'nested-resource-list') {
+    const types = meta.item_types ? Object.entries(meta.item_types) : [];
+    const defaultType = types[0];
+    const subLabel = meta.sub_field_label;
+    const subSelectLabel = meta.sub_select_label;
+    const subResourceType = meta.sub_resource_type;
+    const innerField = defaultType?.[1].fields?.[0];
+    const fillStep = subSelectLabel
+      ? {
+          id: `select-${param}-ref`,
+          action: 'select' as const,
+          selector: `listbox[name='${subSelectLabel}']`,
+          context: `${subSelectLabel} selector`,
+          value: `{${toParamName(subSelectLabel)}}`,
+          description: `Select the ${subSelectLabel} for the ${label} entry (references an existing ${subResourceType ?? 'resource'} — create one first)`,
+        }
+      : subLabel
+        ? {
+            id: `fill-${param}-value`,
+            action: 'fill' as const,
+            selector: `textbox[name='${subLabel}']`,
+            value: `{${toParamName(label)}}`,
+            description: `Enter ${subLabel} for the ${label} entry`,
+          }
+        : innerField
+          ? {
+              id: `fill-${param}-${innerField}`,
+              action: 'fill' as const,
+              selector: `textbox[name='${innerField.replace(/_/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())}']`,
+              value: `{${toParamName(label)}}`,
+              description: `Enter ${innerField} for the ${label} entry`,
+            }
+          : {
+              id: `fill-${param}-value`,
+              action: 'fill' as const,
+              selector: 'textbox',
+              value: `{${toParamName(label)}}`,
+              description: `Fill the first required field in the ${label} sub-form (the agent should provide a value via the '${param}' parameter)`,
+            };
+    const noApply = meta.no_apply === true;
+    const thenSteps: Step[] = [fillStep];
+    if (!noApply) {
+      thenSteps.push({
+        id: `apply-${param}`,
+        action: 'click',
+        selector: "button:text('Apply')",
+        description: `Confirm ${label} entry`,
+      });
+    }
+    return [
+      {
+        id: `add-${param}`,
+        action: 'click',
+        selector: "button:text('Add Item')",
+        context: `${label} section`,
+        description: `Add ${label} entry${defaultType ? ` (default type: ${defaultType[1].label})` : ''}${noApply ? ' (inline row, no Apply)' : ''}`,
+        // biome-ignore lint/suspicious/noThenProperty: 'then' is the workflow schema's nested-step key, not a thenable
+        then: thenSteps,
+      },
+    ];
+  }
+
+  // --- SIMPLE 1-STEP WIDGETS (textbox/textarea/spinbutton/checkbox/table) ---
+  const steps: Step[] = [];
+  for (const tmpl of widget.steps) {
+    let selector = tmpl.selector ?? '';
+    selector = selector.replace(/\{label\}/g, label);
+    selector = selector.replace(/\{param\}/g, param);
+    const step: Step = {
+      id: isName ? 'fill-name' : `${tmpl.action === 'check' ? 'check' : 'fill'}-${param}`,
+      action: tmpl.action,
+      selector,
+      ...(wt === 'table' ? { context: `${label} table` } : {}),
+      value: `{${isName ? 'name' : param}}`,
+      description:
+        wt === 'textbox' || wt === 'textarea'
+          ? `Enter ${label}${meta.validation?.pattern ? ` (pattern: ${meta.validation.pattern})` : ''}${meta.validation?.max_length ? `, max ${meta.validation.max_length} chars` : ''}`
+          : wt === 'spinbutton'
+            ? `Set ${label}${hasDefault ? ` (default: ${meta.default})` : ''}`
+            : wt === 'checkbox'
+              ? `Toggle ${label}`
+              : `Enter ${label} in the existing table row (no Add Item needed — the table ships one empty row)`,
+    };
+    if (wt === 'checkbox') {
+      step.condition = `params.${param} is set`;
+    } else if (!isName && hasDefault) {
+      step.condition = `params.${param} is set`;
+    }
+    steps.push(step);
+  }
+  return steps;
+}
+
 // --- Types ---
 interface FieldMeta {
   widget_type?: string;
@@ -106,8 +359,19 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, _resourceLabel: string
   const label = meta.label ?? fieldPath.split('.').pop()!;
   const param = toParamName(label);
   const isName = fieldPath === 'metadata.name';
-  const hasDefault = meta.default !== undefined && meta.default !== '' && meta.default !== 0;
+  const hasDefault = meta.default !== undefined && meta.default !== null && meta.default !== '' && meta.default !== 0;
 
+  // TRY the catalog-driven path first (simple widgets: textbox/textarea/spinbutton/checkbox/table).
+  // Returns null for widgets that need the procedural switch below (complex branching).
+  const specsDir = resolveApiSpecs();
+  if (specsDir) {
+    const catalog = loadWidgetCatalog(specsDir);
+    const catalogSteps = catalogDrivenSteps(fieldPath, meta, catalog, label, param, isName, hasDefault);
+    if (catalogSteps !== null) return catalogSteps;
+  }
+
+  // Procedural fallback for complex widgets (listbox, configurable, resource-selector,
+  // nested-resource-list) until their catalog templates encode the branching logic.
   switch (meta.widget_type) {
     case 'textbox':
     case 'textarea': {
