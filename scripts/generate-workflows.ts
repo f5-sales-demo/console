@@ -85,19 +85,62 @@ function catalogDrivenSteps(
     if (widget?.skip) return [];
     return null; // no catalog entry or no steps → fall through to procedural
   }
-  // Only handle simple 1-step widgets here; complex ones fall through
-  const simpleTypes = new Set(['textbox', 'textarea', 'spinbutton', 'checkbox', 'table']);
-  if (!simpleTypes.has(wt)) return null;
+  // Phase 1: simple 1-step widgets (textbox/textarea/spinbutton/checkbox/table)
+  // Phase 2: listbox (scoping), configurable (secret sub-path)
+  // Complex branching widgets (resource-selector, nested-resource-list) fall through.
+  const catalogTypes = new Set(['textbox', 'textarea', 'spinbutton', 'checkbox', 'table', 'listbox', 'configurable']);
+  if (!catalogTypes.has(wt)) return null;
 
+  // --- LISTBOX (single step with scoping) ---
+  if (wt === 'listbox') {
+    const step: Step = {
+      id: `select-${param}`,
+      action: 'select',
+      selector: meta.resource_type ? `listbox[name='${label}']` : 'listbox',
+      context: `${label} section`,
+      value: `{${param}}`,
+      description: `Select ${label}${meta.resource_type ? ` (references an existing ${meta.resource_type} — dependency)` : meta.options ? ` (${meta.options.join(' | ')})` : ''}`,
+    };
+    if (hasDefault) step.condition = `params.${param} is set`;
+    return [step];
+  }
+
+  // --- CONFIGURABLE (2-3 steps: open → fill → optional Apply for secret) ---
+  if (wt === 'configurable') {
+    if (!meta.required) return [];
+    const steps: Step[] = [
+      {
+        id: `configure-${param}`,
+        action: 'click',
+        selector: `text('${meta.configure_action ?? 'Configure'}')`,
+        context: `${label} section`,
+        description: `Open the ${label} configuration ('Configure' is a link, not a button)`,
+      },
+      {
+        id: `fill-${param}-value`,
+        action: 'fill',
+        selector: meta.secret ? 'textarea' : 'textbox',
+        value: `{${param}}`,
+        description: `Enter the ${label} value${meta.secret ? ' (secret textarea)' : ''} via the '${param}' parameter`,
+      },
+    ];
+    if (meta.secret) {
+      steps.push({
+        id: `apply-${param}`,
+        action: 'click',
+        selector: "button:text('Apply')",
+        description: `Apply the ${label} secret to commit it`,
+      });
+    }
+    return steps;
+  }
+
+  // --- SIMPLE 1-STEP WIDGETS (textbox/textarea/spinbutton/checkbox/table) ---
   const steps: Step[] = [];
   for (const tmpl of widget.steps) {
-    // Interpolate template tokens
     let selector = tmpl.selector ?? '';
     selector = selector.replace(/\{label\}/g, label);
     selector = selector.replace(/\{param\}/g, param);
-
-    // Build the step with keys in the SAME ORDER as the procedural switch to match
-    // golden output exactly. The YAML serializer preserves insertion order.
     const step: Step = {
       id: isName ? 'fill-name' : `${tmpl.action === 'check' ? 'check' : 'fill'}-${param}`,
       action: tmpl.action,
