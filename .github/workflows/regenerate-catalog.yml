@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/checkout@v7
         with:
-          repository: f5xc-salesdemos/api-specs-enriched
+          repository: f5-sales-demo/api-specs-enriched
           path: api-specs-enriched
           token: ${{ secrets.REPO_SYNC_TOKEN }}
 
