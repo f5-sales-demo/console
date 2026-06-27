@@ -48,13 +48,18 @@ steps:
     value: "{name}"
     description: "Enter the load balancer name in the Name textbox"
 
+  - id: "add-item-domains"
+    action: "click"
+    selector: "button:text('Add Item')"
+    context: "Domains table"
+    description: "Add a row to the Domains table (starts empty — items: 0 per form-discovery)"
+
   - id: "fill-domain"
     action: "fill"
     selector: "ngx-datatable input.form-control"
     context: "Domains table"
     value: "{domains}"
-    description: "Enter the domain in the Domains table's default row. The table ships one empty row, so no Add Item click is needed; clicking Add Item would create a second empty row that fails the 'Domains is required' validation."
-    note: "Single-domain create. Multiple domains (Add Item per additional row) is a follow-up."
+    description: "Enter the domain in the newly-added Domains table row"
 
   - id: "attach-origin-pool"
     condition: "params.origin_pool is set"
