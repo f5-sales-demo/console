@@ -37,7 +37,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add HTTP Load Balancer')"
+    selector: "text('Add HTTP Load Balancer')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add HTTP Load Balancer tab to open the inline create form"
     note: "This is a tab element, not a button"

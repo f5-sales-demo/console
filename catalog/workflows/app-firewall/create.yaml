@@ -33,7 +33,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add App Firewall')"
+    selector: "text('Add App Firewall')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add App Firewall tab to open the inline create form"
     note: "This is a tab element, not a button"

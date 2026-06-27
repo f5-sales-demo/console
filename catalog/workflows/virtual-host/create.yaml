@@ -28,7 +28,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add Virtual Host')"
+    selector: "text('Add Virtual Host')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add Virtual Host tab to open the inline create form"
 

@@ -28,7 +28,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add Route')"
+    selector: "text('Add Route')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add Route tab to open the inline create form"
 

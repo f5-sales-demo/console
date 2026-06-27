@@ -57,7 +57,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add Health Check')"
+    selector: "text('Add Health Check')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add Health Check tab to open the inline create form"
     note: "This is a tab element, not a button"

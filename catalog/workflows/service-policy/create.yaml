@@ -28,7 +28,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add Service Policy')"
+    selector: "text('Add Service Policy')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add Service policy tab to open the inline create form"
 
