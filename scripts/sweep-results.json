@@ -8,12 +8,12 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 6459
+        "ms": 6496
       },
       {
         "id": "click-add-tab",
         "pass": false,
-        "ms": 15,
+        "ms": 14,
         "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
@@ -27,12 +27,12 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7242
+        "ms": 6447
       },
       {
         "id": "click-add-tab",
         "pass": false,
-        "ms": 14,
+        "ms": 15,
         "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
@@ -46,18 +46,18 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 6923
+        "ms": 7084
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1047
+        "ms": 1055
       },
       {
         "id": "save",
         "pass": false,
-        "ms": 30557,
-        "err": "waitFor \"text('xcsh-sweep-segment-connection')\" timed out after 30000ms"
+        "ms": 30583,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-segment-connection')\" timed out"
       }
     ]
   },
@@ -98,22 +98,22 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 6524
+        "ms": 7087
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1049
+        "ms": 1044
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 754
+        "ms": 753
       },
       {
         "id": "save",
         "pass": true,
-        "ms": 45
+        "ms": 29
       }
     ]
   },
@@ -126,17 +126,17 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7148
+        "ms": 6977
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1045
+        "ms": 1051
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 750
+        "ms": 749
       },
       {
         "id": "save",
@@ -154,22 +154,22 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7023
+        "ms": 7579
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1043
+        "ms": 1050
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 749
+        "ms": 752
       },
       {
         "id": "save",
         "pass": true,
-        "ms": 39
+        "ms": 44
       }
     ]
   },
@@ -182,7 +182,7 @@
       {
         "id": "navigate-to-list",
         "pass": false,
-        "ms": 22910,
+        "ms": 22894,
         "err": "waitFor \"text('K8s Clusters')\" timed out after 15000ms"
       }
     ]
@@ -196,23 +196,23 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7993
+        "ms": 8228
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 55
+        "ms": 52
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 884
+        "ms": 892
       },
       {
         "id": "save",
         "pass": false,
-        "ms": 30631,
-        "err": "waitFor \"text('xcsh-sweep-namespace')\" timed out after 30000ms"
+        "ms": 30643,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-namespace')\" timed out after 30"
       }
     ]
   },
@@ -225,12 +225,12 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 8028
+        "ms": 7231
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1036
+        "ms": 1048
       },
       {
         "id": "fill-name",
@@ -240,8 +240,8 @@
       {
         "id": "save",
         "pass": false,
-        "ms": 30616,
-        "err": "waitFor \"text('xcsh-sweep-openapi-file')\" timed out after 30000ms"
+        "ms": 30587,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-openapi-file')\" timed out after"
       }
     ]
   },
@@ -254,12 +254,12 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7530
+        "ms": 6573
       },
       {
         "id": "click-add-tab",
         "pass": false,
-        "ms": 14,
+        "ms": 13,
         "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
@@ -295,28 +295,19 @@
   {
     "resource": "secret-policy",
     "total": 4,
-    "passed": 4,
-    "failedStep": null,
+    "passed": 1,
+    "failedStep": "click-add-tab",
     "steps": [
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 6973
+        "ms": 6949
       },
       {
         "id": "click-add-tab",
-        "pass": true,
-        "ms": 1054
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 755
-      },
-      {
-        "id": "save",
-        "pass": true,
-        "ms": 45
+        "pass": false,
+        "ms": 6,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
   },
@@ -329,22 +320,22 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 6964
+        "ms": 7118
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1042
+        "ms": 1050
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 756
+        "ms": 752
       },
       {
         "id": "save",
         "pass": true,
-        "ms": 26
+        "ms": 41
       }
     ]
   },
@@ -357,7 +348,7 @@
       {
         "id": "navigate-to-list",
         "pass": false,
-        "ms": 22792,
+        "ms": 23088,
         "err": "waitFor \"text('Sensitive Data Policies')\" timed out after 15000ms"
       }
     ]
@@ -371,7 +362,7 @@
       {
         "id": "navigate-to-list",
         "pass": false,
-        "ms": 22766,
+        "ms": 23252,
         "err": "waitFor \"text('UDP Load Balancers')\" timed out after 15000ms"
       }
     ]
@@ -399,7 +390,7 @@
       {
         "id": "navigate-to-list",
         "pass": false,
-        "ms": 22261,
+        "ms": 22787,
         "err": "waitFor \"text('WAF Exclusion Rules')\" timed out after 15000ms"
       }
     ]
@@ -413,22 +404,22 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7514
+        "ms": 8000
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1048
+        "ms": 1049
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 759
+        "ms": 763
       },
       {
         "id": "save",
         "pass": true,
-        "ms": 44
+        "ms": 43
       }
     ]
   },
@@ -441,22 +432,22 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7452
+        "ms": 6995
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1046
+        "ms": 1041
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 746
+        "ms": 749
       },
       {
         "id": "select-ai_ml_feature_type",
         "pass": false,
-        "ms": 4,
+        "ms": 6,
         "err": "selectOption: selector \"listbox[name='AI/ML Feature Type']\" not found"
       }
     ]
@@ -470,28 +461,28 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7538
+        "ms": 7621
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1041
+        "ms": 1043
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 749
+        "ms": 751
       },
       {
         "id": "fill-jwks_uri",
         "pass": true,
-        "ms": 745
+        "ms": 737
       },
       {
         "id": "save",
         "pass": false,
-        "ms": 30606,
-        "err": "waitFor \"text('xcsh-sweep-authorization-server')\" timed out after 30000ms"
+        "ms": 30618,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-authorization-server')\" timed o"
       }
     ]
   },
@@ -504,28 +495,28 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7542
+        "ms": 7028
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1040
+        "ms": 1049
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 733
+        "ms": 758
       },
       {
         "id": "fill-as_numbers",
         "pass": true,
-        "ms": 866
+        "ms": 863
       },
       {
         "id": "save",
         "pass": false,
-        "ms": 30673,
-        "err": "waitFor \"text('xcsh-sweep-bgp-asn-set')\" timed out after 30000ms"
+        "ms": 30693,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-bgp-asn-set')\" timed out after "
       }
     ]
   },
@@ -552,12 +543,12 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7598
+        "ms": 8133
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1056
+        "ms": 1042
       },
       {
         "id": "fill-name",
@@ -567,7 +558,7 @@
       {
         "id": "select-code_base",
         "pass": false,
-        "ms": 6,
+        "ms": 4,
         "err": "selectOption: selector \"listbox[name='Code Base']\" not found"
       }
     ]
@@ -581,28 +572,28 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 8232
+        "ms": 8187
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1045
+        "ms": 1042
       },
       {
         "id": "fill-domain_name",
         "pass": true,
-        "ms": 747
+        "ms": 744
       },
       {
         "id": "select-domain_method",
         "pass": true,
-        "ms": 1865
+        "ms": 1871
       },
       {
         "id": "save",
         "pass": false,
-        "ms": 30595,
-        "err": "waitFor \"text('xcsh-sweep-dns-domain')\" timed out after 30000ms"
+        "ms": 30581,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-dns-domain')\" timed out after 3"
       }
     ]
   },
@@ -615,28 +606,28 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7550
+        "ms": 7541
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1049
+        "ms": 1047
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 758
+        "ms": 748
       },
       {
         "id": "add-pool_members",
         "pass": true,
-        "ms": 27
+        "ms": 22
       },
       {
         "id": "save",
         "pass": false,
-        "ms": 30627,
-        "err": "waitFor \"text('xcsh-sweep-dns-lb-pool')\" timed out after 30000ms"
+        "ms": 30666,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-dns-lb-pool')\" timed out after "
       }
     ]
   },
@@ -649,12 +640,12 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7521
+        "ms": 7008
       },
       {
         "id": "click-add-tab",
         "pass": false,
-        "ms": 13,
+        "ms": 10,
         "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
@@ -668,27 +659,27 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7006
+        "ms": 7510
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1055
+        "ms": 1046
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 749
+        "ms": 753
       },
       {
         "id": "select-select_enhanced_firewall_policy_rule_type",
         "pass": true,
-        "ms": 1861
+        "ms": 1877
       },
       {
         "id": "save",
         "pass": true,
-        "ms": 35
+        "ms": 50
       }
     ]
   },
@@ -701,27 +692,27 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7037
+        "ms": 7454
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1056
+        "ms": 1047
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 758
+        "ms": 746
       },
       {
         "id": "select-geolocation_label_selector",
         "pass": true,
-        "ms": 1857
+        "ms": 1860
       },
       {
         "id": "save",
         "pass": true,
-        "ms": 43
+        "ms": 41
       }
     ]
   },
@@ -734,23 +725,23 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7060
+        "ms": 7559
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1050
+        "ms": 1042
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 739
+        "ms": 757
       },
       {
         "id": "add-prefix",
         "pass": false,
-        "ms": 163,
-        "err": "extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (882,366) occluded:DIV.\""
+        "ms": 161,
+        "err": "extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (882,390) occluded:DIV.repeat-lab"
       }
     ]
   },
@@ -763,28 +754,28 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7291
+        "ms": 7648
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1051
+        "ms": 1047
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 759
+        "ms": 755
       },
       {
         "id": "add-rules",
         "pass": true,
-        "ms": 22
+        "ms": 23
       },
       {
         "id": "save",
         "pass": false,
-        "ms": 30619,
-        "err": "waitFor \"text('xcsh-sweep-malicious-user-mitigation')\" timed out after 30000ms"
+        "ms": 30598,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-malicious-user-mitigation')\" ti"
       }
     ]
   },
@@ -797,12 +788,12 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 8052
+        "ms": 7086
       },
       {
         "id": "click-add-tab",
         "pass": false,
-        "ms": 13,
+        "ms": 14,
         "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
@@ -816,27 +807,27 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7515
+        "ms": 7428
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 1045
+        "ms": 1059
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 744
+        "ms": 747
       },
       {
         "id": "add-protocol_policer",
         "pass": true,
-        "ms": 14
+        "ms": 20
       },
       {
         "id": "save",
         "pass": true,
-        "ms": 23
+        "ms": 25
       }
     ]
   },
@@ -849,2312 +840,23 @@
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7417
+        "ms": 7624
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 49
+        "ms": 53
       },
       {
         "id": "fill-name",
         "pass": true,
-        "ms": 884
+        "ms": 886
       },
       {
         "id": "fill-role_name",
         "pass": false,
         "ms": 0,
         "err": "unresolved placeholder \"{role_name}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "route-object",
-    "total": 5,
-    "passed": 3,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7509
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1043
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 752
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 60153,
-        "err": "waitFor \"text('xcsh-sweep-route-object')\" timed out after 60000ms"
-      }
-    ]
-  },
-  {
-    "resource": "service-policy",
-    "total": 5,
-    "passed": 5,
-    "failedStep": null,
-    "steps": [
-      {
-        "id": "pre-check",
-        "pass": true,
-        "ms": 0,
-        "err": "already exists — skipped create"
-      }
-    ]
-  },
-  {
-    "resource": "service-policy-rule",
-    "total": 5,
-    "passed": 1,
-    "failedStep": "click-add-tab",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7151
-      },
-      {
-        "id": "click-add-tab",
-        "pass": false,
-        "ms": 14,
-        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
-      }
-    ]
-  },
-  {
-    "resource": "v1-dns-monitor",
-    "total": 5,
-    "passed": 0,
-    "failedStep": "navigate-to-list",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": false,
-        "ms": 22828,
-        "err": "waitFor \"text('DNS Monitors')\" timed out after 15000ms"
-      }
-    ]
-  },
-  {
-    "resource": "v1-http-monitor",
-    "total": 5,
-    "passed": 0,
-    "failedStep": "navigate-to-list",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": false,
-        "ms": 22729,
-        "err": "waitFor \"text('HTTP Monitors')\" timed out after 15000ms"
-      }
-    ]
-  },
-  {
-    "resource": "virtual-host",
-    "total": 5,
-    "passed": 3,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 6939
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1043
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 750
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 60552,
-        "err": "waitFor \"text('xcsh-sweep-virtual-host')\" timed out after 60000ms"
-      }
-    ]
-  },
-  {
-    "resource": "virtual-network",
-    "total": 5,
-    "passed": 4,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7069
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1046
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 756
-      },
-      {
-        "id": "select-select_type_of_network",
-        "pass": true,
-        "ms": 1872
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30735,
-        "err": "waitFor \"text('xcsh-sweep-virtual-network')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "alert-policy",
-    "total": 6,
-    "passed": 5,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7006
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1044
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 745
-      },
-      {
-        "id": "attach-alert_receivers",
-        "pass": true,
-        "ms": 0,
-        "err": "skipped (condition)"
-      },
-      {
-        "id": "add-policy_rules",
-        "pass": true,
-        "ms": 21
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30690,
-        "err": "waitFor \"text('xcsh-sweep-alert-policy')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "alert-receiver",
-    "total": 6,
-    "passed": 4,
-    "failedStep": "fill-receiver_configuration-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7546
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1042
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 752
-      },
-      {
-        "id": "configure-receiver_configuration",
-        "pass": true,
-        "ms": 59
-      },
-      {
-        "id": "fill-receiver_configuration-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{receiver_configuration}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "app-api-group",
-    "total": 6,
-    "passed": 5,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7579
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1047
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 750
-      },
-      {
-        "id": "select-scope",
-        "pass": true,
-        "ms": 1868
-      },
-      {
-        "id": "select-http_load_balancer",
-        "pass": true,
-        "ms": 7397
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30703,
-        "err": "waitFor \"text('xcsh-sweep-app-api-group')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "app-firewall",
-    "total": 6,
-    "passed": 0,
-    "failedStep": "navigate-to-list",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": false,
-        "ms": 23357,
-        "err": "waitFor \"text('App Firewalls')\" timed out after 15000ms"
-      }
-    ]
-  },
-  {
-    "resource": "app-setting",
-    "total": 6,
-    "passed": 3,
-    "failedStep": "configure-app_type_settings",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7550
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1050
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 747
-      },
-      {
-        "id": "configure-app_type_settings",
-        "pass": false,
-        "ms": 11,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "aws-tgw-site",
-    "total": 6,
-    "passed": 4,
-    "failedStep": "fill-aws_parameters-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7590
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1046
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "configure-aws_parameters",
-        "pass": true,
-        "ms": 109
-      },
-      {
-        "id": "fill-aws_parameters-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{aws_parameters}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "cdn-loadbalancer",
-    "total": 6,
-    "passed": 5,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7812
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1041
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 729
-      },
-      {
-        "id": "fill-domains",
-        "pass": true,
-        "ms": 735
-      },
-      {
-        "id": "select-load_balancer_type",
-        "pass": true,
-        "ms": 1868
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 31021,
-        "err": "waitFor \"text('xcsh-sweep-cdn-loadbalancer')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "certificate",
-    "total": 6,
-    "passed": 3,
-    "failedStep": "configure-certificate_url",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7119
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1043
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 756
-      },
-      {
-        "id": "configure-certificate_url",
-        "pass": false,
-        "ms": 12,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "data-type",
-    "total": 6,
-    "passed": 4,
-    "failedStep": "fill-data_type_rules-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8034
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1050
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 751
-      },
-      {
-        "id": "configure-data_type_rules",
-        "pass": true,
-        "ms": 73
-      },
-      {
-        "id": "fill-data_type_rules-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{data_type_rules}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "dns-load-balancer",
-    "total": 6,
-    "passed": 5,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8469
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1052
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 748
-      },
-      {
-        "id": "select-record_type",
-        "pass": true,
-        "ms": 7436
-      },
-      {
-        "id": "add-load_balancing_rules",
-        "pass": true,
-        "ms": 27
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30572,
-        "err": "waitFor \"text('xcsh-sweep-dns-load-balancer')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "external-connector",
-    "total": 6,
-    "passed": 5,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8053
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1052
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 760
-      },
-      {
-        "id": "select-ce_site_reference",
-        "pass": true,
-        "ms": 7428
-      },
-      {
-        "id": "select-connection_type",
-        "pass": true,
-        "ms": 7433
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30710,
-        "err": "waitFor \"text('xcsh-sweep-external-connector')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "network-policy",
-    "total": 6,
-    "passed": 3,
-    "failedStep": "configure-endpoint_s",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7512
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1042
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 753
-      },
-      {
-        "id": "configure-endpoint_s",
-        "pass": false,
-        "ms": 5,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "origin-pool",
-    "total": 6,
-    "passed": 4,
-    "failedStep": "fill-port",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7652
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1051
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 747
-      },
-      {
-        "id": "add-origin_servers",
-        "pass": true,
-        "ms": 31
-      },
-      {
-        "id": "fill-port",
-        "pass": false,
-        "ms": 3,
-        "err": "fill(\"spinbutton[name='Port']\"): no match for spinbutton[name='Port']"
-      }
-    ]
-  },
-  {
-    "resource": "site-mesh-group",
-    "total": 6,
-    "passed": 3,
-    "failedStep": "configure-bfd_choice",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7430
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1040
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 750
-      },
-      {
-        "id": "configure-bfd_choice",
-        "pass": false,
-        "ms": 12,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "user-identification",
-    "total": 6,
-    "passed": 4,
-    "failedStep": "fill-rules-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8200
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1045
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 750
-      },
-      {
-        "id": "configure-rules",
-        "pass": true,
-        "ms": 46
-      },
-      {
-        "id": "fill-rules-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{rules}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "voltstack-site",
-    "total": 6,
-    "passed": 4,
-    "failedStep": "fill-volterra_certified_hw-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8113
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1049
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 734
-      },
-      {
-        "id": "configure-volterra_certified_hw",
-        "pass": true,
-        "ms": 54
-      },
-      {
-        "id": "fill-volterra_certified_hw-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{volterra_certified_hw}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "cloud-elastic-ip",
-    "total": 7,
-    "passed": 4,
-    "failedStep": "configure-count",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7992
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1053
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 751
-      },
-      {
-        "id": "select-site_reference",
-        "pass": true,
-        "ms": 7424
-      },
-      {
-        "id": "configure-count",
-        "pass": false,
-        "ms": 5,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "crl",
-    "total": 7,
-    "passed": 4,
-    "failedStep": "configure-refresh_interval",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7521
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1043
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "fill-crl_server_address",
-        "pass": true,
-        "ms": 744
-      },
-      {
-        "id": "configure-refresh_interval",
-        "pass": false,
-        "ms": 6,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "dns-lb-health-check",
-    "total": 7,
-    "passed": 6,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7076
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1044
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "select-health_check_type",
-        "pass": true,
-        "ms": 1873
-      },
-      {
-        "id": "select-health_check_port",
-        "pass": true,
-        "ms": 7409
-      },
-      {
-        "id": "select-virtual_host",
-        "pass": true,
-        "ms": 7421
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30678,
-        "err": "waitFor \"text('xcsh-sweep-dns-lb-health-check')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "endpoint",
-    "total": 7,
-    "passed": 6,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7598
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1047
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 746
-      },
-      {
-        "id": "select-protocol",
-        "pass": true,
-        "ms": 7442
-      },
-      {
-        "id": "select-virtual_site_or_site_or_network",
-        "pass": true,
-        "ms": 7432
-      },
-      {
-        "id": "select-reference",
-        "pass": true,
-        "ms": 7451
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30732,
-        "err": "waitFor \"text('xcsh-sweep-endpoint')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "gcp-vpc-site",
-    "total": 7,
-    "passed": 5,
-    "failedStep": "fill-deployment-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7596
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1053
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 737
-      },
-      {
-        "id": "attach-gcp_credentials",
-        "pass": true,
-        "ms": 0,
-        "err": "skipped (condition)"
-      },
-      {
-        "id": "configure-deployment",
-        "pass": true,
-        "ms": 96
-      },
-      {
-        "id": "fill-deployment-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{deployment}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "http-load-balancer",
-    "total": 7,
-    "passed": 7,
-    "failedStep": null,
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8159
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1052
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 738
-      },
-      {
-        "id": "add-item-domains",
-        "pass": true,
-        "ms": 22
-      },
-      {
-        "id": "fill-domain",
-        "pass": true,
-        "ms": 745
-      },
-      {
-        "id": "attach-origin-pool",
-        "pass": true,
-        "ms": 0,
-        "err": "skipped (condition)"
-      },
-      {
-        "id": "save",
-        "pass": true,
-        "ms": 1077
-      }
-    ]
-  },
-  {
-    "resource": "nat-policy",
-    "total": 7,
-    "passed": 5,
-    "failedStep": "fill-applies_to_choice-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7961
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1044
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "select-applies_to",
-        "pass": true,
-        "ms": 1851
-      },
-      {
-        "id": "configure-applies_to_choice",
-        "pass": true,
-        "ms": 38
-      },
-      {
-        "id": "fill-applies_to_choice-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{applies_to_choice}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "network-firewall",
-    "total": 7,
-    "passed": 7,
-    "failedStep": null,
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8021
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1041
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 745
-      },
-      {
-        "id": "select-select_forward_policy_configuration",
-        "pass": true,
-        "ms": 1877
-      },
-      {
-        "id": "select-select_firewall_policy_configuration",
-        "pass": true,
-        "ms": 7426
-      },
-      {
-        "id": "select-select_fast_acl_configuration",
-        "pass": true,
-        "ms": 7404
-      },
-      {
-        "id": "save",
-        "pass": true,
-        "ms": 31
-      }
-    ]
-  },
-  {
-    "resource": "network-interface",
-    "total": 7,
-    "passed": 5,
-    "failedStep": "fill-ethernet_interface-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7558
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1047
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 745
-      },
-      {
-        "id": "select-interface_config_type",
-        "pass": true,
-        "ms": 1861
-      },
-      {
-        "id": "configure-ethernet_interface",
-        "pass": true,
-        "ms": 75
-      },
-      {
-        "id": "fill-ethernet_interface-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{ethernet_interface}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "policer",
-    "total": 7,
-    "passed": 6,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7670
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1051
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 753
-      },
-      {
-        "id": "fill-committed_information_rate",
-        "pass": true,
-        "ms": 849
-      },
-      {
-        "id": "fill-burst_size",
-        "pass": true,
-        "ms": 843
-      },
-      {
-        "id": "add-policer_rules",
-        "pass": true,
-        "ms": 21
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30624,
-        "err": "waitFor \"text('xcsh-sweep-policer')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "securemesh-site-v2",
-    "total": 7,
-    "passed": 5,
-    "failedStep": "fill-provider_choice-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7062
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1041
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 732
-      },
-      {
-        "id": "select-provider_name",
-        "pass": true,
-        "ms": 1870
-      },
-      {
-        "id": "configure-provider_choice",
-        "pass": true,
-        "ms": 46
-      },
-      {
-        "id": "fill-provider_choice-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{provider_choice}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "third-party-application",
-    "total": 7,
-    "passed": 1,
-    "failedStep": "click-add-tab",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7051
-      },
-      {
-        "id": "click-add-tab",
-        "pass": false,
-        "ms": 20,
-        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
-      }
-    ]
-  },
-  {
-    "resource": "tunnel",
-    "total": 7,
-    "passed": 5,
-    "failedStep": "fill-local_ip-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 6920
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1053
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 742
-      },
-      {
-        "id": "select-tunnel_type",
-        "pass": true,
-        "ms": 7420
-      },
-      {
-        "id": "configure-local_ip",
-        "pass": true,
-        "ms": 62
-      },
-      {
-        "id": "fill-local_ip-value",
-        "pass": false,
-        "ms": 164,
-        "err": "extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard"
-      }
-    ]
-  },
-  {
-    "resource": "virtual-site",
-    "total": 7,
-    "passed": 4,
-    "failedStep": "select-label-key-site_selector_expression",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7542
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1047
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "add-label-site_selector_expression",
-        "pass": true,
-        "ms": 28
-      },
-      {
-        "id": "select-label-key-site_selector_expression",
-        "pass": false,
-        "ms": 2,
-        "err": "extension tool \"label_select\" failed: \"Error: label_select: input \\\"input[placeholder='Type to search']\\\" not found\""
-      }
-    ]
-  },
-  {
-    "resource": "aws-vpc-site",
-    "total": 8,
-    "passed": 6,
-    "failedStep": "fill-deployment-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7522
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1040
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 742
-      },
-      {
-        "id": "select-aws_region",
-        "pass": true,
-        "ms": 7441
-      },
-      {
-        "id": "attach-aws_credentials",
-        "pass": true,
-        "ms": 0,
-        "err": "skipped (condition)"
-      },
-      {
-        "id": "configure-deployment",
-        "pass": true,
-        "ms": 86
-      },
-      {
-        "id": "fill-deployment-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{deployment}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "azure-vnet-site",
-    "total": 8,
-    "passed": 6,
-    "failedStep": "fill-deployment-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7530
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1052
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "select-azure_region",
-        "pass": true,
-        "ms": 7442
-      },
-      {
-        "id": "attach-azure_credentials",
-        "pass": true,
-        "ms": 0,
-        "err": "skipped (condition)"
-      },
-      {
-        "id": "configure-deployment",
-        "pass": true,
-        "ms": 66
-      },
-      {
-        "id": "fill-deployment-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{deployment}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "cdn-cache-rule",
-    "total": 8,
-    "passed": 3,
-    "failedStep": "fill-rule_name",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7478
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1052
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 757
-      },
-      {
-        "id": "fill-rule_name",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{rule_name}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "global-log-receiver",
-    "total": 8,
-    "passed": 0,
-    "failedStep": "navigate-to-list",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": false,
-        "ms": 22736,
-        "err": "waitFor \"text('Global Log Receivers')\" timed out after 15000ms"
-      }
-    ]
-  },
-  {
-    "resource": "service-credential",
-    "total": 8,
-    "passed": 1,
-    "failedStep": "click-add-tab",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8030
-      },
-      {
-        "id": "click-add-tab",
-        "pass": false,
-        "ms": 15,
-        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
-      }
-    ]
-  },
-  {
-    "resource": "subnet",
-    "total": 8,
-    "passed": 4,
-    "failedStep": "fill-site_subnet_parameters-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7993
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1045
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 752
-      },
-      {
-        "id": "configure-site_subnet_parameters",
-        "pass": true,
-        "ms": 46
-      },
-      {
-        "id": "fill-site_subnet_parameters-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{site_subnet_parameters}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "tcp-load-balancer",
-    "total": 8,
-    "passed": 4,
-    "failedStep": "fill-domains",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7991
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1039
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 747
-      },
-      {
-        "id": "add-item-domains",
-        "pass": true,
-        "ms": 35
-      },
-      {
-        "id": "fill-domains",
-        "pass": false,
-        "ms": 4,
-        "err": "fill(\"ngx-datatable input.form-control\"): no match for ngx-datatable input.form-control"
-      }
-    ]
-  },
-  {
-    "resource": "usb-policy",
-    "total": 8,
-    "passed": 4,
-    "failedStep": "fill-allowed_usb_devices-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7492
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1045
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 747
-      },
-      {
-        "id": "configure-allowed_usb_devices",
-        "pass": true,
-        "ms": 51
-      },
-      {
-        "id": "fill-allowed_usb_devices-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{allowed_usb_devices}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "address-allocator",
-    "total": 9,
-    "passed": 6,
-    "failedStep": "configure-address_allocation_scheme",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7416
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1043
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 750
-      },
-      {
-        "id": "select-address_allocator_mode",
-        "pass": true,
-        "ms": 7420
-      },
-      {
-        "id": "fill-allocation_unit",
-        "pass": true,
-        "ms": 857
-      },
-      {
-        "id": "fill-address_pool",
-        "pass": true,
-        "ms": 747
-      },
-      {
-        "id": "configure-address_allocation_scheme",
-        "pass": false,
-        "ms": 14,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "api-credential",
-    "total": 9,
-    "passed": 3,
-    "failedStep": "fill-credential_name",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7535
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 64
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 889
-      },
-      {
-        "id": "fill-credential_name",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{credential_name}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "container-registry",
-    "total": 9,
-    "passed": 3,
-    "failedStep": "fill-server_fqdn",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 9032
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1043
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "fill-server_fqdn",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{server_fqdn}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "fast-acl",
-    "total": 9,
-    "passed": 5,
-    "failedStep": "fill-site_type_regional_edge-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 9071
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1037
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 747
-      },
-      {
-        "id": "select-select_site_type_for_acl",
-        "pass": true,
-        "ms": 1866
-      },
-      {
-        "id": "configure-site_type_regional_edge",
-        "pass": true,
-        "ms": 30
-      },
-      {
-        "id": "fill-site_type_regional_edge-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{site_type_regional_edge}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "health-check",
-    "total": 9,
-    "passed": 9,
-    "failedStep": null,
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7013
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1039
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 745
-      },
-      {
-        "id": "select-type",
-        "pass": true,
-        "ms": 1864
-      },
-      {
-        "id": "set-timeout",
-        "pass": true,
-        "ms": 865
-      },
-      {
-        "id": "set-interval",
-        "pass": true,
-        "ms": 859
-      },
-      {
-        "id": "set-unhealthy-threshold",
-        "pass": true,
-        "ms": 851
-      },
-      {
-        "id": "set-healthy-threshold",
-        "pass": true,
-        "ms": 854
-      },
-      {
-        "id": "save",
-        "pass": true,
-        "ms": 49
-      }
-    ]
-  },
-  {
-    "resource": "shared-advertise-policy",
-    "total": 9,
-    "passed": 4,
-    "failedStep": "configure-reference",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7059
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1048
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 755
-      },
-      {
-        "id": "select-virtual_site_or_site_or_network",
-        "pass": true,
-        "ms": 1860
-      },
-      {
-        "id": "configure-reference",
-        "pass": false,
-        "ms": 5,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "bgp",
-    "total": 10,
-    "passed": 7,
-    "failedStep": "configure-bgp_parameters",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7531
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1039
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 746
-      },
-      {
-        "id": "select-where",
-        "pass": true,
-        "ms": 1871
-      },
-      {
-        "id": "select-reference",
-        "pass": true,
-        "ms": 7395
-      },
-      {
-        "id": "fill-asn",
-        "pass": true,
-        "ms": 869
-      },
-      {
-        "id": "select-router_id",
-        "pass": true,
-        "ms": 7401
-      },
-      {
-        "id": "configure-bgp_parameters",
-        "pass": false,
-        "ms": 16,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "cloud-credentials",
-    "total": 10,
-    "passed": 6,
-    "failedStep": "fill-secret_access_key-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7061
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1050
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 744
-      },
-      {
-        "id": "select-select_cloud_credential_type",
-        "pass": true,
-        "ms": 1863
-      },
-      {
-        "id": "fill-access_key_id",
-        "pass": true,
-        "ms": 759
-      },
-      {
-        "id": "configure-secret_access_key",
-        "pass": true,
-        "ms": 61
-      },
-      {
-        "id": "fill-secret_access_key-value",
-        "pass": false,
-        "ms": 159,
-        "err": "extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard"
-      }
-    ]
-  },
-  {
-    "resource": "log-receiver",
-    "total": 10,
-    "passed": 5,
-    "failedStep": "fill-server_name",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7124
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1048
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 754
-      },
-      {
-        "id": "select-log_receiver",
-        "pass": true,
-        "ms": 1869
-      },
-      {
-        "id": "select-syslog_transport_mode",
-        "pass": true,
-        "ms": 7413
-      },
-      {
-        "id": "fill-server_name",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{server_name}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "network-connector",
-    "total": 10,
-    "passed": 7,
-    "failedStep": "configure-connector_choice",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7054
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1044
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 744
-      },
-      {
-        "id": "select-select_network_connector_type",
-        "pass": true,
-        "ms": 1864
-      },
-      {
-        "id": "select-routing_mode",
-        "pass": true,
-        "ms": 7387
-      },
-      {
-        "id": "select-snat_source_ip_selection",
-        "pass": true,
-        "ms": 7415
-      },
-      {
-        "id": "select-select_forward_proxy",
-        "pass": true,
-        "ms": 7416
-      },
-      {
-        "id": "configure-connector_choice",
-        "pass": false,
-        "ms": 17,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "advertise-policy",
-    "total": 11,
-    "passed": 9,
-    "failedStep": "fill-port_choice-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7575
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1052
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 755
-      },
-      {
-        "id": "select-virtual_site_or_site_or_network",
-        "pass": true,
-        "ms": 1872
-      },
-      {
-        "id": "select-reference",
-        "pass": true,
-        "ms": 7400
-      },
-      {
-        "id": "select-internet_vip_choice",
-        "pass": true,
-        "ms": 7415
-      },
-      {
-        "id": "select-tcp_udp_port",
-        "pass": true,
-        "ms": 7424
-      },
-      {
-        "id": "fill-tcp_udp_port_value",
-        "pass": true,
-        "ms": 860
-      },
-      {
-        "id": "configure-port_choice",
-        "pass": true,
-        "ms": 62
-      },
-      {
-        "id": "fill-port_choice-value",
-        "pass": false,
-        "ms": 158,
-        "err": "extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard"
-      }
-    ]
-  },
-  {
-    "resource": "nfv-service",
-    "total": 11,
-    "passed": 5,
-    "failedStep": "fill-provider_configuration-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7491
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1050
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 737
-      },
-      {
-        "id": "select-external_service_provider",
-        "pass": true,
-        "ms": 1866
-      },
-      {
-        "id": "configure-provider_configuration",
-        "pass": true,
-        "ms": 88
-      },
-      {
-        "id": "fill-provider_configuration-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{provider_configuration}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "cloud-connect",
-    "total": 12,
-    "passed": 7,
-    "failedStep": "fill-spoke_vpcs-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7194
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1043
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 754
-      },
-      {
-        "id": "select-provider",
-        "pass": true,
-        "ms": 1867
-      },
-      {
-        "id": "select-site_reference",
-        "pass": true,
-        "ms": 7400
-      },
-      {
-        "id": "select-credential_reference",
-        "pass": true,
-        "ms": 7383
-      },
-      {
-        "id": "configure-spoke_vpcs",
-        "pass": true,
-        "ms": 44
-      },
-      {
-        "id": "fill-spoke_vpcs-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{spoke_vpcs}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "cloud-link",
-    "total": 13,
-    "passed": 5,
-    "failedStep": "fill-bring_your_own_connections",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7034
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1049
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 748
-      },
-      {
-        "id": "select-type",
-        "pass": true,
-        "ms": 1866
-      },
-      {
-        "id": "add-item-bring_your_own_connections",
-        "pass": true,
-        "ms": 32
-      },
-      {
-        "id": "fill-bring_your_own_connections",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{bring_your_own_connections}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "proxy",
-    "total": 14,
-    "passed": 7,
-    "failedStep": "fill-site_or_virtual_site-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7488
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1037
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 755
-      },
-      {
-        "id": "select-http_connect_proxy_or_dynamic_reverse_proxy",
-        "pass": true,
-        "ms": 1864
-      },
-      {
-        "id": "select-http_connect",
-        "pass": true,
-        "ms": 1858
-      },
-      {
-        "id": "select-select_sites_for_proxy",
-        "pass": true,
-        "ms": 7282
-      },
-      {
-        "id": "configure-site_or_virtual_site",
-        "pass": true,
-        "ms": 102
-      },
-      {
-        "id": "fill-site_or_virtual_site-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{site_or_virtual_site}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "discovery",
-    "total": 16,
-    "passed": 7,
-    "failedStep": "fill-kubeconfig-value",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8087
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1041
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 737
-      },
-      {
-        "id": "select-virtual_site_or_site_or_network",
-        "pass": true,
-        "ms": 1872
-      },
-      {
-        "id": "select-reference",
-        "pass": true,
-        "ms": 7312
-      },
-      {
-        "id": "select-select_kubernetes_credentials",
-        "pass": true,
-        "ms": 7306
-      },
-      {
-        "id": "configure-kubeconfig",
-        "pass": true,
-        "ms": 68
-      },
-      {
-        "id": "fill-kubeconfig-value",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{kubeconfig}\" — param has no default or smart-default"
-      }
-    ]
-  },
-  {
-    "resource": "fleet",
-    "total": 16,
-    "passed": 15,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7537
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1045
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 748
-      },
-      {
-        "id": "fill-fleet_label_value",
-        "pass": true,
-        "ms": 749
-      },
-      {
-        "id": "select-select_bond_configuration",
-        "pass": true,
-        "ms": 7326
-      },
-      {
-        "id": "select-select_interface_config",
-        "pass": true,
-        "ms": 7341
-      },
-      {
-        "id": "select-select_storage_interface_configuration",
-        "pass": true,
-        "ms": 7313
-      },
-      {
-        "id": "select-select_storage_device_configuration",
-        "pass": true,
-        "ms": 7292
-      },
-      {
-        "id": "select-select_configuration_for_storage_classes",
-        "pass": true,
-        "ms": 7329
-      },
-      {
-        "id": "select-select_storage_static_routes",
-        "pass": true,
-        "ms": 7318
-      },
-      {
-        "id": "select-node_by_node_upgrade",
-        "pass": true,
-        "ms": 7334
-      },
-      {
-        "id": "fill-upgrade_wait_time",
-        "pass": true,
-        "ms": 857
-      },
-      {
-        "id": "select-node_batch_size",
-        "pass": true,
-        "ms": 7322
-      },
-      {
-        "id": "fill-node_batch_size_count",
-        "pass": true,
-        "ms": 859
-      },
-      {
-        "id": "select-sr_iov_interfaces",
-        "pass": true,
-        "ms": 7326
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30735,
-        "err": "waitFor \"text('xcsh-sweep-fleet')\" timed out after 30000ms"
-      }
-    ]
-  },
-  {
-    "resource": "securemesh-site",
-    "total": 20,
-    "passed": 4,
-    "failedStep": "fill-master_nodes",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7685
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1044
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 751
-      },
-      {
-        "id": "select-generic_server_certified_hardware",
-        "pass": true,
-        "ms": 7448
-      },
-      {
-        "id": "fill-master_nodes",
-        "pass": false,
-        "ms": 0,
-        "err": "unresolved placeholder \"{master_nodes}\" — param has no default or smart-default"
       }
     ]
   }
