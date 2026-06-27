@@ -2273,5 +2273,175 @@
         "err": "unresolved placeholder \"{site_subnet_parameters}\" — param has no default or smart-default"
       }
     ]
+  },
+  {
+    "resource": "tcp-load-balancer",
+    "total": 8,
+    "passed": 4,
+    "failedStep": "fill-domains",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7991
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1039
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 747
+      },
+      {
+        "id": "add-item-domains",
+        "pass": true,
+        "ms": 35
+      },
+      {
+        "id": "fill-domains",
+        "pass": false,
+        "ms": 4,
+        "err": "fill(\"ngx-datatable input.form-control\"): no match for ngx-datatable input.form-control"
+      }
+    ]
+  },
+  {
+    "resource": "usb-policy",
+    "total": 8,
+    "passed": 4,
+    "failedStep": "fill-allowed_usb_devices-value",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7492
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1045
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 747
+      },
+      {
+        "id": "configure-allowed_usb_devices",
+        "pass": true,
+        "ms": 51
+      },
+      {
+        "id": "fill-allowed_usb_devices-value",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{allowed_usb_devices}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "address-allocator",
+    "total": 9,
+    "passed": 6,
+    "failedStep": "configure-address_allocation_scheme",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7416
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1043
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 750
+      },
+      {
+        "id": "select-address_allocator_mode",
+        "pass": true,
+        "ms": 7420
+      },
+      {
+        "id": "fill-allocation_unit",
+        "pass": true,
+        "ms": 857
+      },
+      {
+        "id": "fill-address_pool",
+        "pass": true,
+        "ms": 747
+      },
+      {
+        "id": "configure-address_allocation_scheme",
+        "pass": false,
+        "ms": 14,
+        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
+      }
+    ]
+  },
+  {
+    "resource": "api-credential",
+    "total": 9,
+    "passed": 3,
+    "failedStep": "fill-credential_name",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7535
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 64
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 889
+      },
+      {
+        "id": "fill-credential_name",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{credential_name}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "container-registry",
+    "total": 9,
+    "passed": 3,
+    "failedStep": "fill-server_fqdn",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 9032
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1043
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 749
+      },
+      {
+        "id": "fill-server_fqdn",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{server_fqdn}\" — param has no default or smart-default"
+      }
+    ]
   }
 ]

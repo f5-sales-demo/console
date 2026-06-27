@@ -31,6 +31,10 @@ params:
     required: false
     description: TCP/UDP Port
     default: TCP/UDP Port
+  tcp_udp_port_value:
+    required: false
+    description: TCP/UDP Port (value)
+    default: 80
 steps:
   - id: navigate-to-list
     action: navigate
@@ -78,6 +82,12 @@ steps:
     value: "{tcp_udp_port}"
     description: Select TCP/UDP Port
     condition: params.tcp_udp_port is set
+  - id: fill-tcp_udp_port_value
+    action: fill
+    selector: spinbutton[name='TCP/UDP Port (value)']
+    value: "{tcp_udp_port_value}"
+    description: "Set TCP/UDP Port (value) (default: 80)"
+    condition: params.tcp_udp_port_value is set
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

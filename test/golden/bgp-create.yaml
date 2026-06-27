@@ -4,9 +4,9 @@ label: Create BGP Peers & Policies
 resource: bgp
 operation: create
 preconditions:
-  - user_logged_in
-  - namespace_selected
-  - "role_minimum: admin"
+- user_logged_in
+- namespace_selected
+- 'role_minimum: admin'
 params:
   namespace:
     required: true
@@ -26,77 +26,77 @@ params:
   asn:
     required: false
     description: ASN
-    default: 0
+    default: 65000
   router_id:
     required: false
     description: Router ID
     default: From Interface Address
   bgp_parameters:
     required: true
-    description: "Server-required: Field should be not nil"
+    description: 'Server-required: Field should be not nil'
 steps:
-  - id: navigate-to-list
-    action: navigate
-    url: /web/workspaces/multi-cloud-network-connect/manage/networking/external_connectivity/bgp
-    wait_for: text('BGP Peers & Policies')
-    description: Navigate to BGP Peers & Policies list page
-  - id: click-add-tab
-    action: click
-    selector: text('Add BGP Peers')
-    wait_for: textbox[name='Name']
-    description: Click Add BGP to open the create form
-  - id: fill-name
-    action: fill
-    selector: textbox[name='Name']
-    value: "{name}"
-    description: Enter Name
-  - id: select-where
-    action: select
-    selector: listbox
-    context: Where section
-    value: "{where}"
-    description: Select Where
-    condition: params.where is set
-  - id: select-reference
-    action: select
-    selector: listbox
-    context: Reference section
-    value: "{reference}"
-    description: Select Reference
-  - id: fill-asn
-    action: fill
-    selector: spinbutton[name='ASN']
-    value: "{asn}"
-    description: Set ASN
-  - id: select-router_id
-    action: select
-    selector: listbox
-    context: Router ID section
-    value: "{router_id}"
-    description: Select Router ID
-    condition: params.router_id is set
-  - id: configure-bgp_parameters
-    action: click
-    selector: text('Configure')
-    context: Bgp Parameters section
-    description: Open the Bgp Parameters configuration ('Configure' is a link, not a button)
-  - id: fill-bgp_parameters-value
-    action: fill
-    selector: textbox
-    value: "{bgp_parameters}"
-    description: Enter the Bgp Parameters value via the 'bgp_parameters' parameter
-  - id: save
-    action: click
-    selector: "[class*='save-bt'],[class*='submit-button']"
-    context: footer
-    wait_for: text('{name}')
-    wait_timeout_ms: 30000
-    description: Save/submit the form (union selector matches save-bt OR submit-button)
+- id: navigate-to-list
+  action: navigate
+  url: /web/workspaces/multi-cloud-network-connect/manage/networking/external_connectivity/bgp
+  wait_for: text('BGP Peers & Policies')
+  description: Navigate to BGP Peers & Policies list page
+- id: click-add-tab
+  action: click
+  selector: text('Add BGP Peers')
+  wait_for: textbox[name='Name']
+  description: Click Add BGP to open the create form
+- id: fill-name
+  action: fill
+  selector: textbox[name='Name']
+  value: '{name}'
+  description: Enter Name
+- id: select-where
+  action: select
+  selector: listbox
+  context: Where section
+  value: '{where}'
+  description: Select Where
+  condition: params.where is set
+- id: select-reference
+  action: select
+  selector: listbox
+  context: Reference section
+  value: '{reference}'
+  description: Select Reference
+- id: fill-asn
+  action: fill
+  selector: spinbutton[name='ASN']
+  value: '{asn}'
+  description: Set ASN
+- id: select-router_id
+  action: select
+  selector: listbox
+  context: Router ID section
+  value: '{router_id}'
+  description: Select Router ID
+  condition: params.router_id is set
+- id: configure-bgp_parameters
+  action: click
+  selector: text('Configure')
+  context: Bgp Parameters section
+  description: Open the Bgp Parameters configuration ('Configure' is a link, not a button)
+- id: fill-bgp_parameters-value
+  action: fill
+  selector: textbox
+  value: '{bgp_parameters}'
+  description: Enter the Bgp Parameters value via the 'bgp_parameters' parameter
+- id: save
+  action: click
+  selector: '[class*=''save-bt''],[class*=''submit-button'']'
+  context: footer
+  wait_for: text('{name}')
+  wait_timeout_ms: 30000
+  description: Save/submit the form (union selector matches save-bt OR submit-button)
 postconditions:
-  - resource_list_page_visible
-  - "resource_name_in_list: {name}"
+- resource_list_page_visible
+- 'resource_name_in_list: {name}'
 metadata:
   confidence: validated
   discovered_at: 2026-06-24
-  console_version: "2025.06"
+  console_version: '2025.06'
   notes: Click-add-tab selector fixed from form-discovery. Promoted to validated to survive regen.
