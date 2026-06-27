@@ -3318,5 +3318,114 @@
         "err": "waitFor \"text('xcsh-sweep-fleet')\" timed out after 30000ms"
       }
     ]
+  },
+  {
+    "resource": "securemesh-site",
+    "total": 20,
+    "passed": 19,
+    "failedStep": "save",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 8146
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1054
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 14
+      },
+      {
+        "id": "select-generic_server_certified_hardware",
+        "pass": true,
+        "ms": 7338
+      },
+      {
+        "id": "fill-master_nodes",
+        "pass": true,
+        "ms": 752
+      },
+      {
+        "id": "select-bond_configuration",
+        "pass": true,
+        "ms": 7311
+      },
+      {
+        "id": "select-configure_networking",
+        "pass": true,
+        "ms": 7338
+      },
+      {
+        "id": "select-logs_streaming",
+        "pass": true,
+        "ms": 7277
+      },
+      {
+        "id": "select-f5xc_software_version",
+        "pass": true,
+        "ms": 7282
+      },
+      {
+        "id": "select-operating_system_version",
+        "pass": true,
+        "ms": 7275
+      },
+      {
+        "id": "select-node_by_node_upgrade",
+        "pass": true,
+        "ms": 7318
+      },
+      {
+        "id": "fill-upgrade_wait_time",
+        "pass": true,
+        "ms": 15
+      },
+      {
+        "id": "select-node_batch_size",
+        "pass": true,
+        "ms": 7311
+      },
+      {
+        "id": "fill-node_batch_size_count",
+        "pass": true,
+        "ms": 10
+      },
+      {
+        "id": "select-blocked_services",
+        "pass": true,
+        "ms": 7291
+      },
+      {
+        "id": "select-offline_survivability_mode",
+        "pass": true,
+        "ms": 7303
+      },
+      {
+        "id": "select-performance_mode",
+        "pass": true,
+        "ms": 7337
+      },
+      {
+        "id": "configure-master_node_configuration",
+        "pass": true,
+        "ms": 50
+      },
+      {
+        "id": "fill-master_node_configuration-value",
+        "pass": true,
+        "ms": 5
+      },
+      {
+        "id": "save",
+        "pass": false,
+        "ms": 1,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+      }
+    ]
   }
 ]
