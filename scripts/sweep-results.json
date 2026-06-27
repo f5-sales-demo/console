@@ -1995,5 +1995,283 @@
         "err": "unresolved placeholder \"{provider_choice}\" — param has no default or smart-default"
       }
     ]
+  },
+  {
+    "resource": "third-party-application",
+    "total": 7,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7051
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 20,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+      }
+    ]
+  },
+  {
+    "resource": "tunnel",
+    "total": 7,
+    "passed": 5,
+    "failedStep": "fill-local_ip-value",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 6920
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1053
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 742
+      },
+      {
+        "id": "select-tunnel_type",
+        "pass": true,
+        "ms": 7420
+      },
+      {
+        "id": "configure-local_ip",
+        "pass": true,
+        "ms": 62
+      },
+      {
+        "id": "fill-local_ip-value",
+        "pass": false,
+        "ms": 164,
+        "err": "extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard"
+      }
+    ]
+  },
+  {
+    "resource": "virtual-site",
+    "total": 7,
+    "passed": 4,
+    "failedStep": "select-label-key-site_selector_expression",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7542
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1047
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 749
+      },
+      {
+        "id": "add-label-site_selector_expression",
+        "pass": true,
+        "ms": 28
+      },
+      {
+        "id": "select-label-key-site_selector_expression",
+        "pass": false,
+        "ms": 2,
+        "err": "extension tool \"label_select\" failed: \"Error: label_select: input \\\"input[placeholder='Type to search']\\\" not found\""
+      }
+    ]
+  },
+  {
+    "resource": "aws-vpc-site",
+    "total": 8,
+    "passed": 6,
+    "failedStep": "fill-deployment-value",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7522
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1040
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 742
+      },
+      {
+        "id": "select-aws_region",
+        "pass": true,
+        "ms": 7441
+      },
+      {
+        "id": "attach-aws_credentials",
+        "pass": true,
+        "ms": 0,
+        "err": "skipped (condition)"
+      },
+      {
+        "id": "configure-deployment",
+        "pass": true,
+        "ms": 86
+      },
+      {
+        "id": "fill-deployment-value",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{deployment}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "azure-vnet-site",
+    "total": 8,
+    "passed": 6,
+    "failedStep": "fill-deployment-value",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7530
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1052
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 749
+      },
+      {
+        "id": "select-azure_region",
+        "pass": true,
+        "ms": 7442
+      },
+      {
+        "id": "attach-azure_credentials",
+        "pass": true,
+        "ms": 0,
+        "err": "skipped (condition)"
+      },
+      {
+        "id": "configure-deployment",
+        "pass": true,
+        "ms": 66
+      },
+      {
+        "id": "fill-deployment-value",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{deployment}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "cdn-cache-rule",
+    "total": 8,
+    "passed": 3,
+    "failedStep": "fill-rule_name",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7478
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1052
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 757
+      },
+      {
+        "id": "fill-rule_name",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{rule_name}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "global-log-receiver",
+    "total": 8,
+    "passed": 0,
+    "failedStep": "navigate-to-list",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": false,
+        "ms": 22736,
+        "err": "waitFor \"text('Global Log Receivers')\" timed out after 15000ms"
+      }
+    ]
+  },
+  {
+    "resource": "service-credential",
+    "total": 8,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 8030
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 15,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+      }
+    ]
+  },
+  {
+    "resource": "subnet",
+    "total": 8,
+    "passed": 4,
+    "failedStep": "fill-site_subnet_parameters-value",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7993
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1045
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 752
+      },
+      {
+        "id": "configure-site_subnet_parameters",
+        "pass": true,
+        "ms": 46
+      },
+      {
+        "id": "fill-site_subnet_parameters-value",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{site_subnet_parameters}\" — param has no default or smart-default"
+      }
+    ]
   }
 ]
