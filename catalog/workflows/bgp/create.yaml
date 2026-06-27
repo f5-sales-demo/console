@@ -42,7 +42,7 @@ steps:
     description: Navigate to BGP Peers & Policies list page
   - id: click-add-tab
     action: click
-    selector: text('Add BGP')
+    selector: text('Add BGP Peers')
     wait_for: textbox[name='Name']
     description: Click Add BGP to open the create form
   - id: fill-name

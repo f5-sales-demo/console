@@ -24,7 +24,7 @@ steps:
     description: Navigate to Rate Limiter Policies list page
   - id: click-add-tab
     action: click
-    selector: text('Add Rate Limiter')
+    selector: text('Add Rate Limiter Policy')
     wait_for: textbox[name='Name']
     description: Click Add Rate Limiter to open the create form
   - id: fill-name

@@ -31,7 +31,7 @@ steps:
     description: Navigate to Secure Mesh Sites v2 list page
   - id: click-add-tab
     action: click
-    selector: text('Add Secure Mesh Site v2')
+    selector: text('Add Secure Mesh Site')
     wait_for: textbox[name='Name']
     description: Click Add Secure Mesh Site v2 to open the create form
   - id: fill-name
