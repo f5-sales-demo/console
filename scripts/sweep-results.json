@@ -944,68 +944,6 @@
     ]
   },
   {
-    "resource": "route-object",
-    "total": 5,
-    "passed": 3,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8567
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1035
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 192
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 60137,
-        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-route-object')\" timed out after"
-      }
-    ]
-  },
-  {
-    "resource": "service-policy",
-    "total": 5,
-    "passed": 5,
-    "failedStep": null,
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7101
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1045
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 188
-      },
-      {
-        "id": "save",
-        "pass": true,
-        "ms": 1056
-      },
-      {
-        "id": "verify-created",
-        "pass": true,
-        "ms": 0
-      }
-    ]
-  },
-  {
     "resource": "service-policy-rule",
     "total": 5,
     "passed": 1,
@@ -1049,35 +987,6 @@
         "pass": false,
         "ms": 24241,
         "err": "waitFor \"text('HTTP Monitors')\" timed out after 15000ms"
-      }
-    ]
-  },
-  {
-    "resource": "virtual-host",
-    "total": 5,
-    "passed": 3,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 9032
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1040
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 174
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 60479,
-        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-virtual-host')\" timed out after"
       }
     ]
   },
@@ -1225,20 +1134,6 @@
         "pass": false,
         "ms": 30606,
         "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-app-api-group')\" timed out afte"
-      }
-    ]
-  },
-  {
-    "resource": "app-firewall",
-    "total": 6,
-    "passed": 0,
-    "failedStep": "navigate-to-list",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": false,
-        "ms": 23867,
-        "err": "waitFor \"text('App Firewalls')\" timed out after 15000ms"
       }
     ]
   },
@@ -1732,25 +1627,6 @@
         "id": "click-add-tab",
         "pass": false,
         "ms": 14,
-        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
-      }
-    ]
-  },
-  {
-    "resource": "http-load-balancer",
-    "total": 7,
-    "passed": 1,
-    "failedStep": "click-add-tab",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8967
-      },
-      {
-        "id": "click-add-tab",
-        "pass": false,
-        "ms": 3,
         "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
@@ -2495,59 +2371,6 @@
     ]
   },
   {
-    "resource": "health-check",
-    "total": 9,
-    "passed": 9,
-    "failedStep": null,
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 8745
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1035
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 184
-      },
-      {
-        "id": "select-type",
-        "pass": true,
-        "ms": 667
-      },
-      {
-        "id": "set-timeout",
-        "pass": true,
-        "ms": 198
-      },
-      {
-        "id": "set-interval",
-        "pass": true,
-        "ms": 177
-      },
-      {
-        "id": "set-unhealthy-threshold",
-        "pass": true,
-        "ms": 187
-      },
-      {
-        "id": "set-healthy-threshold",
-        "pass": true,
-        "ms": 188
-      },
-      {
-        "id": "save",
-        "pass": true,
-        "ms": 1059
-      }
-    ]
-  },
-  {
     "resource": "bgp",
     "total": 10,
     "passed": 7,
@@ -3151,6 +2974,105 @@
         "pass": false,
         "ms": 0,
         "err": "unresolved placeholder \"{master_nodes}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "route-object",
+    "total": 5,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 8849
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 20127,
+        "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
+      }
+    ]
+  },
+  {
+    "resource": "service-policy",
+    "total": 5,
+    "passed": 5,
+    "failedStep": null,
+    "steps": [
+      {
+        "id": "pre-check",
+        "pass": true,
+        "ms": 0,
+        "err": "already exists — skipped create"
+      }
+    ]
+  },
+  {
+    "resource": "virtual-host",
+    "total": 5,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 9184
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 20146,
+        "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
+      }
+    ]
+  },
+  {
+    "resource": "app-firewall",
+    "total": 6,
+    "passed": 0,
+    "failedStep": "navigate-to-list",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": false,
+        "ms": 24777,
+        "err": "waitFor \"text('App Firewalls')\" timed out after 15000ms"
+      }
+    ]
+  },
+  {
+    "resource": "http-load-balancer",
+    "total": 7,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 9560
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 20128,
+        "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
+      }
+    ]
+  },
+  {
+    "resource": "health-check",
+    "total": 9,
+    "passed": 9,
+    "failedStep": null,
+    "steps": [
+      {
+        "id": "pre-check",
+        "pass": true,
+        "ms": 0,
+        "err": "already exists — skipped create"
       }
     ]
   }
