@@ -3185,48 +3185,49 @@
   {
     "resource": "service-credential",
     "total": 8,
-    "passed": 8,
-    "failedStep": null,
+    "passed": 7,
+    "failedStep": "save",
     "steps": [
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7019
+        "ms": 7540
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 55
+        "ms": 65
       },
       {
         "id": "fill-credential_email",
         "pass": true,
-        "ms": 335
+        "ms": 334
       },
       {
         "id": "select-credential_type",
         "pass": true,
-        "ms": 652
+        "ms": 639
       },
       {
         "id": "fill-password",
         "pass": true,
-        "ms": 179
+        "ms": 180
       },
       {
         "id": "fill-confirm_password",
         "pass": true,
-        "ms": 173
+        "ms": 179
       },
       {
         "id": "fill-expiry_date",
         "pass": true,
-        "ms": 194
+        "ms": 189
       },
       {
         "id": "save",
-        "pass": true,
-        "ms": 21
+        "pass": false,
+        "ms": 30677,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-test-cred')\" timed out after 30000ms"
       }
     ]
   }

@@ -32,8 +32,8 @@ params:
     description: Confirm Password
   expiry_date:
     required: true
-    description: Expiry Date in MM/DD/YYYY format (console validates this format, not ISO)
-    default: '12/31/2027'
+    description: Expiry Date in MM/DD/YYYY. API Certificate max ~90 days from now. Use today+Nd for a dynamic valid date.
+    default: 'today+30d'
 steps:
   - id: navigate-to-list
     action: navigate
