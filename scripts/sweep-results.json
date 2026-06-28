@@ -956,5 +956,43 @@
         "err": "extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard"
       }
     ]
+  },
+  {
+    "resource": "bigip-virtual-server",
+    "total": 3,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 6463
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 15,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+      }
+    ]
+  },
+  {
+    "resource": "mcn-secret-policy-rule",
+    "total": 3,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 6992
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 15,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+      }
+    ]
   }
 ]
