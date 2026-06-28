@@ -3278,49 +3278,48 @@
   {
     "resource": "api-credential",
     "total": 8,
-    "passed": 7,
-    "failedStep": "save",
+    "passed": 8,
+    "failedStep": null,
     "steps": [
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7442
+        "ms": 6463
       },
       {
         "id": "click-add-tab",
         "pass": true,
-        "ms": 43
+        "ms": 57
       },
       {
         "id": "fill-credential_name",
         "pass": true,
-        "ms": 335
+        "ms": 337
       },
       {
         "id": "select-credential_type",
         "pass": true,
-        "ms": 657
+        "ms": 664
       },
       {
         "id": "fill-password",
         "pass": true,
-        "ms": 197
+        "ms": 194
       },
       {
         "id": "fill-confirm_password",
         "pass": true,
-        "ms": 188
+        "ms": 196
       },
       {
         "id": "fill-expiry_date",
         "pass": true,
-        "ms": 190
+        "ms": 195
       },
       {
         "id": "save",
-        "pass": false,
-        "ms": 30612,
-        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-test-api-cred')\" timed out after 3000"
+        "pass": true,
+        "ms": 31
       }
     ]
   }
