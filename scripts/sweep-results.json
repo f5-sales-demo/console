@@ -2508,60 +2508,6 @@
     ]
   },
   {
-    "resource": "api-credential",
-    "total": 9,
-    "passed": 8,
-    "failedStep": "save",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7026
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 47
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 336
-      },
-      {
-        "id": "fill-credential_name",
-        "pass": true,
-        "ms": 175
-      },
-      {
-        "id": "select-credential_type",
-        "pass": true,
-        "ms": 655
-      },
-      {
-        "id": "fill-password",
-        "pass": true,
-        "ms": 184
-      },
-      {
-        "id": "fill-confirm_password",
-        "pass": true,
-        "ms": 178
-      },
-      {
-        "id": "fill-expiry_date",
-        "pass": true,
-        "ms": 200
-      },
-      {
-        "id": "save",
-        "pass": false,
-        "ms": 30628,
-        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-api-credential')\" timed out aft"
-      }
-    ]
-  },
-  {
     "resource": "container-registry",
     "total": 9,
     "passed": 8,
@@ -3203,6 +3149,178 @@
         "pass": false,
         "ms": 0,
         "err": "unresolved placeholder \"{kubeconfig}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "fleet",
+    "total": 16,
+    "passed": 15,
+    "failedStep": "save",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 6956
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1050
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 188
+      },
+      {
+        "id": "fill-fleet_label_value",
+        "pass": true,
+        "ms": 177
+      },
+      {
+        "id": "select-select_bond_configuration",
+        "pass": true,
+        "ms": 6532
+      },
+      {
+        "id": "select-select_interface_config",
+        "pass": true,
+        "ms": 6520
+      },
+      {
+        "id": "select-select_storage_interface_configuration",
+        "pass": true,
+        "ms": 6660
+      },
+      {
+        "id": "select-select_storage_device_configuration",
+        "pass": true,
+        "ms": 6656
+      },
+      {
+        "id": "select-select_configuration_for_storage_classes",
+        "pass": true,
+        "ms": 6623
+      },
+      {
+        "id": "select-select_storage_static_routes",
+        "pass": true,
+        "ms": 6607
+      },
+      {
+        "id": "select-node_by_node_upgrade",
+        "pass": true,
+        "ms": 6629
+      },
+      {
+        "id": "fill-upgrade_wait_time",
+        "pass": true,
+        "ms": 193
+      },
+      {
+        "id": "select-node_batch_size",
+        "pass": true,
+        "ms": 6639
+      },
+      {
+        "id": "fill-node_batch_size_count",
+        "pass": true,
+        "ms": 188
+      },
+      {
+        "id": "select-sr_iov_interfaces",
+        "pass": true,
+        "ms": 6650
+      },
+      {
+        "id": "save",
+        "pass": false,
+        "ms": 30724,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-sweep-fleet')\" timed out after 30000m"
+      }
+    ]
+  },
+  {
+    "resource": "securemesh-site",
+    "total": 20,
+    "passed": 4,
+    "failedStep": "fill-master_nodes",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7493
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1050
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 191
+      },
+      {
+        "id": "select-generic_server_certified_hardware",
+        "pass": true,
+        "ms": 6648
+      },
+      {
+        "id": "fill-master_nodes",
+        "pass": false,
+        "ms": 0,
+        "err": "unresolved placeholder \"{master_nodes}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "api-credential",
+    "total": 8,
+    "passed": 7,
+    "failedStep": "save",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7442
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 43
+      },
+      {
+        "id": "fill-credential_name",
+        "pass": true,
+        "ms": 335
+      },
+      {
+        "id": "select-credential_type",
+        "pass": true,
+        "ms": 657
+      },
+      {
+        "id": "fill-password",
+        "pass": true,
+        "ms": 197
+      },
+      {
+        "id": "fill-confirm_password",
+        "pass": true,
+        "ms": 188
+      },
+      {
+        "id": "fill-expiry_date",
+        "pass": true,
+        "ms": 190
+      },
+      {
+        "id": "save",
+        "pass": false,
+        "ms": 30612,
+        "err": "save rejected (form stayed on page — server validation error). waitFor \"text('xcsh-test-api-cred')\" timed out after 3000"
       }
     ]
   }
