@@ -1350,35 +1350,6 @@
     ]
   },
   {
-    "resource": "certificate",
-    "total": 6,
-    "passed": 3,
-    "failedStep": "configure-certificate_url",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 6979
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1052
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 194
-      },
-      {
-        "id": "configure-certificate_url",
-        "pass": false,
-        "ms": 13,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
     "resource": "data-type",
     "total": 6,
     "passed": 4,
@@ -1680,40 +1651,6 @@
         "id": "configure-count",
         "pass": false,
         "ms": 6,
-        "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
-      }
-    ]
-  },
-  {
-    "resource": "crl",
-    "total": 7,
-    "passed": 4,
-    "failedStep": "configure-refresh_interval",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7034
-      },
-      {
-        "id": "click-add-tab",
-        "pass": true,
-        "ms": 1038
-      },
-      {
-        "id": "fill-name",
-        "pass": true,
-        "ms": 182
-      },
-      {
-        "id": "fill-crl_server_address",
-        "pass": true,
-        "ms": 180
-      },
-      {
-        "id": "configure-refresh_interval",
-        "pass": false,
-        "ms": 3,
         "err": "extension tool \"click_element\" failed: \"Error: evalForObject error: Uncaught\""
       }
     ]
@@ -3320,6 +3257,69 @@
         "id": "save",
         "pass": true,
         "ms": 31
+      }
+    ]
+  },
+  {
+    "resource": "certificate",
+    "total": 6,
+    "passed": 3,
+    "failedStep": "configure-certificate_url",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 6062
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1046
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 186
+      },
+      {
+        "id": "configure-certificate_url",
+        "pass": false,
+        "ms": 21,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+      }
+    ]
+  },
+  {
+    "resource": "crl",
+    "total": 7,
+    "passed": 4,
+    "failedStep": "configure-refresh_interval",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7147
+      },
+      {
+        "id": "click-add-tab",
+        "pass": true,
+        "ms": 1053
+      },
+      {
+        "id": "fill-name",
+        "pass": true,
+        "ms": 185
+      },
+      {
+        "id": "fill-crl_server_address",
+        "pass": true,
+        "ms": 194
+      },
+      {
+        "id": "configure-refresh_interval",
+        "pass": false,
+        "ms": 16,
+        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
       }
     ]
   }
