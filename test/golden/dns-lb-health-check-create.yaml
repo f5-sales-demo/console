@@ -23,7 +23,7 @@ params:
   health_check_port:
     required: false
     description: Health Check Port
-    default: 80
+    default: '80'
   virtual_host:
     required: false
     description: Virtual Host
@@ -53,10 +53,10 @@ steps:
   condition: params.health_check_type is set
 - id: select-health_check_port
   action: select
-  selector: listbox
-  context: Health Check Port section
+  selector: listbox[name='Health Check Port']
+  context: HTTP Health Check section
   value: '{health_check_port}'
-  description: Select Health Check Port
+  description: "Select Health Check Port (listbox, default 0 \u2192 must pick a port \u22651)"
   condition: params.health_check_port is set
 - id: select-virtual_host
   action: select
