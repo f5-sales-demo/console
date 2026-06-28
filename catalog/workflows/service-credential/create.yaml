@@ -31,7 +31,8 @@ params:
     description: Confirm Password
   expiry_date:
     required: true
-    description: Expiry Date
+    description: Expiry Date (ISO format YYYY-MM-DD for the native date input)
+    default: '2027-12-31'
 steps:
   - id: navigate-to-list
     action: navigate

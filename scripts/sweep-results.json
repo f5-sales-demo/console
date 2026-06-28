@@ -3185,19 +3185,44 @@
   {
     "resource": "service-credential",
     "total": 8,
-    "passed": 1,
-    "failedStep": "click-add-tab",
+    "passed": 6,
+    "failedStep": "fill-expiry_date",
     "steps": [
       {
         "id": "navigate-to-list",
         "pass": true,
-        "ms": 7545
+        "ms": 6481
       },
       {
         "id": "click-add-tab",
+        "pass": true,
+        "ms": 65
+      },
+      {
+        "id": "fill-credential_email",
+        "pass": true,
+        "ms": 337
+      },
+      {
+        "id": "select-credential_type",
+        "pass": true,
+        "ms": 647
+      },
+      {
+        "id": "fill-password",
+        "pass": true,
+        "ms": 178
+      },
+      {
+        "id": "fill-confirm_password",
+        "pass": true,
+        "ms": 171
+      },
+      {
+        "id": "fill-expiry_date",
         "pass": false,
-        "ms": 15151,
-        "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
+        "ms": 1,
+        "err": "unresolved placeholder \"{expiry_date}\" — param has no default or smart-default"
       }
     ]
   }
