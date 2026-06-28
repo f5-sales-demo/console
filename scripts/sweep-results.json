@@ -2265,25 +2265,6 @@
     ]
   },
   {
-    "resource": "service-credential",
-    "total": 8,
-    "passed": 1,
-    "failedStep": "click-add-tab",
-    "steps": [
-      {
-        "id": "navigate-to-list",
-        "pass": true,
-        "ms": 7654
-      },
-      {
-        "id": "click-add-tab",
-        "pass": false,
-        "ms": 13,
-        "err": "extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
-      }
-    ]
-  },
-  {
     "resource": "subnet",
     "total": 8,
     "passed": 4,
@@ -3198,6 +3179,25 @@
         "pass": false,
         "ms": 0,
         "err": "unresolved placeholder \"{master_nodes}\" — param has no default or smart-default"
+      }
+    ]
+  },
+  {
+    "resource": "service-credential",
+    "total": 8,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 7545
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 15151,
+        "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
       }
     ]
   }
