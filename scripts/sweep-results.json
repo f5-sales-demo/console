@@ -1060,5 +1060,43 @@
         "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
       }
     ]
+  },
+  {
+    "resource": "alert-receiver",
+    "total": 6,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 8328
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 20146,
+        "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
+      }
+    ]
+  },
+  {
+    "resource": "app-api-group",
+    "total": 6,
+    "passed": 1,
+    "failedStep": "click-add-tab",
+    "steps": [
+      {
+        "id": "navigate-to-list",
+        "pass": true,
+        "ms": 8448
+      },
+      {
+        "id": "click-add-tab",
+        "pass": false,
+        "ms": 20171,
+        "err": "waitFor \"textbox[name='Name']\" timed out after 15000ms"
+      }
+    ]
   }
 ]
