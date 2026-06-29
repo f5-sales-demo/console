@@ -8,7 +8,7 @@ console:
   workspace: distributed-apps
   workspace_label: Distributed Apps
   route_prefix: /web/workspaces/distributed-apps
-  route_pattern: /namespaces/{namespace}/manage/container_registries
+  route_pattern: /namespaces/{namespace}/applications/container_registries
   menu_path:
     - Manage
     - Container Registries
@@ -37,6 +37,9 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 7
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: inferred
   discovered_at: '2026-06-16'

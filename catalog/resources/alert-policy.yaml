@@ -5,13 +5,14 @@ _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
   kind: alert_policy
 console:
-  workspace: shared-configuration
-  workspace_label: Shared Configuration
-  route_prefix: /web/workspaces/shared-configuration
-  route_pattern: /namespaces/shared/manage/alert_policies
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/alert_config/alert_policies
   menu_path:
-    - Shared Configuration
+    - Multi-Cloud Network Connect
     - Manage
+    - Alerts Management
     - Alert Policies
   breadcrumbs:
     - Home
@@ -40,7 +41,7 @@ form:
         - metadata.labels
         - metadata.description
 enriched_fields:
-  count: 4
+  count: 5
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated

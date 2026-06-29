@@ -22,9 +22,9 @@ console:
     - CDN Cache Rules
 add_action:
   type: tab
-  label: Add CDN Cache Rule
+  label: Add CDN Cache Rules
 save_action:
-  label: Add CDN Cache Rule
+  label: Add CDN Cache Rules
 cancel_action:
   label: Cancel All
 form_tabs:
@@ -39,6 +39,9 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 6
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated
   discovered_at: '2026-06-16'

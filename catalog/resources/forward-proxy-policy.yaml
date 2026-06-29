@@ -5,14 +5,14 @@ _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
   kind: forward_proxy_policy
 console:
-  workspace: multi-cloud-app-connect
-  workspace_label: Multi-Cloud App Connect
-  route_prefix: /web/workspaces/multi-cloud-app-connect
-  route_pattern: /namespaces/{namespace}/manage/security/forward_proxy_policies
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/firewall/forward_proxy_policy
   menu_path:
-    - Multi-Cloud App Connect
+    - Multi-Cloud Network Connect
     - Manage
-    - Security
+    - Firewall
     - Forward Proxy Policies
   breadcrumbs:
     - Home
