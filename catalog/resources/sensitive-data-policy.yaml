@@ -8,7 +8,7 @@ console:
   workspace: web-app-and-api-protection
   workspace_label: Web App & API Protection
   route_prefix: /web/workspaces/web-app-and-api-protection
-  route_pattern: /namespaces/{namespace}/manage/api_security/sensitive_data_policies
+  route_pattern: /namespaces/{namespace}/manage/api_security/sensitive_data_policy
   menu_path:
     - Web App & API Protection
     - Manage

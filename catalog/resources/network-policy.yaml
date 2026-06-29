@@ -8,7 +8,7 @@ console:
   workspace: distributed-apps
   workspace_label: Distributed Apps
   route_prefix: /web/workspaces/distributed-apps
-  route_pattern: /namespaces/{namespace}/manage/networking/network_policies
+  route_pattern: /namespaces/{namespace}/manage/network_policies/network_policies
   menu_path:
     - Distributed Apps
     - Manage

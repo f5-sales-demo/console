@@ -8,7 +8,7 @@ console:
   workspace: shared-configuration
   workspace_label: Shared Configuration
   route_prefix: /web/workspaces/shared-configuration
-  route_pattern: /namespaces/shared/manage/virtual_sites
+  route_pattern: /manage/virtual_sites
   menu_path:
     - Shared Configuration
     - Manage

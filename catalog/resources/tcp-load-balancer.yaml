@@ -61,7 +61,7 @@ form:
       show_advanced_fields: true
       api_fields: []
 enriched_fields:
-  count: 8
+  count: 10
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated

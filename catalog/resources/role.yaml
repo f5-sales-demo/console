@@ -37,6 +37,9 @@ form:
         - metadata.name
         - metadata.labels
         - metadata.description
+enriched_fields:
+  count: 3
+  source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated
   discovered_at: '2026-06-16'

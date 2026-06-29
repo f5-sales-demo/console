@@ -1,32 +1,28 @@
 schema: urn:xcsh:console:resource:v1
-id: bgp
-label: BGP Peers & Policies
+id: ticket-tracking-system
+label: Ticket Tracking System
 _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
-  kind: bgp
+  kind: ticket_tracking_system
 console:
-  workspace: multi-cloud-network-connect
-  workspace_label: Multi-Cloud Network Connect
-  route_prefix: /web/workspaces/multi-cloud-network-connect
-  route_pattern: /manage/networking/external_connectivity/bgp
+  workspace: shared-configuration
+  workspace_label: Shared Configuration
+  route_prefix: /web/workspaces/shared-configuration
+  route_pattern: /manage/ticket_tracking_system
   menu_path:
     - Manage
-    - Networking
-    - External Connectivity
-    - BGP Peers & Policies
+    - Ticket Tracking System
   breadcrumbs:
     - Home
-    - Multi-Cloud Network Connect
+    - Shared Configuration
     - Manage
-    - Networking
-    - External Connectivity
-    - BGP Peers & Policies
+    - Ticket Tracking System
   namespace_scoped: false
 add_action:
   type: tab
-  label: Add BGP
+  label: Add Ticket Tracking System
 save_action:
-  label: Add BGP
+  label: Add Ticket Tracking System
 cancel_action:
   label: Cancel All
 form_tabs:
@@ -42,9 +38,9 @@ form:
         - metadata.labels
         - metadata.description
 enriched_fields:
-  count: 9
+  count: 7
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated
-  discovered_at: '2026-06-16'
+  discovered_at: '2026-06-17'
   console_version: '2025.06'

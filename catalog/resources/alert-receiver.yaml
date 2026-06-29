@@ -5,13 +5,14 @@ _source: Generated from api-specs-enriched/config/console_ui.yaml
 api:
   kind: alert_receiver
 console:
-  workspace: audit-logs-and-alerts
-  workspace_label: Audit Logs & Alerts
-  route_prefix: /web/workspaces/audit-logs-and-alerts
-  route_pattern: /namespaces/system/manage/alert_receivers
+  workspace: multi-cloud-network-connect
+  workspace_label: Multi-Cloud Network Connect
+  route_prefix: /web/workspaces/multi-cloud-network-connect
+  route_pattern: /manage/alert_config/alert_receivers
   menu_path:
-    - Audit Logs & Alerts
+    - Multi-Cloud Network Connect
     - Manage
+    - Alerts Management
     - Alert Receivers
   breadcrumbs:
     - Home
