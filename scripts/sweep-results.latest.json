@@ -1,0 +1,2489 @@
+{
+  "namespace": "demo",
+  "baseUrl": "https://nferreira.staging.volterra.us",
+  "scopedOut": [],
+  "results": [
+    {
+      "resource": "address-allocator",
+      "name": "xcsh-sweep-address-allocator",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 140032,
+          "detail": "[form] click-add-tab: waitFor \"textbox[name='Name']\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "advertise-policy",
+      "name": "xcsh-sweep-advertise-policy",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 139966,
+          "detail": "[form] click-add-tab: waitFor \"textbox[name='Name']\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "alert-policy",
+      "name": "xcsh-sweep-alert-policy",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11718,
+          "detail": "[form] threw: Missing required workflow params: alert_receivers, policy_rules"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "alert-receiver",
+      "name": "xcsh-sweep-alert-receiver",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 32371,
+          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: receiver_configuration); json:ok"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 21458,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-alert-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-alert-receiver')"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 19975,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-alert-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-alert-receiver')"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 20299,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-alert-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-alert-receiver')"
+        }
+      }
+    },
+    {
+      "resource": "api-credential",
+      "name": "xcsh-sweep-api-credential",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 51749,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "api-definition",
+      "name": "xcsh-sweep-api-definition",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 27394,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18477
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25335
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18956
+        }
+      }
+    },
+    {
+      "resource": "api-discovery",
+      "name": "xcsh-sweep-api-discovery",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24758,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17881
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26831
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 40315,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-api-discovery') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-api-discovery')"
+        }
+      }
+    },
+    {
+      "resource": "app-api-group",
+      "name": "xcsh-sweep-app-api-group",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 138650,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-app-api-group')\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "app-firewall",
+      "name": "xcsh-sweep-app-firewall",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 26532,
+          "detail": "[form] verify-created: Step \"verify-created\": assert requires expected_text"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "app-setting",
+      "name": "xcsh-sweep-app-setting",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11482,
+          "detail": "[form] threw: Missing required workflow params: app_type_settings"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "app-type",
+      "name": "xcsh-sweep-app-type",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 32810,
+          "detail": "[form] select-ai_ml_feature_type: selectOption: selector \"listbox[name='AI/ML Feature Type']\" not found"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "authorization-server",
+      "name": "xcsh-sweep-authorization-server",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24925,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19991
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25089
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18010
+        }
+      }
+    },
+    {
+      "resource": "bgp",
+      "name": "xcsh-sweep-bgp",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11493,
+          "detail": "[form] threw: Missing required workflow params: reference, bgp_parameters"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "bgp-asn-set",
+      "name": "xcsh-sweep-bgp-asn-set",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26781,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18944
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24382
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18122
+        }
+      }
+    },
+    {
+      "resource": "bigip-virtual-server",
+      "name": "xcsh-sweep-bigip-virtual-server",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 32714,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "cdn-cache-rule",
+      "name": "xcsh-sweep-cdn-cache-rule",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11696,
+          "detail": "[form] threw: Missing required workflow params: expressions"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "cdn-loadbalancer",
+      "name": "xcsh-sweep-cdn-loadbalancer",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 127155,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-cdn-loadbalancer')\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "certificate",
+      "name": "xcsh-sweep-certificate",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 33319,
+          "detail": "[form] configure-certificate_url: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "cluster",
+      "name": "xcsh-sweep-cluster",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 31910,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19495
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23804
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18924
+        }
+      }
+    },
+    {
+      "resource": "container-registry",
+      "name": "xcsh-sweep-container-registry",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 28566,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19025
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24568
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19008
+        }
+      }
+    },
+    {
+      "resource": "crl",
+      "name": "xcsh-sweep-crl",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 45877,
+          "detail": "[json-fallback] form-failed(fill-refresh_interval: fill(\"spinbutton[name='CRL Refresh interval (h)']\"): no match for spinbutton[name='CRL Refresh interval (h)']); json:ok"
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 20030
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24612
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17986
+        }
+      }
+    },
+    {
+      "resource": "data-type",
+      "name": "xcsh-sweep-data-type",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 30228,
+          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: data_type_rules); json:ok"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 21034,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-data-type') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-data-type')"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 22402,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-data-type') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-data-type')"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 20459,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-data-type') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-data-type')"
+        }
+      }
+    },
+    {
+      "resource": "dc-cluster-group",
+      "name": "xcsh-sweep-dc-cluster-group",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26759,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18110
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24576
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18993
+        }
+      }
+    },
+    {
+      "resource": "dns-domain",
+      "name": "xcsh-sweep-dns-domain",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 32023,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "dns-lb-health-check",
+      "name": "xcsh-sweep-dns-lb-health-check",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 46281,
+          "detail": "[json-fallback] form-failed(fill-health_check_port: fill(\"spinbutton[name='Health Check Port']\"): no match for spinbutton[name='Health Check Port']); json:ok"
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19270
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26199
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 20079
+        }
+      }
+    },
+    {
+      "resource": "dns-lb-pool",
+      "name": "xcsh-sweep-dns-lb-pool",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11422,
+          "detail": "[form] threw: Missing required workflow params: pool_members"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "dns-load-balancer",
+      "name": "xcsh-sweep-dns-load-balancer",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11811,
+          "detail": "[form] threw: Missing required workflow params: load_balancing_rules"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "dns-zone",
+      "name": "xcsh-sweep-dns-zone",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 31424,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "endpoint",
+      "name": "xcsh-sweep-endpoint",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 151062,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-endpoint')\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "enhanced-firewall-policy",
+      "name": "xcsh-sweep-enhanced-firewall-policy",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 27644,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 20234
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24114
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19413
+        }
+      }
+    },
+    {
+      "resource": "fast-acl",
+      "name": "xcsh-sweep-fast-acl",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 36707,
+          "detail": "[form] fill-site_type_regional_edge-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "fleet",
+      "name": "xcsh-sweep-fleet",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 196501,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-fleet')\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "forward-proxy-policy",
+      "name": "xcsh-sweep-forward-proxy-policy",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26691,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19427
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23933
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18475
+        }
+      }
+    },
+    {
+      "resource": "geo-location-set",
+      "name": "xcsh-sweep-geo-location-set",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 28417,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18428
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23601
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18549
+        }
+      }
+    },
+    {
+      "resource": "global-log-receiver",
+      "name": "xcsh-sweep-global-log-receiver",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 44506,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "health-check",
+      "name": "xcsh-sweep-health-check",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 28930,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18005
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24219
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18472
+        }
+      }
+    },
+    {
+      "resource": "http-load-balancer",
+      "name": "xcsh-sweep-http-load-balancer",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 34789,
+          "detail": "[form] fill-domain: fill(\"input[placeholder='Domains']\"): no match for input[placeholder='Domains']"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "ike-gateway",
+      "name": "xcsh-sweep-ike-gateway",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "runner reported pass but API-GET shows the resource does not exist",
+          "runnerStatus": "pass",
+          "durationMs": 36429,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "ip-prefix-set",
+      "name": "xcsh-sweep-ip-prefix-set",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 27854,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19569
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25499
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18668
+        }
+      }
+    },
+    {
+      "resource": "k8s-cluster",
+      "name": "xcsh-sweep-k8s-cluster",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 44214,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "log-receiver",
+      "name": "xcsh-sweep-log-receiver",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 57373,
+          "detail": "[json-fallback] form-failed(configure-log_receiver_choice: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\"); json:ok"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 22233,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-log-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-log-receiver')"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 19452,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-log-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-log-receiver')"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 19994,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-log-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-log-receiver')"
+        }
+      }
+    },
+    {
+      "resource": "malicious-user-mitigation",
+      "name": "xcsh-sweep-malicious-user-mitigation",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 36482,
+          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: rules); json:error after commit: We found 1 error  Field Rules in Mitigation Rules is required."
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "mcn-secret-policy-rule",
+      "name": "xcsh-sweep-mcn-secret-policy-rule",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 32901,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "namespace",
+      "name": "xcsh-sweep-namespace",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 123600,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-namespace')\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "nat-policy",
+      "name": "xcsh-sweep-nat-policy",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 37619,
+          "detail": "[form] fill-applies_to_choice-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "network-connector",
+      "name": "xcsh-sweep-network-connector",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 57685,
+          "detail": "[form] configure-connector_choice: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "network-firewall",
+      "name": "xcsh-sweep-network-firewall",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 43544,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18393
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23657
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18581
+        }
+      }
+    },
+    {
+      "resource": "network-interface",
+      "name": "xcsh-sweep-network-interface",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 35513,
+          "detail": "[form] fill-ethernet_interface-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "network-policy",
+      "name": "xcsh-sweep-network-policy",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 29600,
+          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: endpoint_s); json:ok"
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17029
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23200
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17539
+        }
+      }
+    },
+    {
+      "resource": "network-policy-rule",
+      "name": "xcsh-sweep-network-policy-rule",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 31141,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "openapi-file",
+      "name": "xcsh-sweep-openapi-file",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 125140,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-openapi-file')\" timed out after 30000ms"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "origin-pool",
+      "name": "xcsh-sweep-origin-pool",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 34155,
+          "detail": "[form] fill-port: fill(\"spinbutton[name='Port']\"): no match for spinbutton[name='Port']"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "policer",
+      "name": "xcsh-sweep-policer",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 29209,
+          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: policer_rules); json:ok"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 20070,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-policer') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-policer')"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 20441,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-policer') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-policer')"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 19499,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-policer') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-policer')"
+        }
+      }
+    },
+    {
+      "resource": "protocol-policer",
+      "name": "xcsh-sweep-protocol-policer",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11340,
+          "detail": "[form] threw: Missing required workflow params: protocol_policer"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "proxy",
+      "name": "xcsh-sweep-proxy",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 42538,
+          "detail": "[form] fill-site_or_virtual_site-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "public-ip",
+      "name": "xcsh-sweep-public-ip",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 29977,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "rate-limiter",
+      "name": "xcsh-sweep-rate-limiter",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23882,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18029
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23894
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18288
+        }
+      }
+    },
+    {
+      "resource": "rate-limiter-policy",
+      "name": "xcsh-sweep-rate-limiter-policy",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 68532,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25048
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25540
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18461
+        }
+      }
+    },
+    {
+      "resource": "role",
+      "name": "xcsh-sweep-role",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 35410,
+          "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "route-object",
+      "name": "xcsh-sweep-route-object",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 36886,
+          "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (882,512) occluded:DIV.configure\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "secret-policy",
+      "name": "xcsh-sweep-secret-policy",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26064,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19630
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25179
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "runner reported delete but API-GET shows the resource still exists",
+          "runnerStatus": "pass",
+          "durationMs": 20525
+        }
+      }
+    },
+    {
+      "resource": "segment",
+      "name": "xcsh-sweep-segment",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26134,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17910
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23174
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17714
+        }
+      }
+    },
+    {
+      "resource": "segment-connection",
+      "name": "xcsh-sweep-segment-connection",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 63605,
+          "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "sensitive-data-policy",
+      "name": "xcsh-sweep-sensitive-data-policy",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 110613,
+          "detail": "[json-fallback] form-failed(click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\"); json:list never rendered (Add Sensitive Data Policy)"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "service-credential",
+      "name": "xcsh-sweep-service-credential",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "runner reported pass but API-GET shows the resource does not exist",
+          "runnerStatus": "pass",
+          "durationMs": 41130,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "service-policy",
+      "name": "xcsh-sweep-service-policy",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 40242,
+          "detail": "[json-fallback] form-failed(verify-created: Step \"verify-created\": assert requires expected_text); json:ok"
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18484
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 26319
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 19883
+        }
+      }
+    },
+    {
+      "resource": "service-policy-rule",
+      "name": "xcsh-sweep-service-policy-rule",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 30908,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "shared-advertise-policy",
+      "name": "xcsh-sweep-shared-advertise-policy",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 35521,
+          "detail": "[form] fill-reference-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "site-mesh-group",
+      "name": "xcsh-sweep-site-mesh-group",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 34198,
+          "detail": "[form] configure-bfd_choice: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "subnet",
+      "name": "xcsh-sweep-subnet",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11744,
+          "detail": "[form] threw: Missing required workflow params: site_subnet_parameters"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "tcp-load-balancer",
+      "name": "xcsh-sweep-tcp-load-balancer",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "runner reported pass but API-GET shows the resource does not exist",
+          "runnerStatus": "pass",
+          "durationMs": 63522,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "third-party-application",
+      "name": "xcsh-sweep-third-party-application",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11435,
+          "detail": "[form] threw: Missing required workflow params: application_type, application_configuration"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "tunnel",
+      "name": "xcsh-sweep-tunnel",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11389,
+          "detail": "[form] threw: Missing required workflow params: tunnel_type"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "udp-loadbalancer",
+      "name": "xcsh-sweep-udp-loadbalancer",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 43510,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "usb-policy",
+      "name": "xcsh-sweep-usb-policy",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 30083,
+          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: allowed_usb_devices); json:ok"
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 20839,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-usb-policy') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-usb-policy')"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 21439,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-usb-policy') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-usb-policy')"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 19992,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-usb-policy') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-usb-policy')"
+        }
+      }
+    },
+    {
+      "resource": "user-identification",
+      "name": "xcsh-sweep-user-identification",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 29765,
+          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: rules); json:ok"
+        },
+        "read": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18471
+        },
+        "update": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23620
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18006
+        }
+      }
+    },
+    {
+      "resource": "v1-dns-monitor",
+      "name": "xcsh-sweep-v1-dns-monitor",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 45435,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "v1-http-monitor",
+      "name": "xcsh-sweep-v1-http-monitor",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 43646,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "virtual-host",
+      "name": "xcsh-sweep-virtual-host",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 34281,
+          "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (882,512) occluded:DIV.ng-tns-c2577712150-20 tile-content\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "virtual-k8s",
+      "name": "xcsh-sweep-virtual-k8s",
+      "ops": {
+        "create": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25717,
+          "detail": "[form] "
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 21387,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-virtual-k8s') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: sub-selector [ves-e2e-test='row-action-dropdown'] not found in row"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 21333,
+          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-virtual-k8s') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: sub-selector [ves-e2e-test='row-action-dropdown'] not found in row"
+        },
+        "delete": {
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18492
+        }
+      }
+    },
+    {
+      "resource": "virtual-network",
+      "name": "xcsh-sweep-virtual-network",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 54562,
+          "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "virtual-site",
+      "name": "xcsh-sweep-virtual-site",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 55176,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "voltstack-site",
+      "name": "xcsh-sweep-voltstack-site",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 46432,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "waf-exclusion-policy",
+      "name": "xcsh-sweep-waf-exclusion-policy",
+      "ops": {
+        "create": {
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 44627,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    },
+    {
+      "resource": "workload-flavor",
+      "name": "xcsh-sweep-workload-flavor",
+      "ops": {
+        "create": {
+          "verdict": "indeterminate",
+          "reason": "API post-condition check unavailable",
+          "runnerStatus": "fail",
+          "durationMs": 60330,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+        },
+        "read": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "update": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        },
+        "delete": {
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
+        }
+      }
+    }
+  ]
+}
