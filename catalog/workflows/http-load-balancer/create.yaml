@@ -48,18 +48,12 @@ steps:
     value: "{name}"
     description: "Enter the load balancer name in the Name textbox"
 
-  - id: "add-item-domains"
-    action: "click"
-    selector: "button:text('Add Item')"
-    context: "Domains table"
-    description: "Add a row to the Domains table (starts empty — items: 0 per form-discovery)"
-
   - id: "fill-domain"
     action: "fill"
-    selector: "ngx-datatable input.form-control"
-    context: "Domains table"
+    selector: "input[placeholder='Domains']"
+    context: "Domains and LB Type section"
     value: "{domains}"
-    description: "Enter the domain in the newly-added Domains table row"
+    description: "Fill the pre-seeded Domains datatable row (table ships row 1 — DON'T Add Item, it creates a spurious empty row 2). Uses placeholder selector (datatable cells have no accessible name)."
 
   - id: "attach-origin-pool"
     condition: "params.origin_pool is set"
