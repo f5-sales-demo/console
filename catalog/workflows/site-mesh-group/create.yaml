@@ -35,16 +35,12 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-bfd_choice
-    action: click
-    selector: text('Configure')
+  - id: select-bfd_choice
+    action: select
+    selector: listbox
     context: Bfd Choice section
-    description: Open the Bfd Choice configuration ('Configure' is a link, not a button)
-  - id: fill-bfd_choice-value
-    action: fill
-    selector: textbox
     value: "{bfd_choice}"
-    description: Enter the Bfd Choice value via the 'bfd_choice' parameter
+    description: Select Bfd Choice
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

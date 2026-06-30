@@ -48,16 +48,12 @@ steps:
     selector: textbox
     value: "{receiver_configuration}"
     description: Enter the Receiver Configuration value via the 'receiver_configuration' parameter
-  - id: configure-log_type
-    action: click
-    selector: text('Configure')
+  - id: select-log_type
+    action: select
+    selector: listbox
     context: Log Type section
-    description: Open the Log Type configuration ('Configure' is a link, not a button)
-  - id: fill-log_type-value
-    action: fill
-    selector: textbox
     value: "{log_type}"
-    description: Enter the Log Type value via the 'log_type' parameter
+    description: Select Log Type
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"
