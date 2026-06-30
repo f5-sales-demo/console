@@ -964,11 +964,15 @@ if (!specsDir) {
 }
 
 const fieldMetadata = (
-  parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_field_metadata.yaml'), 'utf8')) as { resources: Record<string, Record<string, FieldMeta>> }
+  parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_field_metadata.yaml'), 'utf8')) as {
+    resources: Record<string, Record<string, FieldMeta>>;
+  }
 ).resources as Record<string, Record<string, FieldMeta>>;
 // Per-field create examples from the enriched specs (single source of truth).
 const FIELD_EXAMPLES = loadFieldExamples(specsDir);
-const uiRaw = parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_ui.yaml'), 'utf8')) as { resources?: Record<string, UiResource> };
+const uiRaw = parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_ui.yaml'), 'utf8')) as {
+  resources?: Record<string, UiResource>;
+};
 const uiConfig = (uiRaw.resources ?? uiRaw) as Record<string, UiResource>;
 
 // Read existing resource catalog for label + api.kind mapping
@@ -976,7 +980,10 @@ const resourcesDir = path.join(CONSOLE_ROOT, 'catalog/resources');
 const catalogResources = new Map<string, { kind: string; label: string }>();
 for (const f of fs.readdirSync(resourcesDir).filter((f) => f.endsWith('.yaml'))) {
   const id = f.replace('.yaml', '');
-  const doc = parseYaml(fs.readFileSync(path.join(resourcesDir, f), 'utf8')) as { api?: { kind?: string }; label?: string };
+  const doc = parseYaml(fs.readFileSync(path.join(resourcesDir, f), 'utf8')) as {
+    api?: { kind?: string };
+    label?: string;
+  };
   catalogResources.set(id, { kind: doc?.api?.kind ?? '', label: doc?.label ?? id });
 }
 
