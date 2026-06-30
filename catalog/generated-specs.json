@@ -86,7 +86,7 @@
     "namespace": "system",
     "metadata": {
       "name": "xcsh-gen-dns-lb-health-check",
-      "namespace": "demo"
+      "namespace": "system"
     },
     "spec": {
       "http_health_check": {
@@ -268,5 +268,13 @@
         }
       ]
     }
+  },
+  "app-firewall": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "example",
+      "namespace": "demo"
+    },
+    "spec": {}
   }
 }

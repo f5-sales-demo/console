@@ -56,9 +56,9 @@ steps:
         description: Confirm Origin Servers entry
   - id: fill-port
     action: fill
-    selector: spinbutton[name='Port']
+    selector: textbox[name='Port']
     value: "{port}"
-    description: "Set Port (default: 443)"
+    description: "Set Port. Role is textbox (not spinbutton) — vsui numeric fields are type=text with aria-label."
     condition: params.port is set
   - id: save
     action: click
