@@ -42,7 +42,7 @@ form:
         - metadata.labels
         - metadata.description
 enriched_fields:
-  count: 22
+  count: 23
   source: api-specs-enriched/config/console_field_metadata.yaml
 metadata:
   confidence: validated
