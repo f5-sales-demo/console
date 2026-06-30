@@ -26,8 +26,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 46176,
-          "detail": "[form] configure-address_allocation_scheme: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+          "durationMs": 33148,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
           "verdict": "fail",
@@ -54,8 +54,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 43870,
-          "detail": "[form] select-tcp_udp_port: extension tool \"javascript_tool\" failed: \"Error: no target tab — call navigate first\""
+          "durationMs": 151686,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-advertise-policy')\" timed out after 30000ms | BANNER: Field Reference is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -82,8 +82,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11749,
-          "detail": "[form] threw: Missing required workflow params: alert_receivers, policy_rules"
+          "durationMs": 11493,
+          "detail": "[form] threw: Missing required workflow params: alert_receivers, policy_rules | BANNER: Field Reference is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -107,32 +107,26 @@
       "name": "xcsh-sweep-alert-receiver",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 30005,
-          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: receiver_configuration); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11442,
+          "detail": "[form] threw: Missing required workflow params: receiver_configuration | BANNER: Field Reference is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 20647,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-alert-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-alert-receiver')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 20444,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-alert-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-alert-receiver')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 20371,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-alert-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-alert-receiver')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -144,7 +138,7 @@
           "verdict": "fail",
           "reason": "runner reported pass but API-GET shows the resource does not exist",
           "runnerStatus": "pass",
-          "durationMs": 40327,
+          "durationMs": 41359,
           "detail": "[form] "
         },
         "read": {
@@ -172,26 +166,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 25698,
+          "durationMs": 24980,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19965
+          "durationMs": 18028
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 22626
+          "durationMs": 23635
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 17002
+          "durationMs": 17946
         }
       }
     },
@@ -203,26 +197,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24553,
+          "durationMs": 24065,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18037
+          "durationMs": 17595
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 23620
+          "durationMs": 22583
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19003
+          "durationMs": 17490
         }
       }
     },
@@ -234,8 +228,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 136303,
-          "detail": "[form] save: waitFor \"text('xcsh-sweep-app-api-group')\" timed out after 30000ms"
+          "durationMs": 136094,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-app-api-group')\" timed out after 30000ms | BANNER: Field HTTP Load Balancer in HTTP Load Balancer is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -262,8 +256,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 36191,
-          "detail": "[json-fallback] form-failed(verify-created: Step \"verify-created\": assert requires expected_text); json:error after commit: We found 6 errors"
+          "durationMs": 31680,
+          "detail": "[form] verify-created: Step \"verify-created\": assert requires expected_text"
         },
         "read": {
           "verdict": "fail",
@@ -290,7 +284,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11790,
+          "durationMs": 11667,
           "detail": "[form] threw: Missing required workflow params: app_type_settings"
         },
         "read": {
@@ -318,7 +312,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 35367,
+          "durationMs": 32610,
           "detail": "[form] select-ai_ml_feature_type: selectOption: selector \"listbox[name='AI/ML Feature Type']\" not found"
         },
         "read": {
@@ -346,26 +340,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 25945,
+          "durationMs": 24661,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19219
+          "durationMs": 16480
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24753
+          "durationMs": 23114
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18012
+          "durationMs": 18170
         }
       }
     },
@@ -377,7 +371,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11666,
+          "durationMs": 11507,
           "detail": "[form] threw: Missing required workflow params: reference, bgp_parameters"
         },
         "read": {
@@ -405,26 +399,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24822,
+          "durationMs": 26195,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18112
+          "durationMs": 19005
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24243
+          "durationMs": 24140
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18522
+          "durationMs": 17927
         }
       }
     },
@@ -436,7 +430,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 32209,
+          "durationMs": 30411,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -464,7 +458,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11649,
+          "durationMs": 11514,
           "detail": "[form] threw: Missing required workflow params: expressions"
         },
         "read": {
@@ -492,8 +486,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 130266,
-          "detail": "[form] save: waitFor \"text('xcsh-sweep-cdn-loadbalancer')\" timed out after 30000ms"
+          "durationMs": 43382,
+          "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\" | BANNER: Field List Of Origin Servers in CDN Origin Pool is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -520,8 +514,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 34218,
-          "detail": "[form] configure-certificate_url: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+          "durationMs": 11554,
+          "detail": "[form] threw: Missing required workflow params: certificate_url | BANNER: Field List Of Origin Servers in CDN Origin Pool is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -548,26 +542,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 33185,
+          "durationMs": 32990,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 17472
+          "durationMs": 15874
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24285
+          "durationMs": 22873
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18053
+          "durationMs": 17204
         }
       }
     },
@@ -579,26 +573,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 27933,
+          "durationMs": 27525,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 17902
+          "durationMs": 16513
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24183
+          "durationMs": 22734
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19519
+          "durationMs": 17594
         }
       }
     },
@@ -607,29 +601,26 @@
       "name": "xcsh-sweep-crl",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 46690,
-          "detail": "[json-fallback] form-failed(fill-refresh_interval: fill(\"spinbutton[name='CRL Refresh interval (h)']\"): no match for spinbutton[name='CRL Refresh interval (h)']); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 33688,
+          "detail": "[form] fill-refresh_interval: fill(\"spinbutton[name='CRL Refresh interval (h)']\"): no match for spinbutton[name='CRL Refresh interval (h)']"
         },
         "read": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 18609
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 27821
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 17082
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -638,32 +629,26 @@
       "name": "xcsh-sweep-data-type",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 29414,
-          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: data_type_rules); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11495,
+          "detail": "[form] threw: Missing required workflow params: data_type_rules"
         },
         "read": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19907,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-data-type') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-data-type')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19889,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-data-type') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-data-type')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19952,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-data-type') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-data-type')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -675,26 +660,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 25935,
+          "durationMs": 24982,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 20083
+          "durationMs": 18693
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 25260
+          "durationMs": 23401
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18053
+          "durationMs": 18030
         }
       }
     },
@@ -706,7 +691,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 34568,
+          "durationMs": 32584,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -731,29 +716,26 @@
       "name": "xcsh-sweep-dns-lb-health-check",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 45929,
-          "detail": "[json-fallback] form-failed(fill-health_check_port: fill(\"spinbutton[name='Health Check Port']\"): no match for spinbutton[name='Health Check Port']); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 35214,
+          "detail": "[form] fill-health_check_port: fill(\"spinbutton[name='Health Check Port']\"): no match for spinbutton[name='Health Check Port']"
         },
         "read": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 18057
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 24119
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 19038
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -765,7 +747,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11651,
+          "durationMs": 11490,
           "detail": "[form] threw: Missing required workflow params: pool_members"
         },
         "read": {
@@ -793,7 +775,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11633,
+          "durationMs": 11559,
           "detail": "[form] threw: Missing required workflow params: load_balancing_rules"
         },
         "read": {
@@ -821,7 +803,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 31748,
+          "durationMs": 31516,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -849,8 +831,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 149942,
-          "detail": "[form] save: waitFor \"text('xcsh-sweep-endpoint')\" timed out after 30000ms"
+          "durationMs": 148464,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-endpoint')\" timed out after 30000ms | BANNER: Field Reference is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -877,26 +859,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 28200,
+          "durationMs": 27076,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 16955
+          "durationMs": 18934
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 23608
+          "durationMs": 23582
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18500
+          "durationMs": 17970
         }
       }
     },
@@ -905,26 +887,29 @@
       "name": "xcsh-sweep-fast-acl",
       "ops": {
         "create": {
-          "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 36332,
-          "detail": "[form] fill-site_type_regional_edge-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 41863,
+          "detail": "[form] "
         },
         "read": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17373
         },
         "update": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23181
         },
         "delete": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17508
         }
       }
     },
@@ -936,8 +921,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 197345,
-          "detail": "[form] save: waitFor \"text('xcsh-sweep-fleet')\" timed out after 30000ms"
+          "durationMs": 195633,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-fleet')\" timed out after 30000ms | BANNER: Maximum value for field Upgrade Wait Time in Enable is 900. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -964,26 +949,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 25976,
+          "durationMs": 25248,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18014
+          "durationMs": 17453
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 23751
+          "durationMs": 23257
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18471
+          "durationMs": 18078
         }
       }
     },
@@ -995,26 +980,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 28447,
+          "durationMs": 26172,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 20067
+          "durationMs": 16545
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 25183
+          "durationMs": 23190
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18548
+          "durationMs": 16986
         }
       }
     },
@@ -1026,7 +1011,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 44987,
+          "durationMs": 43286,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1054,26 +1039,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 28121,
+          "durationMs": 28589,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19086
+          "durationMs": 18135
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 22675
+          "durationMs": 23693
         },
         "delete": {
-          "verdict": "fail",
-          "reason": "runner reported delete but API-GET shows the resource still exists",
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18059
+          "durationMs": 17444
         }
       }
     },
@@ -1085,7 +1070,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 35968,
+          "durationMs": 33272,
           "detail": "[form] fill-domain: fill(\"input[placeholder='Domains']\"): no match for input[placeholder='Domains']"
         },
         "read": {
@@ -1113,7 +1098,7 @@
           "verdict": "fail",
           "reason": "runner reported pass but API-GET shows the resource does not exist",
           "runnerStatus": "pass",
-          "durationMs": 33371,
+          "durationMs": 30690,
           "detail": "[form] "
         },
         "read": {
@@ -1141,26 +1126,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 27871,
+          "durationMs": 26509,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19117
+          "durationMs": 17913
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 23814
+          "durationMs": 23693
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19086
+          "durationMs": 18446
         }
       }
     },
@@ -1172,7 +1157,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 45374,
+          "durationMs": 44715,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1200,29 +1185,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 55534,
-          "detail": "[json-fallback] form-failed(configure-log_receiver_choice: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\"); json:ok"
+          "durationMs": 36918,
+          "detail": "[form] "
         },
         "read": {
-          "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 20572,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-log-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-log-receiver')"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17534
         },
         "update": {
-          "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19190,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-log-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-log-receiver')"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 25183
         },
         "delete": {
-          "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 20531,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-log-receiver') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-log-receiver')"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17906
         }
       }
     },
@@ -1234,8 +1216,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 36408,
-          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: rules); json:error after commit: We found 1 error  Field Rules in Mitigation Rules is required."
+          "durationMs": 11510,
+          "detail": "[form] threw: Missing required workflow params: rules"
         },
         "read": {
           "verdict": "fail",
@@ -1262,7 +1244,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 31580,
+          "durationMs": 30223,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1290,7 +1272,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 124739,
+          "durationMs": 123798,
           "detail": "[form] save: waitFor \"text('xcsh-sweep-namespace')\" timed out after 30000ms"
         },
         "read": {
@@ -1318,7 +1300,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 36726,
+          "durationMs": 35554,
           "detail": "[form] fill-applies_to_choice-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
         },
         "read": {
@@ -1343,26 +1325,29 @@
       "name": "xcsh-sweep-network-connector",
       "ops": {
         "create": {
-          "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 58141,
-          "detail": "[form] configure-connector_choice: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 57104,
+          "detail": "[form] "
         },
         "read": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 16040
         },
         "update": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 24029
         },
         "delete": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17948
         }
       }
     },
@@ -1374,26 +1359,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 41439,
+          "durationMs": 40817,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18022
+          "durationMs": 17451
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24061
+          "durationMs": 23430
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18985
+          "durationMs": 19007
         }
       }
     },
@@ -1405,8 +1390,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 36588,
-          "detail": "[form] fill-ethernet_interface-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+          "durationMs": 135995,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-network-interface')\" timed out after 30000ms | BANNER: Field Ethernet Interface in Ethernet Interface is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -1430,29 +1415,26 @@
       "name": "xcsh-sweep-network-policy",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 29872,
-          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: endpoint_s); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11453,
+          "detail": "[form] threw: Missing required workflow params: endpoint_s | BANNER: Field Ethernet Interface in Ethernet Interface is required. Fix Error"
         },
         "read": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 18531
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 24348
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 17966
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -1464,7 +1446,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 31755,
+          "durationMs": 31555,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1492,8 +1474,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 125600,
-          "detail": "[form] save: waitFor \"text('xcsh-sweep-openapi-file')\" timed out after 30000ms"
+          "durationMs": 125074,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-openapi-file')\" timed out after 30000ms | BANNER: Field OpenAPI Upload in Spec is required. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -1520,8 +1502,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 34941,
-          "detail": "[form] fill-port: fill(\"spinbutton[name='Port']\"): no match for spinbutton[name='Port']"
+          "durationMs": 35228,
+          "detail": "[form] fill-port: fill(\"spinbutton[name='Port']\"): no match for spinbutton[name='Port'] | BANNER: Field DNS Name in Public DNS Name of Origin Server must be a valid domain name. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -1545,32 +1527,26 @@
       "name": "xcsh-sweep-policer",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 30939,
-          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: policer_rules); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 11528,
+          "detail": "[form] threw: Missing required workflow params: policer_rules | BANNER: Field DNS Name in Public DNS Name of Origin Server must be a valid domain name. Fix Error"
         },
         "read": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19990,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-policer') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-policer')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19970,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-policer') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-policer')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19911,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-policer') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-policer')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -1582,8 +1558,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11697,
-          "detail": "[form] threw: Missing required workflow params: protocol_policer"
+          "durationMs": 11512,
+          "detail": "[form] threw: Missing required workflow params: protocol_policer | BANNER: Field DNS Name in Public DNS Name of Origin Server must be a valid domain name. Fix Error"
         },
         "read": {
           "verdict": "fail",
@@ -1610,8 +1586,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 45247,
-          "detail": "[form] fill-site_or_virtual_site-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+          "durationMs": 31608,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
           "verdict": "fail",
@@ -1638,7 +1614,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 32352,
+          "durationMs": 33057,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1666,26 +1642,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 26081,
+          "durationMs": 25441,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19606
+          "durationMs": 16985
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24134
+          "durationMs": 23019
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 17997
+          "durationMs": 17969
         }
       }
     },
@@ -1697,26 +1673,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24576,
+          "durationMs": 24465,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 19670
+          "durationMs": 17881
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24812
+          "durationMs": 22774
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18112
+          "durationMs": 17557
         }
       }
     },
@@ -1728,7 +1704,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 33005,
+          "durationMs": 33517,
           "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1756,7 +1732,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 33870,
+          "durationMs": 33589,
           "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (882,512) occluded:DIV.configure\""
         },
         "read": {
@@ -1784,26 +1760,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24904,
+          "durationMs": 24355,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18490
+          "durationMs": 18008
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24642
+          "durationMs": 24572
         },
         "delete": {
           "verdict": "fail",
           "reason": "runner reported delete but API-GET shows the resource still exists",
           "runnerStatus": "pass",
-          "durationMs": 17985
+          "durationMs": 18439
         }
       }
     },
@@ -1815,26 +1791,26 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24231,
+          "durationMs": 23847,
           "detail": "[form] "
         },
         "read": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 17960
+          "durationMs": 17405
         },
         "update": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24623
+          "durationMs": 23616
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18969
+          "durationMs": 17369
         }
       }
     },
@@ -1846,7 +1822,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 63235,
+          "durationMs": 62250,
           "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1874,8 +1850,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 110255,
-          "detail": "[json-fallback] form-failed(click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\"); json:list never rendered (Add Sensitive Data Policy)"
+          "durationMs": 42077,
+          "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
           "verdict": "fail",
@@ -1902,7 +1878,7 @@
           "verdict": "fail",
           "reason": "runner reported pass but API-GET shows the resource does not exist",
           "runnerStatus": "pass",
-          "durationMs": 41687,
+          "durationMs": 39272,
           "detail": "[form] "
         },
         "read": {
@@ -1927,29 +1903,26 @@
       "name": "xcsh-sweep-service-policy",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 40031,
-          "detail": "[json-fallback] form-failed(verify-created: Step \"verify-created\": assert requires expected_text); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 26359,
+          "detail": "[form] verify-created: Step \"verify-created\": assert requires expected_text"
         },
         "read": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 17063
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 24430
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 19030
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -1961,7 +1934,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 32260,
+          "durationMs": 30409,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -1989,8 +1962,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 35285,
-          "detail": "[form] fill-reference-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
+          "durationMs": 57265,
+          "detail": "[form] fill-tcp_udp_port_value: fill(\"spinbutton[name='TCP/UDP Port (value)']\"): no match for spinbutton[name='TCP/UDP Port (value)']"
         },
         "read": {
           "verdict": "fail",
@@ -2014,26 +1987,29 @@
       "name": "xcsh-sweep-site-mesh-group",
       "ops": {
         "create": {
-          "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 33752,
-          "detail": "[form] configure-bfd_choice: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 31642,
+          "detail": "[form] "
         },
         "read": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 18070
         },
         "update": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 23592
         },
         "delete": {
-          "verdict": "fail",
-          "reason": "skipped (create failed)",
-          "detail": "[skipped]"
+          "verdict": "pass",
+          "reason": "runner + API post-condition agree",
+          "runnerStatus": "pass",
+          "durationMs": 17383
         }
       }
     },
@@ -2045,7 +2021,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11713,
+          "durationMs": 11473,
           "detail": "[form] threw: Missing required workflow params: site_subnet_parameters"
         },
         "read": {
@@ -2073,8 +2049,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 131633,
-          "detail": "[form] save: waitFor \"text('xcsh-sweep-tcp-load-balancer')\" timed out after 30000ms"
+          "durationMs": 131116,
+          "detail": "[form] save: waitFor \"text('xcsh-sweep-tcp-load-balancer')\" timed out after 30000ms | BANNER: There was a server error in processing request"
         },
         "read": {
           "verdict": "fail",
@@ -2101,8 +2077,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11626,
-          "detail": "[form] threw: Missing required workflow params: application_type, application_configuration"
+          "durationMs": 12937,
+          "detail": "[form] threw: Missing required workflow params: application_type, application_configuration | BANNER: There was a server error in processing request"
         },
         "read": {
           "verdict": "fail",
@@ -2129,8 +2105,8 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 11681,
-          "detail": "[form] threw: Missing required workflow params: tunnel_type"
+          "durationMs": 13115,
+          "detail": "[form] threw: Missing required workflow params: tunnel_type | BANNER: There was a server error in processing request"
         },
         "read": {
           "verdict": "fail",
@@ -2157,7 +2133,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 45123,
+          "durationMs": 50563,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -2182,32 +2158,26 @@
       "name": "xcsh-sweep-usb-policy",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 30459,
-          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: allowed_usb_devices); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 12752,
+          "detail": "[form] threw: Missing required workflow params: allowed_usb_devices"
         },
         "read": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 21507,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-usb-policy') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-usb-policy')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 19419,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-usb-policy') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-usb-policy')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
           "verdict": "fail",
-          "reason": "workflow runner reported failure",
-          "runnerStatus": "fail",
-          "durationMs": 20413,
-          "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-usb-policy') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: no row matching row:has-text('xcsh-sweep-usb-policy')"
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -2216,29 +2186,26 @@
       "name": "xcsh-sweep-user-identification",
       "ops": {
         "create": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 29422,
-          "detail": "[json-fallback] form-failed(threw: Missing required workflow params: rules); json:ok"
+          "verdict": "fail",
+          "reason": "workflow runner reported failure",
+          "runnerStatus": "fail",
+          "durationMs": 12801,
+          "detail": "[form] threw: Missing required workflow params: rules"
         },
         "read": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 18021
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "update": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 23807
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         },
         "delete": {
-          "verdict": "pass",
-          "reason": "runner + API post-condition agree",
-          "runnerStatus": "pass",
-          "durationMs": 17973
+          "verdict": "fail",
+          "reason": "skipped (create failed)",
+          "detail": "[skipped]"
         }
       }
     },
@@ -2250,7 +2217,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 44143,
+          "durationMs": 46226,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -2278,7 +2245,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 43765,
+          "durationMs": 49843,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -2306,7 +2273,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 32853,
+          "durationMs": 36243,
           "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (882,512) occluded:DIV.ng-tns-c2577712150-20 tile-content\""
         },
         "read": {
@@ -2334,28 +2301,28 @@
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 24592,
+          "durationMs": 27732,
           "detail": "[form] "
         },
         "read": {
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 21832,
+          "durationMs": 18861,
           "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-virtual-k8s') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: sub-selector [ves-e2e-test='row-action-dropdown'] not found in row"
         },
         "update": {
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 21963,
+          "durationMs": 19911,
           "detail": "scroll-actions-into-view: selector \"row:has-text('xcsh-sweep-virtual-k8s') >> [ves-e2e-test='row-action-dropdown']\" not found in the page: sub-selector [ves-e2e-test='row-action-dropdown'] not found in row"
         },
         "delete": {
           "verdict": "pass",
           "reason": "runner + API post-condition agree",
           "runnerStatus": "pass",
-          "durationMs": 18159
+          "durationMs": 19082
         }
       }
     },
@@ -2367,7 +2334,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 54180,
+          "durationMs": 54324,
           "detail": "[form] save: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -2395,7 +2362,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 34279,
+          "durationMs": 33194,
           "detail": "[form] select-label-key-site_selector_expression: extension tool \"label_select\" failed: \"Error: label_select: input \\\"input[placeholder='Type to search']\\\" not found\""
         },
         "read": {
@@ -2423,7 +2390,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 34889,
+          "durationMs": 33707,
           "detail": "[form] fill-volterra_certified_hw-value: extension tool \"click_element\" failed: \"Error: click: \\\"element\\\" not hittable — point (126,84) occluded:DIV.vsui-wizard-badge vsui-wizard-badge_mode\""
         },
         "read": {
@@ -2451,7 +2418,7 @@
           "verdict": "fail",
           "reason": "workflow runner reported failure",
           "runnerStatus": "fail",
-          "durationMs": 43879,
+          "durationMs": 43622,
           "detail": "[form] click-add-tab: extension tool \"click_element\" failed: \"Error: click_element: expression matched no element\""
         },
         "read": {
@@ -2479,7 +2446,7 @@
           "verdict": "fail",
           "reason": "runner reported pass but API-GET shows the resource does not exist",
           "runnerStatus": "pass",
-          "durationMs": 35030,
+          "durationMs": 31803,
           "detail": "[form] "
         },
         "read": {
