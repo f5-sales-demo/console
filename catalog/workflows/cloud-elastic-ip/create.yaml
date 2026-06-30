@@ -20,8 +20,9 @@ params:
     required: true
     description: Site Reference
   count:
-    required: true
+    required: false
     description: "Server-required: Must be >= 1"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

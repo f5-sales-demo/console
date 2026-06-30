@@ -17,8 +17,9 @@ params:
     description: AWS TGW Sites name (lowercase alphanumeric and hyphens)
     example: example-aws-tgw-site
   aws_parameters:
-    required: true
+    required: false
     description: AWS Parameters
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

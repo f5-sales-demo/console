@@ -17,8 +17,9 @@ params:
     description: Data Types name (lowercase alphanumeric and hyphens)
     example: example-data-type
   data_type_rules:
-    required: true
+    required: false
     description: "Server-required: Minimum items of 1"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

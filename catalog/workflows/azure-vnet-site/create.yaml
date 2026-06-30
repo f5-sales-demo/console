@@ -17,11 +17,13 @@ params:
     description: Azure VNET Sites name (lowercase alphanumeric and hyphens)
     example: example-azure-vnet-site
   azure_region:
-    required: true
+    required: false
     description: Azure Region
+    default: eastus2
   azure_credentials:
-    required: true
+    required: false
     description: Azure Credentials
+    default: example-azure-cred
   deployment:
     required: true
     description: "Server-required: Field should be not nil"

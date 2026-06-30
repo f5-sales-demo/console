@@ -86,6 +86,46 @@ function loadWidgetCatalog(specsDir: string): WidgetCatalog {
 }
 
 /**
+ * Load per-field create examples (x-f5xc-field-examples) from the enriched
+ * OpenAPI specs — the single source of truth, derived from each resource's
+ * x-f5xc-minimum-configuration.example_yaml. Returns resourceId → { fieldPath →
+ * exampleValue }. The workflow generator uses these as deterministic param
+ * defaults so no values are hand-coded downstream.
+ */
+function loadFieldExamples(specsDir: string): Record<string, Record<string, unknown>> {
+  const apiDir = path.join(specsDir, 'docs/specifications/api');
+  const out: Record<string, Record<string, unknown>> = {};
+  if (!fs.existsSync(apiDir)) return out;
+  for (const f of fs.readdirSync(apiDir).filter((f) => f.endsWith('.json') && f !== 'index.json')) {
+    let doc: any;
+    try {
+      doc = JSON.parse(fs.readFileSync(path.join(apiDir, f), 'utf8'));
+    } catch {
+      continue;
+    }
+    for (const [name, schema] of Object.entries<any>(doc?.components?.schemas ?? {})) {
+      if (!name.includes('CreateSpecType') || !schema?.['x-f5xc-field-examples']) continue;
+      // schema name → kebab resource id (mirror the dependency-graph mapping)
+      const id = name
+        .replace(/^(views|schema)/, '')
+        .replace(/CreateSpecType$/, '')
+        .replace(/_/g, '-');
+      if (id) out[id] = { ...(out[id] ?? {}), ...schema['x-f5xc-field-examples'] };
+    }
+  }
+  return out;
+}
+
+/** Look up the example value for a param's field path (exact, or first nested leaf). */
+function exampleForFieldPath(examples: Record<string, unknown> | undefined, fieldPath: string): unknown {
+  if (!examples) return undefined;
+  if (fieldPath in examples) return examples[fieldPath];
+  // nested: spec.origin_servers → spec.origin_servers[].public_name.dns_name
+  const nested = Object.keys(examples).find((k) => k.startsWith(`${fieldPath}[`) || k.startsWith(`${fieldPath}.`));
+  return nested ? examples[nested] : undefined;
+}
+
+/**
  * Catalog-driven step generation for SIMPLE widgets (textbox, textarea,
  * spinbutton, checkbox, table). These have a 1:1 template → step mapping
  * with no branching. Returns null for widgets that need the procedural path.
@@ -655,15 +695,20 @@ function generateCreate(
       example: `example-${resourceId}`,
     },
   };
+  const resourceExamples = FIELD_EXAMPLES[resourceId];
   for (const [fp, m] of requiredFields) {
     if (fp === 'metadata.name') continue;
     const p = toParamName(m.label ?? fp);
     if (p === 'name' || p === 'namespace') continue;
+    // Spec-derived create value (single source: x-f5xc-field-examples ← example_yaml).
+    const specExample = exampleForFieldPath(resourceExamples, fp);
     const def: Record<string, unknown> = {
-      required: m.default === undefined,
+      required: m.default === undefined && specExample === undefined,
       description: m.description ?? m.label ?? fp,
     };
+    // Precedence: metadata default > spec example > enum first option.
     if (m.default !== undefined) def.default = m.default;
+    else if (specExample !== undefined) def.default = specExample;
     if (m.options) def.example = m.options[0];
     params[p] = def;
     // A nested-resource-list whose inner field references another object needs a
@@ -921,6 +966,8 @@ if (!specsDir) {
 const fieldMetadata = (
   parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_field_metadata.yaml'), 'utf8')) as any
 ).resources as Record<string, Record<string, FieldMeta>>;
+// Per-field create examples from the enriched specs (single source of truth).
+const FIELD_EXAMPLES = loadFieldExamples(specsDir);
 const uiRaw = parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_ui.yaml'), 'utf8')) as any;
 const uiConfig = (uiRaw.resources ?? uiRaw) as Record<string, UiResource>;
 

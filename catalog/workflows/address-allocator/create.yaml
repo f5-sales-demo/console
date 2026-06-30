@@ -24,11 +24,13 @@ params:
     description: Allocation Unit
     default: 0
   address_pool:
-    required: true
+    required: false
     description: Address Pool
+    default: value
   address_allocation_scheme:
-    required: true
+    required: false
     description: "Server-required: Field should be not nil"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

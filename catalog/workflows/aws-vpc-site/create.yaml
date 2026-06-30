@@ -17,11 +17,13 @@ params:
     description: AWS VPC Sites name (lowercase alphanumeric and hyphens)
     example: example-aws-vpc-site
   aws_region:
-    required: true
+    required: false
     description: AWS Region
+    default: value
   aws_credentials:
-    required: true
+    required: false
     description: AWS Credentials
+    default: value
   deployment:
     required: true
     description: "Server-required: Field should be not nil"

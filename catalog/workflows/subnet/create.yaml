@@ -17,8 +17,9 @@ params:
     description: Subnets name (lowercase alphanumeric and hyphens)
     example: example-subnet
   site_subnet_parameters:
-    required: true
+    required: false
     description: "Server-required: Minimum items of 1"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

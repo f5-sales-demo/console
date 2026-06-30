@@ -21,8 +21,9 @@ params:
     description: Interface Config Type
     default: Ethernet Interface
   ethernet_interface:
-    required: true
+    required: false
     description: Ethernet Interface
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

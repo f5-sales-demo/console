@@ -17,8 +17,9 @@ params:
     description: TLS Certificates name (lowercase alphanumeric and hyphens)
     example: example-certificate
   certificate_url:
-    required: true
+    required: false
     description: "Server-required: Minimum bytes of 1"
+    default: string:///BASE64_ENCODED_CERTIFICATE
 steps:
   - id: navigate-to-list
     action: navigate
