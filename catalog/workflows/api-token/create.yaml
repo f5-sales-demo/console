@@ -1,0 +1,67 @@
+schema: urn:xcsh:console:workflow:v1
+id: api-token-create
+label: Create API Token
+resource: api-token
+operation: create
+preconditions:
+  - user_logged_in
+params:
+  name:
+    required: true
+    description: Credential Name (DNS-1035; lowercase alphanumeric and hyphens)
+    example: example-api-token
+  expiry_date:
+    required: true
+    description: Expiry Date in MM/DD/YYYY (API Token max 90 days from today)
+    example: 12/31/2026
+steps:
+  - id: navigate-to-list
+    action: navigate
+    url: /web/workspaces/administration/personal-management/api_credentials
+    wait_for: text('Credentials')
+    description: Navigate to Credentials list page
+  - id: click-add-tab
+    action: click
+    selector: text('Add Credentials')
+    wait_for: textbox[name='Credential Name']
+    description: Click Add Credentials to open the create form
+  - id: fill-credential_name
+    action: fill
+    selector: textbox[name='Credential Name']
+    value: "{name}"
+    description: Enter Credential Name
+  - id: select-credential_type
+    action: select
+    selector: listbox
+    context: Credential Type section
+    value: API Token
+    description: Select Credential Type = API Token (not the default API Certificate; the API Token type has no Password/Confirm Password fields)
+  - id: fill-expiry_date
+    action: fill
+    selector: textbox[name='Expiry Date']
+    value: "{expiry_date}"
+    description: Enter Expiry Date (MM/DD/YYYY, 90-day maximum from today)
+  - id: generate
+    action: click
+    selector: "[class*='save-bt'],[class*='submit-button']"
+    context: footer
+    wait_for: text('Copy')
+    wait_timeout_ms: 20000
+    description: Submit the form to generate the API Token; the token value is revealed once on the reveal panel
+    note: >-
+      INFERRED selectors — validate against a live console. The footer submit union
+      matches the Generate/Download button; the reveal panel is assumed to expose a Copy
+      affordance (wait_for text('Copy')). The token is shown only once; capturing and using
+      it is handled agent-side (get_page_text + xcsh_api), not by this browser workflow.
+postconditions:
+  - api_token_revealed_once
+metadata:
+  confidence: inferred
+  discovered_at: '2026-07-07'
+  console_version: '2025.06'
+  notes: >-
+    Hand-authored API Token variant of api-credential/create. Selects Credential Type = API
+    Token (no Password/Confirm Password) and ends at the one-time token reveal. Generate and
+    reveal-panel selectors are inferred and need a live-console validation pass to promote to
+    validated. Not produced by scripts/generate-workflows.ts (there is no api-token resource
+    manifest), so it is preserved across catalog regeneration.
