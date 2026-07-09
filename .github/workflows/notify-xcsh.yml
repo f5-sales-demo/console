@@ -1,0 +1,27 @@
+---
+name: Notify xcsh on Catalog Change
+
+# When the catalog changes on main, tell the xcsh repo to regenerate its embedded
+# console catalog. This is the trigger half of the "never stale" pipeline; xcsh's
+# console-catalog-update.yml catches the dispatch, regenerates, and auto-merges a
+# refresh PR. Mirrors how api-specs-enriched dispatches downstream.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "catalog/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch console-catalog-changed to xcsh
+        env:
+          GH_TOKEN: ${{ secrets.REPO_SYNC_TOKEN }}
+        run: |
+          echo "::notice::Catalog changed on main — dispatching console-catalog-changed to f5-sales-demo/xcsh"
+          gh api repos/f5-sales-demo/xcsh/dispatches -f event_type=console-catalog-changed
