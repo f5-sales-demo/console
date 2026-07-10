@@ -36,9 +36,7 @@
       "namespace": "demo"
     },
     "spec": {
-      "as_numbers": [
-        1
-      ]
+      "as_numbers": [1]
     }
   },
   "crl": {
@@ -64,18 +62,14 @@
       "namespace": "demo"
     },
     "spec": {
-      "compliances": [
-        "GDPR"
-      ],
+      "compliances": ["GDPR"],
       "is_pii": false,
       "is_sensitive_data": false,
       "rules": [
         {
           "key_pattern": {
             "exact_values": {
-              "exact_values": [
-                "xcsh-sweep"
-              ]
+              "exact_values": ["xcsh-sweep"]
             }
           }
         }
