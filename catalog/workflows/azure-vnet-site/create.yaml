@@ -17,11 +17,13 @@ params:
     description: Azure VNET Sites name (lowercase alphanumeric and hyphens)
     example: example-azure-vnet-site
   azure_region:
-    required: true
+    required: false
     description: Azure Region
+    default: eastus2
   azure_credentials:
-    required: true
+    required: false
     description: Azure Credentials
+    default: example-azure-cred
   deployment:
     required: true
     description: "Server-required: Field should be not nil"
@@ -52,7 +54,7 @@ steps:
     selector: button:text('Add Item')
     context: Azure Credentials section
     condition: params.azure_credentials is set
-    description: Attach Azure Credentials (references a resource)
+    description: Attach Azure Credentials (references a cloud_credentials)
     then:
       - id: select-azure_credentials
         action: select

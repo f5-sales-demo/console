@@ -17,8 +17,9 @@ params:
     description: Subnets name (lowercase alphanumeric and hyphens)
     example: example-subnet
   site_subnet_parameters:
-    required: true
+    required: false
     description: "Server-required: Minimum items of 1"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate
@@ -35,26 +36,18 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-site_subnet_parameters
-    action: click
-    selector: text('Configure')
+  - id: select-site_subnet_parameters
+    action: select
+    selector: listbox
     context: Site Subnet Parameters section
-    description: Open the Site Subnet Parameters configuration ('Configure' is a link, not a button)
-  - id: fill-site_subnet_parameters-value
-    action: fill
-    selector: textbox
     value: "{site_subnet_parameters}"
-    description: Enter the Site Subnet Parameters value via the 'site_subnet_parameters' parameter
-  - id: configure-site_subnet_parameters
-    action: click
-    selector: text('Configure')
+    description: Select Site Subnet Parameters
+  - id: select-site_subnet_parameters
+    action: select
+    selector: listbox
     context: Site Subnet Parameters section
-    description: Open the Site Subnet Parameters configuration ('Configure' is a link, not a button)
-  - id: fill-site_subnet_parameters-value
-    action: fill
-    selector: textbox
     value: "{site_subnet_parameters}"
-    description: Enter the Site Subnet Parameters value via the 'site_subnet_parameters' parameter
+    description: Select Site Subnet Parameters
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

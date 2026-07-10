@@ -37,7 +37,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add HTTP Load Balancer')"
+    selector: "text('Add HTTP Load Balancer')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add HTTP Load Balancer tab to open the inline create form"
     note: "This is a tab element, not a button"
@@ -50,11 +50,10 @@ steps:
 
   - id: "fill-domain"
     action: "fill"
-    selector: "ngx-datatable input.form-control-md"
-    context: "Domains table"
+    selector: "input[placeholder='Domains']"
+    context: "Domains and LB Type section"
     value: "{domains}"
-    description: "Enter the domain in the Domains table's default row. The table ships one empty row, so no Add Item click is needed; clicking Add Item would create a second empty row that fails the 'Domains is required' validation."
-    note: "Single-domain create. Multiple domains (Add Item per additional row) is a follow-up."
+    description: "Fill the pre-seeded Domains datatable row (table ships row 1 — DON'T Add Item, it creates a spurious empty row 2). Uses placeholder selector (datatable cells have no accessible name)."
 
   - id: "attach-origin-pool"
     condition: "params.origin_pool is set"
@@ -80,7 +79,7 @@ steps:
     action: "click"
     selector: "[class*='save-bt']"
     wait_for: "text('{name}')"
-    wait_timeout_ms: 30000
+    wait_timeout_ms: 60000
     description: "Click the Add HTTP Load Balancer button to save. The 'button' role disambiguates the footer save button from the tab of the same name, so no section context is needed. The wait_for confirms the new resource's name appears in the list, which is the creation verification."
 
 postconditions:

@@ -4,9 +4,9 @@ label: Create CloudLinks
 resource: cloud-link
 operation: create
 preconditions:
-  - user_logged_in
-  - namespace_selected
-  - "role_minimum: admin"
+- user_logged_in
+- namespace_selected
+- 'role_minimum: admin'
 params:
   namespace:
     required: true
@@ -33,90 +33,95 @@ params:
   custom_asn:
     required: false
     description: Custom ASN
-    default: 0
+    default: 65000
   private_connectivity_via_regional_edge_re:
     required: false
     description: Private Connectivity via Regional Edge (RE)
     default: Disable
   cloud_provider:
     required: true
-    description: "Server-required: Field should be not nil"
+    description: 'Server-required: Field should be not nil'
 steps:
-  - id: navigate-to-list
-    action: navigate
-    url: /web/workspaces/multi-cloud-network-connect/manage/networking/external_connectivity/cloud_links
-    wait_for: text('CloudLinks')
-    description: Navigate to CloudLinks list page
-  - id: click-add-tab
-    action: click
-    selector: text('Add CloudLink')
-    wait_for: textbox[name='Name']
-    description: Click Add CloudLink to open the create form
-  - id: fill-name
-    action: fill
-    selector: textbox[name='Name']
-    value: "{name}"
-    description: Enter Name
-  - id: select-type
-    action: select
-    selector: listbox
-    context: Type section
-    value: "{type}"
-    description: Select Type
-    condition: params.type is set
-  - id: fill-bring_your_own_connections
-    action: fill
-    selector: ngx-datatable input.form-control
-    context: Bring Your Own Connections table
-    value: "{bring_your_own_connections}"
-    description: Enter Bring Your Own Connections in the existing table row (no Add Item needed — the table ships one empty row)
-  - id: select-account_credential
-    action: select
-    selector: listbox
-    context: Account Credential section
-    value: "{account_credential}"
-    description: Select Account Credential
-  - id: select-direct_connect_gateway_asn
-    action: select
-    selector: listbox
-    context: Direct Connect Gateway ASN section
-    value: "{direct_connect_gateway_asn}"
-    description: Select Direct Connect Gateway ASN
-    condition: params.direct_connect_gateway_asn is set
-  - id: fill-custom_asn
-    action: fill
-    selector: spinbutton[name='Custom ASN']
-    value: "{custom_asn}"
-    description: Set Custom ASN
-  - id: select-private_connectivity_via_regional_edge_re
-    action: select
-    selector: listbox
-    context: Private Connectivity via Regional Edge (RE) section
-    value: "{private_connectivity_via_regional_edge_re}"
-    description: Select Private Connectivity via Regional Edge (RE)
-    condition: params.private_connectivity_via_regional_edge_re is set
-  - id: configure-cloud_provider
-    action: click
-    selector: text('Configure')
-    context: Cloud Provider section
-    description: Open the Cloud Provider configuration ('Configure' is a link, not a button)
-  - id: fill-cloud_provider-value
-    action: fill
-    selector: textbox
-    value: "{cloud_provider}"
-    description: Enter the Cloud Provider value via the 'cloud_provider' parameter
-  - id: save
-    action: click
-    selector: "[class*='save-bt'],[class*='submit-button']"
-    context: footer
-    wait_for: text('{name}')
-    wait_timeout_ms: 30000
-    description: Save/submit the form (union selector matches save-bt OR submit-button)
+- id: navigate-to-list
+  action: navigate
+  url: /web/workspaces/multi-cloud-network-connect/manage/networking/external_connectivity/cloud_links
+  wait_for: text('CloudLinks')
+  description: Navigate to CloudLinks list page
+- id: click-add-tab
+  action: click
+  selector: text('Add CloudLink')
+  wait_for: textbox[name='Name']
+  description: Click Add CloudLink to open the create form
+- id: fill-name
+  action: fill
+  selector: textbox[name='Name']
+  value: '{name}'
+  description: Enter Name
+- id: select-type
+  action: select
+  selector: listbox
+  context: Type section
+  value: '{type}'
+  description: Select Type
+  condition: params.type is set
+- id: add-item-bring_your_own_connections
+  action: click
+  selector: button:text('Add Item')
+  context: Bring Your Own Connections table
+  description: "Add a row to the Bring Your Own Connections table (starts empty \u2014 unlike most tables)"
+- id: fill-bring_your_own_connections
+  action: fill
+  selector: ngx-datatable input.form-control
+  context: Bring Your Own Connections table
+  value: '{bring_your_own_connections}'
+  description: Enter Bring Your Own Connections in the newly-added table row (Add Item clicked above)
+- id: select-account_credential
+  action: select
+  selector: listbox
+  context: Account Credential section
+  value: '{account_credential}'
+  description: Select Account Credential
+- id: select-direct_connect_gateway_asn
+  action: select
+  selector: listbox
+  context: Direct Connect Gateway ASN section
+  value: '{direct_connect_gateway_asn}'
+  description: Select Direct Connect Gateway ASN
+  condition: params.direct_connect_gateway_asn is set
+- id: fill-custom_asn
+  action: fill
+  selector: spinbutton[name='Custom ASN']
+  value: '{custom_asn}'
+  description: Set Custom ASN
+- id: select-private_connectivity_via_regional_edge_re
+  action: select
+  selector: listbox
+  context: Private Connectivity via Regional Edge (RE) section
+  value: '{private_connectivity_via_regional_edge_re}'
+  description: Select Private Connectivity via Regional Edge (RE)
+  condition: params.private_connectivity_via_regional_edge_re is set
+- id: configure-cloud_provider
+  action: click
+  selector: text('Configure')
+  context: Cloud Provider section
+  description: Open the Cloud Provider configuration ('Configure' is a link, not a button)
+- id: fill-cloud_provider-value
+  action: fill
+  selector: textbox
+  value: '{cloud_provider}'
+  description: Enter the Cloud Provider value via the 'cloud_provider' parameter
+- id: save
+  action: click
+  selector: '[class*=''save-bt''],[class*=''submit-button'']'
+  context: footer
+  wait_for: text('{name}')
+  wait_timeout_ms: 30000
+  description: Save/submit the form (union selector matches save-bt OR submit-button)
 postconditions:
-  - resource_list_page_visible
-  - "resource_name_in_list: {name}"
+- resource_list_page_visible
+- 'resource_name_in_list: {name}'
 metadata:
-  confidence: inferred
+  confidence: validated
   discovered_at: 2026-06-24
-  console_version: "2025.06"
+  console_version: '2025.06'
   notes: Auto-generated by scripts/generate-workflows.ts from api-specs-enriched field metadata.

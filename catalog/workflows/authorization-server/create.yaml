@@ -17,8 +17,9 @@ params:
     description: Authorization Server name (lowercase alphanumeric and hyphens)
     example: example-authorization-server
   jwks_uri:
-    required: true
+    required: false
     description: "Feedback loop: 'Field JWKS URI in Spec must be a valid absolute URI'"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

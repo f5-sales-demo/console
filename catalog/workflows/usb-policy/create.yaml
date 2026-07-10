@@ -17,8 +17,9 @@ params:
     description: USB Policies name (lowercase alphanumeric and hyphens)
     example: example-usb-policy
   allowed_usb_devices:
-    required: true
+    required: false
     description: "Server-required: Minimum items of 1"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

@@ -17,8 +17,9 @@ params:
     description: Origin Pools name (lowercase alphanumeric and hyphens)
     example: example-origin-pool
   origin_servers:
-    required: true
+    required: false
     description: 'Default type: Public DNS Name. The sub-form requires "DNS Name" (FQDN of the origin).'
+    default: backend1.example.com
   port:
     required: false
     description: Port

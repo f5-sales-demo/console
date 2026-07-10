@@ -17,9 +17,10 @@ params:
     description: Virtual Sites name (lowercase alphanumeric and hyphens)
     example: example-virtual-site
   site_selector_expression:
-    required: true
+    required: false
     description: 'CDK-portal label-selector: Add Label → type key prefix (e.g. "ves") → select from portal → operator →
       value. Verified live via label_select tool.'
+    default: ves.io/siteName=any
   site_type:
     required: false
     description: "Required: Site Type (RE = Regional Edge, CE = Customer Edge). Select from the listbox."

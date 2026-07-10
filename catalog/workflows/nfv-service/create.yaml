@@ -81,16 +81,12 @@ steps:
     value: "{ssh_based_management_of_nodes}"
     description: Select SSH based management of nodes
     condition: params.ssh_based_management_of_nodes is set
-  - id: configure-service_provider_choice
-    action: click
-    selector: text('Configure')
+  - id: select-service_provider_choice
+    action: select
+    selector: listbox
     context: Service Provider Choice section
-    description: Open the Service Provider Choice configuration ('Configure' is a link, not a button)
-  - id: fill-service_provider_choice-value
-    action: fill
-    selector: textbox
     value: "{service_provider_choice}"
-    description: Enter the Service Provider Choice value via the 'service_provider_choice' parameter
+    description: Select Service Provider Choice
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

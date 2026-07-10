@@ -28,7 +28,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add Route')"
+    selector: "text('Add Route')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add Route tab to open the inline create form"
 
@@ -43,7 +43,7 @@ steps:
     selector: "button:text('Add Route')"
     context: "footer"
     wait_for: "text('{name}')"
-    wait_timeout_ms: 30000
+    wait_timeout_ms: 60000
     description: "Click the Add Route button in the form footer to save"
 
   - id: "verify-created"

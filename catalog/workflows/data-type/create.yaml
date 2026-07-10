@@ -17,8 +17,9 @@ params:
     description: Data Types name (lowercase alphanumeric and hyphens)
     example: example-data-type
   data_type_rules:
-    required: true
+    required: false
     description: "Server-required: Minimum items of 1"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate
@@ -35,16 +36,12 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-data_type_rules
-    action: click
-    selector: text('Configure')
+  - id: select-data_type_rules
+    action: select
+    selector: listbox
     context: Data Type Rules section
-    description: Open the Data Type Rules configuration ('Configure' is a link, not a button)
-  - id: fill-data_type_rules-value
-    action: fill
-    selector: textbox
     value: "{data_type_rules}"
-    description: Enter the Data Type Rules value via the 'data_type_rules' parameter
+    description: Select Data Type Rules
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

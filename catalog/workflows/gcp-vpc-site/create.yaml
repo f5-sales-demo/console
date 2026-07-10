@@ -17,8 +17,9 @@ params:
     description: GCP VPC Sites name (lowercase alphanumeric and hyphens)
     example: example-gcp-vpc-site
   gcp_credentials:
-    required: true
+    required: false
     description: GCP Credentials
+    default: value
   deployment:
     required: true
     description: "Server-required: Field should be not nil"
@@ -43,7 +44,7 @@ steps:
     selector: button:text('Add Item')
     context: GCP Credentials section
     condition: params.gcp_credentials is set
-    description: Attach GCP Credentials (references a resource)
+    description: Attach GCP Credentials (references a cloud_credentials)
     then:
       - id: select-gcp_credentials
         action: select

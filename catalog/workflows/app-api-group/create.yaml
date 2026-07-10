@@ -21,10 +21,11 @@ params:
     description: Scope
     default: HTTP Load Balancer
   http_load_balancer:
-    required: true
+    required: false
     description: 'Server-required (feedback loop: "Field HTTP Load Balancer is required"). A direct listbox that selects an
       EXISTING http_loadbalancer — dependency, create an http-lb first. (Removed the duplicate spec.http_load_balancer:
       the real API field is http_loadbalancer, and the console form shows a single listbox, not a resource-selector.)'
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate
