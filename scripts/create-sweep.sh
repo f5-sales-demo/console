@@ -37,17 +37,17 @@ for r in "${RESOURCES[@]}"; do
 
   # Run the create workflow via xcsh -p (timeout 120s per resource)
   LOG="/tmp/sweep-${r}.log"
-  timeout 120 $XCSH -p "Use catalog_workflow_runner to create resource=$r with params namespace=$NS name=$NAME. Report ONLY a JSON object: {\"resource\":\"$r\",\"steps_total\":N,\"steps_passed\":N,\"failed_step\":\"id or null\",\"error\":\"msg or null\"}. Nothing else — just the JSON." > "$LOG" 2>/dev/null || true
+  timeout 120 $XCSH -p "Use catalog_workflow_runner to create resource=$r with params namespace=$NS name=$NAME. Report ONLY a JSON object: {\"resource\":\"$r\",\"steps_total\":N,\"steps_passed\":N,\"failed_step\":\"id or null\",\"error\":\"msg or null\"}. Nothing else — just the JSON." >"$LOG" 2>/dev/null || true
 
   # Extract the JSON result (last line that looks like JSON)
   RESULT=$(grep -E '^\{' "$LOG" 2>/dev/null | tail -1)
   if [ -n "$RESULT" ]; then
-    echo "$RESULT" >> "$RESULTS"
+    echo "$RESULT" >>"$RESULTS"
     passed=$(echo "$RESULT" | python3 -c "import sys,json;print(json.load(sys.stdin).get('steps_passed','?'))" 2>/dev/null)
     total=$(echo "$RESULT" | python3 -c "import sys,json;print(json.load(sys.stdin).get('steps_total','?'))" 2>/dev/null)
     echo "${passed}/${total}"
   else
-    echo '{"resource":"'"$r"'","error":"no output (timeout or crash)"}' >> "$RESULTS"
+    echo '{"resource":"'"$r"'","error":"no output (timeout or crash)"}' >>"$RESULTS"
     echo "NO OUTPUT"
   fi
 done
