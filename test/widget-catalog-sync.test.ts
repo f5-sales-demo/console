@@ -75,8 +75,7 @@ describe('widget-catalog ↔ generator sync', () => {
 
   test('every non-skip widget has a summary and steps (or extends)', () => {
     const catalog = parseYaml(fs.readFileSync(consoleCatalogPath, 'utf-8'));
-    // biome-ignore lint/suspicious/noExplicitAny: YAML parse returns untyped
-    for (const [name, widget] of Object.entries(catalog.widgets) as [string, Record<string, unknown>][]) {
+    for (const [_name, widget] of Object.entries(catalog.widgets) as [string, Record<string, unknown>][]) {
       if (widget.skip) continue;
       expect(widget.summary).toBeDefined();
       // Must have steps OR extend another widget

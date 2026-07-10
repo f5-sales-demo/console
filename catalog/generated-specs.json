@@ -1,0 +1,266 @@
+{
+  "alert-receiver": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-alert-receiver",
+      "namespace": "demo"
+    },
+    "spec": {
+      "email": {
+        "email": "abc@email.com"
+      }
+    }
+  },
+  "api-definition": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-api-definition",
+      "namespace": "demo"
+    },
+    "spec": {
+      "mixed_schema_origin": {}
+    }
+  },
+  "api-discovery": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-api-discovery",
+      "namespace": "demo"
+    },
+    "spec": {}
+  },
+  "bgp-asn-set": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-bgp-asn-set",
+      "namespace": "demo"
+    },
+    "spec": {
+      "as_numbers": [1]
+    }
+  },
+  "crl": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-crl",
+      "namespace": "demo"
+    },
+    "spec": {
+      "refresh_interval": 24,
+      "server_address": "example-crl.it.com",
+      "server_port": 80,
+      "timeout": 10,
+      "http_access": {
+        "path": "/repo/latest.crl"
+      }
+    }
+  },
+  "data-type": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-data-type",
+      "namespace": "demo"
+    },
+    "spec": {
+      "compliances": ["GDPR"],
+      "is_pii": false,
+      "is_sensitive_data": false,
+      "rules": [
+        {
+          "key_pattern": {
+            "exact_values": {
+              "exact_values": ["xcsh-sweep"]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "dns-lb-health-check": {
+    "namespace": "system",
+    "metadata": {
+      "name": "xcsh-gen-dns-lb-health-check",
+      "namespace": "system"
+    },
+    "spec": {
+      "http_health_check": {
+        "health_check_port": 80,
+        "health_check_secondary_port": 443,
+        "receive": "HTTP/1",
+        "send": "HEAD / HTTP/1.0",
+        "disable_virtual_host": {}
+      }
+    }
+  },
+  "enhanced-firewall-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-enhanced-firewall-policy",
+      "namespace": "demo"
+    },
+    "spec": {
+      "allow_all": {}
+    }
+  },
+  "forward-proxy-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-forward-proxy-policy",
+      "namespace": "demo"
+    },
+    "spec": {
+      "drp_http_connect": {},
+      "allow_all": {}
+    }
+  },
+  "ip-prefix-set": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-ip-prefix-set",
+      "namespace": "demo"
+    },
+    "spec": {
+      "ipv4_prefixes": [
+        {
+          "description": "blocked ip",
+          "ipv4_prefix": "192.0.2.146/22"
+        }
+      ]
+    }
+  },
+  "log-receiver": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-log-receiver",
+      "namespace": "demo"
+    },
+    "spec": {
+      "syslog": {
+        "syslog_rfc5424": 500,
+        "tcp_server": {
+          "port": 601,
+          "server_name": "server.example.com"
+        }
+      },
+      "site_local": {}
+    }
+  },
+  "malicious-user-mitigation": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-malicious-user-mitigation",
+      "namespace": "demo"
+    },
+    "spec": {}
+  },
+  "network-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-network-policy",
+      "namespace": "demo"
+    },
+    "spec": {
+      "endpoint": {
+        "any": {}
+      }
+    }
+  },
+  "policer": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-policer",
+      "namespace": "demo"
+    },
+    "spec": {
+      "burst_size": 10000,
+      "committed_information_rate": 10000
+    }
+  },
+  "rate-limiter-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-rate-limiter-policy",
+      "namespace": "demo"
+    },
+    "spec": {
+      "any_server": {}
+    }
+  },
+  "secret-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-secret-policy",
+      "namespace": "demo"
+    },
+    "spec": {
+      "allow_f5xc": true,
+      "decrypt_cache_timeout": "6h",
+      "rule_list": {
+        "rules": [
+          {
+            "metadata": {
+              "description": "Virtual Host for example-corp website",
+              "name": "example-corp-web"
+            },
+            "spec": {
+              "action": "DENY",
+              "client_name": "ver.re01.int.F5 XC"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "sensitive-data-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-sensitive-data-policy",
+      "namespace": "demo"
+    },
+    "spec": {}
+  },
+  "service-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-service-policy",
+      "namespace": "demo"
+    },
+    "spec": {
+      "allow_all_requests": {},
+      "any_server": {}
+    }
+  },
+  "usb-policy": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-usb-policy",
+      "namespace": "demo"
+    },
+    "spec": {
+      "allowed_devices": [
+        {
+          "b_device_class": "hub",
+          "b_device_protocol": "0002",
+          "b_device_sub_class": "hub",
+          "i_serial": "0000:00:14.0",
+          "id_product": "0x0002",
+          "id_vendor": "0x1d6b"
+        }
+      ]
+    }
+  },
+  "user-identification": {
+    "namespace": "demo",
+    "metadata": {
+      "name": "xcsh-gen-user-identification",
+      "namespace": "demo"
+    },
+    "spec": {
+      "rules": [
+        {
+          "client_asn": {}
+        }
+      ]
+    }
+  }
+}

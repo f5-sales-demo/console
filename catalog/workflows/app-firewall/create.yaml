@@ -33,7 +33,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add App Firewall')"
+    selector: "text('Add App Firewall')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add App Firewall tab to open the inline create form"
     note: "This is a tab element, not a button"
@@ -57,7 +57,7 @@ steps:
     selector: "[class*='save-bt']"
     context: "footer"
     wait_for: "text('{name}')"
-    wait_timeout_ms: 30000
+    wait_timeout_ms: 60000
     description: "Click the Add App Firewall button in the form footer to save"
 
   - id: "verify-created"

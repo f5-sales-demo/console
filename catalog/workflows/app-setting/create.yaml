@@ -17,8 +17,9 @@ params:
     description: App Settings name (lowercase alphanumeric and hyphens)
     example: example-app-setting
   app_type_settings:
-    required: true
+    required: false
     description: "Server-required: Minimum items of 1"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate
@@ -35,16 +36,12 @@ steps:
     selector: textbox[name='Name']
     value: "{name}"
     description: Enter Name
-  - id: configure-app_type_settings
-    action: click
-    selector: text('Configure')
+  - id: select-app_type_settings
+    action: select
+    selector: listbox
     context: App Type Settings section
-    description: Open the App Type Settings configuration ('Configure' is a link, not a button)
-  - id: fill-app_type_settings-value
-    action: fill
-    selector: textbox
     value: "{app_type_settings}"
-    description: Enter the App Type Settings value via the 'app_type_settings' parameter
+    description: Select App Type Settings
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

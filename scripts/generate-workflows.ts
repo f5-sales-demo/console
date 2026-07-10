@@ -86,12 +86,52 @@ function loadWidgetCatalog(specsDir: string): WidgetCatalog {
 }
 
 /**
+ * Load per-field create examples (x-f5xc-field-examples) from the enriched
+ * OpenAPI specs — the single source of truth, derived from each resource's
+ * x-f5xc-minimum-configuration.example_yaml. Returns resourceId → { fieldPath →
+ * exampleValue }. The workflow generator uses these as deterministic param
+ * defaults so no values are hand-coded downstream.
+ */
+function loadFieldExamples(specsDir: string): Record<string, Record<string, unknown>> {
+  const apiDir = path.join(specsDir, 'docs/specifications/api');
+  const out: Record<string, Record<string, unknown>> = {};
+  if (!fs.existsSync(apiDir)) return out;
+  for (const f of fs.readdirSync(apiDir).filter((f) => f.endsWith('.json') && f !== 'index.json')) {
+    let doc: { components?: { schemas?: Record<string, Record<string, unknown>> } };
+    try {
+      doc = JSON.parse(fs.readFileSync(path.join(apiDir, f), 'utf8'));
+    } catch {
+      continue;
+    }
+    for (const [name, schema] of Object.entries<Record<string, unknown>>(doc?.components?.schemas ?? {})) {
+      if (!name.includes('CreateSpecType') || !schema?.['x-f5xc-field-examples']) continue;
+      // schema name → kebab resource id (mirror the dependency-graph mapping)
+      const id = name
+        .replace(/^(views|schema)/, '')
+        .replace(/CreateSpecType$/, '')
+        .replace(/_/g, '-');
+      if (id) out[id] = { ...(out[id] ?? {}), ...schema['x-f5xc-field-examples'] };
+    }
+  }
+  return out;
+}
+
+/** Look up the example value for a param's field path (exact, or first nested leaf). */
+function exampleForFieldPath(examples: Record<string, unknown> | undefined, fieldPath: string): unknown {
+  if (!examples) return undefined;
+  if (fieldPath in examples) return examples[fieldPath];
+  // nested: spec.origin_servers → spec.origin_servers[].public_name.dns_name
+  const nested = Object.keys(examples).find((k) => k.startsWith(`${fieldPath}[`) || k.startsWith(`${fieldPath}.`));
+  return nested ? examples[nested] : undefined;
+}
+
+/**
  * Catalog-driven step generation for SIMPLE widgets (textbox, textarea,
  * spinbutton, checkbox, table). These have a 1:1 template → step mapping
  * with no branching. Returns null for widgets that need the procedural path.
  */
 function catalogDrivenSteps(
-  fieldPath: string,
+  _fieldPath: string,
   meta: FieldMeta,
   catalog: WidgetCatalog,
   label: string,
@@ -294,7 +334,7 @@ function catalogDrivenSteps(
   // --- SIMPLE 1-STEP WIDGETS (textbox/textarea/spinbutton/checkbox/table) ---
   const steps: Step[] = [];
   // Some tables start empty (e.g. TCP LB Domains) and need Add Item first.
-  if (wt === 'table' && (meta as any).add_item_first) {
+  if (wt === 'table' && (meta as { add_item_first?: boolean }).add_item_first) {
     steps.push({
       id: `add-item-${param}`,
       action: 'click',
@@ -320,7 +360,7 @@ function catalogDrivenSteps(
             ? `Set ${label}${hasDefault ? ` (default: ${meta.default})` : ''}`
             : wt === 'checkbox'
               ? `Toggle ${label}`
-              : (meta as any).add_item_first
+              : (meta as { add_item_first?: boolean }).add_item_first
                 ? `Enter ${label} in the newly-added table row (Add Item clicked above)`
                 : `Enter ${label} in the existing table row (no Add Item needed — the table ships one empty row)`,
     };
@@ -390,7 +430,7 @@ function fieldToSteps(fieldPath: string, meta: FieldMeta, _resourceLabel: string
   // create (e.g. service_policy.spec.rule_choice). The agent only touches them
   // to pick a non-default variant, which is handled dynamically, not generated.
   if (meta.console_preselected) return [];
-  const label = meta.label ?? fieldPath.split('.').pop()!;
+  const label = meta.label ?? fieldPath.split('.').pop() ?? fieldPath;
   const param = toParamName(label);
   const isName = fieldPath === 'metadata.name';
   const hasDefault = meta.default !== undefined && meta.default !== null && meta.default !== '' && meta.default !== 0;
@@ -655,15 +695,20 @@ function generateCreate(
       example: `example-${resourceId}`,
     },
   };
+  const resourceExamples = FIELD_EXAMPLES[resourceId];
   for (const [fp, m] of requiredFields) {
     if (fp === 'metadata.name') continue;
     const p = toParamName(m.label ?? fp);
     if (p === 'name' || p === 'namespace') continue;
+    // Spec-derived create value (single source: x-f5xc-field-examples ← example_yaml).
+    const specExample = exampleForFieldPath(resourceExamples, fp);
     const def: Record<string, unknown> = {
-      required: m.default === undefined,
+      required: m.default === undefined && specExample === undefined,
       description: m.description ?? m.label ?? fp,
     };
+    // Precedence: metadata default > spec example > enum first option.
     if (m.default !== undefined) def.default = m.default;
+    else if (specExample !== undefined) def.default = specExample;
     if (m.options) def.example = m.options[0];
     params[p] = def;
     // A nested-resource-list whose inner field references another object needs a
@@ -919,9 +964,15 @@ if (!specsDir) {
 }
 
 const fieldMetadata = (
-  parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_field_metadata.yaml'), 'utf8')) as any
+  parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_field_metadata.yaml'), 'utf8')) as {
+    resources: Record<string, Record<string, FieldMeta>>;
+  }
 ).resources as Record<string, Record<string, FieldMeta>>;
-const uiRaw = parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_ui.yaml'), 'utf8')) as any;
+// Per-field create examples from the enriched specs (single source of truth).
+const FIELD_EXAMPLES = loadFieldExamples(specsDir);
+const uiRaw = parseYaml(fs.readFileSync(path.join(specsDir, 'config/console_ui.yaml'), 'utf8')) as {
+  resources?: Record<string, UiResource>;
+};
 const uiConfig = (uiRaw.resources ?? uiRaw) as Record<string, UiResource>;
 
 // Read existing resource catalog for label + api.kind mapping
@@ -929,7 +980,10 @@ const resourcesDir = path.join(CONSOLE_ROOT, 'catalog/resources');
 const catalogResources = new Map<string, { kind: string; label: string }>();
 for (const f of fs.readdirSync(resourcesDir).filter((f) => f.endsWith('.yaml'))) {
   const id = f.replace('.yaml', '');
-  const doc = parseYaml(fs.readFileSync(path.join(resourcesDir, f), 'utf8')) as any;
+  const doc = parseYaml(fs.readFileSync(path.join(resourcesDir, f), 'utf8')) as {
+    api?: { kind?: string };
+    label?: string;
+  };
   catalogResources.set(id, { kind: doc?.api?.kind ?? '', label: doc?.label ?? id });
 }
 
@@ -975,7 +1029,7 @@ for (const [resourceId, { kind, label }] of [...catalogResources.entries()].sort
     // Preserve hand-crafted workflows (confidence: validated) unless --overwrite
     if (preserveHandcrafted && fs.existsSync(file)) {
       try {
-        const existing = parseYaml(fs.readFileSync(file, 'utf8')) as any;
+        const existing = parseYaml(fs.readFileSync(file, 'utf8')) as { metadata?: { confidence?: string } };
         if (existing?.metadata?.confidence === 'validated') {
           preserved++;
           continue;

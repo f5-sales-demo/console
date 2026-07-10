@@ -57,7 +57,7 @@ steps:
 
   - id: "click-add-tab"
     action: "click"
-    selector: "tab:text('Add Health Check')"
+    selector: "text('Add Health Check')"
     wait_for: "textbox[name='Name']"
     description: "Click the Add Health Check tab to open the inline create form"
     note: "This is a tab element, not a button"
@@ -108,7 +108,7 @@ steps:
     action: "click"
     selector: "[class*='save-bt']"
     wait_for: "text('{name}')"
-    wait_timeout_ms: 30000
+    wait_timeout_ms: 60000
     description: "Click the Add Health Check button to save. The 'button' role disambiguates the footer save button from the same-named tab, so no section context is needed. The wait_for confirms the new resource's name appears in the list, which is the creation verification."
 
 postconditions:

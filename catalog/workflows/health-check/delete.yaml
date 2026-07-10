@@ -62,7 +62,8 @@ steps:
   - id: "verify-on-list"
     action: "assert"
     selector: "text('Health Checks')"
-    description: "Confirm the list page is shown after deletion. (Run-time read-back verifies {name} is absent; assert checks presence, so it targets the list heading, not the removed row.)"
+    expected_text: "Health Checks"
+    description: "Confirm the list page is shown after deletion (assert requires expected_text). Deletion itself is verified independently by the API cross-check."
 
 postconditions:
   - "resource_removed_from_list"

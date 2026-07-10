@@ -58,16 +58,12 @@ steps:
     value: "{virtual_site_or_site_or_network}"
     description: Select Virtual-Site or Site or Network
     condition: params.virtual_site_or_site_or_network is set
-  - id: configure-reference
-    action: click
-    selector: text('Configure')
+  - id: select-reference
+    action: select
+    selector: listbox
     context: Reference section
-    description: Open the Reference configuration ('Configure' is a link, not a button)
-  - id: fill-reference-value
-    action: fill
-    selector: textbox
     value: "{reference}"
-    description: Enter the Reference value via the 'reference' parameter
+    description: Select Reference
   - id: select-internet_vip_choice
     action: select
     selector: listbox

@@ -17,8 +17,9 @@ params:
     description: External Connectors name (lowercase alphanumeric and hyphens)
     example: example-external-connector
   ce_site_reference:
-    required: true
+    required: false
     description: CE Site Reference
+    default: value
   connection_type:
     required: false
     description: Connection Type

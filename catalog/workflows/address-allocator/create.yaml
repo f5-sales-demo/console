@@ -24,11 +24,13 @@ params:
     description: Allocation Unit
     default: 0
   address_pool:
-    required: true
+    required: false
     description: Address Pool
+    default: value
   address_allocation_scheme:
-    required: true
+    required: false
     description: "Server-required: Field should be not nil"
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate
@@ -62,16 +64,12 @@ steps:
     context: Address Pool table
     value: "{address_pool}"
     description: Enter Address Pool in the existing table row (no Add Item needed — the table ships one empty row)
-  - id: configure-address_allocation_scheme
-    action: click
-    selector: text('Configure')
+  - id: select-address_allocation_scheme
+    action: select
+    selector: listbox
     context: Address Allocation Scheme section
-    description: Open the Address Allocation Scheme configuration ('Configure' is a link, not a button)
-  - id: fill-address_allocation_scheme-value
-    action: fill
-    selector: textbox
     value: "{address_allocation_scheme}"
-    description: Enter the Address Allocation Scheme value via the 'address_allocation_scheme' parameter
+    description: Select Address Allocation Scheme
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

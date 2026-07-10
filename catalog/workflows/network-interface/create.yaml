@@ -21,8 +21,9 @@ params:
     description: Interface Config Type
     default: Ethernet Interface
   ethernet_interface:
-    required: true
+    required: false
     description: Ethernet Interface
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate
@@ -46,16 +47,12 @@ steps:
     value: "{interface_config_type}"
     description: Select Interface Config Type
     condition: params.interface_config_type is set
-  - id: configure-ethernet_interface
-    action: click
-    selector: text('Configure')
+  - id: select-ethernet_interface
+    action: select
+    selector: listbox
     context: Ethernet Interface section
-    description: Open the Ethernet Interface configuration ('Configure' is a link, not a button)
-  - id: fill-ethernet_interface-value
-    action: fill
-    selector: textbox
     value: "{ethernet_interface}"
-    description: Enter the Ethernet Interface value via the 'ethernet_interface' parameter
+    description: Select Ethernet Interface
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"
