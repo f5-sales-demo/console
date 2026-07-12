@@ -94,18 +94,12 @@ steps:
     value: "{app_name}-lb"
     description: "Enter the load balancer name"
 
-  - id: "add-domain"
-    action: "click"
-    selector: "button:text('Add Item')"
-    context: "Domains table"
-    description: "Click Add Item in the Domains table"
-    then:
-      - id: "fill-domain"
-        action: "fill"
-        selector: "textbox"
-        context: "Domains table row"
-        value: "{domain}"
-        description: "Enter the domain name"
+  - id: "fill-domain"
+    action: "fill"
+    selector: "input[placeholder='Domains']"
+    context: "Domains and LB Type section"
+    value: "{domain}"
+    description: "Fill the pre-seeded Domains datatable row (table ships row 1 — DON'T Add Item, it creates a spurious empty row 2). Uses placeholder selector (datatable cells have no accessible name). Matches the validated http-load-balancer/create workflow."
 
   - id: "select-origin-pool"
     action: "click"
@@ -157,11 +151,10 @@ steps:
 
   - id: "save-http-lb"
     action: "click"
-    selector: "button:text('Add HTTP Load Balancer')"
-    context: "footer"
+    selector: "[class*='save-bt']"
     wait_for: "text('{app_name}-lb')"
-    wait_timeout_ms: 30000
-    description: "Save the HTTP Load Balancer"
+    wait_timeout_ms: 60000
+    description: "Click the footer save button (class-based selector disambiguates it from the same-named tab that opens the form). Matches the validated http-load-balancer/create workflow."
 
   - id: "verify-lb-created"
     action: "assert"
