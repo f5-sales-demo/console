@@ -21,7 +21,6 @@
 
 Schema-driven inventory of the F5 XC administration console UI — routes, resources, workflows, and browser automation manifests
 
-
 ## Documentation
 
 Full documentation is available at **[https://f5-sales-demo.github.io/console/](https://f5-sales-demo.github.io/console/)**.
