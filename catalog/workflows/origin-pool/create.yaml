@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: origin-pool-create
 label: Create Origin Pools

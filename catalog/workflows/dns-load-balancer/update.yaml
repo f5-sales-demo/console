@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: dns-load-balancer-update
 label: Update DNS Load Balancers
 resource: dns-load-balancer
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-dns-load-balancer

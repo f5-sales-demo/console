@@ -1,3 +1,4 @@
+---
 resource: network_connector
 workspace: multi-cloud-network-connect
 route: /manage/networking/legacy_network_configuration/network_connectors

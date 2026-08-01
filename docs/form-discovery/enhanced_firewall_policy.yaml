@@ -1,3 +1,4 @@
+---
 resource: enhanced_firewall_policy
 workspace: multi-cloud-network-connect
 route: /manage/firewall/enhanced_firewall_policy

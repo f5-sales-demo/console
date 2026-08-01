@@ -1,3 +1,4 @@
+---
 resource: cluster
 workspace: multi-cloud-app-connect
 route: /namespaces/{namespace}/manage/virtual_host/clusters

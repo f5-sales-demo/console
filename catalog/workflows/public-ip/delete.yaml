@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: public-ip-delete
 label: Delete Public IP Addresses

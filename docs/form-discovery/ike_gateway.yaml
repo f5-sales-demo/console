@@ -1,3 +1,4 @@
+---
 resource: ike_gateway
 workspace: multi-cloud-network-connect
 route: /manage/networking/external_connectivity/ike_profiles

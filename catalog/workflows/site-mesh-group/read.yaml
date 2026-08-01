@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: site-mesh-group-read
 label: Read Site Mesh Groups
 resource: site-mesh-group
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-site-mesh-group

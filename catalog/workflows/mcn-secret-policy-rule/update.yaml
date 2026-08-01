@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: mcn-secret-policy-rule-update
 label: Update Secret Policy Rules
 resource: mcn-secret-policy-rule
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-mcn-secret-policy-rule

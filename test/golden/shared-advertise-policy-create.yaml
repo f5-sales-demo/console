@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: shared-advertise-policy-create
 label: Create Advertise Policies
@@ -5,13 +6,8 @@ resource: shared-advertise-policy
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: Advertise Policies name (lowercase alphanumeric and hyphens)
@@ -58,16 +54,12 @@ steps:
     value: "{virtual_site_or_site_or_network}"
     description: Select Virtual-Site or Site or Network
     condition: params.virtual_site_or_site_or_network is set
-  - id: configure-reference
-    action: click
-    selector: text('Configure')
+  - id: select-reference
+    action: select
+    selector: listbox
     context: Reference section
-    description: Open the Reference configuration ('Configure' is a link, not a button)
-  - id: fill-reference-value
-    action: fill
-    selector: textbox
     value: "{reference}"
-    description: Enter the Reference value via the 'reference' parameter
+    description: Select Reference
   - id: select-internet_vip_choice
     action: select
     selector: listbox

@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: virtual-k8s
 label: Virtual K8s

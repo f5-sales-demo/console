@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: crl-delete
 label: Delete Certificate Revocation List

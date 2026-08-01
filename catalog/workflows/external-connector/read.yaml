@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: external-connector-read
 label: Read External Connectors
 resource: external-connector
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-external-connector

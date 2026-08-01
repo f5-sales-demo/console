@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: aws-tgw-site-read
 label: Read AWS TGW Sites
 resource: aws-tgw-site
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-aws-tgw-site

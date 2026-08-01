@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: data-type-create
 label: Create Data Types

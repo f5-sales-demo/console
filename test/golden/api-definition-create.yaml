@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: api-definition-create
 label: Create API Definition

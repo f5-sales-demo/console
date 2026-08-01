@@ -1,3 +1,4 @@
+---
 resource: dns_lb_health_check
 workspace: dns-management
 route: /manage/dns_lb_management/dns_lb_health_check

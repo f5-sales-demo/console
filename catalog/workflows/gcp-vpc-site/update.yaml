@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: gcp-vpc-site-update
 label: Update GCP VPC Sites
 resource: gcp-vpc-site
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-gcp-vpc-site

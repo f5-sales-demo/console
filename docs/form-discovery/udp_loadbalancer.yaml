@@ -1,3 +1,4 @@
+---
 resource: udp_loadbalancer
 workspace: multi-cloud-app-connect
 route: /namespaces/{namespace}/manage/load_balancers/udp_loadbalancers

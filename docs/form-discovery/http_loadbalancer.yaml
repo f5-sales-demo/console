@@ -1,3 +1,4 @@
+---
 resource: http_loadbalancer
 workspace: web-app-and-api-protection
 route: /namespaces/{namespace}/manage/load_balancers/http_loadbalancers

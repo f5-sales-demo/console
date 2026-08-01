@@ -132,7 +132,7 @@ function main() {
 
 		const filename = `${id}.yaml`;
 		const outputPath = join(outputDir, filename);
-		const yaml = dump(doc, { lineWidth: 120, noRefs: true, sortKeys: false });
+		const yaml = `---\n${dump(doc, { lineWidth: 120, noRefs: true, sortKeys: false })}`;
 		writeFileSync(outputPath, yaml);
 
 		console.log(

@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: namespace-read
 label: Read My Namespaces
 resource: namespace
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-namespace

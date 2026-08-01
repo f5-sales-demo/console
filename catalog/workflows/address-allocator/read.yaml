@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: address-allocator-read
 label: Read IP Address Allocators
 resource: address-allocator
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-address-allocator

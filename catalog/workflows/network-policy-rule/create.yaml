@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: network-policy-rule-create
 label: Create Network Policy Rules

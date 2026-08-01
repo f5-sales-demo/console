@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: network-connector-create
 label: Create Network Connectors
@@ -5,13 +6,8 @@ resource: network-connector
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: Network Connectors name (lowercase alphanumeric and hyphens)
@@ -79,16 +75,12 @@ steps:
     value: "{select_forward_proxy}"
     description: Select Select Forward Proxy
     condition: params.select_forward_proxy is set
-  - id: configure-connector_choice
-    action: click
-    selector: text('Configure')
+  - id: select-connector_choice
+    action: select
+    selector: listbox
     context: Connector Choice section
-    description: Open the Connector Choice configuration ('Configure' is a link, not a button)
-  - id: fill-connector_choice-value
-    action: fill
-    selector: textbox
     value: "{connector_choice}"
-    description: Enter the Connector Choice value via the 'connector_choice' parameter
+    description: Select Connector Choice
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

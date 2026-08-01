@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: network-interface-read
 label: Read Network Interfaces
 resource: network-interface
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-network-interface

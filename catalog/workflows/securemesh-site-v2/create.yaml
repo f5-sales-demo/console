@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: securemesh-site-v2-create
 label: Create Secure Mesh Sites v2
@@ -5,13 +6,8 @@ resource: securemesh-site-v2
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: Secure Mesh Sites v2 name (lowercase alphanumeric and hyphens)

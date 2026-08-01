@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: alert-receiver-read
 label: Read Alert Receivers
 resource: alert-receiver
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-alert-receiver

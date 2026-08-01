@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: aws-tgw-site
 label: AWS TGW Sites

@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: nat-policy
 label: NAT Policies

@@ -1,3 +1,4 @@
+---
 resource: network_policy_rule
 workspace: distributed-apps
 route: /namespaces/{namespace}/manage/network_policies/network_policy_rules

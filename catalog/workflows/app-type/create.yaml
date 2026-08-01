@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: app-type-create
 label: Create App Types
@@ -5,13 +6,8 @@ resource: app-type
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: App Types name (lowercase alphanumeric and hyphens)

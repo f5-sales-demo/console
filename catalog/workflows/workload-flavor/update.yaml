@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: workload-flavor-update
 label: Update Workload Flavors
 resource: workload-flavor
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-workload-flavor

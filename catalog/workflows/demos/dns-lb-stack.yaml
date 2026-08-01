@@ -1,3 +1,4 @@
+---
 schema: "urn:xcsh:console:workflow:v1"
 id: "dns-lb-stack-demo"
 label: "DNS Load Balancer Demo — DNS Zone + DNS LB Pool + DNS Load Balancer"

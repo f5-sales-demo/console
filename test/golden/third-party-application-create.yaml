@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: third-party-application-create
 label: Create Third-Party Applications

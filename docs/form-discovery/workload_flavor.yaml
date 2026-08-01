@@ -1,3 +1,4 @@
+---
 resource: workload_flavor
 workspace: shared-configuration
 route: /manage/workload_flavors

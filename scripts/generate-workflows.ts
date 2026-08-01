@@ -401,6 +401,7 @@ interface FieldMeta {
 interface UiResource {
   workspace?: string;
   route_pattern?: string;
+  namespace_scoped?: boolean;
   menu_path?: string[];
   add_action?: { type: string; label: string };
   save_action?: { label: string };
@@ -687,13 +688,14 @@ function generateCreate(
     });
 
   // Build params from required + optional defaults
-  const params: Record<string, object> = {
-    namespace: { required: true, description: 'Target namespace', example: 'demo' },
-    name: {
-      required: true,
-      description: `${label} name (lowercase alphanumeric and hyphens)`,
-      example: `example-${resourceId}`,
-    },
+  const params: Record<string, object> = {};
+  if (ui.namespace_scoped !== false) {
+    params.namespace = { required: true, description: 'Target namespace', example: 'demo' };
+  }
+  params.name = {
+    required: true,
+    description: `${label} name (lowercase alphanumeric and hyphens)`,
+    example: `example-${resourceId}`,
   };
   const resourceExamples = FIELD_EXAMPLES[resourceId];
   for (const [fp, m] of requiredFields) {
@@ -771,7 +773,11 @@ function generateCreate(
     label: `Create ${label}`,
     resource: resourceId,
     operation: 'create',
-    preconditions: ['user_logged_in', 'namespace_selected', 'role_minimum: admin'],
+    preconditions: [
+      'user_logged_in',
+      ...(ui.namespace_scoped === false ? [] : ['namespace_selected']),
+      'role_minimum: admin',
+    ],
     params,
     steps,
     postconditions: ['resource_list_page_visible', 'resource_name_in_list: {name}'],
@@ -788,9 +794,14 @@ function generateDelete(resourceId: string, ui: UiResource, label: string): obje
     label: `Delete ${label}`,
     resource: resourceId,
     operation: 'delete',
-    preconditions: ['user_logged_in', 'namespace_selected', 'role_minimum: admin', 'resource_exists: {name}'],
+    preconditions: [
+      'user_logged_in',
+      ...(ui.namespace_scoped === false ? [] : ['namespace_selected']),
+      'role_minimum: admin',
+      'resource_exists: {name}',
+    ],
     params: {
-      namespace: { required: true, example: 'demo' },
+      ...(ui.namespace_scoped === false ? {} : { namespace: { required: true, example: 'demo' } }),
       name: { required: true, example: `example-${resourceId}` },
     },
     steps: [
@@ -845,7 +856,7 @@ function generateRead(resourceId: string, ui: UiResource, label: string): object
     resource: resourceId,
     operation: 'read',
     params: {
-      namespace: { required: true, example: 'demo' },
+      ...(ui.namespace_scoped === false ? {} : { namespace: { required: true, example: 'demo' } }),
       name: { required: true, example: `example-${resourceId}` },
     },
     steps: [
@@ -894,7 +905,7 @@ function generateUpdate(resourceId: string, ui: UiResource, label: string): obje
     resource: resourceId,
     operation: 'update',
     params: {
-      namespace: { required: true, example: 'demo' },
+      ...(ui.namespace_scoped === false ? {} : { namespace: { required: true, example: 'demo' } }),
       name: { required: true, example: `example-${resourceId}` },
     },
     steps: [
@@ -1039,7 +1050,8 @@ for (const [resourceId, { kind, label }] of [...catalogResources.entries()].sort
       }
     }
     const workflow = (gen as () => object)();
-    fs.writeFileSync(file, stringifyYaml(workflow, { lineWidth: 120 }));
+    const yaml = stringifyYaml(workflow, { indentSeq: true, lineWidth: 120 });
+    fs.writeFileSync(file, `---\n${yaml}`);
   }
   generated++;
 }
