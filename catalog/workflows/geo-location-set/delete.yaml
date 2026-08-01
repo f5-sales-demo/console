@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: geo-location-set-delete
 label: Delete Geo-Location Sets
@@ -5,13 +6,9 @@ resource: geo-location-set
 operation: delete
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
   - "resource_exists: {name}"
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-geo-location-set

@@ -1,3 +1,4 @@
+---
 resource: app_api_group
 workspace: web-app-and-api-protection
 route: /namespaces/{namespace}/manage/api_security/api_groups

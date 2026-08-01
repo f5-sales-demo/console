@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: shared-advertise-policy
 label: Advertise Policies

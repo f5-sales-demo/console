@@ -1,3 +1,4 @@
+---
 resource: securemesh_site_v2
 workspace: multi-cloud-network-connect
 route: /manage/site_management/cloud_sites/securemesh_site_v2

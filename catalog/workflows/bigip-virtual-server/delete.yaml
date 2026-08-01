@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: bigip-virtual-server-delete
 label: Delete BIG-IP Virtual Servers

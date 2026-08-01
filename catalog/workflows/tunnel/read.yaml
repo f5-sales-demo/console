@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: tunnel-read
 label: Read Tunnels
 resource: tunnel
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-tunnel

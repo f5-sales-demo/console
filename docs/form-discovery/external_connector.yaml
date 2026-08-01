@@ -1,3 +1,4 @@
+---
 resource: external_connector
 workspace: multi-cloud-network-connect
 route: /manage/networking/external_connectivity/external_connector

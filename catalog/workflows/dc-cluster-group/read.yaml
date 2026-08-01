@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: dc-cluster-group-read
 label: Read DC Cluster Groups
 resource: dc-cluster-group
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-dc-cluster-group

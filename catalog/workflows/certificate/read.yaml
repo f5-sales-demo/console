@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: certificate-read
 label: Read TLS Certificates

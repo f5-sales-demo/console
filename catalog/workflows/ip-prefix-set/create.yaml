@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: ip-prefix-set-create
 label: Create IP Prefix Sets

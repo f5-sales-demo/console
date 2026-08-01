@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: waf-exclusion-policy-delete
 label: Delete WAF Exclusion Rules

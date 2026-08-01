@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: virtual-k8s-delete
 label: Delete Virtual K8s

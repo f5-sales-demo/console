@@ -1,3 +1,4 @@
+---
 resource: container_registry
 workspace: distributed-apps
 route: /namespaces/{namespace}/applications/container_registries

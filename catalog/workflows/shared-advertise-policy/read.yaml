@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: shared-advertise-policy-read
 label: Read Advertise Policies
 resource: shared-advertise-policy
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-shared-advertise-policy

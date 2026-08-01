@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: namespace-create
 label: Create My Namespaces
@@ -5,13 +6,8 @@ resource: namespace
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: My Namespaces name (lowercase alphanumeric and hyphens)

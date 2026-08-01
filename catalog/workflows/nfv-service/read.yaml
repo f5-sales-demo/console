@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: nfv-service-read
 label: Read NFV Services
 resource: nfv-service
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-nfv-service

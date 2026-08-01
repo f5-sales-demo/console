@@ -1,3 +1,4 @@
+---
 resource: dns_domain
 workspace: dns-management
 route: /manage/dns_domain

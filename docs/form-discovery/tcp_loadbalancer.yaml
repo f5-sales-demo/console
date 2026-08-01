@@ -1,3 +1,4 @@
+---
 resource: tcp_loadbalancer
 workspace: multi-cloud-app-connect
 route: /namespaces/{namespace}/manage/load_balancers/tcp_loadbalancers

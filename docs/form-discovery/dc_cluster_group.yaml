@@ -1,3 +1,4 @@
+---
 resource: dc_cluster_group
 workspace: multi-cloud-network-connect
 route: /manage/networking/site_to_site_connectivity/dc_cluster_groups

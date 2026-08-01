@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: dns-lb-pool-update
 label: Update DNS Load Balancer Pools
 resource: dns-lb-pool
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-dns-lb-pool

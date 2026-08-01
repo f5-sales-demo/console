@@ -1,3 +1,4 @@
+---
 resource: shared_advertise_policy
 workspace: shared-configuration
 route: /manage/advertise_policies

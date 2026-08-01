@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: forward-proxy-policy-read
 label: Read Forward Proxy Policies

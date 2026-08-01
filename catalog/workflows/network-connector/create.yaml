@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: network-connector-create
 label: Create Network Connectors
@@ -5,13 +6,8 @@ resource: network-connector
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: Network Connectors name (lowercase alphanumeric and hyphens)

@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: segment-update
 label: Update Segments
 resource: segment
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-segment

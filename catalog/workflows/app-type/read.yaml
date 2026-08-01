@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: app-type-read
 label: Read App Types
 resource: app-type
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-app-type

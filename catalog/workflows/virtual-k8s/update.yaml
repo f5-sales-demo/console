@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: virtual-k8s-update
 label: Update Virtual K8s

@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: log-receiver-create
 label: Create Log Receivers
@@ -5,13 +6,8 @@ resource: log-receiver
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: Log Receivers name (lowercase alphanumeric and hyphens)
@@ -75,16 +71,12 @@ steps:
     value: "{port_number}"
     description: "Set Port Number (default: 514)"
     condition: params.port_number is set
-  - id: configure-log_receiver_choice
-    action: click
-    selector: text('Configure')
+  - id: select-log_receiver_choice
+    action: select
+    selector: listbox
     context: Log Receiver Choice section
-    description: Open the Log Receiver Choice configuration ('Configure' is a link, not a button)
-  - id: fill-log_receiver_choice-value
-    action: fill
-    selector: textbox
     value: "{log_receiver_choice}"
-    description: Enter the Log Receiver Choice value via the 'log_receiver_choice' parameter
+    description: Select Log Receiver Choice
   - id: save
     action: click
     selector: "[class*='save-bt'],[class*='submit-button']"

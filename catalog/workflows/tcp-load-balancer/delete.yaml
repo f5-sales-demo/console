@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: tcp-load-balancer-delete
 label: Delete TCP Load Balancers

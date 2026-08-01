@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: enhanced-firewall-policy-read
 label: Read Enhanced Firewall Policies
 resource: enhanced-firewall-policy
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-enhanced-firewall-policy

@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: health-check-update
 label: Update Health Checks

@@ -1,3 +1,4 @@
+---
 resource: securemesh_site
 workspace: multi-cloud-network-connect
 route: /manage/site_management/legacy_configs/securemesh_site

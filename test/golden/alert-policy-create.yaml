@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: alert-policy-create
 label: Create Alert Policies
@@ -5,24 +6,21 @@ resource: alert-policy
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: Alert Policies name (lowercase alphanumeric and hyphens)
     example: example-alert-policy
   alert_receivers:
-    required: true
+    required: false
     description: "Server-required: at least one Alert Receiver reference. Depends on an existing alert_receiver object
       (create one first)."
+    default: value
   policy_rules:
-    required: true
+    required: false
     description: "Server-required: at least one alert policy rule (Field Policy Rules in Spec is required)."
+    default: value
 steps:
   - id: navigate-to-list
     action: navigate

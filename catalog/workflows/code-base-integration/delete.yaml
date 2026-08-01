@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: code-base-integration-delete
 label: Delete Code Base Integration

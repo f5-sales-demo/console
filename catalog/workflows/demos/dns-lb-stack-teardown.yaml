@@ -1,3 +1,4 @@
+---
 schema: "urn:xcsh:console:workflow:v1"
 id: "dns-lb-stack-teardown"
 label: "DNS LB Stack Teardown — Delete DNS LB + DNS Zone"

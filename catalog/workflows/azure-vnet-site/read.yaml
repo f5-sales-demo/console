@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: azure-vnet-site-read
 label: Read Azure VNET Sites
 resource: azure-vnet-site
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-azure-vnet-site

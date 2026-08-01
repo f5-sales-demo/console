@@ -1,3 +1,4 @@
+---
 resource: cloud_connect
 workspace: multi-cloud-network-connect
 route: /manage/connectors/cloud_connect

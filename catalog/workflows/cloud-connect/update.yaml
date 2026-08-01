@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: cloud-connect-update
 label: Update Cloud Connects
 resource: cloud-connect
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-cloud-connect

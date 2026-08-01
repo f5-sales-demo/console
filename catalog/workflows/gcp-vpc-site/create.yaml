@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: gcp-vpc-site-create
 label: Create GCP VPC Sites
@@ -5,13 +6,8 @@ resource: gcp-vpc-site
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: GCP VPC Sites name (lowercase alphanumeric and hyphens)

@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: protocol-policer-update
 label: Update Protocol Policers
 resource: protocol-policer
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-protocol-policer

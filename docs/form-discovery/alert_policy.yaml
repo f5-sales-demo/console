@@ -1,3 +1,4 @@
+---
 resource: alert_policy
 workspace: web-app-and-api-protection
 route: /namespaces/{namespace}/manage/alert_config/alert_policies

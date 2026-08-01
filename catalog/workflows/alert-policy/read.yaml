@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: alert-policy-read
 label: Read Alert Policies
 resource: alert-policy
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-alert-policy
