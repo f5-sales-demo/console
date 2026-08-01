@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: authorization-server-update
 label: Update Authorization Server

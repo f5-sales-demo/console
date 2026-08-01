@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: dns-lb-health-check
 label: DNS Load Balancer Health Checks

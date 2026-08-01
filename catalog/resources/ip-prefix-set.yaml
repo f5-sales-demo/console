@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: ip-prefix-set
 label: IP Prefix Sets

@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: dns-domain-create
 label: Create Delegated Domain Management
@@ -5,13 +6,8 @@ resource: dns-domain
 operation: create
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
 params:
-  namespace:
-    required: true
-    description: Target namespace
-    example: demo
   name:
     required: true
     description: Delegated Domain Management name (lowercase alphanumeric and hyphens)

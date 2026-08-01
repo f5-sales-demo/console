@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: nat-policy-read
 label: Read NAT Policies
 resource: nat-policy
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-nat-policy

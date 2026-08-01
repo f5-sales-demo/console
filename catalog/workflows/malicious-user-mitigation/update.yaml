@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: malicious-user-mitigation-update
 label: Update Malicious User Mitigation

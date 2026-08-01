@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, extname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv";
@@ -83,6 +83,39 @@ function main() {
 				totalErrors += validate.errors.length;
 			} else {
 				console.log(`  PASS  ${rel}`);
+			}
+		}
+	}
+
+	const resourceDir = join(ROOT, "catalog", "resources");
+	const workflowDir = join(ROOT, "catalog", "workflows");
+	for (const resourceFile of walkYaml(resourceDir)) {
+		const resource = load(readFileSync(resourceFile, "utf-8"));
+		if (resource?.console?.namespace_scoped !== false || !resource?.id) {
+			continue;
+		}
+
+		const resourceWorkflowDir = join(workflowDir, resource.id);
+		if (!existsSync(resourceWorkflowDir)) {
+			continue;
+		}
+
+		for (const workflowFile of walkYaml(resourceWorkflowDir)) {
+			const workflow = load(readFileSync(workflowFile, "utf-8"));
+			const rel = relative(ROOT, workflowFile);
+			if (Object.hasOwn(workflow?.params ?? {}, "namespace")) {
+				errors.push({
+					file: rel,
+					error: "system-scoped workflow must not require a namespace parameter",
+				});
+				totalErrors++;
+			}
+			if (workflow?.preconditions?.includes("namespace_selected")) {
+				errors.push({
+					file: rel,
+					error: "system-scoped workflow must not require a selected namespace",
+				});
+				totalErrors++;
 			}
 		}
 	}

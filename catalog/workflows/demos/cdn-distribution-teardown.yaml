@@ -1,3 +1,4 @@
+---
 schema: "urn:xcsh:console:workflow:v1"
 id: "cdn-distribution-teardown"
 label: "CDN Distribution Teardown — Delete CDN Distribution + Origin Pool"

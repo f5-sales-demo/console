@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: virtual-host-update
 label: Update Virtual Hosts

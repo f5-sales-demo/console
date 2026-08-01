@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: dns-zone-read
 label: Read DNS Zones
 resource: dns-zone
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-dns-zone

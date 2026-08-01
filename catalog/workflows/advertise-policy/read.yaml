@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: advertise-policy-read
 label: Read Advertise Policies

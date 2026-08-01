@@ -1,3 +1,4 @@
+---
 schema: "urn:xcsh:console:workflow:v1"
 id: "mcn-site-to-site-teardown"
 label: "MCN Site-to-Site Teardown — Delete Site Mesh Group + AWS VPC Site"

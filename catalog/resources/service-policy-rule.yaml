@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: service-policy-rule
 label: Service Policy Rules

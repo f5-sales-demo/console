@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: sensitive-data-policy-read
 label: Read Sensitive Data Policies

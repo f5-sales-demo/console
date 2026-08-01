@@ -1,3 +1,4 @@
+---
 resource: tunnel
 workspace: multi-cloud-network-connect
 route: /manage/networking/legacy_network_configuration/tunnels

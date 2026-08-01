@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: openapi-file-create
 label: Create OpenAPI Files

@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: log-receiver-update
 label: Update Log Receivers
 resource: log-receiver
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-log-receiver

@@ -1,3 +1,4 @@
+---
 resource: app_type
 workspace: shared-configuration
 route: /security/ai_ml/app_types

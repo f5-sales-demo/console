@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: global-log-receiver
 label: Log Receivers

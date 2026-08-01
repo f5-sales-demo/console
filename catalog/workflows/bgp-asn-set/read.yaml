@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: bgp-asn-set-read
 label: Read BGP ASN Sets

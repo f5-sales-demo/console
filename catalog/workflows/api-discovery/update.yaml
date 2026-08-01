@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: api-discovery-update
 label: Update API Discovery

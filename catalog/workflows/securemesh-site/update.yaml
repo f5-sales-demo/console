@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: securemesh-site-update
 label: Update Secure Mesh Sites
 resource: securemesh-site
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-securemesh-site

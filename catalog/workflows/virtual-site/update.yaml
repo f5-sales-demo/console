@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: virtual-site-update
 label: Update Virtual Sites
 resource: virtual-site
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-virtual-site

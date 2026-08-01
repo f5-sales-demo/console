@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: azure-vnet-site
 label: Azure VNET Sites

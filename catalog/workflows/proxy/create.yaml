@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: proxy-create
 label: Create HTTP Connect & DRPs

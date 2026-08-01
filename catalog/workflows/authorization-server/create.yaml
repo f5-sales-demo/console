@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: authorization-server-create
 label: Create Authorization Server

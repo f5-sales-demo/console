@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: network-connector-delete
 label: Delete Network Connectors
@@ -5,13 +6,9 @@ resource: network-connector
 operation: delete
 preconditions:
   - user_logged_in
-  - namespace_selected
   - "role_minimum: admin"
   - "resource_exists: {name}"
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-network-connector

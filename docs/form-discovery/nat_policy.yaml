@@ -1,3 +1,4 @@
+---
 resource: nat_policy
 workspace: multi-cloud-network-connect
 route: /manage/networking/network_configuration/nat_policy

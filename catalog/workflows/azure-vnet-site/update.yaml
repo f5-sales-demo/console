@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: azure-vnet-site-update
 label: Update Azure VNET Sites
 resource: azure-vnet-site
 operation: update
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-azure-vnet-site

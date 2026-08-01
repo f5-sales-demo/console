@@ -1,3 +1,4 @@
+---
 resource: proxy
 workspace: multi-cloud-app-connect
 route: /namespaces/{namespace}/manage/load_balancers/proxy

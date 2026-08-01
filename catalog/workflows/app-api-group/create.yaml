@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: app-api-group-create
 label: Create API Groups

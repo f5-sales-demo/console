@@ -1,3 +1,4 @@
+---
 resource: openapi_file
 workspace: web-app-and-api-protection
 route: /namespaces/{namespace}/manage/files/openapi

@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: proxy-update
 label: Update HTTP Connect & DRPs

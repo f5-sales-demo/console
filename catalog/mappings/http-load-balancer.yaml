@@ -1,3 +1,4 @@
+---
 resource: http-load-balancer
 api_kind: http_loadbalancer
 api_schema: viewshttp_loadbalancerCreateSpecType
@@ -95,4 +96,3 @@ sections:
     spec.system_default_timeouts: ioschemaEmpty
     spec.malware_protection_settings: common_securityMalwareProtectionPolicy
     spec.disable_malware_protection: ioschemaEmpty
-

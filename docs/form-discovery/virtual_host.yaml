@@ -1,3 +1,4 @@
+---
 resource: virtual_host
 workspace: multi-cloud-app-connect
 route: /namespaces/{namespace}/manage/virtual_host/virtual_hosts

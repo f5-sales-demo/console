@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:resource:v1
 id: dns-load-balancer
 label: DNS Load Balancers

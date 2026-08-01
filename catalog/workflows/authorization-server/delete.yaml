@@ -1,3 +1,4 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: authorization-server-delete
 label: Delete Authorization Server

@@ -1,12 +1,10 @@
+---
 schema: urn:xcsh:console:workflow:v1
 id: bgp-read
 label: Read BGP Peers & Policies
 resource: bgp
 operation: read
 params:
-  namespace:
-    required: true
-    example: demo
   name:
     required: true
     example: example-bgp
