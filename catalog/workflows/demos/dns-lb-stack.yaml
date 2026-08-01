@@ -27,11 +27,11 @@ params:
   pool_member_1:
     required: true
     description: "First pool member IP or CNAME"
-    example: "192.0.2.37"
+    example: "198.51.100.10"
   pool_member_2:
     required: false
     description: "Second pool member IP or CNAME"
-    example: "198.51.100.58"
+    example: "198.51.100.11"
 
 steps:
   - id: "screenshot-start"
