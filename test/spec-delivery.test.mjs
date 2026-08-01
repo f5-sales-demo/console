@@ -80,7 +80,11 @@ test('completed, conflicting, and stale deliveries fail closed', () => {
   assert.deepEqual(validateCurrentState(validPayload, complete, currentPin), { alreadyDelivered: true });
   const reordered = { version: entry.version, target_commit: entry.target_commit, release_tag: entry.release_tag };
   assert.deepEqual(
-    validateCurrentState(validPayload, { deliveries: { [validPayload.delivery_id]: reordered }, version: 1 }, currentPin),
+    validateCurrentState(
+      validPayload,
+      { deliveries: { [validPayload.delivery_id]: reordered }, version: 1 },
+      currentPin,
+    ),
     { alreadyDelivered: true },
   );
   assert.throws(
