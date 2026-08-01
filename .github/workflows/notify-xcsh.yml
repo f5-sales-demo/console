@@ -12,11 +12,15 @@ on:
       - "catalog/**"
   workflow_dispatch:
 
-permissions:
-  contents: read
+concurrency:
+  group: notify-xcsh
+  cancel-in-progress: false
+
+permissions: {}
 
 jobs:
   dispatch:
+    name: Dispatch Catalog Update
     runs-on: ubuntu-latest
     steps:
       - name: Dispatch console-catalog-changed to xcsh

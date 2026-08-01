@@ -2,83 +2,215 @@
 name: Regenerate Catalog
 
 on:
-  workflow_dispatch:
   repository_dispatch:
     types: [upstream-enrichment-changed]
 
-permissions:
-  contents: write
-  pull-requests: write
-  issues: write
+concurrency:
+  group: regenerate-catalog
+  cancel-in-progress: false
+
+permissions: {}
+
+env:
+  ENRICHED_REPO: f5-sales-demo/api-specs-enriched
 
 jobs:
   regenerate:
-    name: Regenerate from enriched specs
+    name: Regenerate exact enriched release
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout console
+        uses: actions/checkout@v7
         with:
+          fetch-depth: 0
+          ref: main
           token: ${{ secrets.REPO_SYNC_TOKEN }}
+          persist-credentials: false
 
-      - uses: actions/checkout@v7
-        with:
-          repository: f5-sales-demo/api-specs-enriched
-          path: api-specs-enriched
-          token: ${{ secrets.REPO_SYNC_TOKEN }}
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: "22"
-          cache: "npm"
-
-      - run: npm ci
-
-      - name: Regenerate catalog resources
-        run: node tools/generate-from-enriched.mjs --config-dir api-specs-enriched/config --output-dir catalog/resources
-
-      - name: Validate regenerated catalog
-        run: npm run validate
-
-      - name: Check for changes
-        id: diff
-        run: |
-          if git diff --quiet catalog/resources/; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No changes detected"
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "Changes detected:"
-            git diff --stat catalog/resources/
-          fi
-
-      - name: Commit and push changes
-        if: steps.diff.outputs.changed == 'true'
+      - name: Capture and validate exact delivery
+        id: delivery
         env:
           GH_TOKEN: ${{ secrets.REPO_SYNC_TOKEN }}
+          DELIVERY_ID: ${{ github.event.client_payload.delivery_id }}
+          RELEASE_TAG: ${{ github.event.client_payload.release_tag }}
+          RELEASE_URL: ${{ github.event.client_payload.release_url }}
+          RELEASE_VERSION: ${{ github.event.client_payload.version }}
+          TARGET_COMMIT: ${{ github.event.client_payload.target_commit }}
+          TRIGGER_SOURCE: ${{ github.event.client_payload.trigger_source }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b chore/regenerate-catalog
-          git add catalog/resources/
-          git commit -m "chore: regenerate catalog from enriched specs"
-          git push -u origin chore/regenerate-catalog --force
-
-          EXISTING_PR=$(gh pr list --head chore/regenerate-catalog --state open --json number --jq '.[0].number')
-          if [ -n "$EXISTING_PR" ]; then
-            echo "PR #${EXISTING_PR} already exists — force-push updated it"
+          set -euo pipefail
+          PROCESS=$(node tools/spec-delivery.mjs preflight \
+            tools/spec-deliveries.json \
+            tools/spec-release.json)
+          echo "process=$PROCESS" >> "$GITHUB_OUTPUT"
+          if [ "$PROCESS" = "false" ]; then
             exit 0
           fi
+          RELEASE_FILE="$RUNNER_TEMP/spec-release.json"
+          COMMIT_FILE="$RUNNER_TEMP/spec-tag-commit.txt"
+          CANDIDATE_FILE="$RUNNER_TEMP/spec-release-pin.json"
+          gh api "repos/${ENRICHED_REPO}/releases/tags/${RELEASE_TAG}" > "$RELEASE_FILE"
+          gh api "repos/${ENRICHED_REPO}/commits/${RELEASE_TAG}" --jq '.sha' > "$COMMIT_FILE"
+          node tools/spec-delivery.mjs validate-release \
+            "$RELEASE_FILE" \
+            "$COMMIT_FILE" \
+            "$CANDIDATE_FILE"
+          ASSET_DIR="$RUNNER_TEMP/spec-release-assets"
+          mkdir -p "$ASSET_DIR"
+          while IFS=$'\t' read -r ASSET_ID ASSET_NAME; do
+            gh api "repos/${ENRICHED_REPO}/releases/assets/${ASSET_ID}" \
+              -H "Accept: application/octet-stream" > "${ASSET_DIR}/${ASSET_NAME}"
+            EXPECTED_SHA=$(jq -r --arg name "$ASSET_NAME" '.assets[$name]' "$CANDIDATE_FILE")
+            ACTUAL_SHA=$(shasum -a 256 "${ASSET_DIR}/${ASSET_NAME}" | awk '{print $1}')
+            [ "$ACTUAL_SHA" = "$EXPECTED_SHA" ] || {
+              echo "::error::Downloaded ${ASSET_NAME} differs from the publication receipt"
+              exit 1
+            }
+          done < <(jq -r '.assets[] | [.id, .name] | @tsv' "$RELEASE_FILE")
+          echo "target_commit=$TARGET_COMMIT" >> "$GITHUB_OUTPUT"
 
-          ISSUE_URL=$(gh issue create \
-            --title "chore: regenerate catalog from enriched specs" \
-            --body "Automated update triggered by upstream api-specs-enriched release.")
-          ISSUE_NUM=$(echo "$ISSUE_URL" | grep -o '[0-9]*$')
+      - name: Stop after an already completed delivery
+        if: steps.delivery.outputs.process == 'false'
+        run: echo "Exact delivery is already present on main"
 
-          gh pr create \
-            --title "chore: regenerate catalog from enriched specs" \
-            --body "Automated regeneration from api-specs-enriched config. Run by regenerate-catalog workflow.
+      - name: Checkout exact upstream commit
+        if: steps.delivery.outputs.process == 'true'
+        uses: actions/checkout@v7
+        with:
+          repository: f5-sales-demo/api-specs-enriched
+          ref: ${{ steps.delivery.outputs.target_commit }}
+          path: api-specs-enriched
+          token: ${{ secrets.REPO_SYNC_TOKEN }}
+          persist-credentials: false
 
-          Closes #${ISSUE_NUM}" \
-            --head chore/regenerate-catalog \
-            --base main
-          gh pr merge chore/regenerate-catalog --squash --auto --delete-branch
+      - name: Set up Node
+        if: steps.delivery.outputs.process == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install locked dependencies
+        if: steps.delivery.outputs.process == 'true'
+        run: npm ci
+
+      - name: Regenerate complete catalog candidate
+        if: steps.delivery.outputs.process == 'true'
+        run: |
+          set -euo pipefail
+          GENERATED="$RUNNER_TEMP/generated-resources"
+          node tools/generate-from-enriched.mjs \
+            --config-dir api-specs-enriched/config \
+            --output-dir "$GENERATED"
+          [ -n "$(find "$GENERATED" -maxdepth 1 -type f -name '*.yaml' -print -quit)" ] || {
+            echo "::error::Generator produced no catalog resources"
+            exit 1
+          }
+          find catalog/resources -mindepth 1 -delete
+          cp -a "$GENERATED/." catalog/resources/
+
+      - name: Validate regenerated catalog
+        if: steps.delivery.outputs.process == 'true'
+        run: |
+          npm run lint
+          npm run validate
+
+      - name: Stage exact release pin and completion ledger
+        if: steps.delivery.outputs.process == 'true'
+        env:
+          DELIVERY_ID: ${{ github.event.client_payload.delivery_id }}
+          RELEASE_TAG: ${{ github.event.client_payload.release_tag }}
+          RELEASE_URL: ${{ github.event.client_payload.release_url }}
+          RELEASE_VERSION: ${{ github.event.client_payload.version }}
+          TARGET_COMMIT: ${{ github.event.client_payload.target_commit }}
+          TRIGGER_SOURCE: ${{ github.event.client_payload.trigger_source }}
+        run: |
+          set -euo pipefail
+          cp "$RUNNER_TEMP/spec-release-pin.json" tools/spec-release.json
+          node tools/spec-delivery.mjs complete \
+            tools/spec-deliveries.json \
+            tools/spec-release.json
+
+      - name: Create deterministic catalog pull request
+        if: steps.delivery.outputs.process == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.REPO_SYNC_TOKEN }}
+          DELIVERY_ID: ${{ github.event.client_payload.delivery_id }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          BRANCH="spec-delivery/${DELIVERY_ID}"
+          git config user.name "f5xc-spec-delivery"
+          git config user.email "f5xc-spec-delivery@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${REPOSITORY}.git"
+          OPEN_DELIVERIES=$(gh pr list --state open --limit 100 --json number,headRefName)
+          OTHER_DELIVERIES=$(printf '%s' "$OPEN_DELIVERIES" | jq --arg branch "$BRANCH" \
+            '[.[] | select((.headRefName | startswith("spec-delivery/")) and .headRefName != $branch)]')
+          [ "$(printf '%s' "$OTHER_DELIVERIES" | jq 'length')" -eq 0 ] || {
+            echo "::error::Another spec delivery pull request is still open"
+            exit 1
+          }
+          REMOTE_SHA=$(git ls-remote origin "refs/heads/${BRANCH}" | awk '{print $1}')
+          if [ -n "$REMOTE_SHA" ]; then
+            git fetch origin "refs/heads/${BRANCH}:refs/remotes/origin/${BRANCH}"
+          fi
+          git checkout -B "$BRANCH"
+          git add catalog/resources tools/spec-deliveries.json tools/spec-release.json
+          git diff --cached --quiet && {
+            echo "::error::Undelivered identity produced no tracked changes"
+            exit 1
+          }
+          git commit -m "chore: regenerate catalog from exact spec release"
+          if [ -n "$REMOTE_SHA" ]; then
+            git push --force-with-lease="refs/heads/${BRANCH}:${REMOTE_SHA}" origin "$BRANCH"
+          else
+            git push --force-with-lease origin "$BRANCH"
+          fi
+
+          PULLS=$(gh pr list --head "$BRANCH" --state open --json number,baseRefName)
+          PULL_COUNT=$(printf '%s' "$PULLS" | jq 'length')
+          [ "$PULL_COUNT" -le 1 ] || {
+            echo "::error::Delivery branch has multiple open pull requests"
+            exit 1
+          }
+          EXISTING_PR=$(printf '%s' "$PULLS" | jq -r '.[0].number // empty')
+          if [ -n "$EXISTING_PR" ]; then
+            EXISTING_BASE=$(printf '%s' "$PULLS" | jq -r '.[0].baseRefName')
+            [ "$EXISTING_BASE" = "main" ] || {
+              echo "::error::Existing delivery pull request does not target main"
+              exit 1
+            }
+            echo "Updated existing delivery PR #${EXISTING_PR}"
+            PR_NUMBER=$EXISTING_PR
+          else
+            ISSUE_TITLE="Regenerate console catalog for spec delivery ${DELIVERY_ID}"
+            ISSUES=$(gh issue list --state all --search "${DELIVERY_ID} in:title" \
+              --limit 100 --json number,state,title)
+            MATCHING_ISSUES=$(printf '%s' "$ISSUES" | jq --arg title "$ISSUE_TITLE" '[.[] | select(.title == $title)]')
+            ISSUE_COUNT=$(printf '%s' "$MATCHING_ISSUES" | jq 'length')
+            [ "$ISSUE_COUNT" -le 1 ] || {
+              echo "::error::Delivery has multiple tracking issues"
+              exit 1
+            }
+            ISSUE_NUMBER=$(printf '%s' "$MATCHING_ISSUES" | jq -r '.[0].number // empty')
+            if [ -z "$ISSUE_NUMBER" ]; then
+              ISSUE_URL=$(gh issue create \
+                --title "$ISSUE_TITLE" \
+                --body "Tracks exact generation from the receipted upstream release.")
+              ISSUE_NUMBER=${ISSUE_URL##*/}
+            elif [ "$(printf '%s' "$MATCHING_ISSUES" | jq -r '.[0].state')" = "CLOSED" ]; then
+              gh issue reopen "$ISSUE_NUMBER"
+            fi
+            PR_BODY=$(printf '%s\n\n%s\n' \
+              "Regenerates the complete catalog from the dispatched immutable spec commit." \
+              "Closes #${ISSUE_NUMBER}")
+            PR_URL=$(gh pr create \
+              --title "chore: regenerate catalog from exact spec release" \
+              --body "$PR_BODY" \
+              --head "$BRANCH" \
+              --base main)
+            PR_NUMBER=${PR_URL##*/}
+          fi
+          gh pr merge "$PR_NUMBER" --squash --auto --delete-branch
