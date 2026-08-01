@@ -15,6 +15,10 @@ on:
       - "schemas/**"
       - "tools/**"
 
+concurrency:
+  group: validate-catalog-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -24,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v7
         with:
@@ -32,5 +38,89 @@ jobs:
 
       - run: npm ci
 
+      - name: Validate delivery ledger and pull-request transition
+        id: delivery_state
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          PIN=tools/spec-release.json
+          node tools/spec-delivery.mjs validate-state tools/spec-deliveries.json "$PIN"
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            BASE_LEDGER="$RUNNER_TEMP/base-spec-deliveries.json"
+            BASE_PIN="$RUNNER_TEMP/base-spec-release.json"
+            if git cat-file -e "${BASE_SHA}:tools/spec-deliveries.json" 2>/dev/null; then
+              git show "${BASE_SHA}:tools/spec-deliveries.json" > "$BASE_LEDGER"
+            fi
+            if git cat-file -e "${BASE_SHA}:tools/spec-release.json" 2>/dev/null; then
+              git show "${BASE_SHA}:tools/spec-release.json" > "$BASE_PIN"
+            fi
+            node tools/spec-delivery.mjs validate-transition \
+              "$BASE_LEDGER" "$BASE_PIN" tools/spec-deliveries.json "$PIN"
+          fi
+          if [ -f "$PIN" ]; then
+            {
+              echo "has_pin=true"
+              echo "release_tag=$(jq -r '.release_tag' "$PIN")"
+              echo "target_commit=$(jq -r '.target_commit' "$PIN")"
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "has_pin=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify tracked release receipt and all five asset bytes
+        if: steps.delivery_state.outputs.has_pin == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.delivery_state.outputs.release_tag }}
+        run: |
+          set -euo pipefail
+          RELEASE_FILE="$RUNNER_TEMP/spec-release.json"
+          COMMIT_FILE="$RUNNER_TEMP/spec-tag-commit.txt"
+          ASSET_DIR="$RUNNER_TEMP/spec-release-assets"
+          mkdir -p "$ASSET_DIR"
+          gh api "repos/f5-sales-demo/api-specs-enriched/releases/tags/${RELEASE_TAG}" > "$RELEASE_FILE"
+          gh api "repos/f5-sales-demo/api-specs-enriched/commits/${RELEASE_TAG}" --jq '.sha' > "$COMMIT_FILE"
+          node tools/spec-delivery.mjs validate-pin-release \
+            "$RELEASE_FILE" "$COMMIT_FILE" tools/spec-release.json
+          while IFS=$'\t' read -r ASSET_ID ASSET_NAME; do
+            gh api "repos/f5-sales-demo/api-specs-enriched/releases/assets/${ASSET_ID}" \
+              -H "Accept: application/octet-stream" > "${ASSET_DIR}/${ASSET_NAME}"
+            EXPECTED_SHA=$(jq -r --arg name "$ASSET_NAME" '.assets[$name]' tools/spec-release.json)
+            ACTUAL_SHA=$(shasum -a 256 "${ASSET_DIR}/${ASSET_NAME}" | awk '{print $1}')
+            [ "$ACTUAL_SHA" = "$EXPECTED_SHA" ] || {
+              echo "::error::Downloaded ${ASSET_NAME} differs from the tracked release pin"
+              exit 1
+            }
+          done < <(jq -r '.assets[] | [.id, .name] | @tsv' "$RELEASE_FILE")
+
+      - name: Checkout immutable catalog source
+        if: steps.delivery_state.outputs.has_pin == 'true'
+        env:
+          TARGET_COMMIT: ${{ steps.delivery_state.outputs.target_commit }}
+        run: |
+          set -euo pipefail
+          SOURCE_DIR="$RUNNER_TEMP/api-specs-enriched"
+          git clone --quiet --no-checkout https://github.com/f5-sales-demo/api-specs-enriched.git "$SOURCE_DIR"
+          git -C "$SOURCE_DIR" checkout --quiet --detach "$TARGET_COMMIT"
+
+      - name: Prove catalog is exact deterministic regeneration
+        if: steps.delivery_state.outputs.has_pin == 'true'
+        run: |
+          set -euo pipefail
+          GENERATED="$RUNNER_TEMP/verified-catalog"
+          GENERATED_AGAIN="$RUNNER_TEMP/verified-catalog-again"
+          node tools/generate-from-enriched.mjs \
+            --config-dir "$RUNNER_TEMP/api-specs-enriched/config" \
+            --output-dir "$GENERATED"
+          node tools/generate-from-enriched.mjs \
+            --config-dir "$RUNNER_TEMP/api-specs-enriched/config" \
+            --output-dir "$GENERATED_AGAIN"
+          diff -ru "$GENERATED" "$GENERATED_AGAIN"
+          diff -ru catalog/resources "$GENERATED"
+
       - name: Validate catalog against schemas
-        run: npm run validate
+        run: |
+          npm test
+          npm run validate
