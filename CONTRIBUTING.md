@@ -7,10 +7,10 @@ This document describes the workflow and rules that all contributors — human a
 This repository is part of a fleet governed by a central hub, **docs-control**. If you are not in
 docs-control, you are in a **downstream** repository.
 
-- **Managed files** — including this `CONTRIBUTING.md` and `CLAUDE.md` — are owned by docs-control
-  and synced to every downstream repo. Do not edit them directly here; a hook blocks it. To change
-  one, open an issue in docs-control: the change is made there and propagates fleet-wide. The
-  authoritative list is `.claude/governance.json`.
+- **Managed files** — including this `CONTRIBUTING.md`, `CLAUDE.md`, `AGENTS.md`, and shared agent
+  skills — are owned by docs-control and synced to every downstream repo. Do not edit them directly
+  here; a hook blocks it. To change one, open an issue in docs-control: the change is made there and
+  propagates fleet-wide. The authoritative list is `.claude/governance.json`.
 - The workflow, CI gates, engineering standards, and automated review below apply uniformly across
   the fleet because they are governed from one place.
 
@@ -48,7 +48,7 @@ this document governs how a change gets reviewed and merged.
 
 Every change follows this path:
 
-```
+```text
 Issue → Branch → PR (linked to issue) → CI passes → auto-merge when green → Branch auto-deleted
 ```
 
@@ -251,30 +251,20 @@ problems while they are still cheap to fix — in a spec or a plan, before any c
 The two layers are complementary: the local layer catches issues before the pull request exists and
 costs nothing when it is wrong, while CI remains the gate that decides whether a change merges.
 
-## Translations (suspended)
+## Translations (Antigravity `agy` Automated Translation)
 
-> **Suspended during development.** Translation generation calls a model API once per locale per
-> changed English file — twelve calls for every edit under `docs/en/`. That cost is not justified
-> while the documentation is still churning, so generation is off and the freshness audit no longer
-> gates merges. Translations will be regenerated as a deliberate effort before go-live.
+Language translation for the `f5-sales-demo` ecosystem across 12 target locales (`fr`, `es`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, `zh-tw`, `ar`, `it`, `hi`, `th`) is powered by **Antigravity (`agy`)** running as an automated GitHub Actions runner workflow (`antigravity-translate.yml`).
 
-How the three parts fit together, because only one of them costs anything:
+How the translation pipeline operates:
 
-| Part | Where | Cost |
-| ---- | ----- | ---- |
-| Generation | the `docs-translate` pre-commit hook, on `docs/en/**/*.md[x]` | the entire spend |
-| Freshness audit | `.github/workflows/translation-audit.yml` — compares each translation's `i18n.sourceHash` against the SHA-256 of its English source | none; it performs no translation |
-| Required context | `audit / Translation freshness` in branch protection | none; it made the audit blocking |
+| Part | Where | How it Works |
+| ---- | ----- | ------------ |
+| Automated Translation | `.github/workflows/antigravity-translate.yml` — invokes `agy` on GitHub Action runner | Triggers on PRs modifying `docs/en/**/*.md[x]`. Uses Gemini 3.6 Flash (High) and `.agents/skills/i18n-translate/SKILL.md` to translate missing/stale files, update `i18n.sourceHash`, and auto-commit back to the PR branch. |
+| Freshness Audit | `.github/workflows/translation-audit.yml` — compares each translation's `i18n.sourceHash` against English source SHA-256 | Verifies that all 12 localized docs exist and match current English hashes. |
+| Required Context | `audit / Translation freshness` in branch protection | Ensures no PR merges with stale or missing translations. |
 
-What this means for you now:
+### Restoring translations and activating Antigravity `agy` translator
 
-- **Existing translations under `docs/<locale>/` stay in place and will drift out of date.** That is
-  expected. Do not regenerate them individually, and do not treat the drift as a defect to fix.
-- Editing `docs/en/` no longer requires a matching translation update.
-- Both the generation hook and the audit are gated on the `TRANSLATIONS_ENABLED` variable. Unset means
-  off, so nothing spends money by accident.
-
-### Restoring translations
 
 Order matters, and getting it wrong deadlocks every open pull request — the same trap the suspended
 reviewer left behind.
@@ -311,8 +301,8 @@ reviewer left behind.
    check that is never emitted. An unconditional job removes that whole class of failure — after this,
    `TRANSLATIONS_ENABLED` governs only local generation, which fails visibly and cheaply.
 
-   `tests/test-translation-suspension.sh` keys section 1 on the `SUSPENDED:` marker, so leaving it in
-   place fails the guard the moment the context comes back.
+   docs-control's `tests/test-translation-suspension.sh` keys section 1 on the `SUSPENDED:` marker,
+   so leaving it in place fails the guard the moment the context comes back.
 4. Confirm the audit actually reports on **every governed repository that receives the workflow**, not
    on one pull request. Three traps here, all of them load-bearing:
 
