@@ -1,3 +1,5 @@
+# Console Catalog
+
 🌐 English |
 [日本語](https://f5-sales-demo.github.io/console/ja/) |
 [한국어](https://f5-sales-demo.github.io/console/ko/) |
@@ -11,8 +13,6 @@
 [العربية](https://f5-sales-demo.github.io/console/ar/) |
 [हिन्दी](https://f5-sales-demo.github.io/console/hi/) |
 [ไทย](https://f5-sales-demo.github.io/console/th/)
-
-# Console Catalog
 
 [![GitHub Pages Deploy](https://github.com/f5-sales-demo/console/actions/workflows/github-pages-deploy.yml/badge.svg)](https://github.com/f5-sales-demo/console/actions/workflows/github-pages-deploy.yml)
 [![Repository Settings](https://github.com/f5-sales-demo/console/actions/workflows/enforce-repo-settings.yml/badge.svg)](https://github.com/f5-sales-demo/console/actions/workflows/enforce-repo-settings.yml)
