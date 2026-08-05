@@ -23,7 +23,7 @@ Schema-driven inventory of the F5 XC administration console UI — routes, resou
 
 ## Documentation
 
-Full documentation is available at **[https://f5-sales-demo.github.io/console/](https://f5-sales-demo.github.io/console/)**.
+Full documentation is available at __[https://f5-sales-demo.github.io/console/](https://f5-sales-demo.github.io/console/)__.
 
 ## Contributing
 
