@@ -17,7 +17,7 @@ env:
 jobs:
   regenerate:
     name: Regenerate exact enriched release
-    runs-on: [self-hosted, Linux, X64, console]
+    runs-on: [self-hosted, Linux, X64, console, ubuntu-24.04]
     permissions:
       contents: read
     steps:

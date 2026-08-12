@@ -21,7 +21,7 @@ permissions: {}
 jobs:
   dispatch:
     name: Dispatch Catalog Update
-    runs-on: [self-hosted, Linux, X64, console]
+    runs-on: [self-hosted, Linux, X64, console, ubuntu-24.04]
     steps:
       - name: Dispatch console-catalog-changed to xcsh
         env:
