@@ -159,7 +159,7 @@ test('workflow publishes ledger only with the generated catalog PR', () => {
   assert.match(workflow, /name: Checkout console[\s\S]*?ref: main/);
   assert.match(workflow, /ref: \$\{\{ steps\.delivery\.outputs\.target_commit \}\}/);
   assert.match(workflow, /find catalog\/resources -mindepth 1 -delete/);
-  assert.match(workflow, /shasum -a 256/);
+  assert.match(workflow, /ACTUAL_SHA="sha256:\$\(shasum -a 256/);
   assert.match(workflow, /git add catalog\/resources tools\/spec-deliveries\.json tools\/spec-release\.json/);
 });
 
@@ -186,7 +186,7 @@ test('required validation measures state, release bytes, and exact deterministic
   const workflow = readFileSync(new URL('../.github/workflows/validate-catalog.yml', import.meta.url), 'utf8');
   assert.match(workflow, /validate-transition/);
   assert.match(workflow, /validate-pin-release/);
-  assert.match(workflow, /shasum -a 256/);
+  assert.match(workflow, /ACTUAL_SHA="sha256:\$\(shasum -a 256/);
   assert.match(workflow, /checkout --quiet --detach "\$TARGET_COMMIT"/);
   assert.match(workflow, /diff -ru "\$GENERATED" "\$GENERATED_AGAIN"/);
   assert.match(workflow, /diff -ru catalog\/resources "\$GENERATED"/);
