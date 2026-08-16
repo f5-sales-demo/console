@@ -12,6 +12,7 @@ const SEMVER = /^\d+\.\d+\.\d+$/;
 const COMMIT = /^[0-9a-f]{40}$/;
 const DELIVERY_ID = /^[0-9a-f]{64}$/;
 const DIGEST = /^[0-9a-f]{64}$/;
+const QUALIFIED_DIGEST = /^sha256:([0-9a-f]{64})$/;
 const RECEIPT = /<!-- publication-receipt:(\{[^\n]*\}) -->/g;
 
 function fail(message) {
@@ -214,15 +215,18 @@ export function publicationReceipt(release, payload, resolvedCommit) {
 		fail("publication receipt identity differs from payload");
 	}
 	exactKeys(receipt.assets, expectedNames, "publication receipt assets");
-	if (Object.values(receipt.assets).some((digest) => !DIGEST.test(digest))) {
-		fail("publication receipt contains an invalid asset digest");
+	const assets = {};
+	for (const [name, digest] of Object.entries(receipt.assets)) {
+		const match = typeof digest === "string" ? QUALIFIED_DIGEST.exec(digest) : null;
+		if (!match) fail("publication receipt contains an invalid asset digest");
+		assets[name] = match[1];
 	}
 	for (const asset of release.assets) {
-		if (asset.digest !== `sha256:${receipt.assets[asset.name]}`) {
+		if (asset.digest !== receipt.assets[asset.name]) {
 			fail(`release asset digest differs from publication receipt: ${asset.name}`);
 		}
 	}
-	return receipt;
+	return { ...receipt, assets };
 }
 
 export function validatePin(pin) {
