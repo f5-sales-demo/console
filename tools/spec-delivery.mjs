@@ -11,7 +11,6 @@ const EVENT_TYPE = "upstream-enrichment-changed";
 const SEMVER = /^\d+\.\d+\.\d+$/;
 const COMMIT = /^[0-9a-f]{40}$/;
 const DELIVERY_ID = /^[0-9a-f]{64}$/;
-const DIGEST = /^[0-9a-f]{64}$/;
 const QUALIFIED_DIGEST = /^sha256:([0-9a-f]{64})$/;
 const RECEIPT = /<!-- publication-receipt:(\{[^\n]*\}) -->/g;
 
@@ -217,9 +216,10 @@ export function publicationReceipt(release, payload, resolvedCommit) {
 	exactKeys(receipt.assets, expectedNames, "publication receipt assets");
 	const assets = {};
 	for (const [name, digest] of Object.entries(receipt.assets)) {
-		const match = typeof digest === "string" ? QUALIFIED_DIGEST.exec(digest) : null;
-		if (!match) fail("publication receipt contains an invalid asset digest");
-		assets[name] = match[1];
+		if (typeof digest !== "string" || !QUALIFIED_DIGEST.test(digest)) {
+			fail("publication receipt contains an invalid asset digest");
+		}
+		assets[name] = digest;
 	}
 	for (const asset of release.assets) {
 		if (asset.digest !== receipt.assets[asset.name]) {
@@ -242,7 +242,9 @@ export function validatePin(pin) {
 		"openapi.json",
 	];
 	exactKeys(pin.assets, expectedNames, "spec release pin assets");
-	if (Object.values(pin.assets).some((digest) => !DIGEST.test(digest))) fail("spec release pin digest is malformed");
+	if (Object.values(pin.assets).some((digest) => !QUALIFIED_DIGEST.test(digest))) {
+		fail("spec release pin digest is malformed");
+	}
 	return pin;
 }
 

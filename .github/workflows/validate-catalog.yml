@@ -89,7 +89,7 @@ jobs:
             gh api "repos/f5-sales-demo/api-specs-enriched/releases/assets/${ASSET_ID}" \
               -H "Accept: application/octet-stream" > "${ASSET_DIR}/${ASSET_NAME}"
             EXPECTED_SHA=$(jq -r --arg name "$ASSET_NAME" '.assets[$name]' tools/spec-release.json)
-            ACTUAL_SHA=$(shasum -a 256 "${ASSET_DIR}/${ASSET_NAME}" | awk '{print $1}')
+            ACTUAL_SHA="sha256:$(shasum -a 256 "${ASSET_DIR}/${ASSET_NAME}" | awk '{print $1}')"
             [ "$ACTUAL_SHA" = "$EXPECTED_SHA" ] || {
               echo "::error::Downloaded ${ASSET_NAME} differs from the tracked release pin"
               exit 1
