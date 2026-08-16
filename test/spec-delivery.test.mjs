@@ -59,9 +59,17 @@ test('canonical delivery identity rejects forged input', () => {
 
 test('publication receipt binds exact tag, commit, and five asset hashes', () => {
   const validPayload = payload();
-  const receipt = { assets: receiptAssets(), commit, version: '2.1.208' };
+  const receipt = {
+    assets: Object.fromEntries(Object.entries(receiptAssets()).map(([name, value]) => [name, `sha256:${value}`])),
+    commit,
+    version: '2.1.208',
+  };
   const document = release(`notes\n\n<!-- publication-receipt:${JSON.stringify(receipt)} -->`);
-  assert.deepEqual(publicationReceipt(document, validPayload, commit), receipt);
+  assert.deepEqual(publicationReceipt(document, validPayload, commit), {
+    assets: receiptAssets(),
+    commit,
+    version: '2.1.208',
+  });
   assert.throws(() => publicationReceipt(document, validPayload, 'c'.repeat(40)), /does not resolve/);
   assert.throws(
     () => publicationReceipt({ ...document, body: `${document.body}\n${document.body}` }, validPayload, commit),
@@ -70,6 +78,13 @@ test('publication receipt binds exact tag, commit, and five asset hashes', () =>
   const corrupt = structuredClone(document);
   corrupt.assets[0].digest = `sha256:${'c'.repeat(64)}`;
   assert.throws(() => publicationReceipt(corrupt, validPayload, commit), /asset digest differs/);
+
+  for (const invalidDigest of [digest, `sha512:${digest}`]) {
+    const invalidReceipt = structuredClone(receipt);
+    invalidReceipt.assets['api-catalog.json'] = invalidDigest;
+    const invalid = release(`<!-- publication-receipt:${JSON.stringify(invalidReceipt)} -->`);
+    assert.throws(() => publicationReceipt(invalid, validPayload, commit), /invalid asset digest/);
+  }
 });
 
 test('completed, conflicting, and stale deliveries fail closed', () => {
