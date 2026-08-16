@@ -148,6 +148,13 @@ test('workflow publishes ledger only with the generated catalog PR', () => {
   assert.match(workflow, /git add catalog\/resources tools\/spec-deliveries\.json tools\/spec-release\.json/);
 });
 
+test('secret-bearing delivery jobs use the dedicated automation environment', () => {
+  const regenerate = readFileSync(new URL('../.github/workflows/regenerate-catalog.yml', import.meta.url), 'utf8');
+  const notify = readFileSync(new URL('../.github/workflows/notify-xcsh.yml', import.meta.url), 'utf8');
+  assert.match(regenerate, /regenerate:\n[\s\S]*?environment: delivery-automation/);
+  assert.match(notify, /dispatch:\n[\s\S]*?environment: delivery-automation/);
+});
+
 test('workflow retries reuse the exact PR and issue before re-enabling auto-merge', () => {
   const workflow = readFileSync(new URL('../.github/workflows/regenerate-catalog.yml', import.meta.url), 'utf8');
   const existingPull = workflow.indexOf('if [ -n "$EXISTING_PR" ]');
