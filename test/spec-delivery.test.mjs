@@ -31,17 +31,17 @@ function payload(overrides = {}) {
 
 function receiptAssets() {
   return {
-    'api-catalog.json': digest,
-    'f5xc-api-specs-v2.1.208.zip': digest,
-    'index.json': digest,
-    'minimal-export-defaults.json': digest,
-    'openapi.json': digest,
+    'api-catalog.json': `sha256:${digest}`,
+    'f5xc-api-specs-v2.1.208.zip': `sha256:${digest}`,
+    'index.json': `sha256:${digest}`,
+    'minimal-export-defaults.json': `sha256:${digest}`,
+    'openapi.json': `sha256:${digest}`,
   };
 }
 
 function release(body) {
   return {
-    assets: Object.keys(receiptAssets()).map((name) => ({ digest: `sha256:${digest}`, name })),
+    assets: Object.keys(receiptAssets()).map((name) => ({ digest: receiptAssets()[name], name })),
     body,
     draft: false,
     prerelease: false,
@@ -60,7 +60,7 @@ test('canonical delivery identity rejects forged input', () => {
 test('publication receipt binds exact tag, commit, and five asset hashes', () => {
   const validPayload = payload();
   const receipt = {
-    assets: Object.fromEntries(Object.entries(receiptAssets()).map(([name, value]) => [name, `sha256:${value}`])),
+    assets: receiptAssets(),
     commit,
     version: '2.1.208',
   };
@@ -113,7 +113,7 @@ test('completed, conflicting, and stale deliveries fail closed', () => {
   );
   const newerAssets = receiptAssets();
   delete newerAssets['f5xc-api-specs-v2.1.208.zip'];
-  newerAssets['f5xc-api-specs-v2.1.209.zip'] = digest;
+  newerAssets['f5xc-api-specs-v2.1.209.zip'] = `sha256:${digest}`;
   const newerPin = { assets: newerAssets, release_tag: 'v2.1.209', target_commit: commit, version: '2.1.209' };
   const newerPayload = payload({ release_tag: 'v2.1.209', version: '2.1.209' });
   const newerEntry = { release_tag: 'v2.1.209', target_commit: commit, version: '2.1.209' };
