@@ -1,4 +1,10 @@
 {
-  "deliveries": {},
+  "deliveries": {
+    "255c767bcbc7bb5bd8921760cbf9699f2c14d294cd2bcba11a7f87deba6dfa0f": {
+      "release_tag": "v2.1.220",
+      "target_commit": "b3130b919b421a60b3f527c1cea686aebdd59bc3",
+      "version": "2.1.220"
+    }
+  },
   "version": 1
 }
