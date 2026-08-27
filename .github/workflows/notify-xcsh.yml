@@ -22,7 +22,7 @@ jobs:
   dispatch:
     name: Dispatch Catalog Update
     environment: delivery-automation
-    runs-on: [self-hosted, Linux, X64, console, ubuntu-24.04]
+    runs-on: managed-socketless
     steps:
       - name: Dispatch console-catalog-changed to xcsh
         env:
