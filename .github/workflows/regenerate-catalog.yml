@@ -18,7 +18,7 @@ jobs:
   regenerate:
     name: Regenerate exact enriched release
     environment: delivery-automation
-    runs-on: [self-hosted, Linux, X64, console, ubuntu-24.04]
+    runs-on: managed-socketless
     permissions:
       contents: read
     steps:
