@@ -23,7 +23,7 @@ The catalog is consumed by xcsh's browser automation runtime to power:
 
 ## Four-Layer Model
 
-```
+```text
 ┌─────────────────────────────────────────────────┐
 │  Layer 1: Navigation Tree                        │
 │  catalog/navigation/console-tree.yaml            │
@@ -49,7 +49,7 @@ The catalog is consumed by xcsh's browser automation runtime to power:
 
 ## How xcsh Consumes the Catalog
 
-```
+```text
 ┌──────────────────┐     reads YAML      ┌──────────────────┐
 │  console repo    │ ──────────────────▶  │  xcsh browser.ts │
 │  (catalog data)  │                      │  + workflow       │
@@ -74,10 +74,8 @@ Chrome is launched with `--remote-debugging-port=9222 --user-data-dir=~/.config/
 ## Integration Points
 
 | System | Integration |
-|--------|-------------|
+| --- | --- |
 | api-specs-enriched | Resource `api.kind` values match; cross-referenced by string key |
 | xcsh browser.ts | Runtime consumer — reads YAML, executes via CDP |
 | docs-control | Governance — managed files, CI workflows, branch protection |
 | docs-theme | Documentation generation from catalog |
-
-<!-- Linked-issue verification marker: #460. -->
