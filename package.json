@@ -19,6 +19,6 @@
     "yaml": "^2.9.0"
   },
   "overrides": {
-    "fast-uri": "3.1.6"
+    "fast-uri": "4.1.3"
   }
 }
