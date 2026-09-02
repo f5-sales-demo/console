@@ -28,6 +28,10 @@ params:
     required: false
     description: "Existing origin pool name to attach"
     example: "example-origin-pool"
+  app_firewall:
+    required: false
+    description: "Existing App Firewall policy to enable and attach"
+    example: "example-app-firewall"
 
 steps:
   - id: "navigate-to-list"
@@ -75,6 +79,21 @@ steps:
         action: "click"
         selector: "button:text('Apply')"
         description: "Confirm origin pool selection"
+
+  - id: "attach-app-firewall"
+    condition: "params.app_firewall is set"
+    action: "select"
+    selector: "listbox"
+    context: "Web Application Firewall section"
+    value: "Enable"
+    description: "Enable Web Application Firewall so the App Firewall selector is shown"
+    then:
+      - id: "select-app-firewall"
+        action: "select"
+        selector: "listbox"
+        context: "App Firewall selector"
+        value: "{app_firewall}"
+        description: "Select the named App Firewall policy"
 
   - id: "save"
     action: "click"
