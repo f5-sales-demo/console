@@ -29,19 +29,20 @@ function payload(overrides = {}) {
   return value;
 }
 
-function receiptAssets() {
+function receiptAssets(extra = {}) {
   return {
     'api-catalog.json': `sha256:${digest}`,
     'f5xc-api-specs-v2.1.208.zip': `sha256:${digest}`,
     'index.json': `sha256:${digest}`,
     'minimal-export-defaults.json': `sha256:${digest}`,
     'openapi.json': `sha256:${digest}`,
+    ...extra,
   };
 }
 
-function release(body) {
+function release(body, assets = receiptAssets()) {
   return {
-    assets: Object.keys(receiptAssets()).map((name) => ({ digest: receiptAssets()[name], name })),
+    assets: Object.keys(assets).map((name) => ({ digest: assets[name], name })),
     body,
     draft: false,
     prerelease: false,
@@ -85,6 +86,28 @@ test('publication receipt binds exact tag, commit, and five asset hashes', () =>
     const invalid = release(`<!-- publication-receipt:${JSON.stringify(invalidReceipt)} -->`);
     assert.throws(() => publicationReceipt(invalid, validPayload, commit), /invalid asset digest/);
   }
+});
+
+test('publication receipt accepts additional receipted evidence assets and rejects a non-exact asset set', () => {
+  const validPayload = payload();
+  const assets = receiptAssets({ 'smsv2-contract.json': `sha256:${'c'.repeat(64)}` });
+  const receipt = { assets, commit, version: '2.1.208' };
+  const document = release(`<!-- publication-receipt:${JSON.stringify(receipt)} -->`, assets);
+  assert.deepEqual(publicationReceipt(document, validPayload, commit).assets, assets);
+
+  const missingCore = { ...assets };
+  delete missingCore['openapi.json'];
+  const missingCoreDocument = release(
+    `<!-- publication-receipt:${JSON.stringify({ ...receipt, assets: missingCore })} -->`,
+    missingCore,
+  );
+  assert.throws(() => publicationReceipt(missingCoreDocument, validPayload, commit), /missing required asset/);
+
+  const extraReleaseAsset = release(`<!-- publication-receipt:${JSON.stringify(receipt)} -->`, {
+    ...assets,
+    'unreceipted.json': `sha256:${digest}`,
+  });
+  assert.throws(() => publicationReceipt(extraReleaseAsset, validPayload, commit), /asset set is not exact/);
 });
 
 test('completed, conflicting, and stale deliveries fail closed', () => {

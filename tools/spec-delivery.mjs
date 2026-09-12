@@ -25,6 +25,30 @@ function exactKeys(value, expected, name) {
 	if (JSON.stringify(actual) !== JSON.stringify(wanted)) fail(`${name} has unexpected fields`);
 }
 
+function requiredAssetNames(releaseTag) {
+	return [
+		"api-catalog.json",
+		`f5xc-api-specs-${releaseTag}.zip`,
+		"index.json",
+		"minimal-export-defaults.json",
+		"openapi.json",
+	];
+}
+
+function validateAssetMap(assets, releaseTag, name) {
+	if (!assets || typeof assets !== "object" || Array.isArray(assets)) fail(`${name} must be an object`);
+	const names = Object.keys(assets).sort();
+	for (const requiredName of requiredAssetNames(releaseTag)) {
+		if (!Object.hasOwn(assets, requiredName)) fail(`${name} is missing required asset: ${requiredName}`);
+	}
+	for (const [assetName, digest] of Object.entries(assets)) {
+		if (!assetName || typeof digest !== "string" || !QUALIFIED_DIGEST.test(digest)) {
+			fail(`${name} contains an invalid asset digest`);
+		}
+	}
+	return names;
+}
+
 export function deliveryId(payload) {
 	const identity = {
 		commit: payload.target_commit,
@@ -192,15 +216,6 @@ export function publicationReceipt(release, payload, resolvedCommit) {
 	if (resolvedCommit !== payload.target_commit) fail("release tag does not resolve to target_commit");
 	if (release.draft || release.prerelease) fail("release must be published and non-prerelease");
 	if (release.tag_name !== payload.release_tag) fail("release endpoint returned another tag");
-	const expectedNames = [
-		"api-catalog.json",
-		`f5xc-api-specs-${payload.release_tag}.zip`,
-		"index.json",
-		"minimal-export-defaults.json",
-		"openapi.json",
-	].sort();
-	const actualNames = (release.assets ?? []).map((asset) => asset?.name).sort();
-	if (JSON.stringify(actualNames) !== JSON.stringify(expectedNames)) fail("release asset set is not exact");
 	const matches = [...String(release.body ?? "").matchAll(RECEIPT)];
 	if (matches.length !== 1) fail("release must contain exactly one publication receipt");
 	let receipt;
@@ -213,12 +228,11 @@ export function publicationReceipt(release, payload, resolvedCommit) {
 	if (receipt.version !== payload.version || receipt.commit !== payload.target_commit) {
 		fail("publication receipt identity differs from payload");
 	}
-	exactKeys(receipt.assets, expectedNames, "publication receipt assets");
+	const expectedNames = validateAssetMap(receipt.assets, payload.release_tag, "publication receipt assets");
+	const actualNames = (release.assets ?? []).map((asset) => asset?.name).sort();
+	if (JSON.stringify(actualNames) !== JSON.stringify(expectedNames)) fail("release asset set is not exact");
 	const assets = {};
 	for (const [name, digest] of Object.entries(receipt.assets)) {
-		if (typeof digest !== "string" || !QUALIFIED_DIGEST.test(digest)) {
-			fail("publication receipt contains an invalid asset digest");
-		}
 		assets[name] = digest;
 	}
 	for (const asset of release.assets) {
@@ -234,17 +248,7 @@ export function validatePin(pin) {
 	if (!SEMVER.test(pin.version) || pin.release_tag !== `v${pin.version}` || !COMMIT.test(pin.target_commit)) {
 		fail("spec release pin identity is malformed");
 	}
-	const expectedNames = [
-		"api-catalog.json",
-		`f5xc-api-specs-${pin.release_tag}.zip`,
-		"index.json",
-		"minimal-export-defaults.json",
-		"openapi.json",
-	];
-	exactKeys(pin.assets, expectedNames, "spec release pin assets");
-	if (Object.values(pin.assets).some((digest) => !QUALIFIED_DIGEST.test(digest))) {
-		fail("spec release pin digest is malformed");
-	}
+	validateAssetMap(pin.assets, pin.release_tag, "spec release pin assets");
 	return pin;
 }
 
