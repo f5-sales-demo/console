@@ -1,12 +1,18 @@
 {
   "assets": {
-    "api-catalog.json": "sha256:4508d97178f9539bcd3895cd2292773d566c7c3eef91bba6cb1c24693c61f38b",
-    "f5xc-api-specs-v2.1.221.zip": "sha256:40bd1d282b6987a9379852fef9d1a5833430f921369dfe49531a03daf9cfd15b",
-    "index.json": "sha256:ade4d093fe30c3552d1acaa84792112f021f6b1da42d864c09464d8f1b5d6000",
-    "minimal-export-defaults.json": "sha256:6a6874bec66edd75916f3aedd90e96a965f7d037703d547a1513862f1d99f102",
-    "openapi.json": "sha256:4a60a3b309c81500dc77818abdcd24107dd8a35e6b0027f71794e396e70e75ab"
+    "api-catalog.json": "sha256:317e31e9895697de892a1a0925f1e56cdb5942c0afdeab60b0d0066af082883b",
+    "concurrency_contracts.json": "sha256:5e985463a15143ba7212447e7ae76bc01d5ec451a62f92b87cd509aa4733272b",
+    "f5xc-api-specs-v7.0.1.zip": "sha256:0fce4f17c7347132d3482348084d19986181dcf0ba3f3fb79ad52f9f64fecfae",
+    "index.json": "sha256:7ef5dfa0d1a77366f6214ba2e9226bfd427f0c0fb1ab6772d00003fe6fddefcc",
+    "minimal-export-defaults.json": "sha256:f4fa3d977e6e66e7c13bb4e2309e9ae0f397545594bba689bd0a6d562564db70",
+    "openapi.json": "sha256:48863c0a2e6c6a6fde050f4f8f5a6966b02872851fa1acb7830f26ef2e143cd9",
+    "smsv2-contract-manifest.json": "sha256:75899912ef4c0d243caca5b466d2e8a467d541e7721c8abefd19c890d88d9a07",
+    "smsv2-contract.json": "sha256:3602ecd09b744449f1bf036c42e10e8be7133f6073e5d1553edb49e46cd2429c",
+    "smsv2-evidence-receipt.json": "sha256:4e90ee602aa6b00c78f7034691b36ef3d439d5f6ee12bf321c29dca6b0d53a8c",
+    "smsv2_parity_manifest.json": "sha256:e12a97c1ecc38186595748ed9ed9990b92e457b12023d0b5752820d6b5efe677",
+    "upstream-contract-removals.json": "sha256:9a792205bd35a7ab7024f6a3409f6709f13252f9facbb9a668af053cc106064c"
   },
-  "release_tag": "v2.1.221",
-  "target_commit": "6e6cfd6f135f34be22bd4d47baf9fa8bb4a1bbe0",
-  "version": "2.1.221"
+  "release_tag": "v7.0.1",
+  "target_commit": "2513fe498149c98fb737ff2ab207704b8a86fec6",
+  "version": "7.0.1"
 }
