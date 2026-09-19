@@ -34,6 +34,11 @@
       "release_tag": "v7.0.6",
       "target_commit": "9bae0474d119572574156b9ba1e538e6b0431cf0",
       "version": "7.0.6"
+    },
+    "21849ee0e693df33fd8c837c1b3b2f2e61c451dc934a0d37a2528d0d46ebf405": {
+      "release_tag": "v7.0.7",
+      "target_commit": "5c33dcf51eb8bee24e2ca1856e32cb5fef2a286f",
+      "version": "7.0.7"
     }
   },
   "version": 1
