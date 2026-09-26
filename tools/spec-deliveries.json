@@ -64,6 +64,11 @@
       "release_tag": "v8.0.2",
       "target_commit": "00f60b8792a1962b88d40377114724c61f276062",
       "version": "8.0.2"
+    },
+    "320682b32773a0338ab4d5d33d5626c5abed8e5b3d2e4c78309d6c42201b780f": {
+      "release_tag": "v8.0.3",
+      "target_commit": "95c72c055c2492abba83107257223414eb13b488",
+      "version": "8.0.3"
     }
   },
   "version": 1
