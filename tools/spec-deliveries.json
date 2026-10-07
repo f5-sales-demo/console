@@ -99,6 +99,11 @@
       "release_tag": "v12.0.1",
       "target_commit": "af922688a0dab75542a6bd0181ddd80fee4c8c2c",
       "version": "12.0.1"
+    },
+    "b82c959a8b070bda849b07124edbe75c5a5007ac7b0b3a77e6173b44f2a96331": {
+      "release_tag": "v12.0.2",
+      "target_commit": "4ee07ee75928a56fa7c8eb6603482f21b8472d1d",
+      "version": "12.0.2"
     }
   },
   "version": 1
